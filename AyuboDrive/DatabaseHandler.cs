@@ -5,31 +5,32 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AyuboDrive
 {
     class DatabaseHandler
     {
-        private const String connectionString = "";
+        private const string connectionString = @"Data Source=DESKTOP-0CECDCR;Initial Catalog=AyuboDriveV1;Integrated Security=True";
 
-        public void Insert(String query)
+        public void Insert(string query)
         {
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
+                    sqlConnection.Open();
                     SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
                     sqlCommand.ExecuteNonQuery();
                 }
             } catch(Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("An error occurred when inserting", $"{e}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public DataTable Select(String query)
+        public DataTable Select(string query)
         {
-
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -44,40 +45,42 @@ namespace AyuboDrive
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("An error occurred when selecting", $"{e}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return null;
         }
 
-        public void Delete(String query)
+        public void Delete(string query)
         {
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
+                    sqlConnection.Open();
                     SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
                     sqlCommand.ExecuteNonQuery();
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("An error occurred when deleting", $"{e}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public void Update(String query)
+        public void Update(string query)
         {
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
+                    sqlConnection.Open();
                     SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
                     sqlCommand.ExecuteNonQuery();
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("An error occurred when updating", $"{e}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
