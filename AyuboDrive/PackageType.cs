@@ -10,7 +10,7 @@ namespace AyuboDrive
 {
     class PackageType
     {
-        private int PackageID;
+        public int PackageID { get; }
         private string PackageName;
         private int MaxKm;
         private int MaxHour;

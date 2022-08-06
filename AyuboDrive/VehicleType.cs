@@ -10,7 +10,7 @@ namespace AyuboDrive
 {
     class VehicleType
     {
-        private int VehicleTypeID { get; }
+        public int VehicleTypeID { get; }
         private double VehicleOvernightRate { get; }
         private string VehicleTypeName;
         private double DriverOvernightRate { get; }
