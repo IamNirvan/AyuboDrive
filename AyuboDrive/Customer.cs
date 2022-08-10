@@ -8,16 +8,15 @@ using System.Windows.Forms;
 
 namespace AyuboDrive
 {
-
     class Customer
     {
-        public int CustomerID { get; }
-        private string FirstName { get; }
-        private string LastName { get; }
-        private string ContactNumber { get; }
-        private const string connectionString = @"Data Source=DESKTOP-0CECDCR;Initial Catalog=AyuboDriveV1;Integrated Security=True";
+        public string CustomerID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string ContactNumber { get; set; }
+        private static QueryHandler queryHandler = new QueryHandler();
 
-        public Customer(int customerID, string firstName, string lastName, string contactNumber)
+        public Customer(string customerID, string firstName, string lastName, string contactNumber)
         {
             CustomerID = customerID;
             FirstName = firstName;
@@ -25,77 +24,84 @@ namespace AyuboDrive
             ContactNumber = contactNumber;
         }
 
-        public static bool RegisterCustomer(string firstName, string lastName, string contactNumber)
-        {
-            string query = "INSERT INTO Customer VALUES(@customerID, @firstName, @lastName, @contactNumber)";
+        //public void RegisterCustomer(string firstName, string lastName, string contactNumber)
+        //{
+        //    string query = "INSERT INTO Customer VALUES(@customerID, @firstName, @lastName, @contactNumber)";
+        //    string[] parameters = {"@customerID", "@firstName", "@lastName", "@contactNumber"};
+        //    object[] values = {CustomerID, FirstName, LastName, ContactNumber};
 
-            try
+        //    if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
+        //    {
+        //        MessageBox.Show($"Details successfully inserted", "Insert successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    } else
+        //    {
+        //        MessageBox.Show("Query execution failed", "nsert failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+        //}
+
+        /// <summary>
+        /// The <c>RegisterCustomer</c> method is responsible for registering a 
+        /// new customer into the database
+        /// </summary>
+        /// <param name="firstName">The customer's first name</param>
+        /// <param name="lastName">The customer's last name</param>
+        /// <param name="contactNumber">The customer's contact number</param>
+        /// <returns>An initialized Customer object</returns>
+        public static Customer RegisterCustomer(string firstName, string lastName, string contactNumber)
+        {
+            string customerID = "";
+            string query = "INSERT INTO Customer VALUES(@customerID, @firstName, @lastName, @contactNumber)";
+            string[] parameters = { "@customerID", "@firstName", "@lastName", "@contactNumber" };
+            object[] values = { customerID, firstName, lastName, contactNumber };
+
+            if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
             {
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("@customerID", 8);
-                    sqlCommand.Parameters.AddWithValue("@firstName", firstName);
-                    sqlCommand.Parameters.AddWithValue("@lastName", lastName);
-                    sqlCommand.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    sqlCommand.ExecuteNonQuery();
-                    return true;
-                }
+                MessageBox.Show($"Details successfully inserted", "Insert successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return new Customer(customerID, firstName, lastName, contactNumber);
             }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e}", "An error occurred when updating", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return false;
+            MessageBox.Show("Query execution failed", "nsert failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return null;
         }
 
-        public static bool UpdateCustomer(int customerID, string firstName, string lastName, string contactNumber)
+        public void UpdateCustomer(string customerID, string firstName, string lastName, string contactNumber)
         {
             string query = "UPDATE Customer SET firstName = @firstName, lastName = @lastName, contactNumber = " +
                 "@contactNumber WHERE customerID = @customerID";
             
-            try
+            string[] parameters = { "@firstName", "@lastName", "@contactNumber", "customerID" };
+            object[] values = { CustomerID, FirstName, LastName, ContactNumber };
+
+            if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
             {
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("@customerID", customerID);
-                    sqlCommand.Parameters.AddWithValue("@firstName", firstName);
-                    sqlCommand.Parameters.AddWithValue("@lastName", lastName);
-                    sqlCommand.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    sqlCommand.ExecuteNonQuery();
-                    return true;
-                }
-            }
-            catch (Exception e)
+                UpdateObject(customerID, firstName, lastName, contactNumber);
+                MessageBox.Show($"Details successfully updated", "Update successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } else
             {
-                MessageBox.Show($"{e}", "An error occurred when updating", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Query execution failed", "Update failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return false;
         }
 
-        public static bool DeleteCustomer(int customerID)
+        public void DeleteCustomer(int customerID)
         {
             string query = "DELETE FROM Customer WHERE customerID = @customerID";
+            string[] parameters = { "customerID" };
+            object[] values = { customerID };
 
-            try
+            if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
             {
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("@customerID", customerID);
-                    sqlCommand.ExecuteNonQuery();
-                    return true;
-                }
-            }
-            catch (Exception e)
+                MessageBox.Show($"Details successfully deleted", "Delete successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } else
             {
-                MessageBox.Show($"{e}", "An error occurred when deleting", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Query execution failed", "Delete failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return false;
+        }
+
+        private void UpdateObject(string customerID, string firstName, string lastName, string contactNumber)
+        {
+            CustomerID = customerID;
+            FirstName = firstName;
+            LastName = lastName;
+            ContactNumber = contactNumber;
         }
     }
 }
