@@ -10,97 +10,71 @@ namespace AyuboDrive
 {
     class VehicleType
     {
-        public int VehicleTypeID { get; }
-        private double VehicleOvernightRate { get; }
-        private string VehicleTypeName;
-        private double DriverOvernightRate { get; }
-        private double DriverDailyRate { get; }
-        private const string connectionString = @"Data Source=DESKTOP-0CECDCR;Initial Catalog=AyuboDriveV1;Integrated Security=True";
+        public string VehicleTypeID { get; set; }
+        private double VehicleOvernightRate { get; set; }
+        private string VehicleTypeName { get; set; }
+        private double DriverOvernightRate { get; set; }
+        private double DriverDailyRate { get; set; }
+        private string ImagePath { get; set; }
+        private static QueryHandler queryHandler = new QueryHandler();
 
-
-        public VehicleType(int vehicleTypeId, string vehicleTypeName, double vehicleOvernightRate, double driverOvernightRate, double driverDailyRate)
+        public VehicleType(string vehicleTypeId, string vehicleTypeName, double vehicleOvernightRate, double driverOvernightRate, double driverDailyRate, 
+            string imagePath)
         {
             VehicleTypeID = vehicleTypeId;
             VehicleTypeName = vehicleTypeName;
             VehicleOvernightRate = vehicleOvernightRate;
             DriverOvernightRate = driverOvernightRate;
             DriverDailyRate = driverDailyRate;
+            ImagePath = imagePath;
         }
 
-        public bool RegisterVehicleType()
+        public static VehicleType RegisterVehicleType(string vehicleTypeName, double vehicleOvernightRate, double driverOvernightRate, double driverDailyRate,
+            string imagePath)
         {
-            string query = "INSERT INTO VehicleType VALUES(@vehicleTypeID, @vehicleTypeName, @vehicleOvernightRate, " +
-                "@driverOvernightRate, @driverDailyRate)";
+            string vehicleTypeID = "";
+            string query = "INSERT INTO VehicleType VALUES(@customerID, @firstName, @lastName, @contactNumber)";
+            string[] parameters = { "@customerID", "@firstName", "@lastName", "@contactNumber" };
+            object[] values = { vehicleTypeID, vehicleOvernightRate, driverOvernightRate, driverDailyRate, imagePath };
 
-            try
+            if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
             {
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("@vehicleTypeID", VehicleTypeID);
-                    sqlCommand.Parameters.AddWithValue("@vehicleTypeName", VehicleTypeName);
-                    sqlCommand.Parameters.AddWithValue("@vehicleOvernightRate", VehicleOvernightRate);
-                    sqlCommand.Parameters.AddWithValue("@driverOvernightRate", DriverOvernightRate);
-                    sqlCommand.Parameters.AddWithValue("@driverDailyRate", DriverDailyRate);
-                    sqlCommand.ExecuteNonQuery();
-                    return true;
-                }
+                MessageBox.Show($"Vehicle type details successfully registereds", "Registration successful", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
+                return new VehicleType(vehicleTypeID, vehicleTypeName, vehicleOvernightRate, driverOvernightRate, driverDailyRate, imagePath);
             }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e}", "An error occurred when registering the vehicle type", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return false;
+            MessageBox.Show("Vehicle type registration failed", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return null;
         }
 
-        public bool UpdateVehicleType(int vehicleTypeID, string vehicleTypeName, double vehicleOvernightRate, double driverOvernightRate, double driverDailyRate)
+        public void UpdateVehicleType(string vehicleTypeName, double vehicleOvernightRate, double driverOvernightRate, double driverDailyRate,
+            string imagePath)
         {
-            string query = "UPDATE VehicleType SET vehicleTypeName = @vehicleTypeName, vehicleOvernightRate = @vehicleOvernightRate, " +
-                "driverDailyRate = @driverDailyRate, driverOvernightRate = @driverOvernightRate WHERE vehicleTypeID = @vehicleTypeID";
+            string query = "INSERT INTO VehicleType VALUES(@customerID, @firstName, @lastName, @contactNumber)";
+            string[] parameters = { "@customerID", "@firstName", "@lastName", "@contactNumber" };
+            object[] values = { vehicleOvernightRate, driverOvernightRate, driverDailyRate, imagePath };
 
-            try
+            if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
             {
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("@vehicleTypeID", vehicleTypeID);
-                    sqlCommand.Parameters.AddWithValue("@vehicleTypeName", vehicleTypeName);
-                    sqlCommand.Parameters.AddWithValue("@vehicleOvernightRate", vehicleOvernightRate);
-                    sqlCommand.Parameters.AddWithValue("@driverOvernightRate", driverOvernightRate);
-                    sqlCommand.Parameters.AddWithValue("@driverDailyRate", driverDailyRate);
-                    sqlCommand.ExecuteNonQuery();
-                    return true;
-                }
+                MessageBox.Show($"Vehicle type details successfully updated", "Update successful", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
             }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e}", "An error occurred when updating", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return false;
+            MessageBox.Show("Failed to update vehicle type", "Update failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public bool DeleteVehicleType(int vehicleTypeID)
+        public void DeleteVehicleType()
         {
             string query = "DELETE FROM VehicleType WHERE vehicleTypeID = @vehicleTypeID";
+            string[] parameters = { "customerID" };
+            object[] values = { VehicleTypeID };
 
-            try
+            if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
             {
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-                {
-                    sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("@vehicleTypeID", vehicleTypeID);
-                    sqlCommand.ExecuteNonQuery();
-                    return true;
-                }
+                MessageBox.Show($"Vehicle type details successfully deleted", "Delete successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e}", "An error occurred when deleting", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return false;
+            MessageBox.Show("Failed to delete vehicle type details", "Delete failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
