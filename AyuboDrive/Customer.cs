@@ -24,21 +24,6 @@ namespace AyuboDrive
             ContactNumber = contactNumber;
         }
 
-        //public void RegisterCustomer(string firstName, string lastName, string contactNumber)
-        //{
-        //    string query = "INSERT INTO Customer VALUES(@customerID, @firstName, @lastName, @contactNumber)";
-        //    string[] parameters = {"@customerID", "@firstName", "@lastName", "@contactNumber"};
-        //    object[] values = {CustomerID, FirstName, LastName, ContactNumber};
-
-        //    if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
-        //    {
-        //        MessageBox.Show($"Details successfully inserted", "Insert successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //    } else
-        //    {
-        //        MessageBox.Show("Query execution failed", "nsert failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
         /// <summary>
         /// The <c>RegisterCustomer</c> method is responsible for registering a 
         /// new customer into the database
@@ -56,7 +41,7 @@ namespace AyuboDrive
 
             if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
             {
-                MessageBox.Show($"Details successfully inserted", "Insert successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Details successfully inserted", "Insert successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return new Customer(customerID, firstName, lastName, contactNumber);
             }
             MessageBox.Show("Query execution failed", "nsert failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -74,7 +59,7 @@ namespace AyuboDrive
             if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
             {
                 UpdateObject(customerID, firstName, lastName, contactNumber);
-                MessageBox.Show($"Details successfully updated", "Update successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Details successfully updated", "Update successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } else
             {
                 MessageBox.Show("Query execution failed", "Update failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -89,7 +74,7 @@ namespace AyuboDrive
 
             if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
             {
-                MessageBox.Show($"Details successfully deleted", "Delete successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Details successfully deleted", "Delete successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } else
             {
                 MessageBox.Show("Query execution failed", "Delete failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
