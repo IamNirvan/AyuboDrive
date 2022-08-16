@@ -48,5 +48,47 @@ namespace AyuboDrive.Forms
             }
             return "Good morning";
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new DataViewForm("SELECT * FROM Customer").Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new DataViewForm("SELECT * FROM Vehicle").Show();
+            this.Hide();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            new DataViewForm("SELECT * FROM VehicleType").Show();
+            this.Hide();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            new DataViewForm("SELECT * FROM PackageType").Show();
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new DataViewForm("SELECT * FROM HireBookings WHERE hireType = Day").Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new DataViewForm("SELECT * FROM HireBookings WHERE hireType = Long").Show();
+            this.Hide();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            new DataViewForm("SELECT * FROM RentalBookings").Show();
+            this.Hide();
+        }
     }
 }
