@@ -47,20 +47,21 @@ namespace AyuboDrive
 
         public DataTable SelectQueryHandler(string query)
         {
-            DataTable result = null;
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
                 {
                     sqlConnection.Open();
                     SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
+                    DataTable result = new DataTable();
                     sqlDataAdapter.Fill(result);
                     return result;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return result;
+                Console.WriteLine($"An exception occurred when selecting data:\n{e}");
+                return null;
             }
         }
     }
