@@ -69,7 +69,7 @@ namespace AyuboDrive.Forms
                 if(AccountUser != null)
                 {
                     DashboardForm dashboard = new DashboardForm();
-                    dashboard.SetAccountUser(AccountUser);
+                    //dashboard.SetAccountUser(AccountUser);
                     dashboard.Show();
                     this.Hide();
                 } else
