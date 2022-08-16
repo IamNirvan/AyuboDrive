@@ -14,6 +14,7 @@ namespace AyuboDrive.Forms
     {
         private User AccountUser { get; set; }
         private QueryHandler queryHandler = new QueryHandler();
+
         public LoginForm()
         {
             InitializeComponent();
@@ -29,7 +30,6 @@ namespace AyuboDrive.Forms
         {
             string userName = userNameTxtBox.Text;
             string password = passwordTxtBox.Text;
-
             bool validUserName = false;
             bool validPassword = false;
 
@@ -43,7 +43,6 @@ namespace AyuboDrive.Forms
             else
             {
                 validUserName = true;
-                // Reset the color if the re-entered username is valid
                 this.userNamePanel.BackColor = Color.DarkSlateBlue;                
                 this.userNameErrorLbl.Text = "";
             }
@@ -68,15 +67,53 @@ namespace AyuboDrive.Forms
 
                 if(AccountUser != null)
                 {
-                    DashboardForm dashboard = new DashboardForm();
-                    //dashboard.SetAccountUser(AccountUser);
-                    dashboard.Show();
+                    new DashboardForm().Show();
                     this.Hide();
                 } else
                 {
                     MessageBox.Show("Login failed", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+        }
+
+        // -----------------------------------------------------------
+        // Mouse enter and leave section
+        // -----------------------------------------------------------
+
+        private void loginBtn_MouseEnter(object sender, EventArgs e)
+        {
+            loginBtn.BackColor = Color.DarkSlateBlue;
+            loginBtn.ForeColor = Color.White;
+        }
+
+        private void loginBtn_MouseLeave(object sender, EventArgs e)
+        {
+            loginBtn.BackColor = Color.Transparent;
+            loginBtn.ForeColor = Color.DarkSlateBlue;
+        }
+
+        // -----------------------------------------------------------
+        // Change focus color section
+        // -----------------------------------------------------------
+
+        private void userNameTxtBox_Leave(object sender, EventArgs e)
+        {
+            userNameTxtBox.ForeColor = Color.DimGray;
+        }
+
+        private void userNameTxtBox_Enter(object sender, EventArgs e)
+        {
+            userNameTxtBox.ForeColor = Color.DarkSlateBlue;
+        }
+        
+        private void passwordTxtBox_Leave(object sender, EventArgs e)
+        {
+            passwordTxtBox.ForeColor = Color.DimGray;
+        }
+
+        private void passwordTxtBox_Enter(object sender, EventArgs e)
+        {
+            passwordTxtBox.ForeColor = Color.DarkSlateBlue;
         }
     }
 }
