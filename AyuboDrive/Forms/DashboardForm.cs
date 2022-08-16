@@ -12,24 +12,41 @@ namespace AyuboDrive.Forms
 {
     public partial class DashboardForm : Form
     {
-        private User user;
+        private readonly User user;
 
-        public DashboardForm()
+        public DashboardForm(User userAccount = null)
         {
             InitializeComponent();
+            user = userAccount;
         }
 
         private void DashboardForm_Load(object sender, EventArgs e)
         {
-           // Modify the closed and ongoing booking lables
-           // Modify the greeting label
-           // Modify the first name label
+            // Modify the closed and ongoing booking lables
+            //closedBookingsValueLbl = 0;
+            //openBookingsValueLbl = 0;
+
+
+            greetingLbl.Text = GetGreeting(); // Display an appropriate greeting.
+            //fullNameLbl.Text = $"{user.FirstName} + {user.LastName}"; // Display the user's first name
+            fullNameLbl.Text = "John Doe"; // Display the user's first name
         }
 
-
-        public void SetAccountUser(User accountUser)
+        private string GetGreeting()
         {
-            user = accountUser;
+            int hour = DateTime.Now.Hour;
+
+            if(hour == 18 || hour == 19)
+            {
+                return "Hello,";
+            } else if(hour == 18 || hour == 19)
+            {
+                return "Good evening,";
+            } else if (hour == 12 || hour <= 17)
+            {
+                return "Good afternoon,";
+            }
+            return "Good morning";
         }
     }
 }
