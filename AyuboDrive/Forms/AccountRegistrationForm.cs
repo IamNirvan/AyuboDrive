@@ -123,7 +123,8 @@ namespace AyuboDrive.Forms
                         "OTP sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 } else
                 {
-                    MessageBox.Show("Sorry. An error prevented the OTP from being sent.\nTry checking your network connection or notify your admin", 
+                    MessageBox.Show("Sorry. An error prevented the OTP from being sent.\n" +
+                        "Try checking your network connection or notify your admin", 
                         "Failed to send OTP", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -137,12 +138,14 @@ namespace AyuboDrive.Forms
 
                 if (OTPTxtBox.Text == OTP)
                 {
-                    MessageBox.Show("OTP is valid. You can proceed to sign up", "Valid OTP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("OTP is valid. You can proceed to sign up", "Valid OTP", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     getOTPBtn.Visible = false;
                 }
                 else
                 {
-                    MessageBox.Show("The OTP you entered was invalid", "Invalid OTP", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The OTP you entered was invalid", "Invalid OTP", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     OTPTxtBox.Enabled = true;
                     OTPTxtBox.Text = "";
                 }
@@ -229,6 +232,12 @@ namespace AyuboDrive.Forms
         private void OTPTxtBox_Leave(object sender, EventArgs e)
         {
             OTPTxtBox.ForeColor = Color.DimGray;
+        }
+
+        private void AccountRegistrationForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Show the login form when the user closes the account registration form
+            new LoginForm().Show();
         }
     }
 }
