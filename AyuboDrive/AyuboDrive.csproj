@@ -78,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormType.cs" />
     <Compile Include="Forms\DataViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +160,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Image29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red-sport-car-front-side-view-black-wheel-with-metallic-silver-color.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tyler-clemmensen-kGCvCx5qyjM-unsplash.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

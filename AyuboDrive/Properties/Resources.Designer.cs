@@ -93,6 +93,26 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap red_sport_car_front_side_view_black_wheel_with_metallic_silver_color {
+            get {
+                object obj = ResourceManager.GetObject("red-sport-car-front-side-view-black-wheel-with-metallic-silver-color", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tyler_clemmensen_kGCvCx5qyjM_unsplash {
+            get {
+                object obj = ResourceManager.GetObject("tyler-clemmensen-kGCvCx5qyjM-unsplash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap valentin_b_kremer_krXmGk8jfXg_unsplash {
             get {
                 object obj = ResourceManager.GetObject("valentin-b-kremer-krXmGk8jfXg-unsplash", resourceCulture);
