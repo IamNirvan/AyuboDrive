@@ -115,5 +115,10 @@ namespace AyuboDrive.Forms
         {
             passwordTxtBox.ForeColor = Color.DarkSlateBlue;
         }
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

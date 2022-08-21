@@ -47,7 +47,7 @@
             this.headingLbl.AutoSize = true;
             this.headingLbl.BackColor = System.Drawing.Color.Transparent;
             this.headingLbl.Font = new System.Drawing.Font("Carlito", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headingLbl.Location = new System.Drawing.Point(134, 69);
+            this.headingLbl.Location = new System.Drawing.Point(134, 65);
             this.headingLbl.Name = "headingLbl";
             this.headingLbl.Size = new System.Drawing.Size(333, 42);
             this.headingLbl.TabIndex = 0;
@@ -58,7 +58,7 @@
             this.userNameLbl.AutoSize = true;
             this.userNameLbl.BackColor = System.Drawing.Color.Transparent;
             this.userNameLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userNameLbl.Location = new System.Drawing.Point(161, 148);
+            this.userNameLbl.Location = new System.Drawing.Point(161, 144);
             this.userNameLbl.Name = "userNameLbl";
             this.userNameLbl.Size = new System.Drawing.Size(60, 15);
             this.userNameLbl.TabIndex = 1;
@@ -69,7 +69,7 @@
             this.PasswordLbl.AutoSize = true;
             this.PasswordLbl.BackColor = System.Drawing.Color.Transparent;
             this.PasswordLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLbl.Location = new System.Drawing.Point(160, 217);
+            this.PasswordLbl.Location = new System.Drawing.Point(160, 213);
             this.PasswordLbl.Name = "PasswordLbl";
             this.PasswordLbl.Size = new System.Drawing.Size(58, 15);
             this.PasswordLbl.TabIndex = 2;
@@ -81,10 +81,10 @@
             this.userNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.userNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameTxtBox.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.userNameTxtBox.Location = new System.Drawing.Point(164, 166);
+            this.userNameTxtBox.Location = new System.Drawing.Point(164, 162);
             this.userNameTxtBox.Name = "userNameTxtBox";
             this.userNameTxtBox.Size = new System.Drawing.Size(270, 19);
-            this.userNameTxtBox.TabIndex = 3;
+            this.userNameTxtBox.TabIndex = 0;
             this.userNameTxtBox.Enter += new System.EventHandler(this.userNameTxtBox_Enter);
             this.userNameTxtBox.Leave += new System.EventHandler(this.userNameTxtBox_Leave);
             // 
@@ -94,11 +94,11 @@
             this.passwordTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.passwordTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordTxtBox.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.passwordTxtBox.Location = new System.Drawing.Point(164, 239);
+            this.passwordTxtBox.Location = new System.Drawing.Point(164, 235);
             this.passwordTxtBox.Name = "passwordTxtBox";
             this.passwordTxtBox.PasswordChar = '*';
             this.passwordTxtBox.Size = new System.Drawing.Size(270, 19);
-            this.passwordTxtBox.TabIndex = 4;
+            this.passwordTxtBox.TabIndex = 1;
             this.passwordTxtBox.Enter += new System.EventHandler(this.passwordTxtBox_Enter);
             this.passwordTxtBox.Leave += new System.EventHandler(this.passwordTxtBox_Leave);
             // 
@@ -109,10 +109,11 @@
             this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginBtn.Font = new System.Drawing.Font("Carlito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginBtn.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.loginBtn.Location = new System.Drawing.Point(162, 310);
+            this.loginBtn.Location = new System.Drawing.Point(162, 306);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(271, 45);
             this.loginBtn.TabIndex = 6;
+            this.loginBtn.TabStop = false;
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = false;
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
@@ -126,10 +127,10 @@
             this.SignUpLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SignUpLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SignUpLbl.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.SignUpLbl.Location = new System.Drawing.Point(391, 291);
+            this.SignUpLbl.Location = new System.Drawing.Point(391, 287);
             this.SignUpLbl.Name = "SignUpLbl";
             this.SignUpLbl.Size = new System.Drawing.Size(40, 13);
-            this.SignUpLbl.TabIndex = 23;
+            this.SignUpLbl.TabIndex = 3;
             this.SignUpLbl.Text = "Sign up";
             this.SignUpLbl.Click += new System.EventHandler(this.SignUpLbl_Click);
             // 
@@ -139,7 +140,7 @@
             this.questionLbl.BackColor = System.Drawing.Color.Transparent;
             this.questionLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.questionLbl.ForeColor = System.Drawing.Color.DimGray;
-            this.questionLbl.Location = new System.Drawing.Point(283, 291);
+            this.questionLbl.Location = new System.Drawing.Point(283, 287);
             this.questionLbl.Name = "questionLbl";
             this.questionLbl.Size = new System.Drawing.Size(112, 13);
             this.questionLbl.TabIndex = 22;
@@ -148,7 +149,7 @@
             // passwordPanel
             // 
             this.passwordPanel.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.passwordPanel.Location = new System.Drawing.Point(163, 264);
+            this.passwordPanel.Location = new System.Drawing.Point(163, 260);
             this.passwordPanel.Name = "passwordPanel";
             this.passwordPanel.Size = new System.Drawing.Size(270, 2);
             this.passwordPanel.TabIndex = 27;
@@ -156,7 +157,7 @@
             // userNamePanel
             // 
             this.userNamePanel.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.userNamePanel.Location = new System.Drawing.Point(165, 190);
+            this.userNamePanel.Location = new System.Drawing.Point(165, 186);
             this.userNamePanel.Name = "userNamePanel";
             this.userNamePanel.Size = new System.Drawing.Size(270, 2);
             this.userNamePanel.TabIndex = 26;
@@ -167,7 +168,7 @@
             this.passwordErrorLbl.BackColor = System.Drawing.Color.Transparent;
             this.passwordErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordErrorLbl.ForeColor = System.Drawing.Color.DimGray;
-            this.passwordErrorLbl.Location = new System.Drawing.Point(162, 269);
+            this.passwordErrorLbl.Location = new System.Drawing.Point(162, 265);
             this.passwordErrorLbl.Name = "passwordErrorLbl";
             this.passwordErrorLbl.Size = new System.Drawing.Size(0, 13);
             this.passwordErrorLbl.TabIndex = 31;
@@ -178,7 +179,7 @@
             this.userNameErrorLbl.BackColor = System.Drawing.Color.Transparent;
             this.userNameErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameErrorLbl.ForeColor = System.Drawing.Color.DimGray;
-            this.userNameErrorLbl.Location = new System.Drawing.Point(162, 193);
+            this.userNameErrorLbl.Location = new System.Drawing.Point(162, 189);
             this.userNameErrorLbl.Name = "userNameErrorLbl";
             this.userNameErrorLbl.Size = new System.Drawing.Size(0, 13);
             this.userNameErrorLbl.TabIndex = 30;
@@ -206,6 +207,7 @@
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
