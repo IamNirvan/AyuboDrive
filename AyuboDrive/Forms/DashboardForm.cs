@@ -25,7 +25,7 @@ namespace AyuboDrive.Forms
             // Modify the closed and ongoing booking lables
             //closedBookingsValueLbl = 0;
             //openBookingsValueLbl = 0;
-
+            
 
             greetingLbl.Text = GetGreeting(); // Display an appropriate greeting.
             //fullNameLbl.Text = $"{user.FirstName} + {user.LastName}"; // Display the user's first name
@@ -49,45 +49,46 @@ namespace AyuboDrive.Forms
             return "Good morning";
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void customerManagementBtn_Click(object sender, EventArgs e)
         {
-            new DataViewForm("SELECT * FROM Customer").Show();
+            new DataViewForm(this, Program.CUSTOMER_MANAGEMENT, FormType.CUSTOMER_MANAGEMENT, Program.CUSTOMER_MANAGEMENT_POSITIONS, "SELECT * FROM Customer").Show();
             this.Hide();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void vehicleManagementBtn_Click(object sender, EventArgs e)
         {
-            new DataViewForm("SELECT * FROM Vehicle").Show();
+            new DataViewForm(this, Program.VEHICLE_MANAGEMENT, FormType.VEHICLE_MANAGEMENT, Program.VEHICLE_MANAGEMENT_POSITIONS, "SELECT * FROM Vehicle").Show();
             this.Hide();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void vehicleTypeManagementBtn_Click(object sender, EventArgs e)
         {
-            new DataViewForm("SELECT * FROM VehicleType").Show();
+            new DataViewForm(this, Program.VEHICLE_TYPE_MANAGEMENT, FormType.VEHICLE_TYPE_MANAGEMENT, Program.VEHICLE_TYPE_MANAGEMENT_POSITIONS, "SELECT * FROM VehicleType").Show();
             this.Hide();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void packageTypeManagementBtn_Click(object sender, EventArgs e)
         {
-            new DataViewForm("SELECT * FROM PackageType").Show();
+            new DataViewForm(this, Program.PACKAGE_TYPE_MANAGEMENT, FormType.PACKAGE_TYPE_MANAGEMENT, Program.PACKAGE_TYPE_MANAGEMENT_POSITIONS, "SELECT * FROM PackageType").Show();
+            this.Hide();
+            
+        }
+
+        private void longTourBookingsBtn_Click(object sender, EventArgs e)
+        {
+            new DataViewForm(this, Program.LONG_TOUR_HIRE_BOOKINGS_MANAGEMENT, FormType.LONG_TOUR_HIRE_BOOKINGS_MANAGEMENT, Program.LONG_TOUR_HIRE_BOOKINGS_MANAGEMENT_POSITIONS, "SELECT * FROM HireBookings WHERE hireType = Long").Show();
             this.Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void dayTourBookingsBtn_Click(object sender, EventArgs e)
         {
-            new DataViewForm("SELECT * FROM HireBookings WHERE hireType = Day").Show();
+            new DataViewForm(this, Program.DAY_TOUR_HIRE_BOOKINGS_MANAGEMENT, FormType.DAY_TOUR_HIRE_BOOKINGS_MANAGEMENT, Program.DAY_TOUR_HIRE_BOOKINGS_MANAGEMENT_POSITIONS, "SELECT * FROM HireBookings WHERE hireType = Day").Show();
             this.Hide();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void rentalBookingsBtn_Click(object sender, EventArgs e)
         {
-            new DataViewForm("SELECT * FROM HireBookings WHERE hireType = Long").Show();
-            this.Hide();
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            new DataViewForm("SELECT * FROM RentalBookings").Show();
+            new DataViewForm(this, Program.RENTAL_BOOKINGS_MANAGEMENT, FormType.RENTAL_BOOKINGS_MANAGEMENT, Program.RENTAL_BOOKINGS_MANAGEMENT_POSITIONS, "SELECT * FROM RentalBookings").Show();
             this.Hide();
         }
     }
