@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace AyuboDrive
 {
-    class KeyGenerator
+    /// <summary>
+    /// This class is reponsible for generating the key that is used when creating an account
+    /// </summary>
+    static class KeyGenerator
     {
-        private static readonly Random random = new Random();
-
         public static string GenerateKey()
         {
-            // Generate a random number that is greater than 60 and less than 100
+            Random random = new Random();
             int length = random.Next(10, 20);
-            string result = "";
+            StringBuilder stringBuilder = new StringBuilder("", length);
 
-            for(int i = 0; i <length; i ++)
+            for (int i = 0; i <length; i ++)
             {
-                // Repeatedly concateate a random number to the result
-                result += random.Next(100).ToString();
+                stringBuilder.Insert(i, random.Next(100).ToString());
             }
-            return result;
+            return stringBuilder.ToString();
         }
     }
 }
