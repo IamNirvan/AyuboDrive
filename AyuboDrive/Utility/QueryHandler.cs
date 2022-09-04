@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AyuboDrive.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,47 +10,63 @@ using System.Windows.Forms;
 
 namespace AyuboDrive
 {
+    /// <summary>
+    /// This class has functions that handle the select, insert, delete and update operations.
+    /// </summary>
     class QueryHandler
     {
-        private readonly string ConnectionString;
-
-        public QueryHandler(string connectionString = @"Data Source=DESKTOP-0CECDCR;Initial Catalog=AyuboDriveV1;Integrated Security=True")
-        {
-            ConnectionString = connectionString;
-        }
-
-        public bool HandleInsertDeleteUpdateQuery(string query, string[] parameters, object[] values)
+        private readonly string _connectionString = ConfigurationHandler.GetConnectionString();
+        
+        private bool ProcessQuery(string queryTemplate, string[] parameters, object[] values)
         {
             try
             {
-                using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+                using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
                 {
                     sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand(queryTemplate, sqlConnection);
 
-                    if(parameters.Length != values.Length)
+                    if (parameters.Length == values.Length)
                     {
-                        throw new Exception("Parameter array and values array length mismatch");
+                        for (int i = 0; i < parameters.Length; i++)
+                        {
+                            sqlCommand.Parameters.AddWithValue(parameters[i], values[i]);
+                        }
+                        sqlCommand.ExecuteNonQuery();
+                        return true;
                     }
-
-                    for (int i = 0; i < parameters.Length; i++)
-                    {
-                        sqlCommand.Parameters.AddWithValue(parameters[i], values[i]);
-                    }
-                    sqlCommand.ExecuteNonQuery();
+                    throw new ArgumentException("Parameter array and values array length mismatch");
                 }
-                return true;
-            } catch (Exception)
+            }
+            catch (Exception ex)
             {
+                MessagePrinter.PrintToConsole("An error occurred when processing the query", ex.ToString());
+                MessagePrinter.PrintToMessageBox("An error occured when processing the query", 
+                    ex.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+
+        public bool InsertQueryHandler(string query, string[] parameters, object[] values)
+        {
+            return ProcessQuery(query, parameters, values);
+        }
+
+        public bool DeleteQueryHandler(string query, string[] parameters, object[] values)
+        {
+            return ProcessQuery(query, parameters, values);
+        }
+
+        public bool UpdateQueryHandler(string query, string[] parameters, object[] values)
+        {
+            return ProcessQuery(query, parameters, values);
         }
 
         public DataTable SelectQueryHandler(string query)
         {
             try
             {
-                using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+                using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
                 {
                     sqlConnection.Open();
                     SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlConnection);
@@ -58,10 +75,41 @@ namespace AyuboDrive
                     return result;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine($"An exception occurred when selecting data:\n{e}");
+                MessagePrinter.PrintToConsole("An error occurred when handling the select query", ex.ToString());
+                MessagePrinter.PrintToMessageBox("An error occured", ex.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
+            }
+        }
+
+        [Obsolete("This method is no longer supported. Try using InsertQueryHandler, DeleteQueryHandler or UpdateQueryHandler instead.")]
+        public bool HandleInsertDeleteUpdateQuery(string query, string[] parameters, object[] values)
+        {
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
+                {
+                    sqlConnection.Open();
+                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+
+                    if(parameters.Length == values.Length)
+                    {
+                        for (int i = 0; i < parameters.Length; i++)
+                        {
+                            sqlCommand.Parameters.AddWithValue(parameters[i], values[i]);
+                        }
+                        sqlCommand.ExecuteNonQuery();
+                        return true;
+                    }
+                    throw new ArgumentException("Parameter array and values array length mismatch");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessagePrinter.PrintToConsole("An error occurred", ex.ToString());
+                MessagePrinter.PrintToMessageBox("An error occured", ex.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
     }
