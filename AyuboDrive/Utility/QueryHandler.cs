@@ -40,9 +40,7 @@ namespace AyuboDrive
             }
             catch (Exception ex)
             {
-                MessagePrinter.PrintToConsole("An error occurred when processing the query", ex.ToString());
-                MessagePrinter.PrintToMessageBox("An error occured when processing the query", 
-                    ex.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessagePrinter.PrintToConsole(ex.ToString(), "An error occurred when processing the query");
                 return false;
             }
         }
@@ -77,8 +75,7 @@ namespace AyuboDrive
             }
             catch (Exception ex)
             {
-                MessagePrinter.PrintToConsole("An error occurred when handling the select query", ex.ToString());
-                MessagePrinter.PrintToMessageBox("An error occured", ex.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessagePrinter.PrintToConsole(ex.ToString(), "An error occurred when handling the select query");
                 return null;
             }
         }
@@ -107,8 +104,7 @@ namespace AyuboDrive
             }
             catch (Exception ex)
             {
-                MessagePrinter.PrintToConsole("An error occurred", ex.ToString());
-                MessagePrinter.PrintToMessageBox("An error occured", ex.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessagePrinter.PrintToConsole(ex.ToString(), "An error occurred");
                 return false;
             }
         }

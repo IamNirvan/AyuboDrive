@@ -14,7 +14,7 @@ namespace AyuboDrive.Utility
     {
         public static void PrintToConsole(string text, string caption)
         {
-            Console.WriteLine($"{caption}:\n{text}\n");
+            Console.WriteLine($"\n<<MESSAGE>> {caption}:\n{text}\n\n");
         }
 
         public static void PrintToMessageBox(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon)
