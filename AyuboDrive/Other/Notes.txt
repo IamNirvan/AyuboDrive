@@ -1,0 +1,29 @@
+﻿Features of Ayubo Drive:
+	- Making long tour bookings
+	- Making day tour bookings
+	- Making rental bookings
+	- Managing booking information
+	- Managing package information
+	- Managing vehicle information
+	- Managing vehicle type information
+	- Managing payment information
+	- Managing customer information
+	- Managing driver information
+	- Sending OTPs for authorized account creation
+	- Calculating rental values
+	- Calculating hire values
+	- User registration
+	- User login
+
+Modifiable components in the future:
+	- Rent value calculation algorithm
+	- Hire value calculation algorithm
+	- OTP generating algorithm
+	- All the forms
+	
+Items to store in the configuration file:
+	- Password
+	- mail server
+	- sender's email
+	- receiver's email
+	- connection string

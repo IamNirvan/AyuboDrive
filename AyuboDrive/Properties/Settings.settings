@@ -1,7 +1,54 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AyuboDrive.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CONNECTION_STRING" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=DESKTOP-0CECDCR;Initial Catalog=AyuboDriveV2;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="MAIL_SERVER" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">smtp.gmail.com</Value>
+    </Setting>
+    <Setting Name="PORT" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">465</Value>
+    </Setting>
+    <Setting Name="SENDER_EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">shalinkulawardana@gmail.com</Value>
+    </Setting>
+    <Setting Name="RECEIVER_EMAIL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">shalinkulawardana@gmail.com</Value>
+    </Setting>
+    <Setting Name="PASSWORD" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">wuxrfgttqosyplba</Value>
+    </Setting>
+    <Setting Name="DARK_GRAY" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">29, 35, 49</Value>
+    </Setting>
+    <Setting Name="LIGHT_GRAY" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">40, 48, 66</Value>
+    </Setting>
+    <Setting Name="LIGHTER_GRAY" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">47, 58, 77</Value>
+    </Setting>
+    <Setting Name="GREEN" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">70, 199, 151</Value>
+    </Setting>
+    <Setting Name="RED" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">240, 69, 69</Value>
+    </Setting>
+    <Setting Name="PURPLE" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">103, 96, 250</Value>
+    </Setting>
+    <Setting Name="ENABLED_WHITE" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">252, 254, 255</Value>
+    </Setting>
+    <Setting Name="DISABLED_WHITE" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">130, 142, 163</Value>
+    </Setting>
+    <Setting Name="TRANSPARENT" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">0, 0, 0, 0</Value>
+    </Setting>
+    <Setting Name="PARTIALLY_TRANSPARENT" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">30, 0, 0, 0</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

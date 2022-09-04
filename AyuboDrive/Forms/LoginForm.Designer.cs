@@ -47,6 +47,7 @@
             this.headingLbl.AutoSize = true;
             this.headingLbl.BackColor = System.Drawing.Color.Transparent;
             this.headingLbl.Font = new System.Drawing.Font("Carlito", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headingLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.headingLbl.Location = new System.Drawing.Point(134, 65);
             this.headingLbl.Name = "headingLbl";
             this.headingLbl.Size = new System.Drawing.Size(333, 42);
@@ -58,6 +59,7 @@
             this.userNameLbl.AutoSize = true;
             this.userNameLbl.BackColor = System.Drawing.Color.Transparent;
             this.userNameLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
             this.userNameLbl.Location = new System.Drawing.Point(161, 144);
             this.userNameLbl.Name = "userNameLbl";
             this.userNameLbl.Size = new System.Drawing.Size(60, 15);
@@ -69,6 +71,7 @@
             this.PasswordLbl.AutoSize = true;
             this.PasswordLbl.BackColor = System.Drawing.Color.Transparent;
             this.PasswordLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
             this.PasswordLbl.Location = new System.Drawing.Point(160, 213);
             this.PasswordLbl.Name = "PasswordLbl";
             this.PasswordLbl.Size = new System.Drawing.Size(58, 15);
@@ -77,10 +80,10 @@
             // 
             // userNameTxtBox
             // 
-            this.userNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(249)))), ((int)(((byte)(246)))));
+            this.userNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
             this.userNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.userNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userNameTxtBox.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.userNameTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.userNameTxtBox.Location = new System.Drawing.Point(164, 162);
             this.userNameTxtBox.Name = "userNameTxtBox";
             this.userNameTxtBox.Size = new System.Drawing.Size(270, 19);
@@ -90,10 +93,10 @@
             // 
             // passwordTxtBox
             // 
-            this.passwordTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(249)))), ((int)(((byte)(246)))));
+            this.passwordTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
             this.passwordTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.passwordTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTxtBox.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.passwordTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.passwordTxtBox.Location = new System.Drawing.Point(164, 235);
             this.passwordTxtBox.Name = "passwordTxtBox";
             this.passwordTxtBox.PasswordChar = '*';
@@ -105,10 +108,11 @@
             // loginBtn
             // 
             this.loginBtn.BackColor = System.Drawing.Color.Transparent;
-            this.loginBtn.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateBlue;
+            this.loginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.loginBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.loginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginBtn.Font = new System.Drawing.Font("Carlito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginBtn.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.loginBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.loginBtn.Location = new System.Drawing.Point(162, 306);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(271, 45);
@@ -126,7 +130,7 @@
             this.SignUpLbl.BackColor = System.Drawing.Color.Transparent;
             this.SignUpLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SignUpLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SignUpLbl.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.SignUpLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.SignUpLbl.Location = new System.Drawing.Point(391, 287);
             this.SignUpLbl.Name = "SignUpLbl";
             this.SignUpLbl.Size = new System.Drawing.Size(40, 13);
@@ -139,7 +143,7 @@
             this.questionLbl.AutoSize = true;
             this.questionLbl.BackColor = System.Drawing.Color.Transparent;
             this.questionLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.questionLbl.ForeColor = System.Drawing.Color.DimGray;
+            this.questionLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.questionLbl.Location = new System.Drawing.Point(283, 287);
             this.questionLbl.Name = "questionLbl";
             this.questionLbl.Size = new System.Drawing.Size(112, 13);
@@ -148,7 +152,7 @@
             // 
             // passwordPanel
             // 
-            this.passwordPanel.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.passwordPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.passwordPanel.Location = new System.Drawing.Point(163, 260);
             this.passwordPanel.Name = "passwordPanel";
             this.passwordPanel.Size = new System.Drawing.Size(270, 2);
@@ -156,7 +160,7 @@
             // 
             // userNamePanel
             // 
-            this.userNamePanel.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.userNamePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.userNamePanel.Location = new System.Drawing.Point(165, 186);
             this.userNamePanel.Name = "userNamePanel";
             this.userNamePanel.Size = new System.Drawing.Size(270, 2);
@@ -188,7 +192,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(249)))), ((int)(((byte)(246)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(604, 411);
             this.Controls.Add(this.passwordErrorLbl);

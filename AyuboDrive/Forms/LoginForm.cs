@@ -12,7 +12,7 @@ namespace AyuboDrive.Forms
 {
     public partial class LoginForm : Form
     {
-        private User AccountUser { get; set; }
+        private User userAccount { get; set; }
         private QueryHandler queryHandler = new QueryHandler();
 
         public LoginForm()
@@ -63,11 +63,11 @@ namespace AyuboDrive.Forms
 
             if (validUserName && validPassword)
             {
-                AccountUser = User.Login(userName, password);
+                userAccount = User.Login(userName, password);
 
-                if(AccountUser != null)
+                if(userAccount != null)
                 {
-                    new DashboardForm().Show();
+                    new DashboardForm(userAccount).Show();
                     this.Hide();
                 } else
                 {
@@ -82,14 +82,14 @@ namespace AyuboDrive.Forms
 
         private void loginBtn_MouseEnter(object sender, EventArgs e)
         {
-            loginBtn.BackColor = Color.DarkSlateBlue;
-            loginBtn.ForeColor = Color.White;
+            loginBtn.BackColor = Program.PURPLE;
+            loginBtn.ForeColor = Program.ENABLED_WHITE;
         }
 
         private void loginBtn_MouseLeave(object sender, EventArgs e)
         {
-            loginBtn.BackColor = Color.Transparent;
-            loginBtn.ForeColor = Color.DarkSlateBlue;
+            loginBtn.BackColor = Program.TRANSPARENT;
+            loginBtn.ForeColor = Program.PURPLE;
         }
 
         // -----------------------------------------------------------
@@ -98,22 +98,22 @@ namespace AyuboDrive.Forms
 
         private void userNameTxtBox_Leave(object sender, EventArgs e)
         {
-            userNameTxtBox.ForeColor = Color.DimGray;
+            userNameTxtBox.ForeColor = Program.DISABLED_WHITE;
         }
 
         private void userNameTxtBox_Enter(object sender, EventArgs e)
         {
-            userNameTxtBox.ForeColor = Color.DarkSlateBlue;
+            userNameTxtBox.ForeColor = Program.ENABLED_WHITE;
         }
         
         private void passwordTxtBox_Leave(object sender, EventArgs e)
         {
-            passwordTxtBox.ForeColor = Color.DimGray;
+            passwordTxtBox.ForeColor = Program.DISABLED_WHITE;
         }
 
         private void passwordTxtBox_Enter(object sender, EventArgs e)
         {
-            passwordTxtBox.ForeColor = Color.DarkSlateBlue;
+            passwordTxtBox.ForeColor = Program.ENABLED_WHITE;
         }
 
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)

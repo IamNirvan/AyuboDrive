@@ -13,6 +13,7 @@ namespace AyuboDrive.Forms
     public partial class DashboardForm : Form
     {
         private readonly User user;
+        private readonly QueryHandler queryHandler = new QueryHandler();
 
         public DashboardForm(User userAccount = null)
         {
@@ -22,16 +23,36 @@ namespace AyuboDrive.Forms
 
         private void DashboardForm_Load(object sender, EventArgs e)
         {
-            // Modify the closed and ongoing booking lables
-            //closedBookingsValueLbl = 0;
-            //openBookingsValueLbl = 0;
-            
+            closedBookingsValueLbl.Text = getBookingsCount("SELECT COUNT FROM HireBookings WHERE bookingStatus = closed").ToString();
+
+            int openBookings = getBookingsCount("SELECT COUNT FROM HireBookings WHERE bookingStatus = open");
+
+            openBookingsValueLbl.ForeColor = Program.RED;
+
+            if (openBookings >= 1)
+            {
+                openBookingsValueLbl.ForeColor = Program.GREEN;
+            }
+            openBookingsValueLbl.Text = openBookings.ToString();
 
             greetingLbl.Text = GetGreeting(); // Display an appropriate greeting.
-            //fullNameLbl.Text = $"{user.FirstName} + {user.LastName}"; // Display the user's first name
-            fullNameLbl.Text = "John Doe"; // Display the user's first name
+            //fullNameLbl.Text = $"{user.FirstName} {user.LastName}"; // Display the user's first name
         }
 
+        private int getBookingsCount(string query)
+        {
+            DataTable dataTable = queryHandler.SelectQueryHandler(query);
+
+            if(dataTable != null)
+            {
+                foreach (DataRow record in dataTable.Rows)
+                {
+                    return (int)record[0];
+                }
+            }
+            return 0;
+        }
+        
         private string GetGreeting()
         {
             int hour = DateTime.Now.Hour;
@@ -90,6 +111,34 @@ namespace AyuboDrive.Forms
         {
             new DataViewForm(this, Program.RENTAL_BOOKINGS_MANAGEMENT, FormType.RENTAL_BOOKINGS_MANAGEMENT, Program.RENTAL_BOOKINGS_MANAGEMENT_POSITIONS, "SELECT * FROM RentalBookings").Show();
             this.Hide();
+        }
+
+        private void logoutBtn_MouseEnter(object sender, EventArgs e)
+        {
+            logoutBtn.BackColor = Program.RED;
+            logoutBtn.ForeColor = Program.ENABLED_WHITE;
+
+        }
+
+        private void logoutBtn_MouseLeave(object sender, EventArgs e)
+        {
+            logoutBtn.BackColor = Program.TRANSPARENT;
+            logoutBtn.ForeColor = Program.RED;
+        }
+
+        private void closedBookingsValueLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void closedBookingTextLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ongoingBookingsTextLbl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -9,39 +9,38 @@ using System.Collections.Specialized;
 namespace AyuboDrive.Utility
 {
     /// <summary>
-    /// This class works with the app.config configuration file 
-    /// to obtain the necessary configuration values
+    /// This class works with the .settings file to obtain the necessary configuration values
     /// </summary>
     static class ConfigurationHandler
     {
         public static string GetConnectionString()
         {
-            return ConfigurationManager.AppSettings.Get("connectionString");
+            return Properties.Settings.Default.CONNECTION_STRING;
         }
 
         public static string GetPassword()
         {
-            return ConfigurationManager.AppSettings.Get("password");
+            return Properties.Settings.Default.PASSWORD;
         }
 
         public static string GetMailServer()
         {
-            return ConfigurationManager.AppSettings.Get("mailServer");
+            return Properties.Settings.Default.MAIL_SERVER;
         }
 
         public static int GetPort()
         {
-            return int.Parse(ConfigurationManager.AppSettings.Get("port"));
+            return Properties.Settings.Default.PORT;
         }
 
         public static string GetSenderEmail()
         {
-            return ConfigurationManager.AppSettings.Get("senderEmail");
+            return Properties.Settings.Default.SENDER_EMAIL;
         }
 
         public static string GetReceiverEmail()
         {
-            return ConfigurationManager.AppSettings.Get("receiverEmail");
+            return Properties.Settings.Default.RECEIVER_EMAIL;
         }
     }
 }

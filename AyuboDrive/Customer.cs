@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AyuboDrive.Interfaces;
+using AyuboDrive.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -8,85 +10,70 @@ using System.Windows.Forms;
 
 namespace AyuboDrive
 {
-    class Customer
+    /// <summary>
+    /// Represents a customer. It houses methods that can be used to insert, delete 
+    /// and update customer information in the customer table.
+    /// </summary>
+    class Customer : IDatabaseManipulator
     {
-        public string CustomerID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string ContactNumber { get; set; }
-        private static QueryHandler queryHandler = new QueryHandler();
+        private string _customerNIC { get; set; }
+        private string _firstName { get; set; }
+        private string _lastName { get; set; }
+        private string _contactNumber { get; set; }
+        private static QueryHandler _queryHandler = new QueryHandler();
 
-        public Customer(string customerID, string firstName, string lastName, string contactNumber)
+        public Customer(string customerNIC, string firstName, string lastName, string contactNumber)
         {
-            CustomerID = customerID;
-            FirstName = firstName;
-            LastName = lastName;
-            ContactNumber = contactNumber;
+            _customerNIC = customerNIC;
+            _firstName = firstName;
+            _lastName = lastName;
+            _contactNumber = contactNumber;
         }
 
-        /// <summary>
-        /// The <c>RegisterCustomer</c> method is responsible for registering a 
-        /// new customer into the database
-        /// </summary>
-        /// <param name="firstName">The customer's first name</param>
-        /// <param name="lastName">The customer's last name</param>
-        /// <param name="contactNumber">The customer's contact number</param>
-        /// <returns>An initialized Customer object</returns>
-        public static Customer RegisterCustomer(string firstName, string lastName, string contactNumber)
+        public bool Insert()
         {
-            string customerID = "";
-            string query = "INSERT INTO Customer VALUES(@customerID, @firstName, @lastName, @contactNumber)";
-            string[] parameters = { "@customerID", "@firstName", "@lastName", "@contactNumber" };
-            object[] values = { customerID, firstName, lastName, contactNumber };
+            string query = "INSERT INTO Customer VALUES(@customerNIC, @firstName, @lastName, @contactNumber)";
+            string[] parameters = { "@customerNIC", "@firstName", "@lastName", "@contactNumber" };
+            object[] values = { _customerNIC, _firstName, _lastName, _contactNumber };
 
-            if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
+            if (_queryHandler.InsertQueryHandler(query, parameters, values))
             {
-                MessageBox.Show("Details successfully inserted", "Insert successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return new Customer(customerID, firstName, lastName, contactNumber);
+                MessagePrinter.PrintToConsole("Customer details successfully inserted", "Operation successful");
+                return true;
             }
-            MessageBox.Show("Query execution failed", "nsert failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return null;
+            MessagePrinter.PrintToConsole("Failed to insert customer details", "Operation failed");
+            return false;
         }
 
-        public void UpdateCustomer(string customerID, string firstName, string lastName, string contactNumber)
-        {
-            string query = "UPDATE Customer SET firstName = @firstName, lastName = @lastName, contactNumber = " +
-                "@contactNumber WHERE customerID = @customerID";
-            
-            string[] parameters = { "@firstName", "@lastName", "@contactNumber", "customerID" };
-            object[] values = { CustomerID, FirstName, LastName, ContactNumber };
-
-            if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
-            {
-                UpdateObject(customerID, firstName, lastName, contactNumber);
-                MessageBox.Show("Details successfully updated", "Update successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } else
-            {
-                MessageBox.Show("Query execution failed", "Update failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void DeleteCustomer(int customerID)
+        public bool Delete(string ID)
         {
             string query = "DELETE FROM Customer WHERE customerID = @customerID";
-            string[] parameters = { "customerID" };
-            object[] values = { customerID };
+            string[] parameters = { "@customerID" };
+            object[] values = { ID };
 
-            if (queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values))
+            if (_queryHandler.DeleteQueryHandler(query, parameters, values))
             {
-                MessageBox.Show("Details successfully deleted", "Delete successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } else
-            {
-                MessageBox.Show("Query execution failed", "Delete failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessagePrinter.PrintToConsole("Customer details successfully deleted", "Operation successful");
+                return true;
             }
+            MessagePrinter.PrintToConsole("Failed to delete customer details", "Operation failed");
+            return false;
         }
 
-        private void UpdateObject(string customerID, string firstName, string lastName, string contactNumber)
+        public bool Update(string ID)
         {
-            CustomerID = customerID;
-            FirstName = firstName;
-            LastName = lastName;
-            ContactNumber = contactNumber;
+            string query = "UPDATE Customer SET customerNIC = @customerNIC, firstName = @firstName, " +
+                "lastName = @lastName, contactNumber = @contactNumber WHERE customerID = @customerID";
+            string[] parameters = { "@customerNIC", "@firstName", "@lastName", "@contactNumber", "@customerID" };
+            object[] values = { _customerNIC, _firstName, _lastName, _contactNumber, ID };
+
+            if (_queryHandler.UpdateQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("Customer details successfully updated", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to update customer details", "Operation failed");
+            return false;
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AyuboDrive.Utility;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,29 +10,37 @@ namespace AyuboDrive
 {
     public class User
     {
-        public string UserAccountID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        private static readonly QueryHandler queryHandler = new QueryHandler();
+        private string _userNIC;
+        public string _userName;
+        private string _password;
+        public string _firstName;
+        public string _lastName;
+        private static readonly QueryHandler s_queryHandler = new QueryHandler();
 
-        private User(string userAccountID, string firstName, string lastName, string userName)
+        public User(string userNIC, string userName, string password, string firstName, string lastName)
         {
-            UserAccountID = userAccountID;
-            FirstName = firstName;
-            LastName = lastName;
+            _userNIC = userNIC;
+            _userName = userName;
+            _password = password;
+            _firstName = firstName;
+            _lastName = lastName;
         }
 
-        // Invoke this method first to login. If the login is successful, a user object with the appropriate data will be returned.
         public static User Login(string userName, string password)
         {
-            string query = "SELECT * FROM User WHERE userName = @userName AND password = @password";
-            string[] parameters = { "@userName", "@password"};
-            object[] values = {userName, password};
-
-            // Check if the user account exists in the database             
-            if(queryHandler.SelectQueryHandler(query).Rows.Count == 1)
+            DataTable dataTable = s_queryHandler.SelectQueryHandler("SELECT * FROM UserAccount WHERE userName = '" 
+                + userName + "' AND password = '" + password + "'");
+        
+            if (dataTable.Rows.Count == 1)
             {
-                return new User("userAccountID", "FirstName", "LastName", "UserName");
+                User user = new User(
+                    dataTable.Rows[0][1].ToString(),
+                    dataTable.Rows[0][2].ToString(),
+                    dataTable.Rows[0][3].ToString(),
+                    dataTable.Rows[0][4].ToString(),
+                    dataTable.Rows[0][5].ToString()
+                    );
+                return user;
             }
             return null;
         }
@@ -40,36 +50,50 @@ namespace AyuboDrive
             return false;
         }
 
-        public static bool RegisterAccount(string firstName, string lastName, string userName, string password)
+        public bool Insert()
         {
-            string query = "INSERT INTO Users VALUES (@firstName, @lastName, @userName, @password)";
-            string[] parameters = { "@firstName", "@lastName", "@userName", "@password" };
-            object[] values = { firstName, lastName, userName, password};
+            string query = "INSERT INTO UserAccount VALUES (@userNIC, @userName, @password, @firstName, @lastName)";
+            string[] parameters = { "@userNIC", "@userName", "@password", "@firstName", "@lastName" };
+            object[] values = { _userNIC, _userName, _password, _firstName, _lastName };
 
-            return queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values);
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("User account details successfully inserted", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to insert user account details", "Operation failed");
+            return false;
         }
 
-        public bool DeleteAccount()
+        public bool Delete(string ID)
         {
-            string query = "DELETE FROM User WHERE userAccountID = @userAccountID";
+            string query = "DELETE FROM UserAccount WHERE userAccountID = @userAccountID";
             string[] parameters = { "@userAccountID" };
-            object[] values = { UserAccountID };
+            object[] values = { ID };
 
-            return queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values);
+            if (s_queryHandler.DeleteQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("User account details successfully deleted", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to delete user account details", "Operation failed");
+            return false;
         }
 
-        public bool UpdateAccount(string firstName, string lastName, string userName, string password)
+        public bool Update(string ID)
         {
-            string query = "UPDATE User SET firstName = @firstName, lastName = @lastName, userName = @userName, " +
-                "password = @password WHERE userAccountID = @userAccountID";
-            string[] parameters = { "@firstName", "@lastName", "@userName", "@password", "@userAccountID" };
-            object[] values = { firstName, lastName, userName, password, UserAccountID };
+            string query = "UPDATE UserAccount SET userNIC = @userNIC, userName = @userName, password = @password, " +
+                "firstName = @firstName, lastName = @lastName WHERE userAccountID = @userAccountID";
+            string[] parameters = { "@userNIC", "@userName", "@password", "@firstName", "@lastName", "@userAccountID" };
+            object[] values = { _userNIC, _userName, _password, _firstName, _lastName, ID };
 
-            // Modify the attributes to reflect the changes in the existing object
-            FirstName = firstName;
-            LastName = lastName;
-
-            return queryHandler.HandleInsertDeleteUpdateQuery(query, parameters, values);
+            if (s_queryHandler.UpdateQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("User account details successfully updated", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to update user account details", "Operation failed");
+            return false;
         }
     }
 }

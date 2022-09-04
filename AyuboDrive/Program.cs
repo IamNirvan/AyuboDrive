@@ -20,6 +20,7 @@ namespace AyuboDrive
         public readonly static Color ENABLED_WHITE = Color.FromArgb(252, 254, 255);
         public readonly static Color DISABLED_WHITE = Color.FromArgb(130, 142, 163);
         public readonly static Color TRANSPARENT = Color.FromArgb(0, 0, 0, 0);
+        public readonly static Color PARTIALLY_TRANSPARENT = Color.FromArgb(30, 0, 0, 0);
 
         public readonly static string RENTAL_BOOKINGS_MANAGEMENT = "Rental Bookings Management";
         public readonly static string HIRE_BOOKINGS_MANAGEMENT = "Hire Bookings Management";
@@ -45,9 +46,9 @@ namespace AyuboDrive
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DashboardForm());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new RentalBooking());
         }
     }
 }

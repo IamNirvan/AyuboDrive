@@ -8,22 +8,163 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AyuboDrive.Properties
-{
-
-
+namespace AyuboDrive.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-0CECDCR;Initial Catalog=AyuboDriveV2;Integrated Security=True" +
+            "")]
+        public string CONNECTION_STRING {
+            get {
+                return ((string)(this["CONNECTION_STRING"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("smtp.gmail.com")]
+        public string MAIL_SERVER {
+            get {
+                return ((string)(this["MAIL_SERVER"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("465")]
+        public int PORT {
+            get {
+                return ((int)(this["PORT"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("shalinkulawardana@gmail.com")]
+        public string SENDER_EMAIL {
+            get {
+                return ((string)(this["SENDER_EMAIL"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("shalinkulawardana@gmail.com")]
+        public string RECEIVER_EMAIL {
+            get {
+                return ((string)(this["RECEIVER_EMAIL"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("wuxrfgttqosyplba")]
+        public string PASSWORD {
+            get {
+                return ((string)(this["PASSWORD"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("29, 35, 49")]
+        public global::System.Drawing.Color DARK_GRAY {
+            get {
+                return ((global::System.Drawing.Color)(this["DARK_GRAY"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40, 48, 66")]
+        public global::System.Drawing.Color LIGHT_GRAY {
+            get {
+                return ((global::System.Drawing.Color)(this["LIGHT_GRAY"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("47, 58, 77")]
+        public global::System.Drawing.Color LIGHTER_GRAY {
+            get {
+                return ((global::System.Drawing.Color)(this["LIGHTER_GRAY"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("70, 199, 151")]
+        public global::System.Drawing.Color GREEN {
+            get {
+                return ((global::System.Drawing.Color)(this["GREEN"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("240, 69, 69")]
+        public global::System.Drawing.Color RED {
+            get {
+                return ((global::System.Drawing.Color)(this["RED"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("103, 96, 250")]
+        public global::System.Drawing.Color PURPLE {
+            get {
+                return ((global::System.Drawing.Color)(this["PURPLE"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("252, 254, 255")]
+        public global::System.Drawing.Color ENABLED_WHITE {
+            get {
+                return ((global::System.Drawing.Color)(this["ENABLED_WHITE"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("130, 142, 163")]
+        public global::System.Drawing.Color DISABLED_WHITE {
+            get {
+                return ((global::System.Drawing.Color)(this["DISABLED_WHITE"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0, 0, 0")]
+        public global::System.Drawing.Color TRANSPARENT {
+            get {
+                return ((global::System.Drawing.Color)(this["TRANSPARENT"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30, 0, 0, 0")]
+        public global::System.Drawing.Color PARTIALLY_TRANSPARENT {
+            get {
+                return ((global::System.Drawing.Color)(this["PARTIALLY_TRANSPARENT"]));
             }
         }
     }
