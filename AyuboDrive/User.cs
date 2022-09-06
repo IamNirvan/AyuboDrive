@@ -10,20 +10,18 @@ namespace AyuboDrive
 {
     public class User
     {
-        private string _userNIC;
         public string _userName;
         private string _password;
-        public string _firstName;
-        public string _lastName;
+        public string FirstName;
+        public string LastName;
         private static readonly QueryHandler s_queryHandler = new QueryHandler();
 
-        public User(string userNIC, string userName, string password, string firstName, string lastName)
+        public User(string userName, string password, string firstName, string lastName)
         {
-            _userNIC = userNIC;
             _userName = userName;
             _password = password;
-            _firstName = firstName;
-            _lastName = lastName;
+            FirstName = firstName;
+            LastName = lastName;
         }
 
         public static User Login(string userName, string password)
@@ -37,8 +35,7 @@ namespace AyuboDrive
                     dataTable.Rows[0][1].ToString(),
                     dataTable.Rows[0][2].ToString(),
                     dataTable.Rows[0][3].ToString(),
-                    dataTable.Rows[0][4].ToString(),
-                    dataTable.Rows[0][5].ToString()
+                    dataTable.Rows[0][4].ToString()
                     );
                 return user;
             }
@@ -52,9 +49,9 @@ namespace AyuboDrive
 
         public bool Insert()
         {
-            string query = "INSERT INTO UserAccount VALUES (@userNIC, @userName, @password, @firstName, @lastName)";
-            string[] parameters = { "@userNIC", "@userName", "@password", "@firstName", "@lastName" };
-            object[] values = { _userNIC, _userName, _password, _firstName, _lastName };
+            string query = "INSERT INTO UserAccount VALUES (@userName, @password, @firstName, @lastName)";
+            string[] parameters = { "@userName", "@password", "@firstName", "@lastName" };
+            object[] values = { _userName, _password, FirstName, LastName };
 
             if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
@@ -82,10 +79,10 @@ namespace AyuboDrive
 
         public bool Update(string ID)
         {
-            string query = "UPDATE UserAccount SET userNIC = @userNIC, userName = @userName, password = @password, " +
+            string query = "UPDATE UserAccount SET userName = @userName, password = @password, " +
                 "firstName = @firstName, lastName = @lastName WHERE userAccountID = @userAccountID";
-            string[] parameters = { "@userNIC", "@userName", "@password", "@firstName", "@lastName", "@userAccountID" };
-            object[] values = { _userNIC, _userName, _password, _firstName, _lastName, ID };
+            string[] parameters = { "@userName", "@password", "@firstName", "@lastName", "@userAccountID" };
+            object[] values = { _userName, _password, FirstName, LastName, ID };
 
             if (s_queryHandler.UpdateQueryHandler(query, parameters, values))
             {
