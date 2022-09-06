@@ -19,7 +19,7 @@ namespace AyuboDrive
 
             for (int i = 0; i <length; i ++)
             {
-                stringBuilder.Insert(i, random.Next(100).ToString());
+                stringBuilder.Insert(i, random.Next(10).ToString());
             }
             return stringBuilder.ToString();
         }
