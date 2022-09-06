@@ -44,8 +44,7 @@ namespace AyuboDrive
                 }
                 catch (Exception ex)
                 {
-                    MessagePrinter.PrintToConsole("An error occured when sending the mail", ex.ToString());
-                    MessagePrinter.PrintToMessageBox("An error occured", ex.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessagePrinter.PrintToConsole(ex.ToString(), "An error occured when sending the mail");
                 }
             }
             return false;
@@ -64,8 +63,7 @@ namespace AyuboDrive
             }
             catch (Exception ex)
             {
-                MessagePrinter.PrintToConsole("An error occured when generating the message", ex.ToString());
-                MessagePrinter.PrintToMessageBox("An error occured", ex.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessagePrinter.PrintToConsole(ex.ToString(), "An error occured when generating the message");
                 return null;
             }
         }
