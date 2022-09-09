@@ -17,6 +17,7 @@ namespace AyuboDrive
         public readonly static Color GREEN = Color.FromArgb(70, 199, 151);
         public readonly static Color RED = Color.FromArgb(240, 69, 69);
         public readonly static Color PURPLE = Color.FromArgb(103, 96, 250);
+        public readonly static Color LIGHT_PURPLE = Color.FromArgb(138, 132, 251);
         public readonly static Color ENABLED_WHITE = Color.FromArgb(252, 254, 255);
         public readonly static Color DISABLED_WHITE = Color.FromArgb(130, 142, 163);
         public readonly static Color TRANSPARENT = Color.FromArgb(0, 0, 0, 0);
@@ -38,7 +39,7 @@ namespace AyuboDrive
         public readonly static int[] PACKAGE_TYPE_MANAGEMENT_POSITIONS = { 0, 0, 0, 0, 0, 0, 0 };
         public readonly static int[] VEHICLE_TYPE_MANAGEMENT_POSITIONS = { 0, 0, 0, 0, 0 };
         public readonly static int[] VEHICLE_MANAGEMENT_POSITIONS = { 0, 0, 0, 0 };
-        public readonly static int[] CUSTOMER_MANAGEMENT_POSITIONS = { 0, 0, 0, 0 };
+        public readonly static int[] CUSTOMER_MANAGEMENT_POSITIONS = { 0, 0, 0, 0 , 0};
 
         /// <summary>
         /// The main entry point for the application.
@@ -46,9 +47,9 @@ namespace AyuboDrive
         [STAThread]
         static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new RentalBooking());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new VehicleManagementForm(null));
         }
     }
 }

@@ -37,15 +37,15 @@
             this.fullNameLbl = new System.Windows.Forms.Label();
             this.greetingLbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.RentalBookingLbl = new System.Windows.Forms.Label();
-            this.LongTourBookingsLbl = new System.Windows.Forms.Label();
-            this.PackageTypeLbl = new System.Windows.Forms.Label();
-            this.DayTourBookingsLbl = new System.Windows.Forms.Label();
-            this.VehicleManagementLbk = new System.Windows.Forms.Label();
-            this.VehicleTypeManagement = new System.Windows.Forms.Label();
-            this.CustomerManagement = new System.Windows.Forms.Label();
-            this.AccountLbl = new System.Windows.Forms.Label();
             this.LogoutLbl = new System.Windows.Forms.Label();
+            this.AccountLbl = new System.Windows.Forms.Label();
+            this.CustomerManagement = new System.Windows.Forms.Label();
+            this.VehicleTypeManagement = new System.Windows.Forms.Label();
+            this.VehicleManagementLbk = new System.Windows.Forms.Label();
+            this.DayTourBookingsLbl = new System.Windows.Forms.Label();
+            this.PackageTypeLbl = new System.Windows.Forms.Label();
+            this.LongTourBookingsLbl = new System.Windows.Forms.Label();
+            this.RentalBookingLbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +71,7 @@
             this.userNamePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.userNamePanel.Location = new System.Drawing.Point(0, 206);
             this.userNamePanel.Name = "userNamePanel";
-            this.userNamePanel.Size = new System.Drawing.Size(800, 2);
+            this.userNamePanel.Size = new System.Drawing.Size(700, 2);
             this.userNamePanel.TabIndex = 25;
             // 
             // closedBookingsValueLbl
@@ -172,138 +172,25 @@
             this.panel2.Size = new System.Drawing.Size(700, 292);
             this.panel2.TabIndex = 2;
             // 
-            // RentalBookingLbl
+            // LogoutLbl
             // 
-            this.RentalBookingLbl.AutoSize = true;
-            this.RentalBookingLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.RentalBookingLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RentalBookingLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RentalBookingLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RentalBookingLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.RentalBookingLbl.Location = new System.Drawing.Point(36, 21);
-            this.RentalBookingLbl.MinimumSize = new System.Drawing.Size(150, 120);
-            this.RentalBookingLbl.Name = "RentalBookingLbl";
-            this.RentalBookingLbl.Size = new System.Drawing.Size(150, 120);
-            this.RentalBookingLbl.TabIndex = 0;
-            this.RentalBookingLbl.Text = "Rental Booking\r\nManagement";
-            this.RentalBookingLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.RentalBookingLbl.Click += new System.EventHandler(this.RentalBookingLbl_Click);
-            this.RentalBookingLbl.MouseEnter += new System.EventHandler(this.RentalBookingLbl_MouseEnter);
-            this.RentalBookingLbl.MouseLeave += new System.EventHandler(this.RentalBookingLbl_MouseLeave);
-            // 
-            // LongTourBookingsLbl
-            // 
-            this.LongTourBookingsLbl.AutoSize = true;
-            this.LongTourBookingsLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.LongTourBookingsLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LongTourBookingsLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LongTourBookingsLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LongTourBookingsLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.LongTourBookingsLbl.Location = new System.Drawing.Point(36, 147);
-            this.LongTourBookingsLbl.MinimumSize = new System.Drawing.Size(150, 120);
-            this.LongTourBookingsLbl.Name = "LongTourBookingsLbl";
-            this.LongTourBookingsLbl.Size = new System.Drawing.Size(150, 120);
-            this.LongTourBookingsLbl.TabIndex = 2;
-            this.LongTourBookingsLbl.Text = "Long Tour Bookings\r\nManagement";
-            this.LongTourBookingsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LongTourBookingsLbl.Click += new System.EventHandler(this.LongTourBookingsLbl_Click);
-            this.LongTourBookingsLbl.MouseEnter += new System.EventHandler(this.LongTourBookingsLbl_MouseEnter);
-            this.LongTourBookingsLbl.MouseLeave += new System.EventHandler(this.LongTourBookingsLbl_MouseLeave);
-            // 
-            // PackageTypeLbl
-            // 
-            this.PackageTypeLbl.AutoSize = true;
-            this.PackageTypeLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.PackageTypeLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PackageTypeLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PackageTypeLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PackageTypeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.PackageTypeLbl.Location = new System.Drawing.Point(192, 21);
-            this.PackageTypeLbl.MinimumSize = new System.Drawing.Size(150, 120);
-            this.PackageTypeLbl.Name = "PackageTypeLbl";
-            this.PackageTypeLbl.Size = new System.Drawing.Size(150, 120);
-            this.PackageTypeLbl.TabIndex = 4;
-            this.PackageTypeLbl.Text = "Package Type\r\nManagement";
-            this.PackageTypeLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.PackageTypeLbl.Click += new System.EventHandler(this.PackageTypeLbl_Click);
-            this.PackageTypeLbl.MouseEnter += new System.EventHandler(this.PackageTypeLbl_MouseEnter);
-            this.PackageTypeLbl.MouseLeave += new System.EventHandler(this.PackageTypeLbl_MouseLeave);
-            // 
-            // DayTourBookingsLbl
-            // 
-            this.DayTourBookingsLbl.AutoSize = true;
-            this.DayTourBookingsLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.DayTourBookingsLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DayTourBookingsLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DayTourBookingsLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DayTourBookingsLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.DayTourBookingsLbl.Location = new System.Drawing.Point(192, 147);
-            this.DayTourBookingsLbl.MinimumSize = new System.Drawing.Size(150, 120);
-            this.DayTourBookingsLbl.Name = "DayTourBookingsLbl";
-            this.DayTourBookingsLbl.Size = new System.Drawing.Size(150, 120);
-            this.DayTourBookingsLbl.TabIndex = 3;
-            this.DayTourBookingsLbl.Text = "Day Tour Bookings\r\nManagement";
-            this.DayTourBookingsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.DayTourBookingsLbl.Click += new System.EventHandler(this.DayTourBookingsLbl_Click);
-            this.DayTourBookingsLbl.MouseEnter += new System.EventHandler(this.DayTourBookingsLbl_MouseEnter);
-            this.DayTourBookingsLbl.MouseLeave += new System.EventHandler(this.DayTourBookingsLbl_MouseLeave);
-            // 
-            // VehicleManagementLbk
-            // 
-            this.VehicleManagementLbk.AutoSize = true;
-            this.VehicleManagementLbk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.VehicleManagementLbk.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.VehicleManagementLbk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VehicleManagementLbk.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VehicleManagementLbk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.VehicleManagementLbk.Location = new System.Drawing.Point(348, 21);
-            this.VehicleManagementLbk.MinimumSize = new System.Drawing.Size(150, 120);
-            this.VehicleManagementLbk.Name = "VehicleManagementLbk";
-            this.VehicleManagementLbk.Size = new System.Drawing.Size(150, 120);
-            this.VehicleManagementLbk.TabIndex = 5;
-            this.VehicleManagementLbk.Text = "Vehicle Management";
-            this.VehicleManagementLbk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.VehicleManagementLbk.Click += new System.EventHandler(this.VehicleManagementLbk_Click);
-            this.VehicleManagementLbk.MouseEnter += new System.EventHandler(this.VehicleManagementLbk_MouseEnter);
-            this.VehicleManagementLbk.MouseLeave += new System.EventHandler(this.VehicleManagementLbk_MouseLeave);
-            // 
-            // VehicleTypeManagement
-            // 
-            this.VehicleTypeManagement.AutoSize = true;
-            this.VehicleTypeManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.VehicleTypeManagement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.VehicleTypeManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VehicleTypeManagement.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VehicleTypeManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.VehicleTypeManagement.Location = new System.Drawing.Point(348, 147);
-            this.VehicleTypeManagement.MinimumSize = new System.Drawing.Size(150, 120);
-            this.VehicleTypeManagement.Name = "VehicleTypeManagement";
-            this.VehicleTypeManagement.Size = new System.Drawing.Size(150, 120);
-            this.VehicleTypeManagement.TabIndex = 5;
-            this.VehicleTypeManagement.Text = "Vehicle Type\r\nManagement";
-            this.VehicleTypeManagement.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.VehicleTypeManagement.Click += new System.EventHandler(this.VehicleTypeManagement_Click);
-            this.VehicleTypeManagement.MouseEnter += new System.EventHandler(this.VehicleTypeManagement_MouseEnter);
-            this.VehicleTypeManagement.MouseLeave += new System.EventHandler(this.VehicleTypeManagement_MouseLeave);
-            // 
-            // CustomerManagement
-            // 
-            this.CustomerManagement.AutoSize = true;
-            this.CustomerManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.CustomerManagement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CustomerManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CustomerManagement.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.CustomerManagement.Location = new System.Drawing.Point(504, 21);
-            this.CustomerManagement.MinimumSize = new System.Drawing.Size(150, 184);
-            this.CustomerManagement.Name = "CustomerManagement";
-            this.CustomerManagement.Size = new System.Drawing.Size(150, 184);
-            this.CustomerManagement.TabIndex = 6;
-            this.CustomerManagement.Text = "Customer\r\nManagement";
-            this.CustomerManagement.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.CustomerManagement.Click += new System.EventHandler(this.CustomerManagement_Click);
-            this.CustomerManagement.MouseEnter += new System.EventHandler(this.CustomerManagement_MouseEnter);
-            this.CustomerManagement.MouseLeave += new System.EventHandler(this.CustomerManagement_MouseLeave);
+            this.LogoutLbl.AutoSize = true;
+            this.LogoutLbl.BackColor = System.Drawing.Color.Transparent;
+            this.LogoutLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LogoutLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LogoutLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoutLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.LogoutLbl.Location = new System.Drawing.Point(583, 210);
+            this.LogoutLbl.MinimumSize = new System.Drawing.Size(71, 56);
+            this.LogoutLbl.Name = "LogoutLbl";
+            this.LogoutLbl.Size = new System.Drawing.Size(71, 56);
+            this.LogoutLbl.TabIndex = 8;
+            this.LogoutLbl.Text = "Log out";
+            this.LogoutLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LogoutLbl.Click += new System.EventHandler(this.LogoutLbl_Click);
+            this.LogoutLbl.Paint += new System.Windows.Forms.PaintEventHandler(this.LogoutLbl_Paint);
+            this.LogoutLbl.MouseEnter += new System.EventHandler(this.LogoutLbl_MouseEnter);
+            this.LogoutLbl.MouseLeave += new System.EventHandler(this.LogoutLbl_MouseLeave);
             // 
             // AccountLbl
             // 
@@ -324,25 +211,138 @@
             this.AccountLbl.MouseEnter += new System.EventHandler(this.AccountLbl_MouseEnter);
             this.AccountLbl.MouseLeave += new System.EventHandler(this.AccountLbl_MouseLeave);
             // 
-            // LogoutLbl
+            // CustomerManagement
             // 
-            this.LogoutLbl.AutoSize = true;
-            this.LogoutLbl.BackColor = System.Drawing.Color.Transparent;
-            this.LogoutLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LogoutLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LogoutLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LogoutLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.LogoutLbl.Location = new System.Drawing.Point(583, 210);
-            this.LogoutLbl.MinimumSize = new System.Drawing.Size(71, 56);
-            this.LogoutLbl.Name = "LogoutLbl";
-            this.LogoutLbl.Size = new System.Drawing.Size(71, 56);
-            this.LogoutLbl.TabIndex = 8;
-            this.LogoutLbl.Text = "Log out";
-            this.LogoutLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LogoutLbl.Click += new System.EventHandler(this.LogoutLbl_Click);
-            this.LogoutLbl.Paint += new System.Windows.Forms.PaintEventHandler(this.LogoutLbl_Paint);
-            this.LogoutLbl.MouseEnter += new System.EventHandler(this.LogoutLbl_MouseEnter);
-            this.LogoutLbl.MouseLeave += new System.EventHandler(this.LogoutLbl_MouseLeave);
+            this.CustomerManagement.AutoSize = true;
+            this.CustomerManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.CustomerManagement.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CustomerManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CustomerManagement.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.CustomerManagement.Location = new System.Drawing.Point(504, 21);
+            this.CustomerManagement.MinimumSize = new System.Drawing.Size(150, 184);
+            this.CustomerManagement.Name = "CustomerManagement";
+            this.CustomerManagement.Size = new System.Drawing.Size(150, 184);
+            this.CustomerManagement.TabIndex = 6;
+            this.CustomerManagement.Text = "Customer\r\nManagement";
+            this.CustomerManagement.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CustomerManagement.Click += new System.EventHandler(this.CustomerManagement_Click);
+            this.CustomerManagement.MouseEnter += new System.EventHandler(this.CustomerManagement_MouseEnter);
+            this.CustomerManagement.MouseLeave += new System.EventHandler(this.CustomerManagement_MouseLeave);
+            // 
+            // VehicleTypeManagement
+            // 
+            this.VehicleTypeManagement.AutoSize = true;
+            this.VehicleTypeManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.VehicleTypeManagement.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.VehicleTypeManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VehicleTypeManagement.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VehicleTypeManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.VehicleTypeManagement.Location = new System.Drawing.Point(348, 147);
+            this.VehicleTypeManagement.MinimumSize = new System.Drawing.Size(150, 120);
+            this.VehicleTypeManagement.Name = "VehicleTypeManagement";
+            this.VehicleTypeManagement.Size = new System.Drawing.Size(150, 120);
+            this.VehicleTypeManagement.TabIndex = 5;
+            this.VehicleTypeManagement.Text = "Vehicle Type\r\nManagement";
+            this.VehicleTypeManagement.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.VehicleTypeManagement.Click += new System.EventHandler(this.VehicleTypeManagement_Click);
+            this.VehicleTypeManagement.MouseEnter += new System.EventHandler(this.VehicleTypeManagement_MouseEnter);
+            this.VehicleTypeManagement.MouseLeave += new System.EventHandler(this.VehicleTypeManagement_MouseLeave);
+            // 
+            // VehicleManagementLbk
+            // 
+            this.VehicleManagementLbk.AutoSize = true;
+            this.VehicleManagementLbk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.VehicleManagementLbk.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.VehicleManagementLbk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VehicleManagementLbk.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VehicleManagementLbk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.VehicleManagementLbk.Location = new System.Drawing.Point(348, 21);
+            this.VehicleManagementLbk.MinimumSize = new System.Drawing.Size(150, 120);
+            this.VehicleManagementLbk.Name = "VehicleManagementLbk";
+            this.VehicleManagementLbk.Size = new System.Drawing.Size(150, 120);
+            this.VehicleManagementLbk.TabIndex = 5;
+            this.VehicleManagementLbk.Text = "Vehicle Management";
+            this.VehicleManagementLbk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.VehicleManagementLbk.Click += new System.EventHandler(this.VehicleManagementLbk_Click);
+            this.VehicleManagementLbk.MouseEnter += new System.EventHandler(this.VehicleManagementLbk_MouseEnter);
+            this.VehicleManagementLbk.MouseLeave += new System.EventHandler(this.VehicleManagementLbk_MouseLeave);
+            // 
+            // DayTourBookingsLbl
+            // 
+            this.DayTourBookingsLbl.AutoSize = true;
+            this.DayTourBookingsLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.DayTourBookingsLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DayTourBookingsLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DayTourBookingsLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DayTourBookingsLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.DayTourBookingsLbl.Location = new System.Drawing.Point(192, 147);
+            this.DayTourBookingsLbl.MinimumSize = new System.Drawing.Size(150, 120);
+            this.DayTourBookingsLbl.Name = "DayTourBookingsLbl";
+            this.DayTourBookingsLbl.Size = new System.Drawing.Size(150, 120);
+            this.DayTourBookingsLbl.TabIndex = 3;
+            this.DayTourBookingsLbl.Text = "Day Tour Bookings";
+            this.DayTourBookingsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.DayTourBookingsLbl.Click += new System.EventHandler(this.DayTourBookingsLbl_Click);
+            this.DayTourBookingsLbl.MouseEnter += new System.EventHandler(this.DayTourBookingsLbl_MouseEnter);
+            this.DayTourBookingsLbl.MouseLeave += new System.EventHandler(this.DayTourBookingsLbl_MouseLeave);
+            // 
+            // PackageTypeLbl
+            // 
+            this.PackageTypeLbl.AutoSize = true;
+            this.PackageTypeLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.PackageTypeLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PackageTypeLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PackageTypeLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PackageTypeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.PackageTypeLbl.Location = new System.Drawing.Point(192, 21);
+            this.PackageTypeLbl.MinimumSize = new System.Drawing.Size(150, 120);
+            this.PackageTypeLbl.Name = "PackageTypeLbl";
+            this.PackageTypeLbl.Size = new System.Drawing.Size(150, 120);
+            this.PackageTypeLbl.TabIndex = 4;
+            this.PackageTypeLbl.Text = "Package Type\r\nManagement";
+            this.PackageTypeLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PackageTypeLbl.Click += new System.EventHandler(this.PackageTypeLbl_Click);
+            this.PackageTypeLbl.MouseEnter += new System.EventHandler(this.PackageTypeLbl_MouseEnter);
+            this.PackageTypeLbl.MouseLeave += new System.EventHandler(this.PackageTypeLbl_MouseLeave);
+            // 
+            // LongTourBookingsLbl
+            // 
+            this.LongTourBookingsLbl.AutoSize = true;
+            this.LongTourBookingsLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.LongTourBookingsLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LongTourBookingsLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LongTourBookingsLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LongTourBookingsLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.LongTourBookingsLbl.Location = new System.Drawing.Point(36, 147);
+            this.LongTourBookingsLbl.MinimumSize = new System.Drawing.Size(150, 120);
+            this.LongTourBookingsLbl.Name = "LongTourBookingsLbl";
+            this.LongTourBookingsLbl.Size = new System.Drawing.Size(150, 120);
+            this.LongTourBookingsLbl.TabIndex = 2;
+            this.LongTourBookingsLbl.Text = "Long Tour Bookings";
+            this.LongTourBookingsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LongTourBookingsLbl.Click += new System.EventHandler(this.LongTourBookingsLbl_Click);
+            this.LongTourBookingsLbl.MouseEnter += new System.EventHandler(this.LongTourBookingsLbl_MouseEnter);
+            this.LongTourBookingsLbl.MouseLeave += new System.EventHandler(this.LongTourBookingsLbl_MouseLeave);
+            // 
+            // RentalBookingLbl
+            // 
+            this.RentalBookingLbl.AutoSize = true;
+            this.RentalBookingLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.RentalBookingLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RentalBookingLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RentalBookingLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RentalBookingLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.RentalBookingLbl.Location = new System.Drawing.Point(36, 21);
+            this.RentalBookingLbl.MinimumSize = new System.Drawing.Size(150, 120);
+            this.RentalBookingLbl.Name = "RentalBookingLbl";
+            this.RentalBookingLbl.Size = new System.Drawing.Size(150, 120);
+            this.RentalBookingLbl.TabIndex = 0;
+            this.RentalBookingLbl.Text = "Rental Booking";
+            this.RentalBookingLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RentalBookingLbl.Click += new System.EventHandler(this.RentalBookingLbl_Click);
+            this.RentalBookingLbl.MouseEnter += new System.EventHandler(this.RentalBookingLbl_MouseEnter);
+            this.RentalBookingLbl.MouseLeave += new System.EventHandler(this.RentalBookingLbl_MouseLeave);
             // 
             // DashboardForm
             // 

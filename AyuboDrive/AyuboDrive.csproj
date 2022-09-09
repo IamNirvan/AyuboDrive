@@ -83,11 +83,58 @@
     <Compile Include="Enums\Availability.cs" />
     <Compile Include="Enums\HireStatus.cs" />
     <Compile Include="Enums\HireType.cs" />
-    <Compile Include="Forms\RentalBooking.cs">
+    <Compile Include="Forms\CustomerManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\RentalBooking.Designer.cs">
-      <DependentUpon>RentalBooking.cs</DependentUpon>
+    <Compile Include="Forms\CustomerManagementForm.Designer.cs">
+      <DependentUpon>CustomerManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginFormV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginFormV2.Designer.cs">
+      <DependentUpon>LoginFormV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AyuboDriveTemplateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PackageTypeManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PackageTypeManagementForm.Designer.cs">
+      <DependentUpon>PackageTypeManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PaymentManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PaymentManagementForm.Designer.cs">
+      <DependentUpon>PaymentManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RentalBookingManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RentalBookingManagementForm.Designer.cs">
+      <DependentUpon>RentalBookingManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VehicleManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VehicleManagementForm.Designer.cs">
+      <DependentUpon>VehicleManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VehicleTypeManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VehicleTypeManagementForm.Designer.cs">
+      <DependentUpon>VehicleTypeManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IVehicleViewer.cs" />
+    <Compile Include="Utility\CustomTitleBar.cs" />
+    <Compile Include="Forms\RentalBookingManipulationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RentalBookingManipulationForm.Designer.cs">
+      <DependentUpon>RentalBookingManipulationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Enums\FormType.cs" />
     <Compile Include="Forms\DataViewForm.cs">
@@ -105,7 +152,9 @@
     <Compile Include="Interfaces\IDatabaseManipulator.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="RentalBooking.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Utility\ConfigurationHandler.cs" />
+    <Compile Include="Utility\DataViewer.cs" />
     <Compile Include="Utility\MessagePrinter.cs" />
     <Compile Include="Utility\SimpleEmailSender.cs" />
     <Compile Include="Forms\AccountRegistrationForm.cs">
@@ -113,12 +162,6 @@
     </Compile>
     <Compile Include="Forms\AccountRegistrationForm.Designer.cs">
       <DependentUpon>AccountRegistrationForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\LoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HireBooking.cs" />
     <Compile Include="Customer.cs" />
@@ -128,10 +171,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\QueryHandler.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="Utility\VehicleViewer.cs" />
+    <Compile Include="Utility\VehicleViewerV2.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="VehicleType.cs" />
     <EmbeddedResource Include="Forms\AccountRegistrationForm.resx">
       <DependentUpon>AccountRegistrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomerManagementForm.resx">
+      <DependentUpon>CustomerManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
@@ -139,11 +187,26 @@
     <EmbeddedResource Include="Forms\DataViewForm.resx">
       <DependentUpon>DataViewForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LoginFormV2.resx">
+      <DependentUpon>LoginFormV2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\RentalBooking.resx">
-      <DependentUpon>RentalBooking.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PackageTypeManagementForm.resx">
+      <DependentUpon>PackageTypeManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PaymentManagementForm.resx">
+      <DependentUpon>PaymentManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RentalBookingManagementForm.resx">
+      <DependentUpon>RentalBookingManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RentalBookingManipulationForm.resx">
+      <DependentUpon>RentalBookingManipulationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VehicleManagementForm.resx">
+      <DependentUpon>VehicleManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VehicleTypeManagementForm.resx">
+      <DependentUpon>VehicleTypeManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -189,6 +252,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Other\Notes.txt" />
+    <None Include="Resources\defaultCar.png" />
+    <None Include="Resources\warning.png" />
+    <None Include="Resources\Logo1.png" />
+    <None Include="Resources\Logo2.png" />
+    <None Include="Resources\closeIcon.png" />
+    <None Include="Resources\minimizeIcon.png" />
+    <None Include="Resources\LoginSidePanel1.png" />
+    <None Include="Resources\Close icon.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

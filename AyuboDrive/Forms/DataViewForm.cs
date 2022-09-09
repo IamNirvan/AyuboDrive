@@ -1,4 +1,5 @@
 ﻿using AyuboDrive.Forms;
+using AyuboDrive.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -107,7 +108,7 @@ namespace AyuboDrive
 
             HighlightButton();
             dataPanel.Controls.Clear();
-            PlaceObjects(dataTable);
+            //PlaceObjects(dataTable);
 
 
             int rowCount = dataTable.Rows.Count, columnCount = dataTable.Columns.Count;
@@ -306,7 +307,6 @@ namespace AyuboDrive
 
         private void Cell_MouseEnter(object sender, EventArgs e)
         {
-            Console.WriteLine("Mouse left");
             //((Panel)sender).BackColor = Program.LIGHT_GRAY;
 
             // Get the number associated with the label name. For example: panel-0
@@ -378,6 +378,23 @@ namespace AyuboDrive
             ((TextBox)sender).ForeColor = Program.DISABLED_WHITE;
         }
 
+
+        private void DataViewForm_Load(object sender, EventArgs e)
+        {
+            headingLbl.Text = formTitle;
+            //DisplayRows();
+
+            //new DataViewer(dataPanel, queryHandler.SelectQueryHandler(query)).DisplayTable();
+        }
+
+
+
+
+        private void DataViewForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dashboardForm.Show();
+        }
+
         private void ComboBox_Enter(object sender, EventArgs e)
         {
             ((ComboBox)sender).ForeColor = Program.ENABLED_WHITE;
@@ -386,17 +403,6 @@ namespace AyuboDrive
         private void ComboBox_Leave(object sender, EventArgs e)
         {
             ((ComboBox)sender).ForeColor = Program.DISABLED_WHITE;
-        }
-
-        private void DataViewForm_Load(object sender, EventArgs e)
-        {
-            headingLbl.Text = formTitle;
-            DisplayRows();
-        }
-
-        private void DataViewForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            dashboardForm.Show();
         }
 
         private void customerManagementBtn_Click(object sender, EventArgs e)

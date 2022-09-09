@@ -31,12 +31,25 @@ namespace AyuboDrive
 
         public bool Insert()
         {
-            string query = "INSERT INTO rentalBooking VALUES(@vehicleTypeID, @vehicleID, @driverID, " +
-                "@customerID, @startDate, @endDate)";
-            string[] parameters = { "@vehicleTypeID", "@vehicleID", "@driverID",
-                "@customerID", "@startDate", "@endDate" };
-            object[] values = { _vehicleTypeID, _vehicleID, _driverID, _customerID, _startDate, _endDate};
+            string query;
+            string[] parameters;
+            object[] values;
 
+            if (_driverID == null)
+            {
+                query = "INSERT INTO rentalBooking(vehicleTypeID, vehicleID, customerID, startDate, endDate) " +
+                    "VALUES(@vehicleTypeID, @vehicleID, @customerID, @startDate, @endDate)";
+                parameters = new string[]{ "@vehicleTypeID", "@vehicleID", "@customerID", "@startDate", "@endDate" };
+                values = new object[]{ _vehicleTypeID, _vehicleID, _customerID, _startDate, _endDate};
+            }
+            else
+            {
+                query = "INSERT INTO rentalBooking VALUES(@vehicleTypeID, @vehicleID, @driverID, " +
+                "@customerID, @startDate, @endDate)";
+                parameters = new string[]{ "@vehicleTypeID", "@vehicleID", "@driverID", "@customerID",
+                    "@startDate", "@endDate" };
+                values = new object[]{ _vehicleTypeID, _vehicleID, _driverID, _customerID, _startDate, _endDate};
+            }
             if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Rental booking details successfully inserted", "Operation successful");

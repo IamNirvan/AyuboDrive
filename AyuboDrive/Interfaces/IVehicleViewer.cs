@@ -10,7 +10,7 @@ namespace AyuboDrive.Interfaces
     {
         void AddContainers();
 
-        void AddImageLabels(string[] imagePaths);
+        void AddImageLabels();
 
         void AddVehicleNameLabels();
     }

@@ -12,15 +12,14 @@ using System.Windows.Forms;
 
 namespace AyuboDrive.Utility
 {
-    class VehicleViewer : IVehicleViewer
+    public class VehicleViewer : IVehicleViewer
     {
-        private Panel _container;
-        private Panel[] _recordPanels;
-        private Panel[] _imagePanels;
-        private Label[] _modelLabels;
-        private Label[] _manufacturerLabels;
-        private readonly DataTable _dataTable;
-        private int _rowCount;
+        protected Panel _container;
+        protected Panel[] _recordPanels;
+        protected Panel[] _imagePanels;
+        protected Label[] _manufacturerLabels;
+        protected readonly DataTable _dataTable;
+        protected int _rowCount;
 
         public Label[] GetManufacturerLabels()
         {
@@ -34,23 +33,22 @@ namespace AyuboDrive.Utility
             _rowCount = _dataTable.Rows.Count;
         }
 
-        public void Display(string[] imagePaths)
+        public virtual void Display()
         {
             InitializeArrays();
             AddContainers();
-            AddImageLabels(imagePaths);
+            AddImageLabels();
             AddVehicleNameLabels();
         }
 
-        private void InitializeArrays()
+        protected void InitializeArrays()
         {
             _recordPanels = new Panel[_rowCount];
             _imagePanels = new Panel[_rowCount];
-            _modelLabels = new Label[_rowCount];
             _manufacturerLabels = new Label[_rowCount];
         }
 
-        public void AddContainers()
+        public virtual void AddContainers()
         {
             try
             {
@@ -80,7 +78,7 @@ namespace AyuboDrive.Utility
             }
         }
 
-        public void AddImageLabels(string[] imagePaths)
+        public virtual void AddImageLabels()
         {
             try
             {
@@ -90,7 +88,6 @@ namespace AyuboDrive.Utility
 
                 for (int i = 0; i < _rowCount; i++)
                 {
-                    Console.WriteLine($"Image path: {imagePaths[i]}");
                     Panel imagePanel = new Panel()
                     {
                         Size = new Size(panelWidth, 250),
@@ -111,7 +108,7 @@ namespace AyuboDrive.Utility
             }
         }
 
-        public void AddVehicleNameLabels()
+        public virtual void AddVehicleNameLabels()
         {
             try
             {

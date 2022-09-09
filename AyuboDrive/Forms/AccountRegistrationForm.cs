@@ -11,50 +11,22 @@ using System.Windows.Forms;
 
 namespace AyuboDrive.Forms
 {
-    public partial class AccountRegistrationForm: Form
+    public partial class AccountRegistrationForm: AyuboDriveTemplateForm
     {
         private string _firstName;
         private string _lastName;
         private string _key;
 
-        public AccountRegistrationForm()
+        public AccountRegistrationForm() : base(Properties.Settings.Default.TRANSPARENT)
         {
             InitializeComponent();
             HandleTitleBar();
             DisableSecretKeyObjects();
+            imagePanel.BringToFront();
         }
-
-        // -- TITLE BAR BUTTON FUNCTIONALITY --
-
-        private void ExitBtn_MouseClick(object sender, EventArgs e)
-        {
-            new LoginFormV2().Show();
-            Hide();
-        }
-
-        private void MinimizeBtn_MouseClick(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        // -- END OF TITLE BAR BUTTON FUNCTIONALITY --
-
-        private void HandleTitleBar()
-        {
-            CustomTitleBar customTitleBar = new CustomTitleBar(this, 30, Properties.Settings.Default.TRANSPARENT);
-            customTitleBar.CreateExitButton(Properties.Settings.Default.TRANSPARENT,
-                Properties.Settings.Default.ENABLED_WHITE);
-            customTitleBar.CreateMinimizeButton(Properties.Settings.Default.TRANSPARENT,
-                Properties.Settings.Default.DISABLED_WHITE);
-            Panel titleBar = customTitleBar.GetTitleBar();
-            Button exitButton = customTitleBar.GetExitButton();
-            Button minimizeButton = customTitleBar.GetMinimizeButton();
-            Controls.Add(titleBar);
-            //titleBar.BringToFront();
-            exitButton.MouseClick += new MouseEventHandler(ExitBtn_MouseClick);
-            minimizeButton.MouseClick += new MouseEventHandler(MinimizeBtn_MouseClick);
-        }
-
+        //
+        // Utility
+        //
         private void HandleKeyDelivery()
         {
             _key = Viper.GenerateKey();
@@ -100,9 +72,10 @@ namespace AyuboDrive.Forms
             PasswordErrorLbl.Text = "";
 
             KeyTxtBox.Text = "";
-            KeyPnl.BackColor = Properties.Settings.Default.PURPLE;
             KeyErrorLbl.Text = "";
+            DisableSecretKeyObjects();
 
+            GenerateKeyLbl.Text = "Generate secret key";
         }
 
         private void EnableSecretKeyObjects()
@@ -120,9 +93,9 @@ namespace AyuboDrive.Forms
             KeyPnl.BackColor = Properties.Settings.Default.DISABLED_WHITE;
             KeyErrorLbl.Enabled = false;
         }
-
-        // -- FIRST NAME TEXT BOX FUNCTIONALITY --
-
+        //
+        // Textbox event handlers
+        //
         private void FirstNameTxtBox_Leave(object sender, EventArgs e)
         {
             FirstNameTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
@@ -132,11 +105,7 @@ namespace AyuboDrive.Forms
         {
             FirstNameTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
         }
-
-        // -- END OF FIRST NAME TEXT BOX FUNCTIONALITY --
-
-        // -- LAST NAME TEXT BOX FUNCTIONALITY --
-
+        
         private void LastNameTxtBox_Leave(object sender, EventArgs e)
         {
             LastNameTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
@@ -146,11 +115,7 @@ namespace AyuboDrive.Forms
         {
             LastNameTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
         }
-
-        // -- END OF LAST NAME TEXT BOX FUNCTIONALITY --
-
-        // -- USER NAME TEXT BOX FUNCTIONALITY --
-
+        
         private void UserNameTxtBox_Leave(object sender, EventArgs e)
         {
             UserNameTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
@@ -160,11 +125,7 @@ namespace AyuboDrive.Forms
         {
             UserNameTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
         }
-
-        // -- END OF USER NAME TEXT BOX FUNCTIONALITY --
-
-        // -- PASSWORD TEXT BOX FUNCTIONALITY --
-
+        
         private void PasswordTxtBox_Leave(object sender, EventArgs e)
         {
             PasswordTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
@@ -174,11 +135,7 @@ namespace AyuboDrive.Forms
         {
             PasswordTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
         }
-
-        // -- END OF PASSWORD TEXT BOX FUNCTIONALITY --
-
-        // -- KEY TEXT BOX FUNCTIONALITY --
-
+        
         private void KeyTxtBox_Leave(object sender, EventArgs e)
         {
             KeyTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
@@ -225,21 +182,23 @@ namespace AyuboDrive.Forms
                 }
             }
         }
-
-        // -- END OF KEY TEXT BOX FUNCTIONALITY --
-
-
-        // -- GENERATE KEY LABEL FUNCTIONALITY --
-
+        //
+        // Paint event handlers
+        //
         private void GenerateKeyLbl_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics, GenerateKeyLbl.DisplayRectangle, Program.PURPLE, ButtonBorderStyle.Solid);
         }
 
+        private void SignUpLbl_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, SignUpLbl.DisplayRectangle, Program.PURPLE, ButtonBorderStyle.Solid);
+        }
+        //
+        // Click event handlers
+        //
         private void GenerateKeyLbl_Click(object sender, EventArgs e)
         {
-            // Generate key button logic goes here...
-
             string firstName = FirstNameTxtBox.Text;
             string lastName = LastNameTxtBox.Text;
             string userName = UserNameTxtBox.Text;
@@ -249,7 +208,6 @@ namespace AyuboDrive.Forms
             bool validLastName = false;
             bool validUserName = false;
             bool validPassword = false;
-
 
             if(firstName.Length == 0)
             {
@@ -267,7 +225,6 @@ namespace AyuboDrive.Forms
 
             if(lastName.Length == 0)
             {
-                validLastName = false;
                 LastNamePnl.BackColor = Properties.Settings.Default.RED;
                 LastNameErrorLbl.Text = "Invalid last name";
             }
@@ -281,7 +238,6 @@ namespace AyuboDrive.Forms
 
             if (userName.Length == 0)
             {
-                validUserName = false;
                 UserNamePnl.BackColor = Properties.Settings.Default.RED;
                 UserNameErrorLbl.Text = "Invalid user name";
             }
@@ -294,7 +250,6 @@ namespace AyuboDrive.Forms
 
             if (password.Length == 0)
             {
-                validPassword = false;
                 PasswordPnl.BackColor = Properties.Settings.Default.RED;
                 PasswordErrorLbl.Text = "Invalid password";
             }
@@ -308,9 +263,36 @@ namespace AyuboDrive.Forms
             if(validFirstName && validLastName && validUserName && validPassword)
             {
                 HandleKeyDelivery();
+                GenerateKeyLbl.Text = "Resend secret key";
             }
         }
 
+        private void SignUpLbl_Click(object sender, EventArgs e)
+        {
+            string userName = UserNameTxtBox.Text;
+            string password = PasswordTxtBox.Text;
+            User user = new User(userName, password, _firstName, _lastName);
+            bool result = user.Insert();
+
+            if (result)
+            {
+                MessagePrinter.PrintToMessageBox("Your account was successfully created.\n" +
+                    "You can now log into your new account", "Operation successful",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Reset();
+                new LoginFormV2().Show();
+                Hide();
+            }
+            else
+            {
+                MessagePrinter.PrintToMessageBox($"Sorry {_firstName}... an expected problem kept your account from being created\n" +
+                    "Seek assitance from your superior and try again later", "Operation failed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //
+        // Mouse event handlers
+        //
         private void GenerateKeyLbl_MouseUp(object sender, MouseEventArgs e)
         {
             GenerateKeyLbl.BackColor = Properties.Settings.Default.TRANSPARENT;
@@ -332,36 +314,7 @@ namespace AyuboDrive.Forms
             GenerateKeyLbl.BackColor = Properties.Settings.Default.PURPLE;
             GenerateKeyLbl.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
         }
-
-        // -- END OF GENERATE KEY LABEL FUNCTIONALITY --
-
         
-        // -- SIGN UP BUTTON FUNCTIONALITY --
-
-        private void SignUpLbl_Click(object sender, EventArgs e)
-        {
-            string userName = UserNameTxtBox.Text;
-            string password = PasswordTxtBox.Text;
-            User user = new User(userName, password, _firstName, _lastName);
-            bool result = user.Insert();
-
-            if(result)
-            {
-                MessagePrinter.PrintToMessageBox("Your account was successfully created.\n" +
-                    "You can now log into your new account", "Operation successful",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Reset();
-                new LoginFormV2().Show();
-                Hide();
-            }
-            else
-            {
-                MessagePrinter.PrintToMessageBox($"Sorry {_firstName}... an expected problem kept your account from being created\n" +
-                    "Seek assitance from your superior and try again later", "Operation failed",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void SignUpLbl_MouseEnter(object sender, EventArgs e)
         {
             SignUpLbl.BackColor = Properties.Settings.Default.PURPLE;
@@ -383,12 +336,5 @@ namespace AyuboDrive.Forms
         {
             SignUpLbl.BackColor = Program.LIGHT_PURPLE;
         }
-
-        private void SignUpLbl_Paint(object sender, PaintEventArgs e)
-        {
-            ControlPaint.DrawBorder(e.Graphics, SignUpLbl.DisplayRectangle, Program.PURPLE, ButtonBorderStyle.Solid);
-        }
-
-        // -- END OF SIGN UP BUTTON FUNCTIONALITY --
     }
 }

@@ -70,7 +70,7 @@ namespace AyuboDrive
             return false;
         }
 
-        public bool Delete(string ID)
+        public static bool Delete(string ID)
         {
             string query = "DELETE FROM vehicle WHERE vehicleID = @vehicleID";
             string[] parameters = { "@vehicleID" };

@@ -103,7 +103,7 @@ namespace AyuboDrive.Forms
             {
                 return "Good evening,";
             }
-            else if (hour == 12 || hour <= 17)
+            else if (hour <= 17|| hour >= 12)
             {
                 return "Good afternoon,";
             }
@@ -112,8 +112,7 @@ namespace AyuboDrive.Forms
 
         private void RentalBookingLbl_Click(object sender, EventArgs e)
         {
-            new RentalBooking().Show();
-            Hide();
+            
         }
 
         private void accountBtn_Click(object sender, EventArgs e)
@@ -144,7 +143,8 @@ namespace AyuboDrive.Forms
 
         private void PackageTypeLbl_Click(object sender, EventArgs e)
         {
-
+            new PackageTypeManagementForm(this).Show();
+            Hide();
         }
 
         private void PackageTypeLbl_MouseEnter(object sender, EventArgs e)
@@ -205,7 +205,8 @@ namespace AyuboDrive.Forms
 
         private void VehicleTypeManagement_Click(object sender, EventArgs e)
         {
-
+            new VehicleTypeManagementForm(this).Show();
+            Hide();
         }
 
         private void VehicleTypeManagement_MouseEnter(object sender, EventArgs e)
@@ -220,7 +221,8 @@ namespace AyuboDrive.Forms
 
         private void CustomerManagement_Click(object sender, EventArgs e)
         {
-
+            new CustomerManagementForm(this).Show();
+            Hide();
         }
 
         private void CustomerManagement_MouseEnter(object sender, EventArgs e)

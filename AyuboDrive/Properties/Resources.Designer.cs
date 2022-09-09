@@ -83,6 +83,16 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap defaultCar {
+            get {
+                object obj = ResourceManager.GetObject("defaultCar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap felipe_simo_2KL2yrK_2bs_unsplash {
             get {
                 object obj = ResourceManager.GetObject("felipe-simo-2KL2yrK_2bs-unsplash", resourceCulture);
@@ -166,6 +176,16 @@ namespace AyuboDrive.Properties {
         internal static System.Drawing.Bitmap valentin_b_kremer_krXmGk8jfXg_unsplash {
             get {
                 object obj = ResourceManager.GetObject("valentin-b-kremer-krXmGk8jfXg-unsplash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap warning {
+            get {
+                object obj = ResourceManager.GetObject("warning", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

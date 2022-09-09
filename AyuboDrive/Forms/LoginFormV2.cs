@@ -10,15 +10,16 @@ using System.Windows.Forms;
 
 namespace AyuboDrive.Forms
 {
-    public partial class LoginFormV2 : Form
+    public partial class LoginFormV2 : AyuboDriveTemplateForm
     {
         public string firstName;
         public string lastName;
 
-        public LoginFormV2()
+        public LoginFormV2() : base(Properties.Settings.Default.TRANSPARENT)
         {
             InitializeComponent();
             HandleTitleBar();
+            imagePanel.BringToFront();
         }
 
         // -- USER NAME TEXT BOX FUNCTIONALITY --
@@ -58,37 +59,7 @@ namespace AyuboDrive.Forms
         }
 
         // -- END OF SIGN UP LABEL FUNCTIONALITY --
-
-        // -- TITLE BAR BUTTON FUNCTIONALITY --
-
-        private void ExitBtn_MouseClick(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void MinimizeBtn_MouseClick(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        // -- END OF TITLE BAR BUTTON FUNCTIONALITY --
-
-        private void HandleTitleBar()
-        {
-            CustomTitleBar customTitleBar = new CustomTitleBar(this, 30, Properties.Settings.Default.TRANSPARENT);
-            customTitleBar.CreateExitButton(Properties.Settings.Default.TRANSPARENT, 
-                Properties.Settings.Default.ENABLED_WHITE);
-            customTitleBar.CreateMinimizeButton(Properties.Settings.Default.TRANSPARENT, 
-                Properties.Settings.Default.DISABLED_WHITE);
-            Panel titleBar = customTitleBar.GetTitleBar();
-            Button exitButton = customTitleBar.GetExitButton();
-            Button minimizeButton = customTitleBar.GetMinimizeButton();
-            Controls.Add(titleBar);
-            //titleBar.BringToFront();
-            exitButton.MouseClick += new MouseEventHandler(ExitBtn_MouseClick);
-            minimizeButton.MouseClick += new MouseEventHandler(MinimizeBtn_MouseClick);
-        }
-
+        
         // -- LOGIN LABEL FUNCTIONALITY --
 
         private void LoginLbl_Paint(object sender, PaintEventArgs e)

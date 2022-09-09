@@ -10,8 +10,6 @@ namespace AyuboDrive.Interfaces
     {
         bool Insert();
 
-        bool Delete(string ID);
-
         bool Update(string ID);
     }
 }
