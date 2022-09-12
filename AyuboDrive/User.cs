@@ -14,7 +14,7 @@ namespace AyuboDrive
         private readonly string _password;
         public string FirstName;
         public string LastName;
-        private readonly string _imagePath; // Image for the profile picture
+        private readonly string _imagePath;
         private static readonly QueryHandler s_queryHandler = new QueryHandler();
 
         public User(string userName, string password, string firstName, string lastName, string imagePath)
