@@ -1,4 +1,5 @@
-﻿using AyuboDrive.Interfaces;
+﻿using AyuboDrive.Enums;
+using AyuboDrive.Interfaces;
 using AyuboDrive.Utility;
 using System;
 using System.Collections.Generic;
@@ -17,25 +18,28 @@ namespace AyuboDrive
         private readonly int _maxKilometer;
         private readonly double _extraHourRate;
         private readonly double _extraKilometerRate;
+        private readonly PackageStatus _packageStatus;
         private static QueryHandler _queryHandler = new QueryHandler();
 
         public Package(string packageName, int maxHour, int maxKilometer, double extraHourRate, 
-            double extraKilometerRate)
+            double extraKilometerRate, PackageStatus packageStatus)
         {
             _packageName = packageName;
             _maxHour = maxHour;
             _maxKilometer = maxKilometer;
             _extraKilometerRate = extraKilometerRate;
             _extraHourRate = extraHourRate;
+            _packageStatus = packageStatus;
         }
 
         public bool Insert()
         {
             string query = "INSERT INTO package VALUES(@packageName, @maxHour, @maxKilometer, " +
-                "@extraHourRate, @extraKilometerRate)";
+                "@extraHourRate, @extraKilometerRate, @packageStatus)";
             string[] parameters = { "@packageName", "@maxHour", "@maxKilometer",
-                "@extraHourRate", "@extraKilometerRate" };
-            object[] values = { _packageName, _maxHour, _maxKilometer, _extraHourRate, _extraKilometerRate };
+                "@extraHourRate", "@extraKilometerRate", "@packageStatus" };
+            object[] values = { _packageName, _maxHour, _maxKilometer, _extraHourRate,
+                _extraKilometerRate, _packageStatus };
 
             if (_queryHandler.InsertQueryHandler(query, parameters, values))
             {
@@ -48,11 +52,14 @@ namespace AyuboDrive
 
         public bool Update(string ID)
         {
-            string query = "UPDATE package SET packageName = @packageName, maxHour = @maxHour, maxKilometer = @maxKilometer, " +
-                "extraHourRate = @extraHourRate, extraKilometerRate = @extraKilometerRate" +
+            string query = "UPDATE package SET packageName = @packageName, maxHour = @maxHour, " +
+                "maxKilometer = @maxKilometer, extraHourRate = @extraHourRate, " +
+                "extraKilometerRate = @extraKilometerRate, packageStatus = @packageStatus" +
                 " WHERE packageID = @packageID";
-            string[] parameters = { "@packageName", "@maxHour", "@maxKilometer", "@extraHourRate", "@extraKilometerRate", "@packageID"};
-            object[] values = { _packageName, _maxHour, _maxKilometer,_extraHourRate, _extraKilometerRate, ID };
+            string[] parameters = { "@packageName", "@maxHour", "@maxKilometer", "@extraHourRate",
+                "@extraKilometerRate", "@packageID"};
+            object[] values = { _packageName, _maxHour, _maxKilometer,_extraHourRate, _extraKilometerRate,
+                _packageStatus, ID };
 
             if (_queryHandler.UpdateQueryHandler(query, parameters, values))
             {
