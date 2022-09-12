@@ -29,7 +29,7 @@ namespace AyuboDrive
         private readonly VehicleStatus _vehicleStatus;
         private readonly string _imagePath;
         private readonly decimal _standardPackageRate;
-        private static QueryHandler _queryHandler = new QueryHandler();
+        private static QueryHandler s_queryHandler = new QueryHandler();
 
         public Vehicle(string VIN, string vehicleTypeID, string manufacturer, string model, int seatingCapacity,
             int mileage, string gearbox, int torque, int horsepower, decimal trunkVolume, string color, 
@@ -68,7 +68,7 @@ namespace AyuboDrive
                 _horsepower, _trunkVolume, _color, _dailyRate, _weeklyRate, _monthlyRate, _overnightRate, _vehicleStatus, _imagePath,
                 _standardPackageRate};
 
-            if (_queryHandler.InsertQueryHandler(query, parameters, values))
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Vehicle details successfully inserted", "Operation successful");
                 return true;
@@ -83,7 +83,7 @@ namespace AyuboDrive
             string[] parameters = { "@vehicleID" };
             object[] values = { ID};
 
-            if (_queryHandler.DeleteQueryHandler(query, parameters, values))
+            if (s_queryHandler.DeleteQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Vehicle details successfully deleted", "Operation successful");
                 return true;
@@ -106,7 +106,7 @@ namespace AyuboDrive
                 _horsepower, _trunkVolume, _color, _dailyRate, _weeklyRate, _monthlyRate, _overnightRate, _vehicleStatus, _imagePath,
                 _standardPackageRate, ID};
 
-            if (_queryHandler.UpdateQueryHandler(query, parameters, values))
+            if (s_queryHandler.UpdateQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Vehicle details successfully updated", "Operation successful");
                 return true;
@@ -121,7 +121,7 @@ namespace AyuboDrive
             string[] parameters = { "@mileage", "@vehicleID" };
             object[] values = {mileage, ID};
 
-            if (_queryHandler.UpdateQueryHandler(query, parameters, values))
+            if (s_queryHandler.UpdateQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Vehicle mileage successfully updated", "Operation successful");
                 return true;
@@ -136,7 +136,7 @@ namespace AyuboDrive
             string[] parameters = { "@vehicleStatus", "@vehicleID" };
             object[] values = {availability, ID};
 
-            if (_queryHandler.UpdateQueryHandler(query, parameters, values))
+            if (s_queryHandler.UpdateQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Vehicle availability successfully updated", "Operation successful");
                 return true;
