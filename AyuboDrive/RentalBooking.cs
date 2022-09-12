@@ -33,14 +33,6 @@ namespace AyuboDrive
             _endDate = endDate;
             _rentalStatus = rentalStatus;
             _paymentStatus = paymentStatus;
-
-            SetValues();
-        }
-
-        private void SetValues()
-        {
-            _driverID = _driverID == null ? NullValuePlaceHolder : _driverID;
-            _values = new object[] { _vehicleTypeID, _vehicleID, _driverID, _customerID, _startDate, _endDate, _rentalStatus, _paymentStatus };
         }
 
         public bool Insert()
@@ -50,7 +42,11 @@ namespace AyuboDrive
             string[] parameters = { "@vehicleTypeID", "@vehicleID", "@driverID", "@customerID",
                     "@startDate", "@endDate", "@rentalStatus", "@paymentStatus" };
 
-            if (s_queryHandler.InsertQueryHandler(query, parameters, _values))
+            _driverID = _driverID == null ? NullValuePlaceHolder : _driverID;
+            object[] values = { _vehicleTypeID, _vehicleID, _driverID, _customerID, _startDate, _endDate,
+                _rentalStatus, _paymentStatus };
+
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Rental booking details successfully inserted", "Operation successful");
                 return true;
@@ -81,8 +77,12 @@ namespace AyuboDrive
                 "rentalStatus = @rentalStatus, paymentStatus = @paymentStatus WHERE bookingID = @bookingID";
             string[] parameters = { "@vehicleTypeID", "@vehicleID", "@driverID", "@customerID",
                 "@startDate", "@endDate", "@rentalStatus", "@paymentStatus", "@bookingID" };
-            
-            if (s_queryHandler.InsertQueryHandler(query, parameters, _values))
+
+            _driverID = _driverID == null ? NullValuePlaceHolder : _driverID;
+            object[] values = { _vehicleTypeID, _vehicleID, _driverID, _customerID, _startDate, _endDate,
+                _rentalStatus, _paymentStatus, ID };
+
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Rental booking details successfully updated", "Operation successful");
                 return true;
