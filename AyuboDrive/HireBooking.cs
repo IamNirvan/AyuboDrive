@@ -13,20 +13,21 @@ namespace AyuboDrive
 {
     class HireBooking : IDatabaseManipulator
     {
-        private string _vehicleTypeID { get; set; }
-        private string _vehicleID { get; set; }
-        private string _driverID { get; set; }
-        private string _customerID { get; set; }
-        private string _packageID { get; set; }
-        private HireStatus _hireStatus { get; set; }
-        private HireType _hireType { get; set; }
-        private string _startDate { get; set; }
-        private string _endDate { get; set; }
-        private static QueryHandler _queryHandler = new QueryHandler();
+        private readonly string _vehicleTypeID;
+        private readonly string _vehicleID;
+        private readonly string _driverID;
+        private readonly string _customerID;
+        private readonly string _packageID;
+        private readonly string _hireStatus;
+        private readonly string _hireType;
+        private readonly string _startDate;
+        private readonly string _endDate;
+        private readonly string _paymentStatus;
+        private readonly static QueryHandler s_queryHandler = new QueryHandler();
 
         public HireBooking(string vehicleTypeID, string vehicleID, string driverID, 
-            string customerID, string packageID, HireStatus hireStatus, HireType hireType, 
-            string startDate, string endDate)
+            string customerID, string packageID, string hireStatus, string hireType, 
+            string startDate, string endDate, string paymentStatus)
         {
             _vehicleTypeID = vehicleTypeID;
             _vehicleID = vehicleID;
@@ -37,18 +38,19 @@ namespace AyuboDrive
             _hireType = hireType;
             _startDate = startDate;
             _endDate = endDate;
+            _paymentStatus = paymentStatus;
         }      
         
         public bool Insert()
         {
             string query = "INSERT INTO hireBooking VALUES(@vehicleTypeID, @vehicleID, @driverID, " +
-                "@customerID, @packageID, @hireStatus, @hireType, @startDate, @endDate)";
+                "@customerID, @packageID, @hireStatus, @hireType, @startDate, @endDate @paymentStatus)";
             string[] parameters = { "@vehicleTypeID", "@vehicleID", "@driverID", "@customerID",
-                "@packageID", "@hireStatus", "@hireType", "@startDate", "@endDate" };
+                "@packageID", "@hireStatus", "@hireType", "@startDate", "@endDate", "@paymentStatus" };
             object[] values = { _vehicleTypeID, _vehicleID, _driverID, _customerID, _packageID,
-                _hireStatus, _hireType, _startDate, _endDate };
+                _hireStatus, _hireType, _startDate, _endDate, _paymentStatus };
 
-            if (_queryHandler.InsertQueryHandler(query, parameters, values))
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Hire booking details successfully inserted", "Operation successful");
                 return true;
@@ -57,13 +59,13 @@ namespace AyuboDrive
             return false;
         }
 
-        public bool Delete(string ID)
+        public static bool Delete(string ID)
         {
             string query = "DELETE FROM hireBooking WHERE bookingID = @bookingID";
             string[] parameters = { "@bookingID" };
             object[] values = { ID };
 
-            if (_queryHandler.InsertQueryHandler(query, parameters, values))
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Hire booking details successfully deleted", "Operation successful");
                 return true;
@@ -76,13 +78,13 @@ namespace AyuboDrive
         {
             string query = "UPDATE hireBooking SET vehicleTypeID = @vehicleTypeID, vehicleID = @vehicleID, driverID = @driverID, " +
                 "customerID = @customerID, packageID = @packageID, hireStatus = @hireStatus, hireType = @hireType, " +
-                "startDate = @startDate, endDate = @endDate WHERE bookingID = @bookingID";
+                "startDate = @startDate, endDate = @endDate, paymentStatus = @paymentStatus WHERE bookingID = @bookingID";
             string[] parameters = { "@vehicleTypeID", "@vehicleID", "@driverID", "@customerID",
-                "@packageID", "@hireStatus", "@hireType", "@startDate", "@endDate", "@bookingID" };
+                "@packageID", "@hireStatus", "@hireType", "@startDate", "@endDate", "@paymentStatus", "@bookingID" };
             object[] values = { _vehicleTypeID, _vehicleID, _driverID, _customerID, _packageID,
-                _hireStatus, _hireType, _startDate, _endDate, ID };
+                _hireStatus, _hireType, _startDate, _endDate, _paymentStatus, ID };
 
-            if (_queryHandler.InsertQueryHandler(query, parameters, values))
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Hire booking details successfully updated", "Operation successful");
                 return true;
