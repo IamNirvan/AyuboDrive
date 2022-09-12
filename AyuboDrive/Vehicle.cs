@@ -17,20 +17,24 @@ namespace AyuboDrive
         private readonly string _model;
         private readonly int _seatingCapacity;
         private readonly int _mileage;
+        private readonly string _gearbox;
         private readonly int _torque;
         private readonly int _horsepower;
-        private readonly double _dailyRate;
-        private readonly double _weeklyRate;
-        private readonly double _monthlyRate;
-        private readonly double _overnightRate;
-        private readonly double _standardPackageRate;
-        private readonly Availability _vehicleStatus;
+        private readonly decimal _trunkVolume;
+        private readonly string _color;
+        private readonly decimal _dailyRate;
+        private readonly decimal _weeklyRate;
+        private readonly decimal _monthlyRate;
+        private readonly decimal _overnightRate;
+        private readonly VehicleStatus _vehicleStatus;
         private readonly string _imagePath;
+        private readonly decimal _standardPackageRate;
         private static QueryHandler _queryHandler = new QueryHandler();
 
         public Vehicle(string VIN, string vehicleTypeID, string manufacturer, string model, int seatingCapacity,
-            int mileage, int torque, int horsepower, double dailyRate, double weeklyRate, double monthlyRate,
-            double overnightRate, double standardPackageRate, Availability vehicleStatus, string imagePath)
+            int mileage, string gearbox, int torque, int horsepower, decimal trunkVolume, string color, 
+            decimal dailyRate, decimal weeklyRate, decimal monthlyRate, decimal overnightRate, 
+            decimal standardPackageRate, VehicleStatus vehicleStatus, string imagePath)
         {
             _VIN = VIN;
             _vehicleTypeID = vehicleTypeID;
@@ -38,27 +42,30 @@ namespace AyuboDrive
             _model = model;
             _seatingCapacity = seatingCapacity;
             _mileage = mileage;
+            _gearbox = gearbox;
             _torque = torque;
             _horsepower = horsepower;
+            _trunkVolume = trunkVolume;
+            _color = color;
             _dailyRate = dailyRate;
             _weeklyRate = weeklyRate;
             _monthlyRate = monthlyRate;
             _overnightRate = overnightRate;
-            _standardPackageRate = standardPackageRate;
             _vehicleStatus = vehicleStatus;
             _imagePath = imagePath;
+            _standardPackageRate = standardPackageRate;
         }
 
         public bool Insert()
         {
             string query = "INSERT INTO vehicle VALUES(@VIN, @vehicleTypeID, @manufacturer, @model, @seatingCapacity, " +
-                "@mileage, @torque, @horsePower, @dailyRate, @weeklyRate, @monthlyRate, @overnightRate, @vehicleStatus, " +
-                "@imagePath, @standardPackageRate)";
+                "@mileage, @gearbox, @torque, @horsePower, @trunkVolume, @color, @dailyRate, @weeklyRate, @monthlyRate, " +
+                "@overnightRate, @vehicleStatus, @imagePath, @standardPackageRate)";
             string[] parameters = { "@VIN", "@vehicleTypeID", "@manufacturer", "@model", "@seatingCapacity",
-                "@mileage", "@torque", "@horsePower", "@dailyRate", "@weeklyRate", "@monthlyRate", "@overnightRate",
-                "@vehicleStatus", "@imagePath", "@standardPackageRate" };
-            object[] values = { _VIN, _vehicleTypeID, _manufacturer, _model, _seatingCapacity, _mileage, _torque,
-                _horsepower, _dailyRate, _weeklyRate, _monthlyRate, _overnightRate, _vehicleStatus, _imagePath,
+                "@mileage", "@gearbox", "@torque", "@horsePower", "@trunkVolume", "@color", "@dailyRate", "@weeklyRate",
+                "@monthlyRate", "@overnightRate", "@vehicleStatus", "@imagePath", "@standardPackageRate" };
+            object[] values = { _VIN, _vehicleTypeID, _manufacturer, _model, _seatingCapacity, _mileage, _gearbox, _torque,
+                _horsepower, _trunkVolume, _color, _dailyRate, _weeklyRate, _monthlyRate, _overnightRate, _vehicleStatus, _imagePath,
                 _standardPackageRate};
 
             if (_queryHandler.InsertQueryHandler(query, parameters, values))
@@ -88,15 +95,15 @@ namespace AyuboDrive
         public bool Update(string ID)
         {
             string query = "UPDATE vehicle SET VIN = @VIN, vehicleTypeID = @vehicleTypeID, manufacturer = @manufacturer, " +
-                "model = @model, seatingCapacity = @seatingCapacity, mileage = @mileage, torque = @torque, " +
-                "horsepower = @horsePower, dailyRate = @dailyRate, weeklyRate = @weeklyRate, " +
+                "model = @model, seatingCapacity = @seatingCapacity, mileage = @mileage, gearbox = @gearbox, torque = @torque, " +
+                "horsepower = @horsePower, trunkVolume = @trunkVolume, color = @color, dailyRate = @dailyRate, weeklyRate = @weeklyRate, " +
                 "monthlyRate = @monthlyRate, overnightRate = @overnightRate, vehicleStatus = @vehicleStatus, " +
                 "imagePath = @imagePath, standardPackageRate = @standardPackageRate WHERE vehicleID = @vehicleID";
             string[] parameters = { "@VIN", "@vehicleTypeID", "@manufacturer", "@model", "@seatingCapacity",
-                "@mileage", "@torque", "@horsePower", "@dailyRate", "@weeklyRate", "@monthlyRate", "@overnightRate",
-                "@vehicleStatus", "@imagePath", "@standardPackageRate", "@vehicleID" };
-            object[] values = { _VIN, _vehicleTypeID, _manufacturer, _model, _seatingCapacity, _mileage, _torque,
-                _horsepower, _dailyRate, _weeklyRate, _monthlyRate, _overnightRate, _vehicleStatus, _imagePath,
+                "@mileage", "@gearbox", "@torque", "@horsePower", "@trunkVolume", "@color", "@dailyRate", "@weeklyRate",
+                "@monthlyRate", "@overnightRate", "@vehicleStatus", "@imagePath", "@standardPackageRate", "@vehicleID" };
+            object[] values = { _VIN, _vehicleTypeID, _manufacturer, _model, _seatingCapacity, _mileage, _gearbox, _torque,
+                _horsepower, _trunkVolume, _color, _dailyRate, _weeklyRate, _monthlyRate, _overnightRate, _vehicleStatus, _imagePath,
                 _standardPackageRate, ID};
 
             if (_queryHandler.UpdateQueryHandler(query, parameters, values))
@@ -105,6 +112,36 @@ namespace AyuboDrive
                 return true;
             }
             MessagePrinter.PrintToConsole("Failed to update vehicle details", "Operation failed");
+            return false;
+        }
+
+        public static bool UpdateMileage(string ID, int mileage)
+        {
+            string query = "UPDATE vehicle SET mileage = @mileage WHERE vehicleID = @vehicleID";
+            string[] parameters = { "@mileage", "@vehicleID" };
+            object[] values = {mileage, ID};
+
+            if (_queryHandler.UpdateQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("Vehicle mileage successfully updated", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to update vehicle milege", "Operation failed");
+            return false;
+        }
+
+        public static bool UpdateAvailability(string ID, Availability availability)
+        {
+            string query = "UPDATE vehicle SET vehicleStatus = @vehicleStatus WHERE vehicleID = @vehicleID";
+            string[] parameters = { "@vehicleStatus", "@vehicleID" };
+            object[] values = {availability, ID};
+
+            if (_queryHandler.UpdateQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("Vehicle availability successfully updated", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to update vehicle availability", "Operation failed");
             return false;
         }
     }
