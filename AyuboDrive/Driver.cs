@@ -15,13 +15,13 @@ namespace AyuboDrive
         private readonly string _firstName;
         private readonly string _lastName;
         private readonly string _contactNumber;
-        private readonly Availability _driverStatus;
+        private readonly string _driverStatus;
         private readonly decimal _dailyRate;
         private readonly decimal _overnightRate;
-        private static readonly QueryHandler _queryHandler = new QueryHandler();
+        private static readonly QueryHandler s_queryHandler = new QueryHandler();
 
         public Driver(string driverNIC, string firstName, string lastName, string contactNumber, 
-            Availability driverAvailability, decimal dailyRate, decimal overnightRate)
+            string driverAvailability, decimal dailyRate, decimal overnightRate)
         {
             _driverNIC = driverNIC;
             _firstName = firstName;
@@ -41,7 +41,7 @@ namespace AyuboDrive
             object[] values = { _driverNIC, _firstName, _lastName, _contactNumber, _driverStatus,
             _dailyRate, _overnightRate};
 
-            if (_queryHandler.InsertQueryHandler(query, parameters, values))
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Driver details successfully inserted", "Operation successful");
                 return true;
@@ -60,7 +60,7 @@ namespace AyuboDrive
             object[] values = { _driverNIC, _firstName, _lastName, _contactNumber, _driverStatus,
             _dailyRate, _overnightRate, ID};
 
-            if (_queryHandler.InsertQueryHandler(query, parameters, values))
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Driver details successfully updated", "Operation successful");
                 return true;
@@ -69,13 +69,28 @@ namespace AyuboDrive
             return false;
         }
 
-        public bool Delete(string ID)
+        public static bool UpdateDriverAvailabiiity(string ID, Availability availability)
+        {
+            string query = "UPDATE Driver SET driverStatus = @driverStatus WHERE driverID = @driverID";
+            string[] parameters = { "@driverStatus", "@driverID"};
+            object[] values = { availability, ID};
+
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("Driver details successfully updated", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to update driver details", "Operation failed");
+            return false;
+        }
+
+        public static bool Delete(string ID)
         {
             string query = "DELETE from driver WHERE driverID = @driverID";
             string[] parameters = { "@driverID" };
             object[] values = { ID};
 
-            if (_queryHandler.InsertQueryHandler(query, parameters, values))
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Driver details successfully deleted", "Operation successful");
                 return true;
