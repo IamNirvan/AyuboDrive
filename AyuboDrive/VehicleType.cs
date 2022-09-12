@@ -13,7 +13,7 @@ namespace AyuboDrive
     class VehicleType : IDatabaseManipulator
     {
         private readonly string _typeName;
-        private static QueryHandler _queryHandler = new QueryHandler();
+        private static QueryHandler s_queryHandler = new QueryHandler();
 
         public VehicleType(string typeName)
         {
@@ -26,7 +26,7 @@ namespace AyuboDrive
             string[] parameters = { "@typeName" };
             object[] values = { _typeName };
 
-            if (_queryHandler.InsertQueryHandler(query, parameters, values))
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Vehicle type details successfully inserted", "Operation successful");
                 return true;
@@ -41,7 +41,7 @@ namespace AyuboDrive
             string[] parameters = { "@vehicleTypeID" };
             object[] values = { ID };
 
-            if (_queryHandler.DeleteQueryHandler(query, parameters, values))
+            if (s_queryHandler.DeleteQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Vehicle type details successfully deleted",
                     "Operation successful");
@@ -58,7 +58,7 @@ namespace AyuboDrive
             string[] parameters = { "@typeName", "@vehicleTypeID" };
             object[] values = { _typeName, ID };
 
-            if (_queryHandler.UpdateQueryHandler(query, parameters, values))
+            if (s_queryHandler.UpdateQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Vehicle type details successfully updated",
                     "Operation successful");
