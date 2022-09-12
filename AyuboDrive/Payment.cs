@@ -10,14 +10,15 @@ namespace AyuboDrive
 {
     class Payment : IDatabaseManipulator
     {
-        private readonly string _hireBookingID;
-        private readonly string _rentalBookingID;
+        private string _hireBookingID;
+        private string _rentalBookingID;
         private readonly string _customerID;
         private readonly string _dateOFPayment;
-        private readonly double _amountPaid;
+        private readonly decimal _amountPaid;
         private static readonly QueryHandler s_queryHandler = new QueryHandler();
+        public static readonly string NullValuePlaceHolder = "N/A";
 
-        public Payment(string hireBookingID, string rentalBookingID, string customerID, string dateOfPayment, double amountPaid)
+        public Payment(string hireBookingID, string rentalBookingID, string customerID, string dateOfPayment, decimal amountPaid)
         {
             _hireBookingID = hireBookingID;
             _rentalBookingID = rentalBookingID;
@@ -28,26 +29,15 @@ namespace AyuboDrive
 
         public bool Insert()
         {
-            string query;
-            string[] parameters;
-            object[] values;
+            _hireBookingID = _hireBookingID == null ? NullValuePlaceHolder : _hireBookingID;
+            _rentalBookingID = _rentalBookingID == null ? NullValuePlaceHolder : _rentalBookingID;
 
-            if (_hireBookingID == null)
-            {
-                query = "INSERT INTO payment VALUES(NULL, @rentalBookingID, @customerID, " +
-                "@dateOfPayment, @amountPaid)";
-                parameters = new string[]{"@rentalBookingID", "@customerID",
+            string query = "INSERT INTO payment VALUES(@hireBookingID, @rentalBookingID, " +
+                "@customerID, @dateOfPayment, @amountPaid)";
+            string[] parameters = new string[]{"@hireBookingID", "@rentalBookingID", "@customerID",
                 "@dateOfPayment", "@amountPaid"};
-                values = new object[]{ _rentalBookingID, _customerID, _dateOFPayment, _amountPaid};
-            }
-            else
-            {
-                query = "INSERT INTO payment VALUES(@hireBookingID, NULL, @customerID, " +
-                "@dateOfPayment, @amountPaid)";
-                parameters = new string[]{"@hireBookingID", "@customerID",
-                "@dateOfPayment", "@amountPaid"};
-                values = new object[]{ _hireBookingID, _customerID, _dateOFPayment, _amountPaid};
-            } 
+            object[] values = new object[] { _hireBookingID, _rentalBookingID, _customerID,
+                _dateOFPayment, _amountPaid };
 
             if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
@@ -75,27 +65,17 @@ namespace AyuboDrive
 
         public bool Update(string ID)
         {
-            string query;
-            string[] parameters;
-            object[] values;
+            _hireBookingID = _hireBookingID == null ? NullValuePlaceHolder : _hireBookingID;
+            _rentalBookingID = _rentalBookingID == null ? NullValuePlaceHolder : _rentalBookingID;
 
-            if (_hireBookingID == null)
-            {
-                query = "UPDATE payment SET hireBookingID = NULL, rentalBookingID = @rentalBookingID, " +
-                    "customerID = @customerID, dateOfPayment = @dateOfPayment, amountPaid = @amountPaid " +
-                    "WHERE paymentID = @paymentID";
-                parameters = new string[]{ "@rentalBookingID", "@customerID", "@dateOfPayment", "@amountPaid", "@paymentID"};
-                values = new object[]{ _rentalBookingID, _customerID, _dateOFPayment, _amountPaid, ID };
-            }
-            else
-            {
-                query = "UPDATE payment SET hireBookingID = @hireBookingID, rentalBookingID = NULL, " +
-                    "customerID = @customerID, dateOfPayment = @dateOfPayment, amountPaid = @amountPaid " +
-                    "WHERE paymentID = @paymentID";
-                parameters = new string[]{ "@hireBookingID", "@customerID", "@dateOfPayment", "@amountPaid", "@paymentID"};
-                values = new object[]{ _hireBookingID, _customerID, _dateOFPayment, _amountPaid, ID };
-            }
-
+            string query = "UPDATE payment SET hireBookingID = @hireBookingID, rentalBookingID = " +
+                "@rentalBookingID, customerID = @customerID, dateOfPayment = @dateOfPayment, " +
+                "amountPaid = @amountPaid WHERE paymentID = @paymentID";
+            string[] parameters = new string[]{"@hireBookingID", "@rentalBookingID", "@customerID",
+                "@dateOfPayment", "@amountPaid", "@paymentID"};
+            object[] values = new object[] { _hireBookingID, _rentalBookingID, _customerID,
+                _dateOFPayment, _amountPaid, ID };
+            
             if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {
                 MessagePrinter.PrintToConsole("Payment details successfully updated", "Operation successful");
