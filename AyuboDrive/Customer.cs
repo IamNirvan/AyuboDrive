@@ -11,14 +11,13 @@ using System.Windows.Forms;
 
 namespace AyuboDrive
 {
-
     class Customer : IDatabaseManipulator
     {
         private readonly string _customerNIC;
         private readonly string _firstName;
         private readonly string _lastName;
         private readonly string _contactNumber;
-        private readonly GenderOptions _gender;
+        private readonly string _gender;
         private readonly static QueryHandler s_queryHandler = new QueryHandler();
 
         public Customer(string customerNIC, string firstName, string lastName, string contactNumber, GenderOptions gender)
@@ -27,7 +26,7 @@ namespace AyuboDrive
             _firstName = firstName;
             _lastName = lastName;
             _contactNumber = contactNumber;
-            _gender = gender;
+            _gender = gender.ToString().ToLower();
         }
 
         public bool Insert()

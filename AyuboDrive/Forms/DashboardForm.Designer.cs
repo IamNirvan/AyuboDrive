@@ -37,15 +37,17 @@
             this.fullNameLbl = new System.Windows.Forms.Label();
             this.greetingLbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.LogoutLbl = new System.Windows.Forms.Label();
-            this.AccountLbl = new System.Windows.Forms.Label();
-            this.CustomerManagement = new System.Windows.Forms.Label();
-            this.VehicleTypeManagement = new System.Windows.Forms.Label();
-            this.VehicleManagementLbk = new System.Windows.Forms.Label();
-            this.DayTourBookingsLbl = new System.Windows.Forms.Label();
-            this.PackageTypeLbl = new System.Windows.Forms.Label();
-            this.LongTourBookingsLbl = new System.Windows.Forms.Label();
-            this.RentalBookingLbl = new System.Windows.Forms.Label();
+            this.DriverBtn = new System.Windows.Forms.Button();
+            this.BookingClosureBtn = new System.Windows.Forms.Button();
+            this.LongTourBookingsBtn = new System.Windows.Forms.Button();
+            this.PaymentBtn = new System.Windows.Forms.Button();
+            this.PackageTypeBtn = new System.Windows.Forms.Button();
+            this.LogOutBtn = new System.Windows.Forms.Button();
+            this.AccountBtn = new System.Windows.Forms.Button();
+            this.VehicleBtn = new System.Windows.Forms.Button();
+            this.VehicleTypeBtn = new System.Windows.Forms.Button();
+            this.CustomerBtn = new System.Windows.Forms.Button();
+            this.RentalBookingsBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +84,7 @@
             this.closedBookingsValueLbl.Font = new System.Drawing.Font("Carlito", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closedBookingsValueLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.closedBookingsValueLbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.closedBookingsValueLbl.Location = new System.Drawing.Point(419, 78);
+            this.closedBookingsValueLbl.Location = new System.Drawing.Point(476, 79);
             this.closedBookingsValueLbl.Name = "closedBookingsValueLbl";
             this.closedBookingsValueLbl.Size = new System.Drawing.Size(33, 39);
             this.closedBookingsValueLbl.TabIndex = 9;
@@ -97,7 +99,7 @@
             this.openBookingsValueLbl.Font = new System.Drawing.Font("Carlito", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openBookingsValueLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.openBookingsValueLbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.openBookingsValueLbl.Location = new System.Drawing.Point(582, 78);
+            this.openBookingsValueLbl.Location = new System.Drawing.Point(601, 79);
             this.openBookingsValueLbl.Name = "openBookingsValueLbl";
             this.openBookingsValueLbl.Size = new System.Drawing.Size(33, 39);
             this.openBookingsValueLbl.TabIndex = 10;
@@ -108,11 +110,11 @@
             // 
             this.ongoingBookingsTextLbl.AutoSize = true;
             this.ongoingBookingsTextLbl.BackColor = System.Drawing.Color.Transparent;
-            this.ongoingBookingsTextLbl.Font = new System.Drawing.Font("Carlito", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ongoingBookingsTextLbl.Font = new System.Drawing.Font("Carlito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ongoingBookingsTextLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.ongoingBookingsTextLbl.Location = new System.Drawing.Point(522, 121);
+            this.ongoingBookingsTextLbl.Location = new System.Drawing.Point(554, 122);
             this.ongoingBookingsTextLbl.Name = "ongoingBookingsTextLbl";
-            this.ongoingBookingsTextLbl.Size = new System.Drawing.Size(148, 23);
+            this.ongoingBookingsTextLbl.Size = new System.Drawing.Size(125, 19);
             this.ongoingBookingsTextLbl.TabIndex = 14;
             this.ongoingBookingsTextLbl.Text = "Ongoing bookings";
             this.ongoingBookingsTextLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -121,11 +123,11 @@
             // 
             this.closedBookingTextLbl.AutoSize = true;
             this.closedBookingTextLbl.BackColor = System.Drawing.Color.Transparent;
-            this.closedBookingTextLbl.Font = new System.Drawing.Font("Carlito", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closedBookingTextLbl.Font = new System.Drawing.Font("Carlito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closedBookingTextLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.closedBookingTextLbl.Location = new System.Drawing.Point(366, 121);
+            this.closedBookingTextLbl.Location = new System.Drawing.Point(431, 122);
             this.closedBookingTextLbl.Name = "closedBookingTextLbl";
-            this.closedBookingTextLbl.Size = new System.Drawing.Size(133, 23);
+            this.closedBookingTextLbl.Size = new System.Drawing.Size(113, 19);
             this.closedBookingTextLbl.TabIndex = 13;
             this.closedBookingTextLbl.Text = "Closed bookings";
             this.closedBookingTextLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -146,210 +148,277 @@
             // 
             this.greetingLbl.AutoSize = true;
             this.greetingLbl.BackColor = System.Drawing.Color.Transparent;
-            this.greetingLbl.Font = new System.Drawing.Font("Carlito", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.greetingLbl.Font = new System.Drawing.Font("Carlito", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.greetingLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.greetingLbl.Location = new System.Drawing.Point(24, 73);
+            this.greetingLbl.Location = new System.Drawing.Point(25, 59);
             this.greetingLbl.Name = "greetingLbl";
-            this.greetingLbl.Size = new System.Drawing.Size(172, 45);
+            this.greetingLbl.Size = new System.Drawing.Size(225, 59);
             this.greetingLbl.TabIndex = 11;
             this.greetingLbl.Text = "Greetings,";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.panel2.Controls.Add(this.LogoutLbl);
-            this.panel2.Controls.Add(this.AccountLbl);
-            this.panel2.Controls.Add(this.CustomerManagement);
-            this.panel2.Controls.Add(this.VehicleTypeManagement);
-            this.panel2.Controls.Add(this.VehicleManagementLbk);
-            this.panel2.Controls.Add(this.DayTourBookingsLbl);
-            this.panel2.Controls.Add(this.PackageTypeLbl);
-            this.panel2.Controls.Add(this.LongTourBookingsLbl);
-            this.panel2.Controls.Add(this.RentalBookingLbl);
+            this.panel2.Controls.Add(this.DriverBtn);
+            this.panel2.Controls.Add(this.BookingClosureBtn);
+            this.panel2.Controls.Add(this.LongTourBookingsBtn);
+            this.panel2.Controls.Add(this.PaymentBtn);
+            this.panel2.Controls.Add(this.PackageTypeBtn);
+            this.panel2.Controls.Add(this.LogOutBtn);
+            this.panel2.Controls.Add(this.AccountBtn);
+            this.panel2.Controls.Add(this.VehicleBtn);
+            this.panel2.Controls.Add(this.VehicleTypeBtn);
+            this.panel2.Controls.Add(this.CustomerBtn);
+            this.panel2.Controls.Add(this.RentalBookingsBtn);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 208);
+            this.panel2.Location = new System.Drawing.Point(0, 209);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(700, 292);
+            this.panel2.Size = new System.Drawing.Size(700, 321);
             this.panel2.TabIndex = 2;
             // 
-            // LogoutLbl
+            // DriverBtn
             // 
-            this.LogoutLbl.AutoSize = true;
-            this.LogoutLbl.BackColor = System.Drawing.Color.Transparent;
-            this.LogoutLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LogoutLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LogoutLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LogoutLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.LogoutLbl.Location = new System.Drawing.Point(583, 210);
-            this.LogoutLbl.MinimumSize = new System.Drawing.Size(71, 56);
-            this.LogoutLbl.Name = "LogoutLbl";
-            this.LogoutLbl.Size = new System.Drawing.Size(71, 56);
-            this.LogoutLbl.TabIndex = 8;
-            this.LogoutLbl.Text = "Log out";
-            this.LogoutLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LogoutLbl.Click += new System.EventHandler(this.LogoutLbl_Click);
-            this.LogoutLbl.Paint += new System.Windows.Forms.PaintEventHandler(this.LogoutLbl_Paint);
-            this.LogoutLbl.MouseEnter += new System.EventHandler(this.LogoutLbl_MouseEnter);
-            this.LogoutLbl.MouseLeave += new System.EventHandler(this.LogoutLbl_MouseLeave);
+            this.DriverBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.DriverBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.DriverWhite64;
+            this.DriverBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.DriverBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DriverBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.DriverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DriverBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DriverBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.DriverBtn.Location = new System.Drawing.Point(353, 168);
+            this.DriverBtn.Name = "DriverBtn";
+            this.DriverBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.DriverBtn.Size = new System.Drawing.Size(160, 135);
+            this.DriverBtn.TabIndex = 19;
+            this.DriverBtn.Text = "Driver";
+            this.DriverBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.DriverBtn.UseVisualStyleBackColor = false;
+            this.DriverBtn.Click += new System.EventHandler(this.DriverBtn_Click);
+            this.DriverBtn.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.DriverBtn.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
             // 
-            // AccountLbl
+            // BookingClosureBtn
             // 
-            this.AccountLbl.AutoSize = true;
-            this.AccountLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.AccountLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AccountLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AccountLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AccountLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.AccountLbl.Location = new System.Drawing.Point(504, 210);
-            this.AccountLbl.MinimumSize = new System.Drawing.Size(71, 56);
-            this.AccountLbl.Name = "AccountLbl";
-            this.AccountLbl.Size = new System.Drawing.Size(71, 56);
-            this.AccountLbl.TabIndex = 7;
-            this.AccountLbl.Text = "Account";
-            this.AccountLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.AccountLbl.Click += new System.EventHandler(this.AccountLbl_Click);
-            this.AccountLbl.MouseEnter += new System.EventHandler(this.AccountLbl_MouseEnter);
-            this.AccountLbl.MouseLeave += new System.EventHandler(this.AccountLbl_MouseLeave);
+            this.BookingClosureBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.BookingClosureBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.EndWhite64;
+            this.BookingClosureBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BookingClosureBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BookingClosureBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.BookingClosureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BookingClosureBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BookingClosureBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.BookingClosureBtn.Location = new System.Drawing.Point(187, 168);
+            this.BookingClosureBtn.Name = "BookingClosureBtn";
+            this.BookingClosureBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.BookingClosureBtn.Size = new System.Drawing.Size(160, 135);
+            this.BookingClosureBtn.TabIndex = 18;
+            this.BookingClosureBtn.Text = "Booking Closure";
+            this.BookingClosureBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BookingClosureBtn.UseVisualStyleBackColor = false;
+            this.BookingClosureBtn.Click += new System.EventHandler(this.BookingClosureBtn_Click);
+            this.BookingClosureBtn.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.BookingClosureBtn.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
             // 
-            // CustomerManagement
+            // LongTourBookingsBtn
             // 
-            this.CustomerManagement.AutoSize = true;
-            this.CustomerManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.CustomerManagement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CustomerManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CustomerManagement.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.CustomerManagement.Location = new System.Drawing.Point(504, 21);
-            this.CustomerManagement.MinimumSize = new System.Drawing.Size(150, 184);
-            this.CustomerManagement.Name = "CustomerManagement";
-            this.CustomerManagement.Size = new System.Drawing.Size(150, 184);
-            this.CustomerManagement.TabIndex = 6;
-            this.CustomerManagement.Text = "Customer\r\nManagement";
-            this.CustomerManagement.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.CustomerManagement.Click += new System.EventHandler(this.CustomerManagement_Click);
-            this.CustomerManagement.MouseEnter += new System.EventHandler(this.CustomerManagement_MouseEnter);
-            this.CustomerManagement.MouseLeave += new System.EventHandler(this.CustomerManagement_MouseLeave);
+            this.LongTourBookingsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.LongTourBookingsBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.HireWhite64;
+            this.LongTourBookingsBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.LongTourBookingsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LongTourBookingsBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.LongTourBookingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LongTourBookingsBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LongTourBookingsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.LongTourBookingsBtn.Location = new System.Drawing.Point(21, 168);
+            this.LongTourBookingsBtn.Name = "LongTourBookingsBtn";
+            this.LongTourBookingsBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.LongTourBookingsBtn.Size = new System.Drawing.Size(160, 135);
+            this.LongTourBookingsBtn.TabIndex = 17;
+            this.LongTourBookingsBtn.Text = "Long Tour Bookings";
+            this.LongTourBookingsBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.LongTourBookingsBtn.UseVisualStyleBackColor = false;
+            this.LongTourBookingsBtn.Click += new System.EventHandler(this.LongTourBookingsBtn_Click);
+            this.LongTourBookingsBtn.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.LongTourBookingsBtn.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
             // 
-            // VehicleTypeManagement
+            // PaymentBtn
             // 
-            this.VehicleTypeManagement.AutoSize = true;
-            this.VehicleTypeManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.VehicleTypeManagement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.VehicleTypeManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VehicleTypeManagement.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VehicleTypeManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.VehicleTypeManagement.Location = new System.Drawing.Point(348, 147);
-            this.VehicleTypeManagement.MinimumSize = new System.Drawing.Size(150, 120);
-            this.VehicleTypeManagement.Name = "VehicleTypeManagement";
-            this.VehicleTypeManagement.Size = new System.Drawing.Size(150, 120);
-            this.VehicleTypeManagement.TabIndex = 5;
-            this.VehicleTypeManagement.Text = "Vehicle Type\r\nManagement";
-            this.VehicleTypeManagement.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.VehicleTypeManagement.Click += new System.EventHandler(this.VehicleTypeManagement_Click);
-            this.VehicleTypeManagement.MouseEnter += new System.EventHandler(this.VehicleTypeManagement_MouseEnter);
-            this.VehicleTypeManagement.MouseLeave += new System.EventHandler(this.VehicleTypeManagement_MouseLeave);
+            this.PaymentBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.PaymentBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.PaymentWhite64;
+            this.PaymentBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.PaymentBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PaymentBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.PaymentBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PaymentBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PaymentBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.PaymentBtn.Location = new System.Drawing.Point(353, 24);
+            this.PaymentBtn.Name = "PaymentBtn";
+            this.PaymentBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.PaymentBtn.Size = new System.Drawing.Size(160, 135);
+            this.PaymentBtn.TabIndex = 16;
+            this.PaymentBtn.Text = "Payment";
+            this.PaymentBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.PaymentBtn.UseVisualStyleBackColor = false;
+            this.PaymentBtn.Click += new System.EventHandler(this.PaymentBtn_Click);
+            this.PaymentBtn.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.PaymentBtn.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
             // 
-            // VehicleManagementLbk
+            // PackageTypeBtn
             // 
-            this.VehicleManagementLbk.AutoSize = true;
-            this.VehicleManagementLbk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.VehicleManagementLbk.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.VehicleManagementLbk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VehicleManagementLbk.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VehicleManagementLbk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.VehicleManagementLbk.Location = new System.Drawing.Point(348, 21);
-            this.VehicleManagementLbk.MinimumSize = new System.Drawing.Size(150, 120);
-            this.VehicleManagementLbk.Name = "VehicleManagementLbk";
-            this.VehicleManagementLbk.Size = new System.Drawing.Size(150, 120);
-            this.VehicleManagementLbk.TabIndex = 5;
-            this.VehicleManagementLbk.Text = "Vehicle Management";
-            this.VehicleManagementLbk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.VehicleManagementLbk.Click += new System.EventHandler(this.VehicleManagementLbk_Click);
-            this.VehicleManagementLbk.MouseEnter += new System.EventHandler(this.VehicleManagementLbk_MouseEnter);
-            this.VehicleManagementLbk.MouseLeave += new System.EventHandler(this.VehicleManagementLbk_MouseLeave);
+            this.PackageTypeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.PackageTypeBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.PackageWhite64;
+            this.PackageTypeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.PackageTypeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PackageTypeBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.PackageTypeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PackageTypeBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PackageTypeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.PackageTypeBtn.Location = new System.Drawing.Point(187, 24);
+            this.PackageTypeBtn.Name = "PackageTypeBtn";
+            this.PackageTypeBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.PackageTypeBtn.Size = new System.Drawing.Size(160, 135);
+            this.PackageTypeBtn.TabIndex = 15;
+            this.PackageTypeBtn.Text = "Package Type";
+            this.PackageTypeBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.PackageTypeBtn.UseVisualStyleBackColor = false;
+            this.PackageTypeBtn.Click += new System.EventHandler(this.PackageTypeBtn_Click);
+            this.PackageTypeBtn.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.PackageTypeBtn.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
             // 
-            // DayTourBookingsLbl
+            // LogOutBtn
             // 
-            this.DayTourBookingsLbl.AutoSize = true;
-            this.DayTourBookingsLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.DayTourBookingsLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DayTourBookingsLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DayTourBookingsLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DayTourBookingsLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.DayTourBookingsLbl.Location = new System.Drawing.Point(192, 147);
-            this.DayTourBookingsLbl.MinimumSize = new System.Drawing.Size(150, 120);
-            this.DayTourBookingsLbl.Name = "DayTourBookingsLbl";
-            this.DayTourBookingsLbl.Size = new System.Drawing.Size(150, 120);
-            this.DayTourBookingsLbl.TabIndex = 3;
-            this.DayTourBookingsLbl.Text = "Day Tour Bookings";
-            this.DayTourBookingsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.DayTourBookingsLbl.Click += new System.EventHandler(this.DayTourBookingsLbl_Click);
-            this.DayTourBookingsLbl.MouseEnter += new System.EventHandler(this.DayTourBookingsLbl_MouseEnter);
-            this.DayTourBookingsLbl.MouseLeave += new System.EventHandler(this.DayTourBookingsLbl_MouseLeave);
+            this.LogOutBtn.BackColor = System.Drawing.Color.Transparent;
+            this.LogOutBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.LogoutRed24;
+            this.LogOutBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.LogOutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LogOutBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.LogOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LogOutBtn.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogOutBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.LogOutBtn.Location = new System.Drawing.Point(602, 230);
+            this.LogOutBtn.Name = "LogOutBtn";
+            this.LogOutBtn.Size = new System.Drawing.Size(77, 73);
+            this.LogOutBtn.TabIndex = 14;
+            this.LogOutBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.LogOutBtn.UseVisualStyleBackColor = false;
+            this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
+            this.LogOutBtn.MouseEnter += new System.EventHandler(this.LogOutBtn_MouseEnter);
+            this.LogOutBtn.MouseLeave += new System.EventHandler(this.LogOutBtn_MouseLeave);
             // 
-            // PackageTypeLbl
+            // AccountBtn
             // 
-            this.PackageTypeLbl.AutoSize = true;
-            this.PackageTypeLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.PackageTypeLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PackageTypeLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PackageTypeLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PackageTypeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.PackageTypeLbl.Location = new System.Drawing.Point(192, 21);
-            this.PackageTypeLbl.MinimumSize = new System.Drawing.Size(150, 120);
-            this.PackageTypeLbl.Name = "PackageTypeLbl";
-            this.PackageTypeLbl.Size = new System.Drawing.Size(150, 120);
-            this.PackageTypeLbl.TabIndex = 4;
-            this.PackageTypeLbl.Text = "Package Type\r\nManagement";
-            this.PackageTypeLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.PackageTypeLbl.Click += new System.EventHandler(this.PackageTypeLbl_Click);
-            this.PackageTypeLbl.MouseEnter += new System.EventHandler(this.PackageTypeLbl_MouseEnter);
-            this.PackageTypeLbl.MouseLeave += new System.EventHandler(this.PackageTypeLbl_MouseLeave);
+            this.AccountBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.AccountBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.AccountWhite24;
+            this.AccountBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.AccountBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AccountBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.AccountBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AccountBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccountBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.AccountBtn.Location = new System.Drawing.Point(602, 151);
+            this.AccountBtn.Name = "AccountBtn";
+            this.AccountBtn.Size = new System.Drawing.Size(77, 73);
+            this.AccountBtn.TabIndex = 13;
+            this.AccountBtn.Text = "Account";
+            this.AccountBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.AccountBtn.UseVisualStyleBackColor = false;
+            this.AccountBtn.Click += new System.EventHandler(this.AccountBtn_Click);
+            this.AccountBtn.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.AccountBtn.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
             // 
-            // LongTourBookingsLbl
+            // VehicleBtn
             // 
-            this.LongTourBookingsLbl.AutoSize = true;
-            this.LongTourBookingsLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.LongTourBookingsLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LongTourBookingsLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LongTourBookingsLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LongTourBookingsLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.LongTourBookingsLbl.Location = new System.Drawing.Point(36, 147);
-            this.LongTourBookingsLbl.MinimumSize = new System.Drawing.Size(150, 120);
-            this.LongTourBookingsLbl.Name = "LongTourBookingsLbl";
-            this.LongTourBookingsLbl.Size = new System.Drawing.Size(150, 120);
-            this.LongTourBookingsLbl.TabIndex = 2;
-            this.LongTourBookingsLbl.Text = "Long Tour Bookings";
-            this.LongTourBookingsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LongTourBookingsLbl.Click += new System.EventHandler(this.LongTourBookingsLbl_Click);
-            this.LongTourBookingsLbl.MouseEnter += new System.EventHandler(this.LongTourBookingsLbl_MouseEnter);
-            this.LongTourBookingsLbl.MouseLeave += new System.EventHandler(this.LongTourBookingsLbl_MouseLeave);
+            this.VehicleBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.VehicleBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.VehicleWhite24;
+            this.VehicleBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.VehicleBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.VehicleBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.VehicleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VehicleBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VehicleBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.VehicleBtn.Location = new System.Drawing.Point(519, 230);
+            this.VehicleBtn.Name = "VehicleBtn";
+            this.VehicleBtn.Size = new System.Drawing.Size(77, 73);
+            this.VehicleBtn.TabIndex = 12;
+            this.VehicleBtn.Text = "Vehicle";
+            this.VehicleBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.VehicleBtn.UseVisualStyleBackColor = false;
+            this.VehicleBtn.Click += new System.EventHandler(this.VehicleBtn_Click);
+            this.VehicleBtn.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.VehicleBtn.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
             // 
-            // RentalBookingLbl
+            // VehicleTypeBtn
             // 
-            this.RentalBookingLbl.AutoSize = true;
-            this.RentalBookingLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.RentalBookingLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RentalBookingLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RentalBookingLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RentalBookingLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.RentalBookingLbl.Location = new System.Drawing.Point(36, 21);
-            this.RentalBookingLbl.MinimumSize = new System.Drawing.Size(150, 120);
-            this.RentalBookingLbl.Name = "RentalBookingLbl";
-            this.RentalBookingLbl.Size = new System.Drawing.Size(150, 120);
-            this.RentalBookingLbl.TabIndex = 0;
-            this.RentalBookingLbl.Text = "Rental Booking";
-            this.RentalBookingLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.RentalBookingLbl.Click += new System.EventHandler(this.RentalBookingLbl_Click);
-            this.RentalBookingLbl.MouseEnter += new System.EventHandler(this.RentalBookingLbl_MouseEnter);
-            this.RentalBookingLbl.MouseLeave += new System.EventHandler(this.RentalBookingLbl_MouseLeave);
+            this.VehicleTypeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.VehicleTypeBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.VehicleTypeWhite24;
+            this.VehicleTypeBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.VehicleTypeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.VehicleTypeBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.VehicleTypeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VehicleTypeBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VehicleTypeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.VehicleTypeBtn.Location = new System.Drawing.Point(519, 151);
+            this.VehicleTypeBtn.Name = "VehicleTypeBtn";
+            this.VehicleTypeBtn.Size = new System.Drawing.Size(77, 73);
+            this.VehicleTypeBtn.TabIndex = 11;
+            this.VehicleTypeBtn.Text = "Vehicle type";
+            this.VehicleTypeBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.VehicleTypeBtn.UseVisualStyleBackColor = false;
+            this.VehicleTypeBtn.Click += new System.EventHandler(this.VehicleTypeBtn_Click);
+            this.VehicleTypeBtn.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.VehicleTypeBtn.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            // 
+            // CustomerBtn
+            // 
+            this.CustomerBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.CustomerBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.CustomerWhite64;
+            this.CustomerBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.CustomerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CustomerBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.CustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CustomerBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.CustomerBtn.Location = new System.Drawing.Point(519, 24);
+            this.CustomerBtn.Name = "CustomerBtn";
+            this.CustomerBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.CustomerBtn.Size = new System.Drawing.Size(160, 120);
+            this.CustomerBtn.TabIndex = 10;
+            this.CustomerBtn.Text = "Customer";
+            this.CustomerBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.CustomerBtn.UseVisualStyleBackColor = false;
+            this.CustomerBtn.Click += new System.EventHandler(this.CustomerBtn_Click);
+            this.CustomerBtn.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.CustomerBtn.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
+            // 
+            // RentalBookingsBtn
+            // 
+            this.RentalBookingsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.RentalBookingsBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.RentalWhite64;
+            this.RentalBookingsBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.RentalBookingsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RentalBookingsBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.RentalBookingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RentalBookingsBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RentalBookingsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.RentalBookingsBtn.Location = new System.Drawing.Point(21, 25);
+            this.RentalBookingsBtn.Name = "RentalBookingsBtn";
+            this.RentalBookingsBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.RentalBookingsBtn.Size = new System.Drawing.Size(160, 135);
+            this.RentalBookingsBtn.TabIndex = 9;
+            this.RentalBookingsBtn.Text = "Rental Bookings";
+            this.RentalBookingsBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.RentalBookingsBtn.UseVisualStyleBackColor = false;
+            this.RentalBookingsBtn.Click += new System.EventHandler(this.RentalBookingsBtn_Click);
+            this.RentalBookingsBtn.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
+            this.RentalBookingsBtn.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
             // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(700, 500);
+            this.ClientSize = new System.Drawing.Size(700, 530);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -361,7 +430,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -377,14 +445,16 @@
         private System.Windows.Forms.Label closedBookingsValueLbl;
         private System.Windows.Forms.Label openBookingsValueLbl;
         private System.Windows.Forms.Panel userNamePanel;
-        private System.Windows.Forms.Label RentalBookingLbl;
-        private System.Windows.Forms.Label CustomerManagement;
-        private System.Windows.Forms.Label VehicleTypeManagement;
-        private System.Windows.Forms.Label VehicleManagementLbk;
-        private System.Windows.Forms.Label DayTourBookingsLbl;
-        private System.Windows.Forms.Label PackageTypeLbl;
-        private System.Windows.Forms.Label LongTourBookingsLbl;
-        private System.Windows.Forms.Label LogoutLbl;
-        private System.Windows.Forms.Label AccountLbl;
+        private System.Windows.Forms.Button RentalBookingsBtn;
+        private System.Windows.Forms.Button VehicleTypeBtn;
+        private System.Windows.Forms.Button CustomerBtn;
+        private System.Windows.Forms.Button DriverBtn;
+        private System.Windows.Forms.Button BookingClosureBtn;
+        private System.Windows.Forms.Button LongTourBookingsBtn;
+        private System.Windows.Forms.Button PaymentBtn;
+        private System.Windows.Forms.Button PackageTypeBtn;
+        private System.Windows.Forms.Button LogOutBtn;
+        private System.Windows.Forms.Button AccountBtn;
+        private System.Windows.Forms.Button VehicleBtn;
     }
 }

@@ -1,4 +1,5 @@
-﻿using AyuboDrive.Utility;
+﻿using AyuboDrive.Interfaces;
+using AyuboDrive.Utility;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,60 +12,64 @@ namespace AyuboDrive.Forms
 {
     public class AyuboDriveTemplateForm : Form
     {
-        private readonly Form _dashboardForm;
+
+        protected readonly QueryHandler queryHandler = new QueryHandler();
+        protected Form DashboardForm { get; set; }
         private readonly Color _taskBarBackColor;
         private readonly int _width;
         //
         // Constructors
         //
-        public AyuboDriveTemplateForm(Form form, Color taskBarBackColor, int taskBarWidth)
+        public AyuboDriveTemplateForm(Form dashboardForm, Color taskBarBackColor, int taskBarWidth)
         {
-            _dashboardForm = form;
+            DashboardForm = dashboardForm;
             _taskBarBackColor = taskBarBackColor;
             _width = taskBarWidth;
         }
 
-        public AyuboDriveTemplateForm(Form form)
+        public AyuboDriveTemplateForm(Form dashboardForm)
         {
-            _dashboardForm = form;
+            DashboardForm = dashboardForm;
             _taskBarBackColor = Properties.Settings.Default.DARK_GRAY;
             _width = 30;
         }
 
         public AyuboDriveTemplateForm(Color taskBarColor)
         {
-            _dashboardForm = null;
+            DashboardForm = null;
             _taskBarBackColor = taskBarColor;
             _width = 30;
         }
 
         public AyuboDriveTemplateForm()
         {
-            _dashboardForm = null;
+            DashboardForm = null;
             _taskBarBackColor = Properties.Settings.Default.DARK_GRAY;
             _width = 30;
         }
         //
-        // Title bar
+        // Mouse click event handlers
         //
-        private void ExitBtn_MouseClick(object sender, EventArgs e)
+        protected virtual void ExitBtn_MouseClick(object sender, EventArgs e)
         {
-            if(_dashboardForm == null)
+            if(DashboardForm == null)
             {
                 Application.Exit();
             }
             else
             {
-                _dashboardForm.Show();
+                DashboardForm.Show();
                 Hide();
             }
         }
 
-        private void MinimizeBtn_MouseClick(object sender, EventArgs e)
+        protected void MinimizeBtn_MouseClick(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
+        
+        // Title bar
+        //
         /// <summary>
         /// This method creates a title bar, places the exit and minimize buttons and sets the 
         /// MouseClick event handlers for the exit and minimize buttons. 
@@ -88,7 +93,7 @@ namespace AyuboDrive.Forms
             minimizeButton.MouseClick += new MouseEventHandler(MinimizeBtn_MouseClick);
         }
         //
-        // Cell click event handler
+        // Cell click event handlers
         //
         protected void AddCellClickEvent(DataViewer dataViewer, 
             Action<object, EventArgs> Cell_Click, 

@@ -21,13 +21,13 @@ namespace AyuboDrive
         private static readonly QueryHandler s_queryHandler = new QueryHandler();
 
         public Driver(string driverNIC, string firstName, string lastName, string contactNumber, 
-            string driverAvailability, decimal dailyRate, decimal overnightRate)
+            DriverStatus driverAvailability, decimal dailyRate, decimal overnightRate)
         {
             _driverNIC = driverNIC;
             _firstName = firstName;
             _lastName = lastName;
             _contactNumber = contactNumber;
-            _driverStatus = driverAvailability;
+            _driverStatus = driverAvailability.ToString().ToLower();
             _dailyRate = dailyRate;
             _overnightRate = overnightRate;
         }

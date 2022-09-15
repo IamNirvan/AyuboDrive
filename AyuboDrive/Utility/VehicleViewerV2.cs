@@ -23,6 +23,7 @@ namespace AyuboDrive.Utility
         private Label[] _vehicleNames;
         private Label[] _interactiveLabels;
         private readonly string[] _imagePaths;
+        private static readonly QueryHandler _queryHandler = new QueryHandler();
 
         public VehicleViewerV2(Panel container, DataTable dataTable, int minWidth, int minHeight, string[] images)
         {
@@ -65,6 +66,8 @@ namespace AyuboDrive.Utility
         {
             try
             {
+                bool addContainers = _rowCount >= 1;
+
                 int panelWidth = _container.Width;
                 int numOfAddedContiners = 0;
                 int containersToBeAdded = panelWidth / _minWidth;
@@ -76,7 +79,7 @@ namespace AyuboDrive.Utility
                 int yAxisPoint = xAxisOffset - containerPadding;
 
                 // This will add the containers horizontally
-                for (int i = 0; i < containersToBeAdded; i++)
+                for (int i = 0; i < containersToBeAdded && addContainers; i++)
                 {
                     Panel container = new Panel()
                     {
@@ -119,6 +122,8 @@ namespace AyuboDrive.Utility
 
         public void AddImageLabels()
         {
+            string[] imagePaths = ImagePathsRetriever.GetVehicleImagePaths();
+
             try
             {
                 int columnCount = _dataTable.Columns.Count;
@@ -127,16 +132,18 @@ namespace AyuboDrive.Utility
 
                 for (int i = 0; i < _rowCount; i++)
                 {
-                    Image image = Properties.Resources.defaultCar;
-                    //if (File.Exists(_imagePaths[i]))
-                    //{
-                    //    image = Image.FromFile(_imagePaths[i]);
-                    //}
-                    //else
-                    //{
-                    //    // Load default image
-                    //    image = Properties.Resources.defaultCar;
-                    //}
+                    Image image;
+
+                    // Don't attempt to access the array if it is null.
+                    if (imagePaths != null && File.Exists(imagePaths[i]))
+                    {
+                        //image = Image.FromFile(imagePaths[i]);
+                        image = Image.FromFile(imagePaths[i]);
+                    }
+                    else
+                    {
+                        image = Properties.Resources.defaultCar;
+                    }
 
                     Panel imagePanel = new Panel()
                     {
@@ -155,7 +162,7 @@ namespace AyuboDrive.Utility
             }
             catch (Exception ex)
             {
-                MessagePrinter.PrintToConsole(ex.ToString(), "An error occurred when adding the containers");
+                MessagePrinter.PrintToConsole(ex.ToString(), "An error occurred when adding the image labels");
             }
         }
 

@@ -63,9 +63,9 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _16016525885_577ac964ce_o {
+        internal static System.Drawing.Bitmap AccountWhite24 {
             get {
-                object obj = ResourceManager.GetObject("16016525885_577ac964ce_o", resourceCulture);
+                object obj = ResourceManager.GetObject("AccountWhite24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,6 +83,16 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CustomerWhite64 {
+            get {
+                object obj = ResourceManager.GetObject("CustomerWhite64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap defaultCar {
             get {
                 object obj = ResourceManager.GetObject("defaultCar", resourceCulture);
@@ -93,9 +103,9 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap felipe_simo_2KL2yrK_2bs_unsplash {
+        internal static System.Drawing.Bitmap defaultCar1 {
             get {
-                object obj = ResourceManager.GetObject("felipe-simo-2KL2yrK_2bs-unsplash", resourceCulture);
+                object obj = ResourceManager.GetObject("defaultCar1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +113,99 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Image29 {
+        internal static System.Drawing.Bitmap DefaultCarBlack128 {
             get {
-                object obj = ResourceManager.GetObject("Image29", resourceCulture);
+                object obj = ResourceManager.GetObject("DefaultCarBlack128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DefaultCarWhite128 {
+            get {
+                object obj = ResourceManager.GetObject("DefaultCarWhite128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DefaultUserBlack128 {
+            get {
+                object obj = ResourceManager.GetObject("DefaultUserBlack128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DefaultUserBlack128Px {
+            get {
+                object obj = ResourceManager.GetObject("DefaultUserBlack128Px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DefaultUserWhite128 {
+            get {
+                object obj = ResourceManager.GetObject("DefaultUserWhite128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DeleteBlack24 {
+            get {
+                object obj = ResourceManager.GetObject("DeleteBlack24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DriverWhite64 {
+            get {
+                object obj = ResourceManager.GetObject("DriverWhite64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EndWhite64 {
+            get {
+                object obj = ResourceManager.GetObject("EndWhite64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HireWhite64 {
+            get {
+                object obj = ResourceManager.GetObject("HireWhite64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap InsertBlack24 {
+            get {
+                object obj = ResourceManager.GetObject("InsertBlack24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +223,9 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Logo1 {
+        internal static System.Drawing.Bitmap LogoutBlack24 {
             get {
-                object obj = ResourceManager.GetObject("Logo1", resourceCulture);
+                object obj = ResourceManager.GetObject("LogoutBlack24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +233,19 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Logo2 {
+        internal static System.Drawing.Bitmap LogoutRed24 {
             get {
-                object obj = ResourceManager.GetObject("Logo2", resourceCulture);
+                object obj = ResourceManager.GetObject("LogoutRed24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogOutWhite24 {
+            get {
+                object obj = ResourceManager.GetObject("LogOutWhite24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +263,9 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap red_sport_car_front_side_view_black_wheel_with_metallic_silver_color {
+        internal static System.Drawing.Bitmap PackageWhite64 {
             get {
-                object obj = ResourceManager.GetObject("red-sport-car-front-side-view-black-wheel-with-metallic-silver-color", resourceCulture);
+                object obj = ResourceManager.GetObject("PackageWhite64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +273,9 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tyler_clemmensen_kGCvCx5qyjM_unsplash {
+        internal static System.Drawing.Bitmap PasswordInvisibleBlack16 {
             get {
-                object obj = ResourceManager.GetObject("tyler-clemmensen-kGCvCx5qyjM-unsplash", resourceCulture);
+                object obj = ResourceManager.GetObject("PasswordInvisibleBlack16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +283,9 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap valentin_b_kremer_krXmGk8jfXg_unsplash {
+        internal static System.Drawing.Bitmap PasswordVisibleBlack16 {
             get {
-                object obj = ResourceManager.GetObject("valentin-b-kremer-krXmGk8jfXg-unsplash", resourceCulture);
+                object obj = ResourceManager.GetObject("PasswordVisibleBlack16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +293,79 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap warning {
+        internal static System.Drawing.Bitmap PaymentWhite64 {
             get {
-                object obj = ResourceManager.GetObject("warning", resourceCulture);
+                object obj = ResourceManager.GetObject("PaymentWhite64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RefreshBlack16 {
+            get {
+                object obj = ResourceManager.GetObject("RefreshBlack16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RentalWhite64 {
+            get {
+                object obj = ResourceManager.GetObject("RentalWhite64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SearchBlack16 {
+            get {
+                object obj = ResourceManager.GetObject("SearchBlack16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UpdateBlack24 {
+            get {
+                object obj = ResourceManager.GetObject("UpdateBlack24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VehicleTypeBlack24 {
+            get {
+                object obj = ResourceManager.GetObject("VehicleTypeBlack24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VehicleTypeWhite24 {
+            get {
+                object obj = ResourceManager.GetObject("VehicleTypeWhite24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VehicleWhite24 {
+            get {
+                object obj = ResourceManager.GetObject("VehicleWhite24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

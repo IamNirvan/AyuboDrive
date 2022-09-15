@@ -16,20 +16,20 @@ namespace AyuboDrive
         private readonly string _packageName;
         private readonly int _maxHour;
         private readonly int _maxKilometer;
-        private readonly double _extraHourRate;
-        private readonly double _extraKilometerRate;
-        private readonly PackageStatus _packageStatus;
+        private readonly decimal _extraHourRate;
+        private readonly decimal _extraKilometerRate;
+        private readonly string _packageStatus;
         private static QueryHandler _queryHandler = new QueryHandler();
 
-        public Package(string packageName, int maxHour, int maxKilometer, double extraHourRate, 
-            double extraKilometerRate, PackageStatus packageStatus)
+        public Package(string packageName, int maxHour, int maxKilometer, decimal extraHourRate, 
+            decimal extraKilometerRate, PackageStatus packageStatus)
         {
             _packageName = packageName;
             _maxHour = maxHour;
             _maxKilometer = maxKilometer;
             _extraKilometerRate = extraKilometerRate;
             _extraHourRate = extraHourRate;
-            _packageStatus = packageStatus;
+            _packageStatus = packageStatus.ToString().ToLower();
         }
 
         public bool Insert()
@@ -57,7 +57,7 @@ namespace AyuboDrive
                 "extraKilometerRate = @extraKilometerRate, packageStatus = @packageStatus" +
                 " WHERE packageID = @packageID";
             string[] parameters = { "@packageName", "@maxHour", "@maxKilometer", "@extraHourRate",
-                "@extraKilometerRate", "@packageID"};
+                "@extraKilometerRate", "@packageStatus", "@packageID"};
             object[] values = { _packageName, _maxHour, _maxKilometer,_extraHourRate, _extraKilometerRate,
                 _packageStatus, ID };
 
@@ -82,6 +82,21 @@ namespace AyuboDrive
                 return true;
             }
             MessagePrinter.PrintToConsole("Failed to delete package details", "Operation failed");
+            return false;
+        }
+
+        public static bool DiscontinuePackage(string ID)
+        {
+            string query = "UPDATE package SET packageStatus = @packageStatus WHERE packageID = @packageID";
+            string[] parameters = { "@packageStatus", "@packageID"};
+            object[] values = { PackageStatus.DISCONTINUED.ToString().ToLower(), ID };
+
+            if (_queryHandler.UpdateQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("Package successfully discontinued", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to discontinue package", "Operation failed");
             return false;
         }
     }

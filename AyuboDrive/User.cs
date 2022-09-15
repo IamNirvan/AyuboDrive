@@ -29,9 +29,9 @@ namespace AyuboDrive
         public static User Login(string userName, string password)
         {
             DataTable dataTable = s_queryHandler.SelectQueryHandler("SELECT * FROM UserAccount WHERE userName = '" 
-                + userName + "' AND password = '" + password + "'");
+                + userName + "' AND accountPassword = '" + password + "'");
         
-            if (dataTable.Rows.Count == 1)
+            if (dataTable != null && dataTable.Rows.Count == 1)
             {
                 User user = new User(
                     dataTable.Rows[0][1].ToString(),
@@ -47,8 +47,8 @@ namespace AyuboDrive
         
         public bool Insert()
         {
-            string query = "INSERT INTO UserAccount VALUES (@userName, @password, @firstName, @lastName, @imagePath)";
-            string[] parameters = { "@userName", "@password", "@firstName", "@lastName", "@imagePath" };
+            string query = "INSERT INTO UserAccount VALUES (@userName, @accountPassword, @firstName, @lastName, @imagePath)";
+            string[] parameters = { "@userName", "@accountPassword", "@firstName", "@lastName", "@imagePath" };
             object[] values = { UserName, _password, FirstName, LastName, _imagePath };
 
             if (s_queryHandler.InsertQueryHandler(query, parameters, values))
@@ -77,10 +77,10 @@ namespace AyuboDrive
 
         public bool Update(string ID)
         {
-            string query = "UPDATE UserAccount SET userName = @userName, password = @password, " +
+            string query = "UPDATE UserAccount SET userName = @userName, accountPassword = @accountPassword, " +
                 "firstName = @firstName, lastName = @lastName, imagePath = @imagePath " +
                 "WHERE userAccountID = @userAccountID";
-            string[] parameters = { "@userName", "@password", "@firstName", "@lastName", "@imagePath", "@userAccountID"};
+            string[] parameters = { "@userName", "@accountPassword", "@firstName", "@lastName", "@imagePath", "@userAccountID"};
             object[] values = { UserName, _password, FirstName, LastName, _imagePath, ID };
 
             if (s_queryHandler.UpdateQueryHandler(query, parameters, values))

@@ -1,4 +1,5 @@
-﻿using AyuboDrive.Utility;
+﻿using AyuboDrive.Enums;
+using AyuboDrive.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,28 +14,51 @@ namespace AyuboDrive.Forms
 {
     public partial class CustomerManagementForm : AyuboDriveTemplateForm
     {
-        private static QueryHandler _queryHandler = new QueryHandler();
+        private static QueryHandler s_queryHandler = new QueryHandler();
         private DataViewer _dataViewer;
         private string _customerID = null;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
 
-        public CustomerManagementForm(Form dashboardForm) : base(dashboardForm)
+        public CustomerManagementForm(DashboardForm dashboardForm) : base(dashboardForm)
         {
             InitializeComponent();
             HandleTitleBar();
+            DisplayTable();
+            FillGenderComboBox();
         }
         //
         // Utility functions
         //
-        private bool ValidateInput(string NIC, string firstName, string lastName, string contactNumber)
+        public void FillGenderComboBox()
+        {
+            GenderCmbBox.Items.Add(GenderOptions.FEMALE.ToString().ToLower());
+            GenderCmbBox.Items.Add(GenderOptions.MALE.ToString().ToLower());
+            GenderCmbBox.Items.Add(GenderOptions.OTHER.ToString().ToLower());
+        }
+
+        private GenderOptions ConvertStringToGenderOption(string genderString)
+        {
+            if (genderString.Equals("male"))
+            {
+                return GenderOptions.MALE;
+            }
+            else if (genderString.Equals("female"))
+            {
+                return GenderOptions.FEMALE;
+            }
+            return GenderOptions.OTHER;
+        }
+
+        private bool ValidateInput(string NIC, string firstName, string lastName, string contactNumber, string gender, int genderSelectedIndex)
         {
             bool validNIC = false;
             bool validFirstName = false;
             bool validLastName = false;
             bool validContactNumber = false;
+            bool validGender = false;
 
-            if(NIC.Length == 12)
+            if(ValidationHandler.ValidateNIC(NIC, "customer", "customerNIC"))
             {
                 validNIC = true;
                 NICErrorLbl.Text = "";
@@ -46,7 +70,7 @@ namespace AyuboDrive.Forms
                 NICPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (firstName.Length != 0)
+            if (ValidationHandler.ValidateInputLength(firstName))
             {
                 validFirstName = true;
                 FirstNameErrorLbl.Text = "";
@@ -58,7 +82,7 @@ namespace AyuboDrive.Forms
                 FirstNamePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (lastName.Length != 0)
+            if (ValidationHandler.ValidateInputLength(lastName))
             {
                 validLastName = true;
                 LastNameErrorLbl.Text = "";
@@ -70,7 +94,7 @@ namespace AyuboDrive.Forms
                 LastNamePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (contactNumber.Length == 10)
+            if (ValidationHandler.ValidateContactNumber(contactNumber, "customer", "contactNumber"))
             {
                 validContactNumber = true;
                 ContactNumberErrorLbl.Text = "";
@@ -81,7 +105,19 @@ namespace AyuboDrive.Forms
                 ContactNumberErrorLbl.Text = "Invalid contact number";
                 ContactNumberPnl.BackColor = Properties.Settings.Default.RED;
             }
-            return validNIC && validFirstName && validLastName && validContactNumber;
+
+            if(ValidationHandler.ValidateComboBoxValue(gender, genderSelectedIndex))
+            {
+                validGender = true;
+                GenderPnl.BackColor = Properties.Settings.Default.PURPLE;
+                GenderErrLbl.Text = "";
+            }
+            else
+            {
+                GenderPnl.BackColor = Properties.Settings.Default.RED;
+                GenderErrLbl.Text = "Invalid gender option";
+            }
+            return validNIC && validFirstName && validLastName && validContactNumber && validGender;
         }
 
         private void Reset()
@@ -147,7 +183,7 @@ namespace AyuboDrive.Forms
         private void DisplayTable()
         {
             TablePanel.Controls.Clear();
-            _dataViewer = new DataViewer(TablePanel, _queryHandler.SelectQueryHandler("SELECT * FROM customer"));
+            _dataViewer = new DataViewer(TablePanel, s_queryHandler.SelectQueryHandler("SELECT * FROM customer"));
             _dataViewer.DisplayTable();
             AddCellClickEvent();
         }
@@ -160,10 +196,11 @@ namespace AyuboDrive.Forms
             string firstName = FirstNameTxtBox.Text;
             string lastName = LastNameTxtBox.Text;
             string contactNumber = ContactNumberTxtBox.Text;
+            GenderOptions gender = ConvertStringToGenderOption(GenderCmbBox.Text);
 
-            if (ValidateInput(NIC, firstName, lastName, contactNumber))
+            if (ValidateInput(NIC, firstName, lastName, contactNumber, gender.ToString(), GenderCmbBox.SelectedIndex))
             {
-                Customer customer = new Customer(NIC, firstName, lastName, contactNumber);
+                Customer customer = new Customer(NIC, firstName, lastName, contactNumber, gender);
                 if (customer.Insert())
                 {
                     MessagePrinter.PrintToMessageBox("Customer details were successfully inserted", "Operation successful",
@@ -185,10 +222,12 @@ namespace AyuboDrive.Forms
             string firstName = FirstNameTxtBox.Text;
             string lastName = LastNameTxtBox.Text;
             string contactNumber = ContactNumberTxtBox.Text;
+            string genderText = GenderCmbBox.Text.ToLower();
+            GenderOptions gender = ConvertStringToGenderOption(GenderCmbBox.Text);
 
-            if (ValidateInput(NIC, firstName, lastName, contactNumber))
+            if (ValidateInput(NIC, firstName, lastName, contactNumber, gender.ToString(), GenderCmbBox.SelectedIndex))
             {
-                Customer customer = new Customer(NIC, firstName, lastName, contactNumber);
+                Customer customer = new Customer(NIC, firstName, lastName, contactNumber, gender);
                 if (customer.Update(_customerID))
                 {
                     MessagePrinter.PrintToMessageBox("Customer details were successfully updated", "Operation successful",
@@ -228,13 +267,6 @@ namespace AyuboDrive.Forms
                     Reset();
                 }
             }
-        }
-        //
-        // Form load handler
-        //
-        private void CustomerManagementForm_Load(object sender, EventArgs e)
-        {
-            DisplayTable();
         }
         //
         // Mouse event handlers
@@ -315,44 +347,43 @@ namespace AyuboDrive.Forms
         //
         // Text box event handlers
         //
-        private void NICTxtBox_Enter(object sender, EventArgs e)
+        private void TextBox_Enter(object sender, EventArgs e)
         {
-            NICTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
+            ((TextBox)sender).ForeColor = Properties.Settings.Default.ENABLED_WHITE;
         }
 
-        private void NICTxtBox_Leave(object sender, EventArgs e)
+        private void TextBox_Leave(object sender, EventArgs e)
         {
-            NICTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
+            ((TextBox)sender).ForeColor = Properties.Settings.Default.DISABLED_WHITE;
+        }
+        // 
+        // Text box key press event handler
+        //
+        private void CharacterOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Discard the character by setting handled to true
+                e.Handled = true;
+            }
         }
 
-        private void FirstNameTxtBox_Enter(object sender, EventArgs e)
+        private void NumberOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            FirstNameTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !e.KeyChar.Equals('.'))
+            {
+                // Discard the character by setting handled to true
+                e.Handled = true;
+            }
         }
 
-        private void FirstNameTxtBox_Leave(object sender, EventArgs e)
+        private void NumberOrCharacterOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            FirstNameTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
-        }
-
-        private void LastNameTxtBox_Enter(object sender, EventArgs e)
-        {
-            LastNameTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
-        }
-
-        private void LastNameTxtBox_Leave(object sender, EventArgs e)
-        {
-            LastNameTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
-        }
-
-        private void ContactNumberTxtBox_Enter(object sender, EventArgs e)
-        {
-            ContactNumberTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
-        }
-
-        private void ContactNumberTxtBox_Leave(object sender, EventArgs e)
-        {
-            ContactNumberTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Discard the character by setting handled to true
+                e.Handled = true;
+            }
         }
     }
 }

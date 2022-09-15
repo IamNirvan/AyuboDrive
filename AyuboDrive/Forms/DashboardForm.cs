@@ -11,49 +11,33 @@ using System.Windows.Forms;
 
 namespace AyuboDrive.Forms
 {
-    public partial class DashboardForm : Form
+    public partial class DashboardForm : AyuboDriveTemplateForm
     {
+        public User User { get; set; }
+        private readonly string _userName;
         private readonly string _firstName;
         private readonly string _lastName;
         private readonly QueryHandler _queryHandler = new QueryHandler();
 
-        public DashboardForm(string firstName, string lastName)
+        public DashboardForm(string firstName, string lastName, string userName) : base(Properties.Settings.Default.LIGHT_GRAY)
         {
             _firstName = firstName;
             _lastName = lastName;
+            _userName = userName;
             InitializeComponent();
             HandleTitleBar();
         }
 
-        // -- TITLE BAR BUTTON FUNCTIONALITY --
-
-        private void ExitBtn_MouseClick(object sender, EventArgs e)
+        public DashboardForm(User user) : base(Properties.Settings.Default.LIGHT_GRAY)
         {
-            Application.Exit();
+            User = user;
+            _firstName = user.FirstName;
+            _lastName = user.LastName;
+            _userName = user.UserName;
+            InitializeComponent();
+            HandleTitleBar();
         }
 
-        private void MinimizeBtn_MouseClick(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        // -- END OF TITLE BAR BUTTON FUNCTIONALITY --
-
-        private void HandleTitleBar()
-        {
-            CustomTitleBar customTitleBar = new CustomTitleBar(this, 30, Properties.Settings.Default.LIGHT_GRAY);
-            customTitleBar.CreateExitButton(Properties.Settings.Default.TRANSPARENT,
-                Properties.Settings.Default.ENABLED_WHITE);
-            customTitleBar.CreateMinimizeButton(Properties.Settings.Default.TRANSPARENT,
-                Properties.Settings.Default.DISABLED_WHITE);
-            Panel titleBar = customTitleBar.GetTitleBar();
-            Button exitButton = customTitleBar.GetExitButton();
-            Button minimizeButton = customTitleBar.GetMinimizeButton();
-            Controls.Add(titleBar);
-            titleBar.BringToFront();
-            exitButton.MouseClick += new MouseEventHandler(ExitBtn_MouseClick);
-            minimizeButton.MouseClick += new MouseEventHandler(MinimizeBtn_MouseClick);
-        }
 
         private void DashboardForm_Load(object sender, EventArgs e)
         {
@@ -110,161 +94,94 @@ namespace AyuboDrive.Forms
             return "Good morning,";
         }
 
-        private void RentalBookingLbl_Click(object sender, EventArgs e)
+        private void Button_MouseEnter(object sender, EventArgs e)
         {
-            
+            ((Button)sender).FlatAppearance.BorderColor = Properties.Settings.Default.PURPLE;
+            ((Button)sender).BackColor = Properties.Settings.Default.PURPLE;
         }
 
-        private void accountBtn_Click(object sender, EventArgs e)
+        private void Button_MouseLeave(object sender, EventArgs e)
         {
-
+            ((Button)sender).FlatAppearance.BorderColor = Properties.Settings.Default.LIGHTER_GRAY;
+            ((Button)sender).BackColor = Properties.Settings.Default.LIGHTER_GRAY;
         }
 
-        private void logoutBtn_Click(object sender, EventArgs e)
+        private void LogOutBtn_MouseEnter(object sender, EventArgs e)
         {
-
+            LogOutBtn.BackColor = Properties.Settings.Default.RED;
+            LogOutBtn.BackgroundImage = Properties.Resources.LogOutWhite24;
         }
 
-        private void LogoutLbl_Paint(object sender, PaintEventArgs e)
+        private void LogOutBtn_MouseLeave(object sender, EventArgs e)
         {
-            ControlPaint.DrawBorder(e.Graphics, LogoutLbl.DisplayRectangle, 
-                Properties.Settings.Default.RED, ButtonBorderStyle.Solid);
+            LogOutBtn.BackColor = Properties.Settings.Default.TRANSPARENT;
+            LogOutBtn.BackgroundImage = Properties.Resources.LogoutRed24;
         }
 
-        private void RentalBookingLbl_MouseEnter(object sender, EventArgs e)
-        {
-            RentalBookingLbl.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
-        }
-
-        private void RentalBookingLbl_MouseLeave(object sender, EventArgs e)
-        {
-            RentalBookingLbl.BackColor = Properties.Settings.Default.LIGHT_GRAY;
-        }
-
-        private void PackageTypeLbl_Click(object sender, EventArgs e)
-        {
-            new PackageTypeManagementForm(this).Show();
-            Hide();
-        }
-
-        private void PackageTypeLbl_MouseEnter(object sender, EventArgs e)
-        {
-            PackageTypeLbl.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
-        }
-
-        private void PackageTypeLbl_MouseLeave(object sender, EventArgs e)
-        {
-            PackageTypeLbl.BackColor = Properties.Settings.Default.LIGHT_GRAY;
-        }
-
-        private void LongTourBookingsLbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LongTourBookingsLbl_MouseLeave(object sender, EventArgs e)
-        {
-            LongTourBookingsLbl.BackColor = Properties.Settings.Default.LIGHT_GRAY;
-        }
-
-        private void LongTourBookingsLbl_MouseEnter(object sender, EventArgs e)
-        {
-            LongTourBookingsLbl.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
-            
-        }
-
-        private void DayTourBookingsLbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DayTourBookingsLbl_MouseEnter(object sender, EventArgs e)
-        {
-            DayTourBookingsLbl.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
-        }
-
-        private void DayTourBookingsLbl_MouseLeave(object sender, EventArgs e)
-        {
-            DayTourBookingsLbl.BackColor = Properties.Settings.Default.LIGHT_GRAY;
-        }
-
-        private void VehicleManagementLbk_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void VehicleManagementLbk_MouseEnter(object sender, EventArgs e)
-        {
-            VehicleManagementLbk.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
-        }
-
-        private void VehicleManagementLbk_MouseLeave(object sender, EventArgs e)
-        {
-            VehicleManagementLbk.BackColor = Properties.Settings.Default.LIGHT_GRAY;
-        }
-
-        private void VehicleTypeManagement_Click(object sender, EventArgs e)
-        {
-            new VehicleTypeManagementForm(this).Show();
-            Hide();
-        }
-
-        private void VehicleTypeManagement_MouseEnter(object sender, EventArgs e)
-        {
-            VehicleTypeManagement.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
-        }
-
-        private void VehicleTypeManagement_MouseLeave(object sender, EventArgs e)
-        {
-            VehicleTypeManagement.BackColor = Properties.Settings.Default.LIGHT_GRAY;
-        }
-
-        private void CustomerManagement_Click(object sender, EventArgs e)
+        private void CustomerBtn_Click(object sender, EventArgs e)
         {
             new CustomerManagementForm(this).Show();
             Hide();
         }
 
-        private void CustomerManagement_MouseEnter(object sender, EventArgs e)
+        private void PaymentBtn_Click(object sender, EventArgs e)
         {
-            CustomerManagement.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
+            new PaymentManagementForm(this).Show();
+            Hide();
         }
 
-        private void CustomerManagement_MouseLeave(object sender, EventArgs e)
+        private void VehicleTypeBtn_Click(object sender, EventArgs e)
         {
-            CustomerManagement.BackColor = Properties.Settings.Default.LIGHT_GRAY;
+            new VehicleTypeManagementForm(this).Show();
+            Hide();
         }
 
-        private void AccountLbl_Click(object sender, EventArgs e)
+        private void VehicleBtn_Click(object sender, EventArgs e)
         {
-
+            new VehicleManagementForm(this).Show();
+            Hide();
         }
 
-        private void AccountLbl_MouseEnter(object sender, EventArgs e)
+        private void PackageTypeBtn_Click(object sender, EventArgs e)
         {
-            AccountLbl.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
+            new PackageTypeManagementForm(this).Show();
+            Hide();
         }
 
-        private void AccountLbl_MouseLeave(object sender, EventArgs e)
+        private void AccountBtn_Click(object sender, EventArgs e)
         {
-            AccountLbl.BackColor = Properties.Settings.Default.LIGHT_GRAY;
+            new AccountManagement(this, _userName).Show();
+            Hide();
         }
 
-        private void LogoutLbl_Click(object sender, EventArgs e)
+        private void DriverBtn_Click(object sender, EventArgs e)
         {
-
+            new DriverManagementForm(this).Show();
+            Hide();
         }
 
-        private void LogoutLbl_MouseEnter(object sender, EventArgs e)
+        private void RentalBookingsBtn_Click(object sender, EventArgs e)
         {
-            LogoutLbl.BackColor = Properties.Settings.Default.RED;
-            LogoutLbl.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
+            new RentalBookingManagementFormV2(this).Show();
+            Hide();
         }
 
-        private void LogoutLbl_MouseLeave(object sender, EventArgs e)
+        private void LogOutBtn_Click(object sender, EventArgs e)
         {
-            LogoutLbl.BackColor = Properties.Settings.Default.TRANSPARENT;
-            LogoutLbl.ForeColor = Properties.Settings.Default.RED;
+            new LoginFormV2().Show();
+            Hide();
+        }
+
+        private void BookingClosureBtn_Click(object sender, EventArgs e)
+        {
+            new BookingClosureForm(this).Show();
+            Hide();
+        }
+
+        private void LongTourBookingsBtn_Click(object sender, EventArgs e)
+        {
+            new HireManagement(this).Show();
+            Hide();
         }
     }
 }

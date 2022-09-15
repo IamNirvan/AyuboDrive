@@ -14,14 +14,16 @@ namespace AyuboDrive.Forms
     // TODO: Add the manipulation event handlers
     public partial class VehicleManagementForm : AyuboDriveTemplateForm
     {
-        private static QueryHandler _queryHandler = new QueryHandler();
+        private static QueryHandler s_queryHandler = new QueryHandler();
         private VehicleViewerV2 _vehicleViewer;
         private DataViewer _dataViewer;
+        private DataTable _dataTable;
         private string _vehicleID;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
+        private string _imagePath = "";
 
-        public VehicleManagementForm(Form dashboardForm) : base(dashboardForm)
+        public VehicleManagementForm(DashboardForm dashboardForm) : base(dashboardForm)
         {
             InitializeComponent();
             HandleTitleBar();
@@ -47,7 +49,7 @@ namespace AyuboDrive.Forms
             _rowSelected = true;
 
             Panel container = _vehicleViewer.GetContainers()[index];
-            AddData(index);
+            AddDataVehicleView(index);
 
             if (_selectedRow != null)
             {
@@ -55,7 +57,7 @@ namespace AyuboDrive.Forms
             }
 
             _selectedRow = container;
-            container.BackColor = Program.LIGHT_GRAY;
+            container.BackColor = Program.LIGHTER_GRAY;
             ResetErrors();
         }
 
@@ -93,7 +95,7 @@ namespace AyuboDrive.Forms
 
             _rowSelected = true;
             Panel record = _dataViewer.GetRows()[index];
-            AddData(index);
+            AddDataTableView(index);
 
             if (_selectedRow != null)
             {
@@ -148,7 +150,9 @@ namespace AyuboDrive.Forms
                 }
             }
         }
-
+        //
+        // Utility
+        //
         private bool ValidateInput(
             string vehicleTypeID, int vehicleTypeIDSelectedIndex, string VIN, string manufacturer, string model, 
             string seatingCapacity, string mileage, string gearBoxType, int gearBoxTypeSelectedIndex,
@@ -173,7 +177,7 @@ namespace AyuboDrive.Forms
             bool validStandardPackageRate = false;
             bool validImagePath = false;
 
-            if(vehicleTypeID.Length != 0 && vehicleTypeIDSelectedIndex >= 0)
+            if(ValidationHandler.ValidateComboBoxValue(vehicleTypeID, vehicleTypeIDSelectedIndex))
             {
                 validVehicleTypeID = true;
                 VehicleTypeIDErrorLbl.Text = "";
@@ -185,7 +189,7 @@ namespace AyuboDrive.Forms
                 VehicleTypeIDPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (VIN.Length == 17)
+            if (ValidationHandler.ValidateVIN("vehicle", "VIN", VIN))
             {
                 validVIN = true;
                 VINErrorLbl.Text = "";
@@ -197,7 +201,7 @@ namespace AyuboDrive.Forms
                 VINPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if(manufacturer.Length != 0)
+            if(ValidationHandler.ValidateInputLength(manufacturer))
             {
                 validManufacturer = true;
                 ManufacturerErrorLbl.Text = "";
@@ -209,7 +213,7 @@ namespace AyuboDrive.Forms
                 ManufacturerPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (model.Length != 0)
+            if (ValidationHandler.ValidateInputLength(model))
             {
                 validModel = true;
                 ModelErrorLbl.Text = "";
@@ -223,7 +227,7 @@ namespace AyuboDrive.Forms
 
             if (seatingCapacity.Length != 0 && int.Parse(seatingCapacity) >= 1)
             {
-                validModel = true;
+                validSeatingCapacity = true;
                 SeatingCapacityErrorLbl.Text = "";
                 SeatingCapacityPnl.BackColor = Properties.Settings.Default.PURPLE;
             }
@@ -233,7 +237,7 @@ namespace AyuboDrive.Forms
                 SeatingCapacityPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (mileage.Length != 0 && int.Parse(mileage) >= 5)
+            if (ValidationHandler.ValidateDistanceInput(mileage))
             {
                 validMileage = true;
                 MileageErrorLbl.Text = "";
@@ -245,7 +249,7 @@ namespace AyuboDrive.Forms
                 MileagePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (gearBoxType.Length != 0 && gearBoxTypeSelectedIndex >= 0)
+            if (ValidationHandler.ValidateComboBoxValue(gearBoxType, gearBoxTypeSelectedIndex))
             {
                 validGearBoxType = true;
                 GearboxErrorLbl.Text = "";
@@ -281,7 +285,7 @@ namespace AyuboDrive.Forms
                 HorsepowerPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (trunkVolume.Length != 0 && int.Parse(trunkVolume) >= 1)
+            if (trunkVolume.Length != 0 && decimal.Parse(trunkVolume) >= 1)
             {
                 validTrunkVolume = true;
                 TrunkVolumeErrorLbl.Text = "";
@@ -293,7 +297,7 @@ namespace AyuboDrive.Forms
                 TrunkVolumePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (color.Length != 0)
+            if (ValidationHandler.ValidateInputLength(color))
             {
                 validColor = true;
                 ColorErrorLbl.Text = "";
@@ -305,7 +309,7 @@ namespace AyuboDrive.Forms
                 ColorPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (dailyRate.Length != 0 && double.Parse(dailyRate) >= 100)
+            if (ValidationHandler.ValidateDecimalInput(dailyRate))
             {
                 validDailyrate = true;
                 DailyRateErrorLbl.Text = "";
@@ -317,7 +321,7 @@ namespace AyuboDrive.Forms
                 DailyRatePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (weeklyRate.Length != 0 && double.Parse(weeklyRate) >= 100)
+            if (ValidationHandler.ValidateDecimalInput(weeklyRate))
             {
                 validWeeklyRate = true;
                 WeeklyRateErrorLbl.Text = "";
@@ -329,7 +333,7 @@ namespace AyuboDrive.Forms
                 WeeklyRatePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (monthlyRate.Length != 0 && double.Parse(monthlyRate) >= 100)
+            if (ValidationHandler.ValidateDecimalInput(monthlyRate))
             {
                 validMonthlyRate = true;
                 MonthlyRateErrorLbl.Text = "";
@@ -341,7 +345,7 @@ namespace AyuboDrive.Forms
                 MonthlyRatePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (overnightRate.Length != 0 && double.Parse(overnightRate) >= 100)
+            if (ValidationHandler.ValidateDecimalInput(overnightRate))
             {
                 validOvernightRate = true;
                 OvernightRateErrorLbl.Text = "";
@@ -353,7 +357,7 @@ namespace AyuboDrive.Forms
                 OvernightRatePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (standardPackageRate.Length != 0 && double.Parse(standardPackageRate) >= 100)
+            if (ValidationHandler.ValidateDecimalInput(standardPackageRate))
             {
                 validStandardPackageRate = true;
                 StandardPackageRateErrorLbl.Text = "";
@@ -365,7 +369,7 @@ namespace AyuboDrive.Forms
                 StandardPackageRatePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (imagePath.Length != 0)
+            if (ValidationHandler.ValidateFilePath(imagePath))
             {
                 validImagePath = true;
                 ImagePathErrorLbl.Text = "";
@@ -382,12 +386,10 @@ namespace AyuboDrive.Forms
                 && validColor && validDailyrate && validWeeklyRate && validMonthlyRate && validOvernightRate
                 && validStandardPackageRate && validImagePath;
         }
-        //
-        // Utility
-        //
+
         private void FillVehicleTypeIDComboBox()
         {
-            foreach(DataRow row in _queryHandler.SelectQueryHandler("SELECT * FROM vehicleType").Rows)
+            foreach(DataRow row in s_queryHandler.SelectQueryHandler("SELECT * FROM vehicleType").Rows)
             {
                 VehicleTypeIDCmbBox.Items.Add($"{row[0]}-{row[1]}");
             }
@@ -401,50 +403,121 @@ namespace AyuboDrive.Forms
             GearBoxCmbBox.Items.Add("CVT");
         }
 
-        private void AddData(int index)
+        private void AddDataVehicleView(int index)
         {
-            //if (index != 0)
-            //{
-            //    Label[] subArray = _vehicleViewer.GetLabels()[index];
-            //    _packageID = subArray[0].Text;
-                //PackageNameTxtBox.Text = subArray[1].Text;
-                //MaxHourTxtBox.Text = subArray[2].Text;
-                //MaxKmTxtBox.Text = subArray[3].Text;
-                //ExtraHourRateTxtBox.Text = subArray[4].Text;
-                //ExtraKmRateTxtBox.Text = subArray[5].Text;
-            //}
+            DataRow subArray = s_queryHandler.SelectQueryHandler("SELECT * FROM vehicle").Rows[index];
+            DataRow vehicleTypeName = s_queryHandler.SelectQueryHandler("SELECT typeName from vehicleType WHERE vehicleTypeID = '" +
+                subArray[2].ToString() + "'").Rows[0];
+            _vehicleID = subArray[0].ToString();
+            VINTxtBox.Text = subArray[1].ToString();
+            VehicleTypeIDCmbBox.Text = $"{subArray[2].ToString()}-{vehicleTypeName[0]}";
+            ManufacturerTxtBox.Text = subArray[3].ToString();
+            ModelTxtBox.Text = subArray[4].ToString();
+            SeatingCapacityTxtBox.Text = subArray[5].ToString();
+            MileageTxtBox.Text = subArray[6].ToString();
+            GearBoxCmbBox.Text = subArray[7].ToString();
+            TorqueTxtBox.Text = subArray[8].ToString();
+            HorsepowerTxtBox.Text = subArray[9].ToString();
+            TrunkVolumeTxtBox.Text = subArray[10].ToString();
+            ColorTxtBox.Text = subArray[11].ToString();
+            DailyRateTxtBox.Text = subArray[12].ToString();
+            WeeklyRateTxtBox.Text = subArray[13].ToString();
+            MonthlyRateTxtBox.Text = subArray[14].ToString();
+            OvernightRateTxtBox.Text = subArray[15].ToString();
+            ImagePathTxtBox.Text = subArray[17].ToString();
+            StandardPackageRateTxtBox.Text = subArray[18].ToString();
+        }
+
+        private void AddDataTableView(int index)
+        {
+            if(index != 0)
+            {
+                DataRow subArray = s_queryHandler.SelectQueryHandler("SELECT * FROM vehicle").Rows[index-1];
+                DataRow vehicleTypeName = s_queryHandler.SelectQueryHandler("SELECT typeName from vehicleType WHERE vehicleTypeID = '" +
+                    subArray[2].ToString() + "'").Rows[0];
+                _vehicleID = subArray[0].ToString();
+                VINTxtBox.Text = subArray[1].ToString();
+                VehicleTypeIDCmbBox.Text = $"{subArray[2].ToString()}-{vehicleTypeName[0]}";
+                ManufacturerTxtBox.Text = subArray[3].ToString();
+                ModelTxtBox.Text = subArray[4].ToString();
+                SeatingCapacityTxtBox.Text = subArray[5].ToString();
+                MileageTxtBox.Text = subArray[6].ToString();
+                GearBoxCmbBox.Text = subArray[7].ToString();
+                TorqueTxtBox.Text = subArray[8].ToString();
+                HorsepowerTxtBox.Text = subArray[9].ToString();
+                TrunkVolumeTxtBox.Text = subArray[10].ToString();
+                ColorTxtBox.Text = subArray[11].ToString();
+                DailyRateTxtBox.Text = subArray[12].ToString();
+                WeeklyRateTxtBox.Text = subArray[13].ToString();
+                MonthlyRateTxtBox.Text = subArray[14].ToString();
+                OvernightRateTxtBox.Text = subArray[15].ToString();
+                ImagePathTxtBox.Text = subArray[17].ToString();
+                StandardPackageRateTxtBox.Text = subArray[18].ToString();
+            }
         }
 
         private void ResetErrors()
         {
-            //PackageNameErrorLbl.Text = "";
-            //PackageNamePnl.BackColor = Properties.Settings.Default.PURPLE;
-            //MaxHourErrorLbl.Text = "";
-            //MaxHourPnl.BackColor = Properties.Settings.Default.PURPLE;
-            //MaxKmErrorLbl.Text = "";
-            //MaxKmPnl.BackColor = Properties.Settings.Default.PURPLE;
-            //ExtraHourRateErrorLbl.Text = "";
-            //ExtraHourRatePnl.BackColor = Properties.Settings.Default.PURPLE;
-            //ExtraKmRateErrorLbl.Text = "";
-            //ExtraKmRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            VINErrorLbl.Text = "";
+            VehicleTypeIDErrorLbl.Text = "";
+            ManufacturerErrorLbl.Text = "";
+            ModelErrorLbl.Text = "";
+            ModelErrorLbl.Text = "";
+            SeatingCapacityErrorLbl.Text = "";
+            MileageErrorLbl.Text = "";
+            GearboxErrorLbl.Text = "";
+            TorqueErrorLbl.Text = "";
+            HorsepowerErrorLbl.Text = "";
+            TrunkVolumeErrorLbl.Text = "";
+            ColorErrorLbl.Text = "";
+            DailyRateErrorLbl.Text = "";
+            WeeklyRateErrorLbl.Text = "";
+            MonthlyRateErrorLbl.Text = "";
+            OvernightRateErrorLbl.Text = "";
+            ImagePathErrorLbl.Text = "";
+            StandardPackageRateErrorLbl.Text = "";
+
+            VINPnl.BackColor = Properties.Settings.Default.PURPLE;
+            VehicleTypeIDPnl.BackColor = Properties.Settings.Default.PURPLE;
+            ManufacturerPnl.BackColor = Properties.Settings.Default.PURPLE;
+            ModelPnl.BackColor = Properties.Settings.Default.PURPLE;
+            SeatingCapacityPnl.BackColor = Properties.Settings.Default.PURPLE;
+            MileagePnl.BackColor = Properties.Settings.Default.PURPLE;
+            GearBoxPnl.BackColor = Properties.Settings.Default.PURPLE;
+            TorquePnl.BackColor = Properties.Settings.Default.PURPLE;
+            HorsepowerPnl.BackColor = Properties.Settings.Default.PURPLE;
+            TrunkVolumePnl.BackColor = Properties.Settings.Default.PURPLE;
+            ColorPnl.BackColor = Properties.Settings.Default.PURPLE;
+            DailyRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            WeeklyRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            MonthlyRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            OvernightRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            ImagePathPnl.BackColor = Properties.Settings.Default.PURPLE;
+            StandardPackageRatePnl.BackColor = Properties.Settings.Default.PURPLE;
         }
 
         private void DisplayTable()
         {
             string query = "SELECT vehicleID, manufacturer, model, seatingCapacity, mileage, torque, horsepower from vehicle";
-            DataPnl.Controls.Clear();
-            _dataViewer = new DataViewer(DataPnl, _queryHandler.SelectQueryHandler(query));
+            _dataTable = s_queryHandler.SelectQueryHandler(query);
+            TablePnl.Controls.Clear();
+            _dataViewer = new DataViewer(TablePnl, _dataTable);
             _dataViewer.DisplayTable();
-            AddVehicleCellClickEvent(_vehicleViewer, TableCell_Click, TableCell_MouseEnter, TableCell_MouseLeave);
+            AddCellClickEvent(_dataViewer, TableCell_Click, TableCell_MouseEnter, TableCell_MouseLeave);
+            VehiclePnl.Visible = false;
+            TablePnl.Visible = true;
         }
 
         private void DisplayVehicles()
         {
             string query = "SELECT * from vehicle";
-            DataPnl.Controls.Clear();
-            _vehicleViewer = new VehicleViewerV2(DataPnl, _queryHandler.SelectQueryHandler(query), 140, 140, null);
+            _dataTable = s_queryHandler.SelectQueryHandler(query);
+            VehiclePnl.Controls.Clear();
+            _vehicleViewer = new VehicleViewerV2(VehiclePnl, _dataTable, 200, 150, null);
             _vehicleViewer.Display();
             AddVehicleCellClickEvent(_vehicleViewer, VehiclesCell_Click, VehiclesCell_MouseEnter, VehiclesCell_MouseLeave);
+            TablePnl.Visible = false;
+            VehiclePnl.Visible = true;
         }
 
         private void Reset()
@@ -475,8 +548,9 @@ namespace AyuboDrive.Forms
             }
             _vehicleID = null;
         }
+        
         //
-        // Data manipulation event handlers
+        // Click event handlers
         //
         private void InsertBtn_Click(object sender, EventArgs e)
         {
@@ -505,15 +579,24 @@ namespace AyuboDrive.Forms
                 horsepower, trunkVolume, color, dailyRate, weeklyRate, monthlyRate, overnightRate,
                 standardPackageRate, imagePath))
             {
-                Vehicle vehicle = new Vehicle(VIN, vehicleTypeID, manufacturer, model, int.Parse(seatingCapacity), int.Parse(mileage), int.Parse(torque),
-                    int.Parse(horsepower), double.Parse(dailyRate), double.Parse(weeklyRate), double.Parse(monthlyRate), double.Parse(overnightRate),
-                    double.Parse(standardPackageRate), Enums.Availability.AVAILABLE, imagePath);
+                Vehicle vehicle = new Vehicle(VIN, vehicleTypeID, manufacturer, model, int.Parse(seatingCapacity), int.Parse(mileage), gearboxType,
+                    int.Parse(torque), int.Parse(horsepower), decimal.Parse(trunkVolume), color, decimal.Parse(dailyRate), 
+                    decimal.Parse(weeklyRate), decimal.Parse(monthlyRate), decimal.Parse(overnightRate), decimal.Parse(standardPackageRate), 
+                    Enums.VehicleStatus.AVAILABLE, imagePath);
 
                 if (vehicle.Insert())
                 {
                     MessagePrinter.PrintToMessageBox("Vehicle details were successfully inserted", "Operation successful",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DisplayTable();
+
+                    if (!VehiclesViewRBtn.Checked)
+                    {
+                        DisplayTable();
+                    }
+                    else
+                    {
+                        DisplayVehicles();
+                    }
                 }
                 else
                 {
@@ -551,15 +634,24 @@ namespace AyuboDrive.Forms
                 horsepower, trunkVolume, color, dailyRate, weeklyRate, monthlyRate, overnightRate,
                 standardPackageRate, imagePath))
             {
-                Vehicle vehicle = new Vehicle(VIN, vehicleTypeID, manufacturer, model, int.Parse(seatingCapacity), int.Parse(mileage), int.Parse(torque),
-                    int.Parse(horsepower), double.Parse(dailyRate), double.Parse(weeklyRate), double.Parse(monthlyRate), double.Parse(overnightRate),
-                    double.Parse(standardPackageRate), Enums.Availability.AVAILABLE, imagePath);
+                Vehicle vehicle = new Vehicle(VIN, vehicleTypeID, manufacturer, model, int.Parse(seatingCapacity), int.Parse(mileage), gearboxType,
+                    int.Parse(torque), int.Parse(horsepower), decimal.Parse(trunkVolume), color, decimal.Parse(dailyRate),
+                    decimal.Parse(weeklyRate), decimal.Parse(monthlyRate), decimal.Parse(overnightRate), decimal.Parse(standardPackageRate),
+                    Enums.VehicleStatus.AVAILABLE, imagePath);
 
                 if (vehicle.Update(_vehicleID))
                 {
                     MessagePrinter.PrintToMessageBox("Vehicle details were successfully updated", "Operation successful",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DisplayTable();
+
+                    if (!VehiclesViewRBtn.Checked)
+                    {
+                        DisplayTable();
+                    }
+                    else
+                    {
+                        DisplayVehicles();
+                    }
                 }
                 else
                 {
@@ -591,10 +683,25 @@ namespace AyuboDrive.Forms
                         MessagePrinter.PrintToMessageBox("Package details were successfully deleted", "Operation successful",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    DisplayTable();
+
+                    if(!VehiclesViewRBtn.Checked)
+                    {
+                        DisplayTable();
+                    }
+                    else
+                    {
+                        DisplayVehicles();
+                    }
+                    
                     Reset();
                 }
             }
+        }
+
+        private void ImagePathBtn_Click(object sender, EventArgs e)
+        {
+            _imagePath = FileRetriever.GetFilePath();
+            ImagePathTxtBox.Text = _imagePath;
         }
         //
         // Form load
@@ -605,10 +712,14 @@ namespace AyuboDrive.Forms
             FillVehicleTypeIDComboBox();
             FillGearBoxTypeComboBox();
         }
-
+        //
+        // Radiobuttons check changed
+        //
         private void VehiclesViewRBtn_CheckedChanged(object sender, EventArgs e)
         {
-            if(VehiclesViewRBtn.Checked)
+            ResetErrors();
+
+            if (VehiclesViewRBtn.Checked)
             {
                 DisplayVehicles();
             }
@@ -616,10 +727,54 @@ namespace AyuboDrive.Forms
 
         private void TableViewRBtn_CheckedChanged(object sender, EventArgs e)
         {
+            ResetErrors();
+
             if(TableViewRBtn.Checked)
             {
                 DisplayTable();
             }
         }
+        //
+        // Text box enter and leave event handlers
+        //
+        private void TxtBox_Enter(object sender, EventArgs e)
+        {
+            ((TextBox)sender).ForeColor = Properties.Settings.Default.ENABLED_WHITE;
+        }
+
+        private void TxtBox_Leave(object sender, EventArgs e)
+        {
+            ((TextBox)sender).ForeColor = Properties.Settings.Default.DISABLED_WHITE;
+        }
+        // 
+        // Text box key press event handler
+        //
+        private void CharacterOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Discard the character by setting handled to true
+                e.Handled = true;
+            }
+        }
+
+        private void NumberOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !e.KeyChar.Equals('.'))
+            {
+                // Discard the character by setting handled to true
+                e.Handled = true;
+            }
+        }
+
+        private void NumberOrCharacterOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Discard the character by setting handled to true
+                e.Handled = true;
+            }
+        }
+
     }
 }

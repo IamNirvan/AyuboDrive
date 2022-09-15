@@ -1,4 +1,5 @@
-﻿using AyuboDrive.Interfaces;
+﻿using AyuboDrive.Enums;
+using AyuboDrive.Interfaces;
 using AyuboDrive.Utility;
 using System;
 using System.Collections.Generic;
@@ -20,19 +21,18 @@ namespace AyuboDrive
         private readonly string _paymentStatus;
         private static readonly QueryHandler s_queryHandler = new QueryHandler();
         public static readonly string NullValuePlaceHolder = "No driver";
-        private object[] _values;
 
         public RentalBooking(string vehicleTypeID, string vehicleID, string driverID, string customerID, 
-            string startDate, string endDate, string rentalStatus, string paymentStatus)
+            DateTime startDate, DateTime endDate, BookingStatus rentalStatus, PaymentStatus paymentStatus)
         {
             _vehicleTypeID = vehicleTypeID;
             _vehicleID = vehicleID;
             _driverID = driverID;
             _customerID = customerID;
-            _startDate = startDate;
-            _endDate = endDate;
-            _rentalStatus = rentalStatus;
-            _paymentStatus = paymentStatus;
+            _startDate = startDate.ToString().ToLower();
+            _endDate = endDate.ToString().ToLower();
+            _rentalStatus = rentalStatus.ToString().ToLower();
+            _paymentStatus = paymentStatus.ToString().ToLower();
         }
 
         public bool Insert()

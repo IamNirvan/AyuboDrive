@@ -25,7 +25,7 @@ namespace AyuboDrive.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-0CECDCR;Initial Catalog=AyuboDriveV2;Integrated Security=True" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-0CECDCR;Initial Catalog=AyuboDriveV3;Integrated Security=True" +
             "")]
         public string CONNECTION_STRING {
             get {

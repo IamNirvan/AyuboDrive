@@ -1,4 +1,5 @@
-﻿using AyuboDrive.Utility;
+﻿using AyuboDrive.Interfaces;
+using AyuboDrive.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,16 +14,19 @@ namespace AyuboDrive.Forms
 {
     public partial class PaymentManagementForm : AyuboDriveTemplateForm
     {
-        private static QueryHandler _queryHandler = new QueryHandler();
+        private static QueryHandler s_queryHandler = new QueryHandler();
         private DataViewer _dataViewer;
         private string _paymentID = null;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
 
-        public PaymentManagementForm(Form dashboardForm) : base(dashboardForm)
+        public PaymentManagementForm(DashboardForm dashboardForm) : base(dashboardForm)
         {
             InitializeComponent();
             HandleTitleBar();
+            DisplayTable();
+            FillRentalBookingIDComboBox();
+            FillCustomerIDComboBox();
         }
         //
         // Utility
@@ -42,7 +46,7 @@ namespace AyuboDrive.Forms
                 HireBookingIDErrorLbl.Text = "";
                 HireBookingIDPnl.BackColor = Properties.Settings.Default.PURPLE;
             }
-            else if (hireBookingID.Length != 0 && hireBookingIDSelectedIndex >= 0)
+            else if (ValidationHandler.ValidateComboBoxValue(hireBookingID, hireBookingIDSelectedIndex))
             {
                 validHireBookingID = true;
                 HireBookingIDErrorLbl.Text = "";
@@ -60,7 +64,7 @@ namespace AyuboDrive.Forms
                 RentalBookingIDErrorLbl.Text = "";
                 RentalBookingIDPnl.BackColor = Properties.Settings.Default.PURPLE;
             }
-            else if (rentalBookingID.Length != 0 && rentalBookingIDSelectedIndex >= 0)
+            else if (ValidationHandler.ValidateComboBoxValue(rentalBookingID, rentalBookingIDSelectedIndex))
             {
                 validRentalBookingID = true;
                 RentalBookingIDErrorLbl.Text = "";
@@ -72,7 +76,7 @@ namespace AyuboDrive.Forms
                 RentalBookingIDPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (customerID.Length != 0 && customerIDSelectedIndex >= 0)
+            if (ValidationHandler.ValidateComboBoxValue(customerID, customerIDSelectedIndex))
             {
                 validCustomerID = true;
                 CustomerIDErrorLbl.Text = "";
@@ -84,7 +88,7 @@ namespace AyuboDrive.Forms
                 CustomerIDPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if(amountPaid.Length != 0 && double.Parse(amountPaid) >= 0)
+            if(ValidationHandler.ValidateDecimalInput(amountPaid))
             {
                 validAmountPaid = true;
                 AmountPaidErrorLbl.Text = "";
@@ -145,37 +149,14 @@ namespace AyuboDrive.Forms
                     RentalBookingIDCmbBox.Text = $"Rental booking ID-{subArray[1].Text}";
                 }
 
-                DataRow customerRecord = _queryHandler.SelectQueryHandler("SELECT firstName, " +
+                DataRow customerRecord = s_queryHandler.SelectQueryHandler("SELECT firstName, " +
                     "lastName FROM customer WHERE customerID = '"+ subArray[2].Text + "'").Rows[0];
                 CustomerIDCmbBox.Text = $"{subArray[2].Text}-{customerRecord[0]} {customerRecord[1]}";
                 DateOfPaymentDTP.Text = subArray[3].Text;
                 AmountPaidTxtBox.Text = subArray[4].Text;
             }
         }
-
-        private void AddCellClickEvent()
-        {
-            try
-            {
-                foreach (Label[] cells in _dataViewer.GetLabels())
-                {
-                    foreach (Label cell in cells)
-                    {
-                        if (cell != null)
-                        {
-                            cell.Click += new EventHandler(Cell_Click);
-                            cell.MouseEnter += new EventHandler(Cell_MouseEnter);
-                            cell.MouseLeave += new EventHandler(Cell_MouseLeave);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessagePrinter.PrintToConsole(ex.ToString(), "An error occurred when adding the event handlers");
-            }
-        }
-
+        
         private void DisplayTable()
         {
             string query;
@@ -192,9 +173,9 @@ namespace AyuboDrive.Forms
             }
 
             TablePanel.Controls.Clear();
-            _dataViewer = new DataViewer(TablePanel, _queryHandler.SelectQueryHandler(query));
+            _dataViewer = new DataViewer(TablePanel, s_queryHandler.SelectQueryHandler(query));
             _dataViewer.DisplayTable();
-            AddCellClickEvent();
+            AddCellClickEvent(_dataViewer, Cell_Click, Cell_MouseEnter, Cell_MouseLeave);
         }
         //
         // Click event handlers
@@ -225,7 +206,21 @@ namespace AyuboDrive.Forms
 
                 customerID = CustomerIDCmbBox.Text.Split('-')[0];
 
-                Payment payment = new Payment(hireBookingID, rentalBookingID, customerID, dateOfPayment, double.Parse(amountPaid));
+                // Identify what table the record must be inserted into
+                // Make an instance of an approrpiate payment class (HirePayment or RentalPayment)
+                // and insert the new record
+                IDatabaseManipulator payment;
+                if(RentalBookingsRBtn.Checked)
+                {
+                    payment = new RentalPayment(rentalBookingID, customerID, 
+                        dateOfPayment, decimal.Parse(amountPaid));
+                }
+                else
+                {
+                    payment = new HirePayment(hireBookingID, customerID,
+                        dateOfPayment, decimal.Parse(amountPaid));
+                }
+
                 if (payment.Insert())
                 {
                     MessagePrinter.PrintToMessageBox("Payment details were successfully inserted", "Operation successful",
@@ -266,7 +261,18 @@ namespace AyuboDrive.Forms
                 }
 
                 customerID = CustomerIDCmbBox.Text.Split('-')[0];
-                Payment payment = new Payment(hireBookingID, rentalBookingID, customerID, dateOfPayment, double.Parse(amountPaid));
+                IDatabaseManipulator payment;
+                if (RentalBookingsRBtn.Checked)
+                {
+                    payment = new RentalPayment(rentalBookingID, customerID,
+                        dateOfPayment, decimal.Parse(amountPaid));
+                }
+                else
+                {
+                    payment = new HirePayment(hireBookingID, customerID,
+                        dateOfPayment, decimal.Parse(amountPaid));
+                }
+
                 if (payment.Update(_paymentID))
                 {
                     MessagePrinter.PrintToMessageBox("Payment details were successfully updated", "Operation successful",
@@ -421,7 +427,7 @@ namespace AyuboDrive.Forms
         private void FillHireBookingIDComboBox()
         {
             HireBookingIDCmbBox.Items.Clear();
-            foreach (DataRow row in _queryHandler.SelectQueryHandler("SELECT bookingID FROM hireBooking").Rows)
+            foreach (DataRow row in s_queryHandler.SelectQueryHandler("SELECT bookingID FROM hireBooking").Rows)
             {
                 HireBookingIDCmbBox.Items.Add($"Hire booking ID-{row[0]}");
             }
@@ -431,7 +437,7 @@ namespace AyuboDrive.Forms
         private void FillCustomerIDComboBox()
         {
             HireBookingIDCmbBox.Items.Clear();
-            foreach (DataRow row in _queryHandler.SelectQueryHandler("SELECT customerID, firstName, lastName FROM customer").Rows)
+            foreach (DataRow row in s_queryHandler.SelectQueryHandler("SELECT customerID, firstName, lastName FROM customer").Rows)
             {
                 CustomerIDCmbBox.Items.Add($"{row[0]}-{row[1]} {row[2]}");
             }
@@ -440,7 +446,7 @@ namespace AyuboDrive.Forms
         private void FillRentalBookingIDComboBox()
         {
             RentalBookingIDCmbBox.Items.Clear();
-            foreach (DataRow row in _queryHandler.SelectQueryHandler("SELECT bookingID FROM rentalBooking").Rows)
+            foreach (DataRow row in s_queryHandler.SelectQueryHandler("SELECT bookingID FROM rentalBooking").Rows)
             {
                 RentalBookingIDCmbBox.Items.Add($"Rental booking ID-{row[0]}");
             }
@@ -484,9 +490,7 @@ namespace AyuboDrive.Forms
         //
         private void PaymentManagementForm_Load(object sender, EventArgs e)
         {
-            DisplayTable();
-            FillRentalBookingIDComboBox();
-            FillCustomerIDComboBox();
+
         }
         //
         // Textbox event handler
@@ -499,6 +503,17 @@ namespace AyuboDrive.Forms
         private void AmountPaidTxtBox_Enter(object sender, EventArgs e)
         {
             AmountPaidTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
+        }
+        // 
+        // Text box key press event handler
+        //
+        private void NumberOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !e.KeyChar.Equals('.'))
+            {
+                // Discard the character by setting handled to true
+                e.Handled = true;
+            }
         }
     }
 }

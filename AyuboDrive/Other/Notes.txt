@@ -29,44 +29,38 @@ Items to store in the configuration file:
 	- connection string
 
 - Forms to be built:
-	- Account management 
-	- Vehicle management:
-		Inputs: 
-			VIN
-			manufacturer, 
-			model, 
-			vehicleTypeID, 
-			seating capacity, 
-			mileage(Km travelled), 
-			gearbox type, 
-			torque, 
-			Horsepower,
-			Trunk volume,
-			Color,
-			dailyRate,
-			weeklyRate,
-			Monthly rate,
-			Overnight rate,
-			standard package rate,
-			imagePath
-
-	- Driver management
 	
-	- Rental booking Insertion -> On hold
-	- Rental booking viewing  -> On hold
-	- Long tour booking Insertion  -> On hold
-	- Long tour booking viewing  -> On hold
-	- Day tour booking Insertion  -> On hold
-	- Day tour booking viewing  -> On hold
 	
 - Completed forms:
 	- Login
 	- Account registration
-	- Dashboard
 	- Vehicle type management
 	- Customer management
 	- Payment management
 	- Package type management 
+	- Vehicle management:
+	- Account management 
+	- Dashboard	
+	- Driver management
+	- Rental booking management
+	- Long tour booking management
+	- Day tour booking management
+	- Return form
 
 
 ** Update the vehicle mileage after its returned from a rent or hire
+** Make sure the cell click event can handle problems when there aren't any records.
+
+
+
+Bugs:
+	- Allow a referenced booking to be deleted.
+	- Make sure that the update function does not require the NIC or contact number to be different. (Driver management form)
+	- Send the secret key to the user's email address as a way of verifying it.
+	- Store the user's email address in the database
+	- Make a separate account for AyuboDrive
+	- Allow for spaces in the char only restriction for text boxes
+	- Allow numbers and characters to be entered for the model name
+	- Fix the issue with the selected row in the customer management form
+	- Fix the dashboard null issue in the account management form
+	

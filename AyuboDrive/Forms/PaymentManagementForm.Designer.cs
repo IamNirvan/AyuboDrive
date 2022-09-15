@@ -167,12 +167,12 @@
             // 
             this.RentalBookingIDCmbBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.RentalBookingIDCmbBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RentalBookingIDCmbBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.RentalBookingIDCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F);
             this.RentalBookingIDCmbBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.RentalBookingIDCmbBox.FormattingEnabled = true;
-            this.RentalBookingIDCmbBox.Location = new System.Drawing.Point(25, 32);
+            this.RentalBookingIDCmbBox.Location = new System.Drawing.Point(25, 29);
             this.RentalBookingIDCmbBox.Name = "RentalBookingIDCmbBox";
-            this.RentalBookingIDCmbBox.Size = new System.Drawing.Size(188, 23);
+            this.RentalBookingIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.RentalBookingIDCmbBox.TabIndex = 52;
             // 
             // RentalBookingIDPnl
@@ -195,11 +195,11 @@
             // 
             this.HireBookingIDCmbBox.BackColor = System.Drawing.SystemColors.Window;
             this.HireBookingIDCmbBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.HireBookingIDCmbBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.HireBookingIDCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HireBookingIDCmbBox.FormattingEnabled = true;
-            this.HireBookingIDCmbBox.Location = new System.Drawing.Point(25, 33);
+            this.HireBookingIDCmbBox.Location = new System.Drawing.Point(25, 29);
             this.HireBookingIDCmbBox.Name = "HireBookingIDCmbBox";
-            this.HireBookingIDCmbBox.Size = new System.Drawing.Size(188, 23);
+            this.HireBookingIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.HireBookingIDCmbBox.TabIndex = 51;
             // 
             // RentalBookingIDLbl
@@ -241,22 +241,22 @@
             this.DateOfPaymentDTP.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.DateOfPaymentDTP.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.DateOfPaymentDTP.CalendarTitleForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.DateOfPaymentDTP.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.DateOfPaymentDTP.Font = new System.Drawing.Font("Carlito", 11.25F);
             this.DateOfPaymentDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DateOfPaymentDTP.Location = new System.Drawing.Point(25, 171);
             this.DateOfPaymentDTP.Name = "DateOfPaymentDTP";
-            this.DateOfPaymentDTP.Size = new System.Drawing.Size(188, 23);
+            this.DateOfPaymentDTP.Size = new System.Drawing.Size(188, 26);
             this.DateOfPaymentDTP.TabIndex = 54;
             // 
             // CustomerIDCmbBox
             // 
             this.CustomerIDCmbBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.CustomerIDCmbBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CustomerIDCmbBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.CustomerIDCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F);
             this.CustomerIDCmbBox.FormattingEnabled = true;
-            this.CustomerIDCmbBox.Location = new System.Drawing.Point(25, 103);
+            this.CustomerIDCmbBox.Location = new System.Drawing.Point(25, 101);
             this.CustomerIDCmbBox.Name = "CustomerIDCmbBox";
-            this.CustomerIDCmbBox.Size = new System.Drawing.Size(188, 23);
+            this.CustomerIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.CustomerIDCmbBox.TabIndex = 53;
             // 
             // HireBookingIDErrorLbl
@@ -283,13 +283,14 @@
             // 
             this.AmountPaidTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.AmountPaidTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.AmountPaidTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.AmountPaidTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F);
             this.AmountPaidTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
             this.AmountPaidTxtBox.Location = new System.Drawing.Point(25, 246);
             this.AmountPaidTxtBox.Name = "AmountPaidTxtBox";
-            this.AmountPaidTxtBox.Size = new System.Drawing.Size(188, 16);
+            this.AmountPaidTxtBox.Size = new System.Drawing.Size(188, 19);
             this.AmountPaidTxtBox.TabIndex = 47;
             this.AmountPaidTxtBox.Enter += new System.EventHandler(this.AmountPaidTxtBox_Enter);
+            this.AmountPaidTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
             this.AmountPaidTxtBox.Leave += new System.EventHandler(this.AmountPaidTxtBox_Leave);
             // 
             // DateOfPaymentPnl

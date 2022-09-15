@@ -31,8 +31,12 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.TablePanel = new System.Windows.Forms.Panel();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
+            this.GenderCmbBox = new System.Windows.Forms.ComboBox();
+            this.GenderPnl = new System.Windows.Forms.Panel();
             this.ContactNumberPnl = new System.Windows.Forms.Panel();
+            this.GenderLbl = new System.Windows.Forms.Label();
             this.LastNamePnl = new System.Windows.Forms.Panel();
+            this.GenderErrLbl = new System.Windows.Forms.Label();
             this.FirstNamePnl = new System.Windows.Forms.Panel();
             this.NICPnl = new System.Windows.Forms.Panel();
             this.NICTxtBox = new System.Windows.Forms.TextBox();
@@ -74,9 +78,14 @@
             // 
             // ManipulationPanel
             // 
+            this.ManipulationPanel.AutoScroll = true;
             this.ManipulationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.ManipulationPanel.Controls.Add(this.GenderCmbBox);
+            this.ManipulationPanel.Controls.Add(this.GenderPnl);
             this.ManipulationPanel.Controls.Add(this.ContactNumberPnl);
+            this.ManipulationPanel.Controls.Add(this.GenderLbl);
             this.ManipulationPanel.Controls.Add(this.LastNamePnl);
+            this.ManipulationPanel.Controls.Add(this.GenderErrLbl);
             this.ManipulationPanel.Controls.Add(this.FirstNamePnl);
             this.ManipulationPanel.Controls.Add(this.NICPnl);
             this.ManipulationPanel.Controls.Add(this.NICTxtBox);
@@ -91,33 +100,73 @@
             this.ManipulationPanel.Controls.Add(this.LastNameLbl);
             this.ManipulationPanel.Controls.Add(this.NICErrorLbl);
             this.ManipulationPanel.Controls.Add(this.NICLbl);
-            this.ManipulationPanel.Location = new System.Drawing.Point(488, 36);
+            this.ManipulationPanel.Location = new System.Drawing.Point(488, 72);
             this.ManipulationPanel.Name = "ManipulationPanel";
-            this.ManipulationPanel.Size = new System.Drawing.Size(250, 291);
+            this.ManipulationPanel.Size = new System.Drawing.Size(250, 255);
             this.ManipulationPanel.TabIndex = 32;
+            // 
+            // GenderCmbBox
+            // 
+            this.GenderCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F);
+            this.GenderCmbBox.FormattingEnabled = true;
+            this.GenderCmbBox.Location = new System.Drawing.Point(13, 305);
+            this.GenderCmbBox.Name = "GenderCmbBox";
+            this.GenderCmbBox.Size = new System.Drawing.Size(205, 26);
+            this.GenderCmbBox.TabIndex = 47;
+            // 
+            // GenderPnl
+            // 
+            this.GenderPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.GenderPnl.Location = new System.Drawing.Point(13, 332);
+            this.GenderPnl.Name = "GenderPnl";
+            this.GenderPnl.Size = new System.Drawing.Size(205, 2);
+            this.GenderPnl.TabIndex = 46;
             // 
             // ContactNumberPnl
             // 
             this.ContactNumberPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.ContactNumberPnl.Location = new System.Drawing.Point(13, 261);
             this.ContactNumberPnl.Name = "ContactNumberPnl";
-            this.ContactNumberPnl.Size = new System.Drawing.Size(225, 2);
+            this.ContactNumberPnl.Size = new System.Drawing.Size(205, 2);
             this.ContactNumberPnl.TabIndex = 42;
+            // 
+            // GenderLbl
+            // 
+            this.GenderLbl.AutoSize = true;
+            this.GenderLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenderLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
+            this.GenderLbl.Location = new System.Drawing.Point(10, 292);
+            this.GenderLbl.Name = "GenderLbl";
+            this.GenderLbl.Size = new System.Drawing.Size(46, 15);
+            this.GenderLbl.TabIndex = 44;
+            this.GenderLbl.Text = "Gender";
             // 
             // LastNamePnl
             // 
             this.LastNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.LastNamePnl.Location = new System.Drawing.Point(13, 190);
             this.LastNamePnl.Name = "LastNamePnl";
-            this.LastNamePnl.Size = new System.Drawing.Size(225, 2);
+            this.LastNamePnl.Size = new System.Drawing.Size(205, 2);
             this.LastNamePnl.TabIndex = 41;
+            // 
+            // GenderErrLbl
+            // 
+            this.GenderErrLbl.AutoSize = true;
+            this.GenderErrLbl.BackColor = System.Drawing.Color.Transparent;
+            this.GenderErrLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenderErrLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.GenderErrLbl.Location = new System.Drawing.Point(10, 337);
+            this.GenderErrLbl.Name = "GenderErrLbl";
+            this.GenderErrLbl.Size = new System.Drawing.Size(9, 13);
+            this.GenderErrLbl.TabIndex = 45;
+            this.GenderErrLbl.Text = " ";
             // 
             // FirstNamePnl
             // 
             this.FirstNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.FirstNamePnl.Location = new System.Drawing.Point(13, 123);
             this.FirstNamePnl.Name = "FirstNamePnl";
-            this.FirstNamePnl.Size = new System.Drawing.Size(225, 2);
+            this.FirstNamePnl.Size = new System.Drawing.Size(205, 2);
             this.FirstNamePnl.TabIndex = 40;
             // 
             // NICPnl
@@ -125,60 +174,64 @@
             this.NICPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.NICPnl.Location = new System.Drawing.Point(13, 54);
             this.NICPnl.Name = "NICPnl";
-            this.NICPnl.Size = new System.Drawing.Size(225, 2);
+            this.NICPnl.Size = new System.Drawing.Size(205, 2);
             this.NICPnl.TabIndex = 39;
             // 
             // NICTxtBox
             // 
             this.NICTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.NICTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.NICTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.NICTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NICTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
             this.NICTxtBox.Location = new System.Drawing.Point(13, 32);
             this.NICTxtBox.Name = "NICTxtBox";
-            this.NICTxtBox.Size = new System.Drawing.Size(225, 16);
+            this.NICTxtBox.Size = new System.Drawing.Size(205, 19);
             this.NICTxtBox.TabIndex = 1;
-            this.NICTxtBox.Enter += new System.EventHandler(this.NICTxtBox_Enter);
-            this.NICTxtBox.Leave += new System.EventHandler(this.NICTxtBox_Leave);
+            this.NICTxtBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.NICTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOrCharacterOnlyTextBox_KeyPress);
+            this.NICTxtBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // FirstNameTxtBox
             // 
             this.FirstNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.FirstNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.FirstNameTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.FirstNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FirstNameTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
             this.FirstNameTxtBox.Location = new System.Drawing.Point(13, 101);
             this.FirstNameTxtBox.Name = "FirstNameTxtBox";
-            this.FirstNameTxtBox.Size = new System.Drawing.Size(225, 16);
+            this.FirstNameTxtBox.Size = new System.Drawing.Size(205, 19);
             this.FirstNameTxtBox.TabIndex = 2;
-            this.FirstNameTxtBox.Enter += new System.EventHandler(this.FirstNameTxtBox_Enter);
-            this.FirstNameTxtBox.Leave += new System.EventHandler(this.FirstNameTxtBox_Leave);
+            this.FirstNameTxtBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.FirstNameTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CharacterOnlyTextBox_KeyPress);
+            this.FirstNameTxtBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // LastNameTxtBox
             // 
             this.LastNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.LastNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LastNameTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.LastNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LastNameTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
             this.LastNameTxtBox.Location = new System.Drawing.Point(13, 168);
             this.LastNameTxtBox.Name = "LastNameTxtBox";
-            this.LastNameTxtBox.Size = new System.Drawing.Size(225, 16);
+            this.LastNameTxtBox.Size = new System.Drawing.Size(205, 19);
             this.LastNameTxtBox.TabIndex = 3;
-            this.LastNameTxtBox.Enter += new System.EventHandler(this.LastNameTxtBox_Enter);
-            this.LastNameTxtBox.Leave += new System.EventHandler(this.LastNameTxtBox_Leave);
+            this.LastNameTxtBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.LastNameTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CharacterOnlyTextBox_KeyPress);
+            this.LastNameTxtBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // ContactNumberTxtBox
             // 
             this.ContactNumberTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.ContactNumberTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ContactNumberTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.ContactNumberTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactNumberTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
             this.ContactNumberTxtBox.Location = new System.Drawing.Point(13, 239);
             this.ContactNumberTxtBox.Name = "ContactNumberTxtBox";
-            this.ContactNumberTxtBox.Size = new System.Drawing.Size(225, 16);
+            this.ContactNumberTxtBox.Size = new System.Drawing.Size(205, 19);
             this.ContactNumberTxtBox.TabIndex = 4;
-            this.ContactNumberTxtBox.Enter += new System.EventHandler(this.ContactNumberTxtBox_Enter);
-            this.ContactNumberTxtBox.Leave += new System.EventHandler(this.ContactNumberTxtBox_Leave);
+            this.ContactNumberTxtBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.ContactNumberTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.ContactNumberTxtBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // FirstNameErrorLbl
             // 
@@ -349,16 +402,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(750, 465);
+            this.Controls.Add(this.ManipulationPanel);
             this.Controls.Add(this.TitleLbl);
             this.Controls.Add(this.ButtonsPanel);
-            this.Controls.Add(this.ManipulationPanel);
             this.Controls.Add(this.TablePanel);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CustomerManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CustomerManagementForm";
-            this.Load += new System.EventHandler(this.CustomerManagementForm_Load);
             this.ManipulationPanel.ResumeLayout(false);
             this.ManipulationPanel.PerformLayout();
             this.ButtonsPanel.ResumeLayout(false);
@@ -393,5 +445,9 @@
         private System.Windows.Forms.Panel FirstNamePnl;
         private System.Windows.Forms.Panel ContactNumberPnl;
         private System.Windows.Forms.Panel LastNamePnl;
+        private System.Windows.Forms.ComboBox GenderCmbBox;
+        private System.Windows.Forms.Panel GenderPnl;
+        private System.Windows.Forms.Label GenderLbl;
+        private System.Windows.Forms.Label GenderErrLbl;
     }
 }

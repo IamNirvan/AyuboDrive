@@ -13,7 +13,7 @@ namespace AyuboDrive
     /// <summary>
     /// This class has functions that handle the select, insert, delete and update operations.
     /// </summary>
-    class QueryHandler
+    public class QueryHandler
     {
         private readonly string _connectionString = ConfigurationHandler.GetConnectionString();
         

@@ -26,19 +26,19 @@ namespace AyuboDrive
         private readonly static QueryHandler s_queryHandler = new QueryHandler();
 
         public HireBooking(string vehicleTypeID, string vehicleID, string driverID, 
-            string customerID, string packageID, string hireStatus, string hireType, 
-            string startDate, string endDate, string paymentStatus)
+            string customerID, string packageID, BookingStatus hireStatus, HireType hireType, 
+            DateTime startDate, DateTime endDate, PaymentStatus paymentStatus)
         {
             _vehicleTypeID = vehicleTypeID;
             _vehicleID = vehicleID;
             _driverID = driverID;
             _customerID = customerID;
             _packageID = packageID;
-            _hireStatus = hireStatus;
-            _hireType = hireType;
-            _startDate = startDate;
-            _endDate = endDate;
-            _paymentStatus = paymentStatus;
+            _hireStatus = hireStatus.ToString().ToLower();
+            _hireType = hireType.ToString().ToLower();
+            _startDate = startDate.ToString("yyyy/MM/dd");
+            _endDate = endDate.ToString("yyyy/MM/dd");
+            _paymentStatus = paymentStatus.ToString().ToLower();
         }      
         
         public bool Insert()

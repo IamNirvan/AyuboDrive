@@ -100,13 +100,15 @@
             this.VehicleTypeIDErrorLbl = new System.Windows.Forms.Label();
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.UpdateBtn = new System.Windows.Forms.Button();
-            this.DataPnl = new System.Windows.Forms.Panel();
+            this.TablePnl = new System.Windows.Forms.Panel();
+            this.VehiclePnl = new System.Windows.Forms.Panel();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
             this.InsertBtn = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.VehiclesViewRBtn = new System.Windows.Forms.RadioButton();
             this.TableViewRBtn = new System.Windows.Forms.RadioButton();
+            this.ImagePathBtn = new AyuboDrive.Utility.CustomButton();
             this.ManipulationPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -127,12 +129,15 @@
             // 
             this.MileageTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.MileageTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MileageTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.MileageTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MileageTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.MileageTxtBox.Location = new System.Drawing.Point(23, 388);
+            this.MileageTxtBox.Location = new System.Drawing.Point(23, 387);
             this.MileageTxtBox.Name = "MileageTxtBox";
-            this.MileageTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.MileageTxtBox.TabIndex = 64;
+            this.MileageTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.MileageTxtBox.TabIndex = 5;
+            this.MileageTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.MileageTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.MileageTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // MileagePnl
             // 
@@ -157,6 +162,7 @@
             // 
             this.ManipulationPanel.AutoScroll = true;
             this.ManipulationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.ManipulationPanel.Controls.Add(this.ImagePathBtn);
             this.ManipulationPanel.Controls.Add(this.VINTxtBox);
             this.ManipulationPanel.Controls.Add(this.VINPnl);
             this.ManipulationPanel.Controls.Add(this.VINLbl);
@@ -227,19 +233,22 @@
             this.ManipulationPanel.Controls.Add(this.VehicleTypeIDErrorLbl);
             this.ManipulationPanel.Location = new System.Drawing.Point(705, 76);
             this.ManipulationPanel.Name = "ManipulationPanel";
-            this.ManipulationPanel.Size = new System.Drawing.Size(250, 255);
+            this.ManipulationPanel.Size = new System.Drawing.Size(250, 283);
             this.ManipulationPanel.TabIndex = 69;
             // 
             // VINTxtBox
             // 
             this.VINTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.VINTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.VINTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.VINTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VINTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.VINTxtBox.Location = new System.Drawing.Point(23, 110);
+            this.VINTxtBox.Location = new System.Drawing.Point(23, 109);
             this.VINTxtBox.Name = "VINTxtBox";
-            this.VINTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.VINTxtBox.TabIndex = 114;
+            this.VINTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.VINTxtBox.TabIndex = 1;
+            this.VINTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.VINTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOrCharacterOnlyTextBox_KeyPress);
+            this.VINTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // VINPnl
             // 
@@ -276,36 +285,39 @@
             // 
             this.GearBoxCmbBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.GearBoxCmbBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GearBoxCmbBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.GearBoxCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GearBoxCmbBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.GearBoxCmbBox.FormattingEnabled = true;
-            this.GearBoxCmbBox.Location = new System.Drawing.Point(23, 452);
+            this.GearBoxCmbBox.Location = new System.Drawing.Point(23, 449);
             this.GearBoxCmbBox.Name = "GearBoxCmbBox";
-            this.GearBoxCmbBox.Size = new System.Drawing.Size(188, 23);
-            this.GearBoxCmbBox.TabIndex = 110;
+            this.GearBoxCmbBox.Size = new System.Drawing.Size(188, 26);
+            this.GearBoxCmbBox.TabIndex = 6;
             // 
             // VehicleTypeIDCmbBox
             // 
             this.VehicleTypeIDCmbBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.VehicleTypeIDCmbBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VehicleTypeIDCmbBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.VehicleTypeIDCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VehicleTypeIDCmbBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.VehicleTypeIDCmbBox.FormattingEnabled = true;
-            this.VehicleTypeIDCmbBox.Location = new System.Drawing.Point(23, 33);
+            this.VehicleTypeIDCmbBox.Location = new System.Drawing.Point(23, 30);
             this.VehicleTypeIDCmbBox.Name = "VehicleTypeIDCmbBox";
-            this.VehicleTypeIDCmbBox.Size = new System.Drawing.Size(188, 23);
-            this.VehicleTypeIDCmbBox.TabIndex = 109;
+            this.VehicleTypeIDCmbBox.Size = new System.Drawing.Size(188, 26);
+            this.VehicleTypeIDCmbBox.TabIndex = 0;
             // 
             // StandardPackageRateTxtBox
             // 
             this.StandardPackageRateTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.StandardPackageRateTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.StandardPackageRateTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.StandardPackageRateTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StandardPackageRateTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.StandardPackageRateTxtBox.Location = new System.Drawing.Point(24, 1103);
+            this.StandardPackageRateTxtBox.Location = new System.Drawing.Point(24, 1102);
             this.StandardPackageRateTxtBox.Name = "StandardPackageRateTxtBox";
-            this.StandardPackageRateTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.StandardPackageRateTxtBox.TabIndex = 108;
+            this.StandardPackageRateTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.StandardPackageRateTxtBox.TabIndex = 15;
+            this.StandardPackageRateTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.StandardPackageRateTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.StandardPackageRateTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // StandardPackageRatePnl
             // 
@@ -342,12 +354,15 @@
             // 
             this.OvernightRateTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.OvernightRateTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.OvernightRateTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.OvernightRateTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OvernightRateTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.OvernightRateTxtBox.Location = new System.Drawing.Point(24, 1031);
+            this.OvernightRateTxtBox.Location = new System.Drawing.Point(24, 1030);
             this.OvernightRateTxtBox.Name = "OvernightRateTxtBox";
-            this.OvernightRateTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.OvernightRateTxtBox.TabIndex = 104;
+            this.OvernightRateTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.OvernightRateTxtBox.TabIndex = 14;
+            this.OvernightRateTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.OvernightRateTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.OvernightRateTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // OvernightRatePnl
             // 
@@ -384,12 +399,15 @@
             // 
             this.MonthlyRateTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.MonthlyRateTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MonthlyRateTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.MonthlyRateTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MonthlyRateTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.MonthlyRateTxtBox.Location = new System.Drawing.Point(24, 959);
+            this.MonthlyRateTxtBox.Location = new System.Drawing.Point(24, 958);
             this.MonthlyRateTxtBox.Name = "MonthlyRateTxtBox";
-            this.MonthlyRateTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.MonthlyRateTxtBox.TabIndex = 100;
+            this.MonthlyRateTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.MonthlyRateTxtBox.TabIndex = 13;
+            this.MonthlyRateTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.MonthlyRateTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.MonthlyRateTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // MonthlyRatePnl
             // 
@@ -426,12 +444,15 @@
             // 
             this.WeeklyRateTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.WeeklyRateTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WeeklyRateTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.WeeklyRateTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WeeklyRateTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.WeeklyRateTxtBox.Location = new System.Drawing.Point(24, 889);
+            this.WeeklyRateTxtBox.Location = new System.Drawing.Point(24, 888);
             this.WeeklyRateTxtBox.Name = "WeeklyRateTxtBox";
-            this.WeeklyRateTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.WeeklyRateTxtBox.TabIndex = 96;
+            this.WeeklyRateTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.WeeklyRateTxtBox.TabIndex = 12;
+            this.WeeklyRateTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.WeeklyRateTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.WeeklyRateTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // WeeklyRatePnl
             // 
@@ -468,12 +489,15 @@
             // 
             this.DailyRateTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.DailyRateTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DailyRateTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.DailyRateTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DailyRateTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.DailyRateTxtBox.Location = new System.Drawing.Point(24, 817);
+            this.DailyRateTxtBox.Location = new System.Drawing.Point(24, 816);
             this.DailyRateTxtBox.Name = "DailyRateTxtBox";
-            this.DailyRateTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.DailyRateTxtBox.TabIndex = 92;
+            this.DailyRateTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.DailyRateTxtBox.TabIndex = 11;
+            this.DailyRateTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.DailyRateTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.DailyRateTxtBox.Leave += new System.EventHandler(this.TxtBox_Enter);
             // 
             // DailyRatePnl
             // 
@@ -510,12 +534,15 @@
             // 
             this.ColorTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.ColorTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ColorTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.ColorTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ColorTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.ColorTxtBox.Location = new System.Drawing.Point(24, 745);
+            this.ColorTxtBox.Location = new System.Drawing.Point(24, 744);
             this.ColorTxtBox.Name = "ColorTxtBox";
-            this.ColorTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.ColorTxtBox.TabIndex = 88;
+            this.ColorTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.ColorTxtBox.TabIndex = 10;
+            this.ColorTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.ColorTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CharacterOnlyTextBox_KeyPress);
+            this.ColorTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // ColorPnl
             // 
@@ -552,12 +579,15 @@
             // 
             this.TrunkVolumeTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.TrunkVolumeTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TrunkVolumeTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.TrunkVolumeTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TrunkVolumeTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.TrunkVolumeTxtBox.Location = new System.Drawing.Point(24, 674);
+            this.TrunkVolumeTxtBox.Location = new System.Drawing.Point(24, 673);
             this.TrunkVolumeTxtBox.Name = "TrunkVolumeTxtBox";
-            this.TrunkVolumeTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.TrunkVolumeTxtBox.TabIndex = 84;
+            this.TrunkVolumeTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.TrunkVolumeTxtBox.TabIndex = 9;
+            this.TrunkVolumeTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.TrunkVolumeTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.TrunkVolumeTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // TrunkVolumePnl
             // 
@@ -594,12 +624,15 @@
             // 
             this.HorsepowerTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.HorsepowerTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.HorsepowerTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.HorsepowerTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HorsepowerTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.HorsepowerTxtBox.Location = new System.Drawing.Point(24, 602);
+            this.HorsepowerTxtBox.Location = new System.Drawing.Point(24, 601);
             this.HorsepowerTxtBox.Name = "HorsepowerTxtBox";
-            this.HorsepowerTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.HorsepowerTxtBox.TabIndex = 80;
+            this.HorsepowerTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.HorsepowerTxtBox.TabIndex = 8;
+            this.HorsepowerTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.HorsepowerTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.HorsepowerTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // HorsepowerPnl
             // 
@@ -636,12 +669,15 @@
             // 
             this.TorqueTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.TorqueTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TorqueTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.TorqueTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TorqueTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.TorqueTxtBox.Location = new System.Drawing.Point(23, 531);
+            this.TorqueTxtBox.Location = new System.Drawing.Point(23, 530);
             this.TorqueTxtBox.Name = "TorqueTxtBox";
-            this.TorqueTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.TorqueTxtBox.TabIndex = 76;
+            this.TorqueTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.TorqueTxtBox.TabIndex = 7;
+            this.TorqueTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.TorqueTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.TorqueTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // TorquePnl
             // 
@@ -709,19 +745,21 @@
             // 
             this.ImagePathTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.ImagePathTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ImagePathTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.ImagePathTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImagePathTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.ImagePathTxtBox.Location = new System.Drawing.Point(24, 1176);
+            this.ImagePathTxtBox.Location = new System.Drawing.Point(24, 1175);
             this.ImagePathTxtBox.Name = "ImagePathTxtBox";
-            this.ImagePathTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.ImagePathTxtBox.TabIndex = 68;
+            this.ImagePathTxtBox.Size = new System.Drawing.Size(159, 19);
+            this.ImagePathTxtBox.TabIndex = 16;
+            this.ImagePathTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.ImagePathTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // ImagePathPnl
             // 
             this.ImagePathPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.ImagePathPnl.Location = new System.Drawing.Point(24, 1193);
             this.ImagePathPnl.Name = "ImagePathPnl";
-            this.ImagePathPnl.Size = new System.Drawing.Size(188, 2);
+            this.ImagePathPnl.Size = new System.Drawing.Size(159, 2);
             this.ImagePathPnl.TabIndex = 67;
             // 
             // ImagePathLbl
@@ -763,12 +801,15 @@
             // 
             this.SeatingCapacityTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.SeatingCapacityTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.SeatingCapacityTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.SeatingCapacityTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SeatingCapacityTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.SeatingCapacityTxtBox.Location = new System.Drawing.Point(23, 318);
+            this.SeatingCapacityTxtBox.Location = new System.Drawing.Point(23, 317);
             this.SeatingCapacityTxtBox.Name = "SeatingCapacityTxtBox";
-            this.SeatingCapacityTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.SeatingCapacityTxtBox.TabIndex = 60;
+            this.SeatingCapacityTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.SeatingCapacityTxtBox.TabIndex = 4;
+            this.SeatingCapacityTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.SeatingCapacityTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnlyTextBox_KeyPress);
+            this.SeatingCapacityTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // SeatingCapacityPnl
             // 
@@ -805,12 +846,15 @@
             // 
             this.ModelTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.ModelTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ModelTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.ModelTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModelTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.ModelTxtBox.Location = new System.Drawing.Point(23, 249);
+            this.ModelTxtBox.Location = new System.Drawing.Point(23, 248);
             this.ModelTxtBox.Name = "ModelTxtBox";
-            this.ModelTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.ModelTxtBox.TabIndex = 56;
+            this.ModelTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.ModelTxtBox.TabIndex = 3;
+            this.ModelTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.ModelTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CharacterOnlyTextBox_KeyPress);
+            this.ModelTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // ModelPnl
             // 
@@ -847,12 +891,15 @@
             // 
             this.ManufacturerTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.ManufacturerTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ManufacturerTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.ManufacturerTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ManufacturerTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.ManufacturerTxtBox.Location = new System.Drawing.Point(23, 180);
+            this.ManufacturerTxtBox.Location = new System.Drawing.Point(23, 179);
             this.ManufacturerTxtBox.Name = "ManufacturerTxtBox";
-            this.ManufacturerTxtBox.Size = new System.Drawing.Size(188, 16);
-            this.ManufacturerTxtBox.TabIndex = 52;
+            this.ManufacturerTxtBox.Size = new System.Drawing.Size(188, 19);
+            this.ManufacturerTxtBox.TabIndex = 2;
+            this.ManufacturerTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.ManufacturerTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CharacterOnlyTextBox_KeyPress);
+            this.ManufacturerTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // ManufacturerPnl
             // 
@@ -927,7 +974,7 @@
             this.DeleteBtn.Location = new System.Drawing.Point(13, 66);
             this.DeleteBtn.Name = "DeleteBtn";
             this.DeleteBtn.Size = new System.Drawing.Size(129, 45);
-            this.DeleteBtn.TabIndex = 7;
+            this.DeleteBtn.TabIndex = 19;
             this.DeleteBtn.Text = "Delete";
             this.DeleteBtn.UseVisualStyleBackColor = false;
             this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
@@ -944,19 +991,28 @@
             this.UpdateBtn.Location = new System.Drawing.Point(13, 12);
             this.UpdateBtn.Name = "UpdateBtn";
             this.UpdateBtn.Size = new System.Drawing.Size(129, 45);
-            this.UpdateBtn.TabIndex = 6;
+            this.UpdateBtn.TabIndex = 18;
             this.UpdateBtn.Text = "Update";
             this.UpdateBtn.UseVisualStyleBackColor = false;
             this.UpdateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
             // 
-            // DataPnl
+            // TablePnl
             // 
-            this.DataPnl.AutoScroll = true;
-            this.DataPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.DataPnl.Location = new System.Drawing.Point(9, 76);
-            this.DataPnl.Name = "DataPnl";
-            this.DataPnl.Size = new System.Drawing.Size(690, 384);
-            this.DataPnl.TabIndex = 67;
+            this.TablePnl.AutoScroll = true;
+            this.TablePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.TablePnl.Location = new System.Drawing.Point(9, 76);
+            this.TablePnl.Name = "TablePnl";
+            this.TablePnl.Size = new System.Drawing.Size(690, 384);
+            this.TablePnl.TabIndex = 67;
+            // 
+            // VehiclePnl
+            // 
+            this.VehiclePnl.AutoScroll = true;
+            this.VehiclePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.VehiclePnl.Location = new System.Drawing.Point(9, 76);
+            this.VehiclePnl.Name = "VehiclePnl";
+            this.VehiclePnl.Size = new System.Drawing.Size(690, 412);
+            this.VehiclePnl.TabIndex = 68;
             // 
             // ButtonsPanel
             // 
@@ -964,7 +1020,7 @@
             this.ButtonsPanel.Controls.Add(this.DeleteBtn);
             this.ButtonsPanel.Controls.Add(this.UpdateBtn);
             this.ButtonsPanel.Controls.Add(this.InsertBtn);
-            this.ButtonsPanel.Location = new System.Drawing.Point(705, 337);
+            this.ButtonsPanel.Location = new System.Drawing.Point(705, 365);
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(250, 123);
             this.ButtonsPanel.TabIndex = 70;
@@ -979,7 +1035,7 @@
             this.InsertBtn.Location = new System.Drawing.Point(148, 12);
             this.InsertBtn.Name = "InsertBtn";
             this.InsertBtn.Size = new System.Drawing.Size(90, 100);
-            this.InsertBtn.TabIndex = 5;
+            this.InsertBtn.TabIndex = 17;
             this.InsertBtn.Text = "Insert";
             this.InsertBtn.UseVisualStyleBackColor = false;
             this.InsertBtn.Click += new System.EventHandler(this.InsertBtn_Click);
@@ -1013,7 +1069,7 @@
             this.VehiclesViewRBtn.Location = new System.Drawing.Point(25, 8);
             this.VehiclesViewRBtn.Name = "VehiclesViewRBtn";
             this.VehiclesViewRBtn.Size = new System.Drawing.Size(89, 17);
-            this.VehiclesViewRBtn.TabIndex = 1;
+            this.VehiclesViewRBtn.TabIndex = 20;
             this.VehiclesViewRBtn.TabStop = true;
             this.VehiclesViewRBtn.Text = "Vehicles view";
             this.VehiclesViewRBtn.UseVisualStyleBackColor = true;
@@ -1028,21 +1084,40 @@
             this.TableViewRBtn.Location = new System.Drawing.Point(132, 8);
             this.TableViewRBtn.Name = "TableViewRBtn";
             this.TableViewRBtn.Size = new System.Drawing.Size(76, 17);
-            this.TableViewRBtn.TabIndex = 0;
+            this.TableViewRBtn.TabIndex = 21;
             this.TableViewRBtn.Text = "Table view";
             this.TableViewRBtn.UseVisualStyleBackColor = true;
             this.TableViewRBtn.CheckedChanged += new System.EventHandler(this.TableViewRBtn_CheckedChanged);
+            // 
+            // ImagePathBtn
+            // 
+            this.ImagePathBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.ImagePathBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.SearchBlack16;
+            this.ImagePathBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ImagePathBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ImagePathBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.ImagePathBtn.FlatAppearance.BorderSize = 0;
+            this.ImagePathBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ImagePathBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImagePathBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.ImagePathBtn.Location = new System.Drawing.Point(189, 1172);
+            this.ImagePathBtn.Name = "ImagePathBtn";
+            this.ImagePathBtn.Size = new System.Drawing.Size(25, 25);
+            this.ImagePathBtn.TabIndex = 114;
+            this.ImagePathBtn.UseVisualStyleBackColor = false;
+            this.ImagePathBtn.Click += new System.EventHandler(this.ImagePathBtn_Click);
             // 
             // VehicleManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(967, 470);
+            this.ClientSize = new System.Drawing.Size(967, 500);
+            this.Controls.Add(this.VehiclePnl);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.TitleLbl);
             this.Controls.Add(this.ManipulationPanel);
-            this.Controls.Add(this.DataPnl);
+            this.Controls.Add(this.TablePnl);
             this.Controls.Add(this.ButtonsPanel);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1085,7 +1160,7 @@
         private System.Windows.Forms.Label VehicleTypeIDErrorLbl;
         private System.Windows.Forms.Button DeleteBtn;
         private System.Windows.Forms.Button UpdateBtn;
-        private System.Windows.Forms.Panel DataPnl;
+        private System.Windows.Forms.Panel TablePnl;
         private System.Windows.Forms.Panel ButtonsPanel;
         private System.Windows.Forms.Button InsertBtn;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -1141,5 +1216,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton VehiclesViewRBtn;
         private System.Windows.Forms.RadioButton TableViewRBtn;
+        private System.Windows.Forms.Panel VehiclePnl;
+        private Utility.CustomButton ImagePathBtn;
     }
 }

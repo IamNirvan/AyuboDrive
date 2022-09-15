@@ -8,7 +8,7 @@ namespace AyuboDrive.Enums
 {
     public enum HireType
     {
-        LONG_TOUR,
-        DAY_TOUR
+        LONG,
+        DAY
     }
 }

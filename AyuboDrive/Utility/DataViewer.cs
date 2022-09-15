@@ -20,16 +20,28 @@ namespace AyuboDrive.Utility
         private int _rowHeight;
         private int _rowCount;
         private int _columnCount;
+        private string _nullValuePlaceHolder;
         //
         // Constructors
         //
-        public DataViewer(Panel container, DataTable dataTable, Font font)
+        public DataViewer(Panel container, DataTable dataTable, Font font, string nullValuePlaceHolder)
         {
             _container = container;
             _dataTable = dataTable;
             _font = font;
             _rowCount = _dataTable.Rows.Count + 1;
             _columnCount = _dataTable.Columns.Count;
+            _nullValuePlaceHolder = nullValuePlaceHolder;
+        }
+
+        public DataViewer(Panel container, DataTable dataTable, string nullValuePlaceHolder)
+        {
+            _container = container;
+            _dataTable = dataTable;
+            _font = new Font("Carlito", 9);
+            _rowCount = _dataTable.Rows.Count + 1;
+            _columnCount = _dataTable.Columns.Count;
+            _nullValuePlaceHolder = nullValuePlaceHolder;
         }
 
         public DataViewer(Panel container, DataTable dataTable)
@@ -39,6 +51,7 @@ namespace AyuboDrive.Utility
             _font = new Font("Carlito", 9);
             _rowCount = _dataTable.Rows.Count + 1;
             _columnCount = _dataTable.Columns.Count;
+            _nullValuePlaceHolder = "Null";
         }
         //
         // Utility
@@ -70,7 +83,8 @@ namespace AyuboDrive.Utility
             try
             {
                 // Rows.Count+1 to include the header row
-                _rowWidth = _container.Width - 40;
+                //_rowWidth = _container.Width - 40;
+                _rowWidth = _container.Width - 20;
                 _rowHeight = 40;
                 int yAxisPoint = 10;
 
@@ -82,7 +96,8 @@ namespace AyuboDrive.Utility
                     {
                         Name = $"Panel-{i}",
                         Size = new Size(_rowWidth, _rowHeight),
-                        Location = new Point(20, yAxisPoint),
+                        //Location = new Point(20, yAxisPoint),
+                        Location = new Point(0, yAxisPoint),
                     };
 
                     // Only make the header row purple and set the default cursor.
@@ -117,6 +132,8 @@ namespace AyuboDrive.Utility
                 int currentRowIndex = 0;
                 int xAxisPoint = 0;
 
+                string cellValue;
+
                 for (int i = 0; i < _columnCount; i++)
                 {
                     Label label = new Label()
@@ -139,7 +156,8 @@ namespace AyuboDrive.Utility
                     {
                         label.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
                         label.BackColor = Properties.Settings.Default.TRANSPARENT;
-                        label.Text = _dataTable.Rows[currentRowIndex - 1][i].ToString();
+                        cellValue = _dataTable.Rows[currentRowIndex - 1][i].ToString();
+                        label.Text = cellValue.Equals("") ? _nullValuePlaceHolder : cellValue;
                     }
                     
                     _rows[currentRowIndex].Controls.Add(label);

@@ -118,43 +118,97 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="felipe-simo-2KL2yrK_2bs-unsplash" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\felipe-simo-2KL2yrK_2bs-unsplash.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RefreshBlack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RefreshBlack16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="valentin-b-kremer-krXmGk8jfXg-unsplash" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\valentin-b-kremer-krXmGk8jfXg-unsplash.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RentalWhite64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RentalWhite64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VehicleWhite24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VehicleWhite24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DefaultUserWhite128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DefaultUserWhite128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoutBlack24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoutBlack24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VehicleTypeBlack24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VehicleTypeBlack24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DriverWhite64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DriverWhite64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CustomerWhite64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CustomerWhite64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DefaultCarWhite128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DefaultCarWhite128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="defaultCar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\defaultCar1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AccountWhite24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AccountWhite24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogoutRed24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoutRed24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VehicleTypeWhite24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VehicleTypeWhite24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="minimizeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minimizeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Logo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PasswordVisibleBlack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PasswordVisibleBlack16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tyler-clemmensen-kGCvCx5qyjM-unsplash" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tyler-clemmensen-kGCvCx5qyjM-unsplash.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LoginSidePanel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LoginSidePanel1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="red-sport-car-front-side-view-black-wheel-with-metallic-silver-color" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\red-sport-car-front-side-view-black-wheel-with-metallic-silver-color.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Image29" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Image29.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DefaultUserBlack128Px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DefaultUserBlack128Px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="closeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\closeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="16016525885_577ac964ce_o" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\16016525885_577ac964ce_o.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="InsertBlack24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InsertBlack24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="UpdateBlack24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UpdateBlack24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DefaultCarBlack128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DefaultCarBlack128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PaymentWhite64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PaymentWhite64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PackageWhite64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PackageWhite64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SearchBlack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SearchBlack16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LoginSidePanel1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LoginSidePanel1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LogOutWhite24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogOutWhite24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteBlack24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DeleteBlack24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="defaultCar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\defaultCar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HireWhite64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HireWhite64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DefaultUserBlack128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DefaultUserBlack128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PasswordInvisibleBlack16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PasswordInvisibleBlack16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EndWhite64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EndWhite64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

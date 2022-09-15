@@ -112,7 +112,7 @@
             this.ButtonsPanel.Controls.Add(this.DeleteBtn);
             this.ButtonsPanel.Controls.Add(this.UpdateBtn);
             this.ButtonsPanel.Controls.Add(this.InsertBtn);
-            this.ButtonsPanel.Location = new System.Drawing.Point(488, 337);
+            this.ButtonsPanel.Location = new System.Drawing.Point(488, 169);
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(250, 123);
             this.ButtonsPanel.TabIndex = 60;
@@ -160,20 +160,21 @@
             this.ManipulationPanel.Controls.Add(this.TypeNameErrorLbl);
             this.ManipulationPanel.Location = new System.Drawing.Point(488, 76);
             this.ManipulationPanel.Name = "ManipulationPanel";
-            this.ManipulationPanel.Size = new System.Drawing.Size(250, 255);
+            this.ManipulationPanel.Size = new System.Drawing.Size(250, 87);
             this.ManipulationPanel.TabIndex = 59;
             // 
             // TypeNameTxtBox
             // 
             this.TypeNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.TypeNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TypeNameTxtBox.Font = new System.Drawing.Font("Carlito", 9.75F);
+            this.TypeNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TypeNameTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.TypeNameTxtBox.Location = new System.Drawing.Point(33, 40);
+            this.TypeNameTxtBox.Location = new System.Drawing.Point(33, 39);
             this.TypeNameTxtBox.Name = "TypeNameTxtBox";
-            this.TypeNameTxtBox.Size = new System.Drawing.Size(188, 16);
+            this.TypeNameTxtBox.Size = new System.Drawing.Size(188, 19);
             this.TypeNameTxtBox.TabIndex = 48;
             this.TypeNameTxtBox.Enter += new System.EventHandler(this.TypeNameTxtBox_Enter);
+            this.TypeNameTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CharacterOnlyTextBox_KeyPress);
             this.TypeNameTxtBox.Leave += new System.EventHandler(this.TypeNameTxtBox_Leave);
             // 
             // TitleLbl

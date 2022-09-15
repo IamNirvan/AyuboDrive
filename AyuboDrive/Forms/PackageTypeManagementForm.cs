@@ -1,4 +1,5 @@
-﻿using AyuboDrive.Utility;
+﻿using AyuboDrive.Enums;
+using AyuboDrive.Utility;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,16 +14,18 @@ namespace AyuboDrive.Forms
 {
     public partial class PackageTypeManagementForm : AyuboDriveTemplateForm
     {
-        private static QueryHandler _queryHandler = new QueryHandler();
+        private static QueryHandler s_queryHandler = new QueryHandler();
         private DataViewer _dataViewer;
         private string _packageID;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
 
-        public PackageTypeManagementForm(Form dashboardForm) : base(dashboardForm)
+        public PackageTypeManagementForm(DashboardForm dashboardForm) : base(dashboardForm)
         {
             InitializeComponent();
             HandleTitleBar();
+            DisplayTable();
+            FillPackageStatusCmbBox();
         }
         //
         // Mouse event handlers
@@ -103,6 +106,26 @@ namespace AyuboDrive.Forms
         //
         // Utility
         //
+        private PackageStatus ConvertStringToPackageStatus(string packageStatusString)
+        {
+            if (packageStatusString.Equals("active"))
+            {
+                return PackageStatus.ACTIVE;
+            }
+            else if (packageStatusString.Equals("paused"))
+            {
+                return PackageStatus.PAUSED;
+            }
+            return PackageStatus.DISCONTINUED;
+        }
+
+        private void FillPackageStatusCmbBox()
+        {
+            PackageStatusCmbBox.Items.Add(PackageStatus.ACTIVE.ToString().ToLower());
+            PackageStatusCmbBox.Items.Add(PackageStatus.PAUSED.ToString().ToLower());
+            PackageStatusCmbBox.Items.Add(PackageStatus.DISCONTINUED.ToString().ToLower());
+        }
+
         private void AddData(int index)
         {
             if (index != 0)
@@ -114,6 +137,7 @@ namespace AyuboDrive.Forms
                 MaxKmTxtBox.Text = subArray[3].Text;
                 ExtraHourRateTxtBox.Text = subArray[4].Text;
                 ExtraKmRateTxtBox.Text = subArray[5].Text;
+                PackageStatusCmbBox.Text = subArray[6].Text;
             }
         }
 
@@ -129,30 +153,40 @@ namespace AyuboDrive.Forms
             ExtraHourRatePnl.BackColor = Properties.Settings.Default.PURPLE;
             ExtraKmRateErrorLbl.Text = "";
             ExtraKmRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            PackageStatusErrLbl.Text = "";
+            PackageStatusPnl.BackColor = Properties.Settings.Default.PURPLE;
         }
 
-        private void DisplayTable()
+        private void DisplayTable(string query = "SELECT * from package WHERE packageStatus = 'active' OR packageStatus = 'paused'")
         {
-            string query = "SELECT * from package";
             TablePanel.Controls.Clear();
-            _dataViewer = new DataViewer(TablePanel, _queryHandler.SelectQueryHandler(query));
+            _dataViewer = new DataViewer(TablePanel, s_queryHandler.SelectQueryHandler(query));
             _dataViewer.DisplayTable();
             AddCellClickEvent(_dataViewer, Cell_Click, Cell_MouseEnter, Cell_MouseLeave);
         }
 
-        private bool ValidateInput(string packageName, string maxHour, string maxKm, string extraHourRate, string extraKmRate)
+        private bool ValidateInput(string packageName, string maxHour, string maxKm, string extraHourRate, 
+            string extraKmRate, string packageStatus, int packageStatusSelectedIndex)
         {
             bool validPackageName = false;
             bool validMaxHour = false;
             bool validMaxKm = false;
             bool validExtraHourRate = false;
             bool validExtraKmRate = false;
+            bool validPackageStatus = false;
 
-            if (packageName.Length > 0)
+            if (ValidationHandler.ValidateInputLength(packageName))
             {
                 validPackageName = true;
                 PackageNameErrorLbl.Text = "";
                 PackageNamePnl.BackColor = Properties.Settings.Default.PURPLE;
+
+               if(ValidationHandler.CheckPackageNamePresence(packageName))
+                {
+                    validPackageName = false;
+                    PackageNameErrorLbl.Text = "Package name already exists";
+                    PackageNamePnl.BackColor = Properties.Settings.Default.RED;
+                }
             }
             else
             {
@@ -160,7 +194,7 @@ namespace AyuboDrive.Forms
                 PackageNamePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (maxHour.Length > 0 && int.Parse(maxHour) > 0)
+            if (ValidationHandler.ValidateTimeInput(maxHour))
             {
                 validMaxHour = true;
                 MaxHourErrorLbl.Text = "";
@@ -172,7 +206,7 @@ namespace AyuboDrive.Forms
                 MaxHourPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (maxKm.Length > 0 && int.Parse(maxKm) > 0)
+            if (ValidationHandler.ValidateDistanceInput(maxKm))
             {
                 validMaxKm = true;
                 MaxKmErrorLbl.Text = "";
@@ -184,7 +218,7 @@ namespace AyuboDrive.Forms
                 MaxKmPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (extraHourRate.Length > 0 && double.Parse(extraHourRate) > 0)
+            if (ValidationHandler.ValidateDecimalInput(extraHourRate))
             {
                 validExtraHourRate = true;
                 ExtraHourRateErrorLbl.Text = "";
@@ -195,7 +229,7 @@ namespace AyuboDrive.Forms
                 ExtraHourRateErrorLbl.Text = "Invalid extra hour rate";
                 ExtraHourRatePnl.BackColor = Properties.Settings.Default.RED;
             }
-            if (extraKmRate.Length > 0 && double.Parse(extraKmRate) > 0)
+            if (ValidationHandler.ValidateDecimalInput(extraKmRate))
             {
                 validExtraKmRate = true;
                 ExtraKmRateErrorLbl.Text = "";
@@ -206,7 +240,20 @@ namespace AyuboDrive.Forms
                 ExtraKmRateErrorLbl.Text = "Invalid extra Km rate";
                 ExtraKmRatePnl.BackColor = Properties.Settings.Default.RED;
             }
-            return validPackageName && validMaxHour && validMaxKm && validExtraHourRate && validExtraKmRate;
+
+            if(ValidationHandler.ValidateComboBoxValue(packageStatus, packageStatusSelectedIndex))
+            {
+                validPackageStatus = true;
+                PackageStatusPnl.BackColor = Properties.Settings.Default.PURPLE;
+                PackageStatusErrLbl.Text = "";
+            }
+            else
+            {
+                PackageStatusErrLbl.Text = "Invalid package status";
+                PackageStatusPnl.BackColor = Properties.Settings.Default.RED;
+            }
+            return validPackageName && validMaxHour && validMaxKm && validExtraHourRate && 
+                validExtraKmRate && validPackageStatus;
         }
 
         private void Reset()
@@ -216,6 +263,7 @@ namespace AyuboDrive.Forms
             MaxKmTxtBox.Text = "";
             ExtraHourRateTxtBox.Text = "";
             ExtraKmRateTxtBox.Text = "";
+            PackageStatusCmbBox.Text = "";
 
             _rowSelected = false;
             if (_selectedRow != null)
@@ -235,11 +283,13 @@ namespace AyuboDrive.Forms
             string maxKm = MaxKmTxtBox.Text;
             string extraHourRate = ExtraHourRateTxtBox.Text;
             string extraKmRate = ExtraKmRateTxtBox.Text;
+            PackageStatus packageStatus = ConvertStringToPackageStatus(PackageStatusCmbBox.Text);
 
-            if (ValidateInput(packageName, maxHour, maxKm, extraHourRate, extraKmRate))
+            if (ValidateInput(packageName, maxHour, maxKm, extraHourRate, extraKmRate, packageStatus.ToString(),
+                PackageStatusCmbBox.SelectedIndex))
             {
                 Package package = new Package(packageName, int.Parse(maxHour), int.Parse(maxKm), 
-                    double.Parse(extraHourRate), double.Parse(extraKmRate));
+                    decimal.Parse(extraHourRate), decimal.Parse(extraKmRate), packageStatus);
 
                 if (package.Insert())
                 {
@@ -263,11 +313,13 @@ namespace AyuboDrive.Forms
             string maxKm = MaxKmTxtBox.Text;
             string extraHourRate = ExtraHourRateTxtBox.Text;
             string extraKmRate = ExtraKmRateTxtBox.Text;
+            PackageStatus packageStatus = ConvertStringToPackageStatus(PackageStatusCmbBox.Text);
 
-            if (ValidateInput(packageName, maxHour, maxKm, extraHourRate, extraKmRate))
+            if (ValidateInput(packageName, maxHour, maxKm, extraHourRate, extraKmRate, packageStatus.ToString(),
+                PackageStatusCmbBox.SelectedIndex))
             {
                 Package package = new Package(packageName, int.Parse(maxHour), int.Parse(maxKm),
-                    double.Parse(extraHourRate), double.Parse(extraKmRate));
+                    decimal.Parse(extraHourRate), decimal.Parse(extraKmRate), packageStatus);
 
                 if (package.Update(_packageID))
                 {
@@ -305,69 +357,73 @@ namespace AyuboDrive.Forms
                         MessagePrinter.PrintToMessageBox("Package details were successfully deleted", "Operation successful",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    else
+                    {
+                        MessagePrinter.PrintToMessageBox("Failed to delete package details", "Operation failed",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    DisplayTable();
+                    Reset();
+                }
+            }
+        }
+
+        private void DiscontinueBtn_Click(object sender, EventArgs e)
+        {
+            if (!_rowSelected)
+            {
+                MessagePrinter.PrintToMessageBox("Please select a package record", "Select a record",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to discontinue this package?",
+                    "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if(result == DialogResult.Yes)
+                {
+                    if(Package.DiscontinuePackage(_packageID))
+                    {
+                        MessagePrinter.PrintToMessageBox("Package was successfully discontinued", "Operation successful",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessagePrinter.PrintToMessageBox("Failed to discontinue package", "Operation failed",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     DisplayTable();
                     Reset();
                 }
             }
         }
         //
-        // Form load event handler
-        //
-        private void PackageTypeManagementForm_Load(object sender, EventArgs e)
-        {
-            DisplayTable();
-        }
-        //
         // Textbox event handlers
         //
-        private void PackageNameTxtBox_Enter(object sender, EventArgs e)
+        private void TextBox_Enter(object sender, EventArgs e)
         {
-            PackageNameTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
+            ((TextBox)sender).ForeColor = Properties.Settings.Default.ENABLED_WHITE;
         }
 
-        private void PackageNameTxtBox_Leave(object sender, EventArgs e)
+        private void TextBox_Leave(object sender, EventArgs e)
         {
-            PackageNameTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
+            ((TextBox)sender).ForeColor = Properties.Settings.Default.DISABLED_WHITE;
+        }
+        // 
+        // Text box key press event handler
+        //
+        private void NumberOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar) && !char.IsControl(e.KeyChar) && !e.KeyChar.Equals('.'))
+            {
+                // Discard the character by setting handled to true
+                e.Handled = true;
+            }
         }
 
-        private void MaxHourTxtBox_Enter(object sender, EventArgs e)
+        private void IncludeDiscontinuedPackagesRBtn_CheckedChanged(object sender, EventArgs e)
         {
-            MaxHourTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
-        }
-
-        private void MaxHourTxtBox_Leave(object sender, EventArgs e)
-        {
-            MaxHourTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
-        }
-
-        private void MaxKmTxtBox_Enter(object sender, EventArgs e)
-        {
-            MaxKmTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
-        }
-
-        private void MaxKmTxtBox_Leave(object sender, EventArgs e)
-        {
-            MaxKmTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
-        }
-
-        private void ExtraHourRateTxtBox_Enter(object sender, EventArgs e)
-        {
-            ExtraHourRateTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
-        }
-
-        private void ExtraHourRateTxtBox_Leave(object sender, EventArgs e)
-        {
-            ExtraHourRateTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
-        }
-
-        private void ExtraKmRateTxtBox_Enter(object sender, EventArgs e)
-        {
-            ExtraKmRateTxtBox.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
-        }
-
-        private void ExtraKmRateTxtBox_Leave(object sender, EventArgs e)
-        {
-            ExtraKmRateTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
+            DisplayTable("SELECT * from package");
         }
     }
 }

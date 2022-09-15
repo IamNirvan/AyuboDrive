@@ -19,10 +19,11 @@ namespace AyuboDrive.Forms
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
 
-        public VehicleTypeManagementForm(Form dashboardForm) : base(dashboardForm)
+        public VehicleTypeManagementForm(DashboardForm dashboardForm) : base(dashboardForm)
         {
             InitializeComponent();
             HandleTitleBar();
+            DisplayTable();
         }
         //
         // Mouse event handlers
@@ -130,20 +131,18 @@ namespace AyuboDrive.Forms
 
         private bool ValidateInput(string typeName)
         {
-            bool validTypeName = false;
-
-            if(typeName.Length > 0)
+            if(ValidationHandler.ValidateInputLength(typeName))
             {
-                validTypeName = true;
                 TypeNameErrorLbl.Text = "";
                 TypeNamePnl.BackColor = Properties.Settings.Default.PURPLE;
+                return true;
             }
             else
             {
                 TypeNameErrorLbl.Text = "Invalid type name";
                 TypeNamePnl.BackColor = Properties.Settings.Default.RED;
+                return false;
             }
-            return validTypeName;
         }
 
         private void Reset()
@@ -159,7 +158,7 @@ namespace AyuboDrive.Forms
             _vehicleTypeID = null;
         }
         //
-        // Data manipulation event handlers
+        // Mouse click event handlers
         //
         private void InsertBtn_Click(object sender, EventArgs e)
         {
@@ -238,7 +237,6 @@ namespace AyuboDrive.Forms
         //
         private void VehicleTypeManagementForm_Load(object sender, EventArgs e)
         {
-            DisplayTable();   
         }
         //
         // textbox event handlers
@@ -251,6 +249,17 @@ namespace AyuboDrive.Forms
         private void TypeNameTxtBox_Leave(object sender, EventArgs e)
         {
             TypeNameTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
+        }
+        // 
+        // Text box key press event handler
+        //
+        private void CharacterOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Discard the character by setting handled to true
+                e.Handled = true;
+            }
         }
     }
 }

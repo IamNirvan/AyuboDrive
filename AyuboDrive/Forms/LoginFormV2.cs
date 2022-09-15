@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AyuboDrive.Interfaces;
+using AyuboDrive.Utility;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +16,7 @@ namespace AyuboDrive.Forms
     {
         public string firstName;
         public string lastName;
+        private bool _maskPassword = false;
 
         public LoginFormV2() : base(Properties.Settings.Default.TRANSPARENT)
         {
@@ -21,115 +24,80 @@ namespace AyuboDrive.Forms
             HandleTitleBar();
             imagePanel.BringToFront();
         }
-
-        // -- USER NAME TEXT BOX FUNCTIONALITY --
-
-        private void UserNameTxtBox_Enter(object sender, EventArgs e)
+        //
+        // Text box enter and leave event handlers
+        //
+        protected void TextBox_Enter(object sender, EventArgs e)
         {
-            userNameTxtBox.ForeColor = Program.ENABLED_WHITE;
+            ((TextBox)sender).ForeColor = Properties.Settings.Default.ENABLED_WHITE;
         }
 
-        private void UserNameTxtBox_Leave(object sender, EventArgs e)
+        protected void TextBox_Leave(object sender, EventArgs e)
         {
-            userNameTxtBox.ForeColor = Program.DISABLED_WHITE;
+            ((TextBox)sender).ForeColor = Properties.Settings.Default.DISABLED_WHITE;
         }
-
-        // -- END OF USER NAME TEXT BOX FUNCTIONALITY --
-
-        // -- PASSWORD TEXT BOX FUNCTIONALITY --
-
-        private void PasswordTxtBox_Enter(object sender, EventArgs e)
+        //
+        // Utility 
+        //
+        private bool ValidateInput(string userName, string password)
         {
-            passwordTxtBox.ForeColor = Program.ENABLED_WHITE;
-        }
-
-        private void PasswordTxtBox_Leave(object sender, EventArgs e)
-        {
-            passwordTxtBox.ForeColor = Program.DISABLED_WHITE;
-        }
-
-        // -- END OF PASSWORD TEXT BOX FUNCTIONALITY --
-
-        // -- SIGN UP LABEL FUNCTIONALITY --
-
-        private void SignUpLbl_Click(object sender, EventArgs e)
-        {
-            new AccountRegistrationForm().Show();
-            Hide();
-        }
-
-        // -- END OF SIGN UP LABEL FUNCTIONALITY --
-        
-        // -- LOGIN LABEL FUNCTIONALITY --
-
-        private void LoginLbl_Paint(object sender, PaintEventArgs e)
-        {
-            ControlPaint.DrawBorder(e.Graphics, LoginLbl.DisplayRectangle, Program.PURPLE, ButtonBorderStyle.Solid);
-        }
-
-        private void LoginLbl_MouseLeave(object sender, EventArgs e)
-        {
-            LoginLbl.BackColor = Program.TRANSPARENT;
-            LoginLbl.ForeColor = Program.PURPLE;
-        }
-
-        private void LoginLbl_MouseEnter(object sender, EventArgs e)
-        {
-            LoginLbl.BackColor = Program.PURPLE;
-            LoginLbl.ForeColor = Program.ENABLED_WHITE;
-        }
-
-        private void LoginLbl_MouseDown(object sender, MouseEventArgs e)
-        {
-            LoginLbl.BackColor = Program.LIGHT_PURPLE;
-        }
-
-        private void LoginLbl_MouseUp(object sender, MouseEventArgs e)
-        {
-            LoginLbl.BackColor = Program.TRANSPARENT;
-        }
-
-        private void LoginLbl_Click(object sender, EventArgs e)
-        {
-            string userName = userNameTxtBox.Text;
-            string password = passwordTxtBox.Text;
             bool validUserName = false;
             bool validPassword = false;
 
-            if (userName.Length == 0)
-            {
-                validUserName = false;
-                this.userNamePnl.BackColor = Properties.Settings.Default.RED;
-                this.userNameErrorLbl.Text = "Invalid user name";
-            }
-            else
+            if(ValidationHandler.ValidateInputLength(userName))
             {
                 validUserName = true;
-                this.userNamePnl.BackColor = Properties.Settings.Default.PURPLE;
-                this.userNameErrorLbl.Text = "";
-            }
+                userNamePnl.BackColor = Properties.Settings.Default.PURPLE;
+                userNameErrorLbl.Text = "";
 
-            if (password.Length == 0)
-            {
-                validPassword = false;
-                this.passwordPnl.BackColor = Properties.Settings.Default.RED;
-                this.passwordErrorLbl.Text = "Invalid password";
+                if (!ValidationHandler.CheckUserNamePresence(userName))
+                {
+                    userNamePnl.BackColor = Properties.Settings.Default.RED;
+                    userNameErrorLbl.Text = "User name does not exist";
+                }  
             }
             else
             {
-                validPassword = true;
-                this.passwordPnl.BackColor = Properties.Settings.Default.PURPLE;
-                this.passwordErrorLbl.Text = "";
+                userNamePnl.BackColor = Properties.Settings.Default.RED;
+                userNameErrorLbl.Text = "Invalid user name";
             }
 
-            if (validUserName && validPassword)
+            if (ValidationHandler.ValidatePassword(password))
+            {
+                validPassword = true;
+                passwordPnl.BackColor = Properties.Settings.Default.PURPLE;
+                passwordErrorLbl.Text = "";
+            }
+            else
+            {
+                passwordPnl.BackColor = Properties.Settings.Default.RED;
+                passwordErrorLbl.Text = "Invalid password";
+            }
+
+            return validUserName && validPassword;
+        }
+        //
+        // Click event handlers
+        //
+        private void SignUpLbl_Click(object sender, EventArgs e)
+        {
+            new AccountRegistrationFormV2(this).Show();
+            Hide();
+        }
+
+        private void LoginBtn_Click(object sender, EventArgs e)
+        {
+            string userName = UserNameTxtBox.Text;
+            string password = PasswordTxtBox.Text;
+
+            if (ValidateInput(userName, password))
             {
                 User user = User.Login(userName, password);
 
                 if (user != null)
                 {
-                    new DashboardForm(user.FirstName, user.LastName).Show();
-                    this.Hide();
+                    new DashboardForm(user.FirstName, user.LastName, userName).Show();
+                    Hide();
                     user = null;
                 }
                 else
@@ -140,7 +108,21 @@ namespace AyuboDrive.Forms
                 }
             }
         }
-        
-        // -- END OF LOGIN LABEL FUNCTIONALITY --
+
+        private void PasswordMask_Click(object sender, EventArgs e)
+        {
+            if (_maskPassword)
+            {
+                _maskPassword = false;
+                PasswordTxtBox.PasswordChar = '*';
+                PasswordMask.BackgroundImage = Properties.Resources.PasswordVisibleBlack16;
+            }
+            else
+            {
+                _maskPassword = true;
+                PasswordTxtBox.PasswordChar = (char)0;
+                PasswordMask.BackgroundImage = Properties.Resources.PasswordInvisibleBlack16;
+            }
+        }
     }
 }

@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -80,14 +81,53 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Driver.cs" />
+    <Compile Include="Engines\DayTourHireCalculator.cs" />
+    <Compile Include="Engines\LongTourHireCalculator.cs" />
+    <Compile Include="Engines\RentCalculator.cs" />
     <Compile Include="Enums\Availability.cs" />
+    <Compile Include="Enums\BookingStatus.cs" />
+    <Compile Include="Enums\DriverStatus.cs" />
+    <Compile Include="Enums\GenderOptions.cs" />
     <Compile Include="Enums\HireStatus.cs" />
     <Compile Include="Enums\HireType.cs" />
+    <Compile Include="Enums\PackageStatus.cs" />
+    <Compile Include="Enums\PaymentStatus.cs" />
+    <Compile Include="Enums\VehicleStatus.cs" />
+    <Compile Include="Forms\AccountManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AccountManagement.Designer.cs">
+      <DependentUpon>AccountManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AccountRegistrationFormV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AccountRegistrationFormV2.Designer.cs">
+      <DependentUpon>AccountRegistrationFormV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookingClosureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookingClosureForm.Designer.cs">
+      <DependentUpon>BookingClosureForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CustomerManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CustomerManagementForm.Designer.cs">
       <DependentUpon>CustomerManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DriverManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DriverManagementForm.Designer.cs">
+      <DependentUpon>DriverManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HireManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HireManagement.Designer.cs">
+      <DependentUpon>HireManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginFormV2.cs">
       <SubType>Form</SubType>
@@ -110,11 +150,11 @@
     <Compile Include="Forms\PaymentManagementForm.Designer.cs">
       <DependentUpon>PaymentManagementForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\RentalBookingManagementForm.cs">
+    <Compile Include="Forms\RentalBookingManagementFormV2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\RentalBookingManagementForm.Designer.cs">
-      <DependentUpon>RentalBookingManagementForm.cs</DependentUpon>
+    <Compile Include="Forms\RentalBookingManagementFormV2.Designer.cs">
+      <DependentUpon>RentalBookingManagementFormV2.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\VehicleManagementForm.cs">
       <SubType>Form</SubType>
@@ -128,21 +168,20 @@
     <Compile Include="Forms\VehicleTypeManagementForm.Designer.cs">
       <DependentUpon>VehicleTypeManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HirePayment.cs" />
+    <Compile Include="Interfaces\IDatabaseManipulationForm.cs" />
     <Compile Include="Interfaces\IVehicleViewer.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RentalPayment.cs" />
+    <Compile Include="Utility\CustomButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utility\CustomTitleBar.cs" />
-    <Compile Include="Forms\RentalBookingManipulationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\RentalBookingManipulationForm.Designer.cs">
-      <DependentUpon>RentalBookingManipulationForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Enums\FormType.cs" />
-    <Compile Include="Forms\DataViewForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DataViewForm.Designer.cs">
-      <DependentUpon>DataViewForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\DashboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,14 +194,11 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Utility\ConfigurationHandler.cs" />
     <Compile Include="Utility\DataViewer.cs" />
+    <Compile Include="Utility\DayWeekMonthCalculator.cs" />
+    <Compile Include="Utility\FileRetriever.cs" />
+    <Compile Include="Utility\ImagePathsRetriever.cs" />
     <Compile Include="Utility\MessagePrinter.cs" />
     <Compile Include="Utility\SimpleEmailSender.cs" />
-    <Compile Include="Forms\AccountRegistrationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AccountRegistrationForm.Designer.cs">
-      <DependentUpon>AccountRegistrationForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="HireBooking.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Engines\Viper.cs" />
@@ -171,12 +207,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\QueryHandler.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="Utility\UserNameChecker.cs" />
+    <Compile Include="Utility\ValidationHandler.cs" />
     <Compile Include="Utility\VehicleViewer.cs" />
     <Compile Include="Utility\VehicleViewerV2.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="VehicleType.cs" />
-    <EmbeddedResource Include="Forms\AccountRegistrationForm.resx">
-      <DependentUpon>AccountRegistrationForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AccountManagement.resx">
+      <DependentUpon>AccountManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AccountRegistrationFormV2.resx">
+      <DependentUpon>AccountRegistrationFormV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BookingClosureForm.resx">
+      <DependentUpon>BookingClosureForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomerManagementForm.resx">
       <DependentUpon>CustomerManagementForm.cs</DependentUpon>
@@ -184,8 +228,11 @@
     <EmbeddedResource Include="Forms\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DataViewForm.resx">
-      <DependentUpon>DataViewForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DriverManagementForm.resx">
+      <DependentUpon>DriverManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HireManagement.resx">
+      <DependentUpon>HireManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginFormV2.resx">
       <DependentUpon>LoginFormV2.cs</DependentUpon>
@@ -196,11 +243,8 @@
     <EmbeddedResource Include="Forms\PaymentManagementForm.resx">
       <DependentUpon>PaymentManagementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\RentalBookingManagementForm.resx">
-      <DependentUpon>RentalBookingManagementForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\RentalBookingManipulationForm.resx">
-      <DependentUpon>RentalBookingManipulationForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\RentalBookingManagementFormV2.resx">
+      <DependentUpon>RentalBookingManagementFormV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\VehicleManagementForm.resx">
       <DependentUpon>VehicleManagementForm.cs</DependentUpon>
@@ -210,14 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -252,6 +291,60 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Other\Notes.txt" />
+    <None Include="Resources\EndWhite64.png" />
+    <None Include="Resources\RefreshBlack16.png" />
+    <None Include="Resources\DriverWhite64.png" />
+    <None Include="Resources\PaymentWhite64.png" />
+    <None Include="Resources\LogOutWhite24.png" />
+    <None Include="Resources\VehicleWhite24.png" />
+    <None Include="Resources\VehicleTypeWhite24.png" />
+    <None Include="Resources\VehicleTypeBlack24.png" />
+    <None Include="Resources\UpdateBlack24.png" />
+    <None Include="Resources\SearchBlack16.png" />
+    <None Include="Resources\RentalWhite64.png" />
+    <None Include="Resources\PasswordVisibleBlack16.png" />
+    <None Include="Resources\PasswordInvisibleBlack16.png" />
+    <None Include="Resources\PackageWhite64.png" />
+    <None Include="Resources\LogoutRed24.png" />
+    <None Include="Resources\LogoutBlack24.png" />
+    <None Include="Resources\InsertBlack24.png" />
+    <None Include="Resources\HireWhite64.png" />
+    <None Include="Resources\DeleteBlack24.png" />
+    <None Include="Resources\DefaultUserWhite128.png" />
+    <None Include="Resources\DefaultUserBlack128.png" />
+    <None Include="Resources\DefaultCarWhite128.png" />
+    <None Include="Resources\DefaultCarBlack128.png" />
+    <None Include="Resources\CustomerWhite64.png" />
+    <None Include="Resources\AccountWhite24.png" />
+    <None Include="Resources\money-bag.png" />
+    <None Include="Resources\PasswordVisibleBlack16Px.png" />
+    <None Include="Resources\PasswordInvisibleBlack16Px.png" />
+    <None Include="Resources\DefaultUserBlack128Px.png" />
+    <None Include="Resources\RegistrationBlack32Px2.png" />
+    <None Include="Resources\VehicleBlack32Px2.png" />
+    <None Include="Resources\VehicleBlack24Px.png" />
+    <None Include="Resources\RentIconWhite64Px.png" />
+    <None Include="Resources\LogOutWhite24Px.png" />
+    <None Include="Resources\LogOutRed16Px.png" />
+    <None Include="Resources\LogOutRed24Px.png" />
+    <None Include="Resources\HireIconBlack64px2.png" />
+    <None Include="Resources\HireIconBlack64px.png" />
+    <None Include="Resources\RentIconBlack64Px.png" />
+    <None Include="Resources\PackageIconBlack64Px.png" />
+    <None Include="Resources\DriverIconBlack64Px.png" />
+    <None Include="Resources\PaymentIconBlack64Px.png" />
+    <None Include="Resources\CustomerIconBlack64Px.png" />
+    <None Include="Resources\UserIconBLack32Px.png" />
+    <None Include="Resources\VehicleBlack32Px1.png" />
+    <None Include="Resources\RegistrationBlack32Px.png" />
+    <None Include="Resources\VehicleBlack32Px.png" />
+    <None Include="Resources\LogOutRed32Px.png" />
+    <None Include="Resources\UserIconBack32Px.png" />
+    <None Include="Resources\UserIconBack64Px.png" />
+    <None Include="Resources\HireIcon32Px1.png" />
+    <None Include="Resources\warning1.png" />
+    <None Include="Resources\defaultCar1.png" />
+    <None Include="Resources\HireIcon32Px.png" />
     <None Include="Resources\defaultCar.png" />
     <None Include="Resources\warning.png" />
     <None Include="Resources\Logo1.png" />

@@ -33,14 +33,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.userNameErrorLbl = new System.Windows.Forms.Label();
             this.passwordErrorLbl = new System.Windows.Forms.Label();
-            this.userNameTxtBox = new System.Windows.Forms.TextBox();
-            this.passwordTxtBox = new System.Windows.Forms.TextBox();
+            this.UserNameTxtBox = new System.Windows.Forms.TextBox();
+            this.PasswordTxtBox = new System.Windows.Forms.TextBox();
             this.userNamePnl = new System.Windows.Forms.Panel();
             this.passwordPnl = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.signUpLbl = new System.Windows.Forms.Label();
-            this.LoginLbl = new System.Windows.Forms.Label();
             this.imagePanel = new System.Windows.Forms.Panel();
+            this.LoginBtn = new AyuboDrive.Utility.CustomButton();
+            this.PasswordMask = new AyuboDrive.Utility.CustomButton();
             this.SuspendLayout();
             // 
             // label1
@@ -98,32 +99,32 @@
             this.passwordErrorLbl.TabIndex = 6;
             this.passwordErrorLbl.Text = " ";
             // 
-            // userNameTxtBox
+            // UserNameTxtBox
             // 
-            this.userNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.userNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.userNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userNameTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.userNameTxtBox.Location = new System.Drawing.Point(388, 195);
-            this.userNameTxtBox.Name = "userNameTxtBox";
-            this.userNameTxtBox.Size = new System.Drawing.Size(270, 19);
-            this.userNameTxtBox.TabIndex = 7;
-            this.userNameTxtBox.Enter += new System.EventHandler(this.UserNameTxtBox_Enter);
-            this.userNameTxtBox.Leave += new System.EventHandler(this.UserNameTxtBox_Leave);
+            this.UserNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.UserNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.UserNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserNameTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.UserNameTxtBox.Location = new System.Drawing.Point(388, 195);
+            this.UserNameTxtBox.Name = "UserNameTxtBox";
+            this.UserNameTxtBox.Size = new System.Drawing.Size(270, 19);
+            this.UserNameTxtBox.TabIndex = 7;
+            this.UserNameTxtBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.UserNameTxtBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
-            // passwordTxtBox
+            // PasswordTxtBox
             // 
-            this.passwordTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.passwordTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.passwordTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.passwordTxtBox.Location = new System.Drawing.Point(388, 275);
-            this.passwordTxtBox.Name = "passwordTxtBox";
-            this.passwordTxtBox.PasswordChar = '*';
-            this.passwordTxtBox.Size = new System.Drawing.Size(270, 19);
-            this.passwordTxtBox.TabIndex = 8;
-            this.passwordTxtBox.Enter += new System.EventHandler(this.PasswordTxtBox_Enter);
-            this.passwordTxtBox.Leave += new System.EventHandler(this.PasswordTxtBox_Leave);
+            this.PasswordTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.PasswordTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.PasswordTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.PasswordTxtBox.Location = new System.Drawing.Point(388, 275);
+            this.PasswordTxtBox.Name = "PasswordTxtBox";
+            this.PasswordTxtBox.PasswordChar = '*';
+            this.PasswordTxtBox.Size = new System.Drawing.Size(241, 19);
+            this.PasswordTxtBox.TabIndex = 8;
+            this.PasswordTxtBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.PasswordTxtBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // userNamePnl
             // 
@@ -163,28 +164,7 @@
             this.signUpLbl.Size = new System.Drawing.Size(40, 13);
             this.signUpLbl.TabIndex = 13;
             this.signUpLbl.Text = "Sign up";
-            this.signUpLbl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SignUpLbl_Click);
-            // 
-            // LoginLbl
-            // 
-            this.LoginLbl.AutoSize = true;
-            this.LoginLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LoginLbl.Font = new System.Drawing.Font("Carlito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.LoginLbl.Location = new System.Drawing.Point(388, 380);
-            this.LoginLbl.MaximumSize = new System.Drawing.Size(270, 45);
-            this.LoginLbl.MinimumSize = new System.Drawing.Size(270, 45);
-            this.LoginLbl.Name = "LoginLbl";
-            this.LoginLbl.Size = new System.Drawing.Size(270, 45);
-            this.LoginLbl.TabIndex = 15;
-            this.LoginLbl.Text = "Login";
-            this.LoginLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LoginLbl.Click += new System.EventHandler(this.LoginLbl_Click);
-            this.LoginLbl.Paint += new System.Windows.Forms.PaintEventHandler(this.LoginLbl_Paint);
-            this.LoginLbl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LoginLbl_MouseDown);
-            this.LoginLbl.MouseEnter += new System.EventHandler(this.LoginLbl_MouseEnter);
-            this.LoginLbl.MouseLeave += new System.EventHandler(this.LoginLbl_MouseLeave);
-            this.LoginLbl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LoginLbl_MouseUp);
+            this.signUpLbl.Click += new System.EventHandler(this.SignUpLbl_Click);
             // 
             // imagePanel
             // 
@@ -197,19 +177,55 @@
             this.imagePanel.Size = new System.Drawing.Size(350, 500);
             this.imagePanel.TabIndex = 1;
             // 
+            // LoginBtn
+            // 
+            this.LoginBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.LoginBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.LoginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LoginBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.LoginBtn.FlatAppearance.BorderSize = 0;
+            this.LoginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LoginBtn.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoginBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.LoginBtn.Location = new System.Drawing.Point(388, 370);
+            this.LoginBtn.Name = "LoginBtn";
+            this.LoginBtn.Size = new System.Drawing.Size(270, 45);
+            this.LoginBtn.TabIndex = 80;
+            this.LoginBtn.Text = "Login";
+            this.LoginBtn.UseVisualStyleBackColor = false;
+            this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
+            // 
+            // PasswordMask
+            // 
+            this.PasswordMask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.PasswordMask.BackgroundImage = global::AyuboDrive.Properties.Resources.PasswordVisibleBlack16;
+            this.PasswordMask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.PasswordMask.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PasswordMask.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.PasswordMask.FlatAppearance.BorderSize = 0;
+            this.PasswordMask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PasswordMask.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordMask.Location = new System.Drawing.Point(633, 275);
+            this.PasswordMask.Name = "PasswordMask";
+            this.PasswordMask.Size = new System.Drawing.Size(25, 25);
+            this.PasswordMask.TabIndex = 81;
+            this.PasswordMask.UseVisualStyleBackColor = false;
+            this.PasswordMask.Click += new System.EventHandler(this.PasswordMask_Click);
+            // 
             // LoginFormV2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
             this.ClientSize = new System.Drawing.Size(700, 500);
-            this.Controls.Add(this.LoginLbl);
+            this.Controls.Add(this.PasswordMask);
+            this.Controls.Add(this.LoginBtn);
             this.Controls.Add(this.signUpLbl);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.passwordPnl);
             this.Controls.Add(this.userNamePnl);
-            this.Controls.Add(this.passwordTxtBox);
-            this.Controls.Add(this.userNameTxtBox);
+            this.Controls.Add(this.PasswordTxtBox);
+            this.Controls.Add(this.UserNameTxtBox);
             this.Controls.Add(this.passwordErrorLbl);
             this.Controls.Add(this.userNameErrorLbl);
             this.Controls.Add(this.label3);
@@ -234,12 +250,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label userNameErrorLbl;
         private System.Windows.Forms.Label passwordErrorLbl;
-        private System.Windows.Forms.TextBox userNameTxtBox;
-        private System.Windows.Forms.TextBox passwordTxtBox;
+        private System.Windows.Forms.TextBox UserNameTxtBox;
+        private System.Windows.Forms.TextBox PasswordTxtBox;
         private System.Windows.Forms.Panel userNamePnl;
         private System.Windows.Forms.Panel passwordPnl;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label signUpLbl;
-        private System.Windows.Forms.Label LoginLbl;
+        private Utility.CustomButton LoginBtn;
+        private Utility.CustomButton PasswordMask;
     }
 }

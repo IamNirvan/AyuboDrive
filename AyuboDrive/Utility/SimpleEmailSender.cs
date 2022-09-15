@@ -17,12 +17,7 @@ namespace AyuboDrive
     /// </summary>
     class SimpleEmailSender
     {
-        private readonly string _senderName;
-
-        public SimpleEmailSender(string senderName)
-        {
-            _senderName = senderName;
-        }
+        private readonly string _senderName = "AyuboDrive";
 
         public bool SendEmail(string subject, string body)
         {
@@ -41,6 +36,10 @@ namespace AyuboDrive
                         smtpClient.Send(message);
                         return true;
                     }
+                }
+                catch(System.Net.Sockets.SocketException ex)
+                {
+                    MessagePrinter.PrintToConsole(ex.ToString(), "Network error");
                 }
                 catch (Exception ex)
                 {
