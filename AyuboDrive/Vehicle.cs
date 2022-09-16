@@ -26,7 +26,7 @@ namespace AyuboDrive
         private readonly decimal _weeklyRate;
         private readonly decimal _monthlyRate;
         private readonly decimal _overnightRate;
-        private readonly VehicleStatus _vehicleStatus;
+        private readonly string _vehicleStatus;
         private readonly string _imagePath;
         private readonly decimal _standardPackageRate;
         private static QueryHandler s_queryHandler = new QueryHandler();
@@ -51,7 +51,7 @@ namespace AyuboDrive
             _weeklyRate = weeklyRate;
             _monthlyRate = monthlyRate;
             _overnightRate = overnightRate;
-            _vehicleStatus = vehicleStatus;
+            _vehicleStatus = vehicleStatus.ToString().ToLower();
             _imagePath = imagePath;
             _standardPackageRate = standardPackageRate;
         }
@@ -59,10 +59,10 @@ namespace AyuboDrive
         public bool Insert()
         {
             string query = "INSERT INTO vehicle VALUES(@VIN, @vehicleTypeID, @manufacturer, @model, @seatingCapacity, " +
-                "@mileage, @gearbox, @torque, @horsePower, @trunkVolume, @color, @dailyRate, @weeklyRate, @monthlyRate, " +
+                "@mileage, @gearboxType, @torque, @horsePower, @trunkVolume, @color, @dailyRate, @weeklyRate, @monthlyRate, " +
                 "@overnightRate, @vehicleStatus, @imagePath, @standardPackageRate)";
             string[] parameters = { "@VIN", "@vehicleTypeID", "@manufacturer", "@model", "@seatingCapacity",
-                "@mileage", "@gearbox", "@torque", "@horsePower", "@trunkVolume", "@color", "@dailyRate", "@weeklyRate",
+                "@mileage", "@gearboxType", "@torque", "@horsePower", "@trunkVolume", "@color", "@dailyRate", "@weeklyRate",
                 "@monthlyRate", "@overnightRate", "@vehicleStatus", "@imagePath", "@standardPackageRate" };
             object[] values = { _VIN, _vehicleTypeID, _manufacturer, _model, _seatingCapacity, _mileage, _gearbox, _torque,
                 _horsepower, _trunkVolume, _color, _dailyRate, _weeklyRate, _monthlyRate, _overnightRate, _vehicleStatus, _imagePath,
@@ -95,12 +95,12 @@ namespace AyuboDrive
         public bool Update(string ID)
         {
             string query = "UPDATE vehicle SET VIN = @VIN, vehicleTypeID = @vehicleTypeID, manufacturer = @manufacturer, " +
-                "model = @model, seatingCapacity = @seatingCapacity, mileage = @mileage, gearbox = @gearbox, torque = @torque, " +
+                "model = @model, seatingCapacity = @seatingCapacity, mileage = @mileage, gearboxType = @gearboxType, torque = @torque, " +
                 "horsepower = @horsePower, trunkVolume = @trunkVolume, color = @color, dailyRate = @dailyRate, weeklyRate = @weeklyRate, " +
                 "monthlyRate = @monthlyRate, overnightRate = @overnightRate, vehicleStatus = @vehicleStatus, " +
                 "imagePath = @imagePath, standardPackageRate = @standardPackageRate WHERE vehicleID = @vehicleID";
             string[] parameters = { "@VIN", "@vehicleTypeID", "@manufacturer", "@model", "@seatingCapacity",
-                "@mileage", "@gearbox", "@torque", "@horsePower", "@trunkVolume", "@color", "@dailyRate", "@weeklyRate",
+                "@mileage", "@gearboxType", "@torque", "@horsePower", "@trunkVolume", "@color", "@dailyRate", "@weeklyRate",
                 "@monthlyRate", "@overnightRate", "@vehicleStatus", "@imagePath", "@standardPackageRate", "@vehicleID" };
             object[] values = { _VIN, _vehicleTypeID, _manufacturer, _model, _seatingCapacity, _mileage, _gearbox, _torque,
                 _horsepower, _trunkVolume, _color, _dailyRate, _weeklyRate, _monthlyRate, _overnightRate, _vehicleStatus, _imagePath,

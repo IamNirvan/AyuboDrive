@@ -19,6 +19,7 @@ namespace AyuboDrive.Forms
         private DataViewer _dataViewer;
         private DataTable _dataTable;
         private string _vehicleID;
+        private string _initialVIN;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
         private string _imagePath = "";
@@ -189,7 +190,7 @@ namespace AyuboDrive.Forms
                 VehicleTypeIDPnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (ValidationHandler.ValidateVIN("vehicle", "VIN", VIN))
+            if (ValidationHandler.ValidateVIN(VIN))
             {
                 validVIN = true;
                 VINErrorLbl.Text = "";
@@ -202,6 +203,259 @@ namespace AyuboDrive.Forms
             }
 
             if(ValidationHandler.ValidateInputLength(manufacturer))
+            {
+                validManufacturer = true;
+                ManufacturerErrorLbl.Text = "";
+                ManufacturerPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                ManufacturerErrorLbl.Text = "Invalid manufacturer";
+                ManufacturerPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateInputLength(model))
+            {
+                validModel = true;
+                ModelErrorLbl.Text = "";
+                ModelPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                ModelErrorLbl.Text = "Invalid model";
+                ModelPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (seatingCapacity.Length != 0 && int.Parse(seatingCapacity) >= 1)
+            {
+                validSeatingCapacity = true;
+                SeatingCapacityErrorLbl.Text = "";
+                SeatingCapacityPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                SeatingCapacityErrorLbl.Text = "Invalid seating capaity";
+                SeatingCapacityPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateDistanceInput(mileage))
+            {
+                validMileage = true;
+                MileageErrorLbl.Text = "";
+                MileagePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                MileageErrorLbl.Text = "Invalid mileage";
+                MileagePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateComboBoxValue(gearBoxType, gearBoxTypeSelectedIndex))
+            {
+                validGearBoxType = true;
+                GearboxErrorLbl.Text = "";
+                GearBoxPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                GearboxErrorLbl.Text = "Invalid gearbox";
+                GearBoxPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (torque.Length != 0 && int.Parse(torque) >= 10)
+            {
+                validTorque = true;
+                TorqueErrorLbl.Text = "";
+                TorquePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                TorqueErrorLbl.Text = "Invalid torque";
+                TorquePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (horsepower.Length != 0 && int.Parse(horsepower) >= 10)
+            {
+                validHorsepower = true;
+                HorsepowerErrorLbl.Text = "";
+                HorsepowerPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                HorsepowerErrorLbl.Text = "Invalid horsepower";
+                HorsepowerPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (trunkVolume.Length != 0 && decimal.Parse(trunkVolume) >= 1)
+            {
+                validTrunkVolume = true;
+                TrunkVolumeErrorLbl.Text = "";
+                TrunkVolumePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                TrunkVolumeErrorLbl.Text = "Invalid trunk volume";
+                TrunkVolumePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateInputLength(color))
+            {
+                validColor = true;
+                ColorErrorLbl.Text = "";
+                ColorPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                ColorErrorLbl.Text = "Invalid color";
+                ColorPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateDecimalInput(dailyRate))
+            {
+                validDailyrate = true;
+                DailyRateErrorLbl.Text = "";
+                DailyRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                DailyRateErrorLbl.Text = "Invalid daily rate";
+                DailyRatePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateDecimalInput(weeklyRate))
+            {
+                validWeeklyRate = true;
+                WeeklyRateErrorLbl.Text = "";
+                WeeklyRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                WeeklyRateErrorLbl.Text = "Invalid weekly rate";
+                WeeklyRatePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateDecimalInput(monthlyRate))
+            {
+                validMonthlyRate = true;
+                MonthlyRateErrorLbl.Text = "";
+                MonthlyRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                MonthlyRateErrorLbl.Text = "Invalid monthly rate";
+                MonthlyRatePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateDecimalInput(overnightRate))
+            {
+                validOvernightRate = true;
+                OvernightRateErrorLbl.Text = "";
+                OvernightRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                OvernightRateErrorLbl.Text = "Invalid overnight rate";
+                OvernightRatePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateDecimalInput(standardPackageRate))
+            {
+                validStandardPackageRate = true;
+                StandardPackageRateErrorLbl.Text = "";
+                StandardPackageRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                StandardPackageRateErrorLbl.Text = "Invalid standard package rate";
+                StandardPackageRatePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateFilePath(imagePath))
+            {
+                validImagePath = true;
+                ImagePathErrorLbl.Text = "";
+                ImagePathPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                ImagePathErrorLbl.Text = "Invalid image path";
+                ImagePathPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            return validVehicleTypeID && validVIN && validManufacturer && validModel && validSeatingCapacity
+                && validMileage && validGearBoxType && validTorque && validHorsepower && validTrunkVolume 
+                && validColor && validDailyrate && validWeeklyRate && validMonthlyRate && validOvernightRate
+                && validStandardPackageRate && validImagePath;
+        }
+
+        private bool ValidateInputV2(
+            string vehicleTypeID, int vehicleTypeIDSelectedIndex, string VIN, string manufacturer, string model, 
+            string seatingCapacity, string mileage, string gearBoxType, int gearBoxTypeSelectedIndex,
+            string torque, string horsepower, string trunkVolume, string color, string dailyRate, string weeklyRate,
+            string monthlyRate, string overnightRate, string standardPackageRate, string imagePath)
+        {
+            bool validVehicleTypeID = false;
+            bool validVIN = false;
+            bool validManufacturer = false;
+            bool validModel = false;
+            bool validSeatingCapacity = false;
+            bool validMileage = false;
+            bool validGearBoxType = false;
+            bool validTorque = false;
+            bool validHorsepower = false;
+            bool validTrunkVolume = false;
+            bool validColor = false;
+            bool validDailyrate = false;
+            bool validWeeklyRate = false;
+            bool validMonthlyRate = false;
+            bool validOvernightRate = false;
+            bool validStandardPackageRate = false;
+            bool validImagePath = false;
+
+            if(ValidationHandler.ValidateComboBoxValue(vehicleTypeID, vehicleTypeIDSelectedIndex))
+            {
+                validVehicleTypeID = true;
+                VehicleTypeIDErrorLbl.Text = "";
+                VehicleTypeIDPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                VehicleTypeIDErrorLbl.Text = "Invalid vehicle type ID";
+                VehicleTypeIDPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateVIN(VIN))
+            {
+                validVIN = true;
+                VINErrorLbl.Text = "";
+                VINPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                VINErrorLbl.Text = "Invalid VIN";
+                VINPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (_initialVIN.Equals(VIN))
+            {
+                validVIN = true;
+                VINPnl.BackColor = Properties.Settings.Default.PURPLE;
+                VINErrorLbl.Text = "";
+            }
+            else
+            {
+                if (!ValidationHandler.ValidateNIC(VIN, "driver", "driverNIC"))
+                {
+                    VINPnl.BackColor = Properties.Settings.Default.RED;
+                    VINErrorLbl.Text = "Invalid VIN";
+                }
+                else
+                {
+                    validVIN = true;
+                }
+            }
+
+            if (ValidationHandler.ValidateInputLength(manufacturer))
             {
                 validManufacturer = true;
                 ManufacturerErrorLbl.Text = "";
@@ -405,54 +659,56 @@ namespace AyuboDrive.Forms
 
         private void AddDataVehicleView(int index)
         {
-            DataRow subArray = s_queryHandler.SelectQueryHandler("SELECT * FROM vehicle").Rows[index];
+            DataRow record = s_queryHandler.SelectQueryHandler("SELECT * FROM vehicle").Rows[index];
             DataRow vehicleTypeName = s_queryHandler.SelectQueryHandler("SELECT typeName from vehicleType WHERE vehicleTypeID = '" +
-                subArray[2].ToString() + "'").Rows[0];
-            _vehicleID = subArray[0].ToString();
-            VINTxtBox.Text = subArray[1].ToString();
-            VehicleTypeIDCmbBox.Text = $"{subArray[2].ToString()}-{vehicleTypeName[0]}";
-            ManufacturerTxtBox.Text = subArray[3].ToString();
-            ModelTxtBox.Text = subArray[4].ToString();
-            SeatingCapacityTxtBox.Text = subArray[5].ToString();
-            MileageTxtBox.Text = subArray[6].ToString();
-            GearBoxCmbBox.Text = subArray[7].ToString();
-            TorqueTxtBox.Text = subArray[8].ToString();
-            HorsepowerTxtBox.Text = subArray[9].ToString();
-            TrunkVolumeTxtBox.Text = subArray[10].ToString();
-            ColorTxtBox.Text = subArray[11].ToString();
-            DailyRateTxtBox.Text = subArray[12].ToString();
-            WeeklyRateTxtBox.Text = subArray[13].ToString();
-            MonthlyRateTxtBox.Text = subArray[14].ToString();
-            OvernightRateTxtBox.Text = subArray[15].ToString();
-            ImagePathTxtBox.Text = subArray[17].ToString();
-            StandardPackageRateTxtBox.Text = subArray[18].ToString();
+                record[2].ToString() + "'").Rows[0];
+            _vehicleID = record[0].ToString();
+            VINTxtBox.Text = record[1].ToString();
+            _initialVIN = record[1].ToString();
+            VehicleTypeIDCmbBox.Text = $"{record[2].ToString()}-{vehicleTypeName[0]}";
+            ManufacturerTxtBox.Text = record[3].ToString();
+            ModelTxtBox.Text = record[4].ToString();
+            SeatingCapacityTxtBox.Text = record[5].ToString();
+            MileageTxtBox.Text = record[6].ToString();
+            GearBoxCmbBox.Text = record[7].ToString();
+            TorqueTxtBox.Text = record[8].ToString();
+            HorsepowerTxtBox.Text = record[9].ToString();
+            TrunkVolumeTxtBox.Text = record[10].ToString();
+            ColorTxtBox.Text = record[11].ToString();
+            DailyRateTxtBox.Text = record[12].ToString();
+            WeeklyRateTxtBox.Text = record[13].ToString();
+            MonthlyRateTxtBox.Text = record[14].ToString();
+            OvernightRateTxtBox.Text = record[15].ToString();
+            ImagePathTxtBox.Text = record[17].ToString();
+            StandardPackageRateTxtBox.Text = record[18].ToString();
         }
 
         private void AddDataTableView(int index)
         {
             if(index != 0)
             {
-                DataRow subArray = s_queryHandler.SelectQueryHandler("SELECT * FROM vehicle").Rows[index-1];
+                DataRow record = s_queryHandler.SelectQueryHandler("SELECT * FROM vehicle").Rows[index-1];
                 DataRow vehicleTypeName = s_queryHandler.SelectQueryHandler("SELECT typeName from vehicleType WHERE vehicleTypeID = '" +
-                    subArray[2].ToString() + "'").Rows[0];
-                _vehicleID = subArray[0].ToString();
-                VINTxtBox.Text = subArray[1].ToString();
-                VehicleTypeIDCmbBox.Text = $"{subArray[2].ToString()}-{vehicleTypeName[0]}";
-                ManufacturerTxtBox.Text = subArray[3].ToString();
-                ModelTxtBox.Text = subArray[4].ToString();
-                SeatingCapacityTxtBox.Text = subArray[5].ToString();
-                MileageTxtBox.Text = subArray[6].ToString();
-                GearBoxCmbBox.Text = subArray[7].ToString();
-                TorqueTxtBox.Text = subArray[8].ToString();
-                HorsepowerTxtBox.Text = subArray[9].ToString();
-                TrunkVolumeTxtBox.Text = subArray[10].ToString();
-                ColorTxtBox.Text = subArray[11].ToString();
-                DailyRateTxtBox.Text = subArray[12].ToString();
-                WeeklyRateTxtBox.Text = subArray[13].ToString();
-                MonthlyRateTxtBox.Text = subArray[14].ToString();
-                OvernightRateTxtBox.Text = subArray[15].ToString();
-                ImagePathTxtBox.Text = subArray[17].ToString();
-                StandardPackageRateTxtBox.Text = subArray[18].ToString();
+                    record[2].ToString() + "'").Rows[0];
+                _vehicleID = record[0].ToString();
+                VINTxtBox.Text = record[1].ToString();
+                _initialVIN = record[1].ToString();
+                VehicleTypeIDCmbBox.Text = $"{record[2].ToString()}-{vehicleTypeName[0]}";
+                ManufacturerTxtBox.Text = record[3].ToString();
+                ModelTxtBox.Text = record[4].ToString();
+                SeatingCapacityTxtBox.Text = record[5].ToString();
+                MileageTxtBox.Text = record[6].ToString();
+                GearBoxCmbBox.Text = record[7].ToString();
+                TorqueTxtBox.Text = record[8].ToString();
+                HorsepowerTxtBox.Text = record[9].ToString();
+                TrunkVolumeTxtBox.Text = record[10].ToString();
+                ColorTxtBox.Text = record[11].ToString();
+                DailyRateTxtBox.Text = record[12].ToString();
+                WeeklyRateTxtBox.Text = record[13].ToString();
+                MonthlyRateTxtBox.Text = record[14].ToString();
+                OvernightRateTxtBox.Text = record[15].ToString();
+                ImagePathTxtBox.Text = record[17].ToString();
+                StandardPackageRateTxtBox.Text = record[18].ToString();
             }
         }
 
@@ -609,6 +865,15 @@ namespace AyuboDrive.Forms
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
+            ResetErrors();
+
+            if (!_rowSelected)
+            {
+                MessagePrinter.PrintToMessageBox("Please select a vehicle", "Select a record",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string vehicleTypeID = VehicleTypeIDCmbBox.Text.Split('-')[0];
             string VIN = VINTxtBox.Text;
             string manufacturer = ManufacturerTxtBox.Text;
@@ -628,7 +893,7 @@ namespace AyuboDrive.Forms
             string imagePath = ImagePathTxtBox.Text;
 
 
-            if (ValidateInput(
+            if (ValidateInputV2(
                 vehicleTypeID, VehicleTypeIDCmbBox.SelectedIndex, VIN, manufacturer, model,
                 seatingCapacity, mileage, gearboxType, GearBoxCmbBox.SelectedIndex, torque,
                 horsepower, trunkVolume, color, dailyRate, weeklyRate, monthlyRate, overnightRate,
@@ -670,31 +935,28 @@ namespace AyuboDrive.Forms
             {
                 MessagePrinter.PrintToMessageBox("Please select a vehicle", "Select a record",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+            DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, " +
+                "it cannot be recoverd.", "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, " +
-                    "it cannot be recoverd.", "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
+                if (Vehicle.Delete(_vehicleID))
                 {
-                    if (Vehicle.Delete(_vehicleID))
-                    {
-                        MessagePrinter.PrintToMessageBox("Package details were successfully deleted", "Operation successful",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-
-                    if(!VehiclesViewRBtn.Checked)
-                    {
-                        DisplayTable();
-                    }
-                    else
-                    {
-                        DisplayVehicles();
-                    }
-                    
-                    Reset();
+                    MessagePrinter.PrintToMessageBox("Package details were successfully deleted", "Operation successful",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                if(!VehiclesViewRBtn.Checked)
+                {
+                    DisplayTable();
+                }
+                else
+                {
+                    DisplayVehicles();
+                }
+                Reset();
             }
         }
 
