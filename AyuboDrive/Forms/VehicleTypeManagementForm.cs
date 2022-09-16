@@ -13,9 +13,10 @@ namespace AyuboDrive.Forms
 {
     public partial class VehicleTypeManagementForm : AyuboDriveTemplateForm
     {
-        private static QueryHandler _queryHandler = new QueryHandler();
+        private static QueryHandler s_queryHandler = new QueryHandler();
         private DataViewer _dataViewer;
         private string _vehicleTypeID;
+        private string _initialTypeName;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
 
@@ -108,9 +109,10 @@ namespace AyuboDrive.Forms
         {
             if (index != 0)
             {
-                Label[] subArray = _dataViewer.GetLabels()[index];
-                _vehicleTypeID = subArray[0].Text;
-                TypeNameTxtBox.Text = subArray[1].Text;
+                DataRow record = s_queryHandler.SelectQueryHandler("SELECT * FROM vehicleType").Rows[index - 1];
+                _vehicleTypeID = record[0].ToString();
+                TypeNameTxtBox.Text = record[1].ToString();
+                _initialTypeName = record[1].ToString();
             }
         }
 
@@ -124,14 +126,14 @@ namespace AyuboDrive.Forms
         {
             string query = "SELECT * from vehicleType";
             TablePanel.Controls.Clear();
-            _dataViewer = new DataViewer(TablePanel, _queryHandler.SelectQueryHandler(query));
+            _dataViewer = new DataViewer(TablePanel, s_queryHandler.SelectQueryHandler(query));
             _dataViewer.DisplayTable();
             AddCellClickEvent(_dataViewer, Cell_Click, Cell_MouseEnter, Cell_MouseLeave);
         }
 
         private bool ValidateInput(string typeName)
         {
-            if(ValidationHandler.ValidateInputLength(typeName))
+            if(ValidationHandler.ValidateVehicleTypeName(typeName))
             {
                 TypeNameErrorLbl.Text = "";
                 TypeNamePnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -142,6 +144,26 @@ namespace AyuboDrive.Forms
                 TypeNameErrorLbl.Text = "Invalid type name";
                 TypeNamePnl.BackColor = Properties.Settings.Default.RED;
                 return false;
+            }
+        }
+
+        private bool ValidateInputV2(string typeName)
+        {
+            if (_initialTypeName.Equals(typeName))
+            {
+                TypeNamePnl.BackColor = Properties.Settings.Default.PURPLE;
+                TypeNameErrorLbl.Text = "";
+                return true;
+            }
+            else
+            {
+                if (!ValidationHandler.ValidateVehicleTypeName(typeName))
+                {
+                    TypeNamePnl.BackColor = Properties.Settings.Default.RED;
+                    TypeNameErrorLbl.Text = "Invalid type name";
+                    return false;
+                }
+                return true;
             }
         }
 
@@ -185,11 +207,19 @@ namespace AyuboDrive.Forms
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
+            ResetErrors();
+
+            if (!_rowSelected)
+            {
+                MessagePrinter.PrintToMessageBox("Please select a vehicle type record", "Select a record",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string typeName = TypeNameTxtBox.Text;
 
-            if (ValidateInput(typeName))
+            if (ValidateInputV2(typeName))
             {
-
                 VehicleType vehicleType = new VehicleType(typeName);
                 if (vehicleType.Update(_vehicleTypeID))
                 {
@@ -214,22 +244,20 @@ namespace AyuboDrive.Forms
             {
                 MessagePrinter.PrintToMessageBox("Please select a vehicle type record", "Select a record", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, " +
-                    "it cannot be recoverd.", "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, " +
+                "it cannot be recoverd.", "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
+            {
+                if (VehicleType.Delete(_vehicleTypeID))
                 {
-                    if (VehicleType.Delete(_vehicleTypeID))
-                    {
-                        MessagePrinter.PrintToMessageBox("Vehicle type details were successfully deleted", "Operation successful",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    DisplayTable();
-                    Reset();
+                    MessagePrinter.PrintToMessageBox("Vehicle type details were successfully deleted", "Operation successful",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                DisplayTable();
+                Reset();
             }
         }
         //
