@@ -16,6 +16,8 @@ namespace AyuboDrive.Forms
     {
         private static QueryHandler s_queryHandler = new QueryHandler();
         private DataViewer _dataViewer;
+        private string _initialNIC;
+        private string _initialContactNumber;
         private string _customerID = null;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
@@ -24,8 +26,8 @@ namespace AyuboDrive.Forms
         {
             InitializeComponent();
             HandleTitleBar();
-            DisplayTable();
             FillGenderComboBox();
+            DisplayTable();
         }
         //
         // Utility functions
@@ -50,7 +52,8 @@ namespace AyuboDrive.Forms
             return GenderOptions.OTHER;
         }
 
-        private bool ValidateInput(string NIC, string firstName, string lastName, string contactNumber, string gender, int genderSelectedIndex)
+        private bool ValidateInput(string NIC, string firstName, string lastName, string contactNumber, 
+            string gender, int genderSelectedIndex)
         {
             bool validNIC = false;
             bool validFirstName = false;
@@ -97,16 +100,102 @@ namespace AyuboDrive.Forms
             if (ValidationHandler.ValidateContactNumber(contactNumber, "customer", "contactNumber"))
             {
                 validContactNumber = true;
-                ContactNumberErrorLbl.Text = "";
+                ContactNumberErrLbl.Text = "";
                 ContactNumberPnl.BackColor = Properties.Settings.Default.PURPLE;
             }
             else
             {
-                ContactNumberErrorLbl.Text = "Invalid contact number";
+                ContactNumberErrLbl.Text = "Invalid contact number";
                 ContactNumberPnl.BackColor = Properties.Settings.Default.RED;
             }
 
             if(ValidationHandler.ValidateComboBoxValue(gender, genderSelectedIndex))
+            {
+                validGender = true;
+                GenderPnl.BackColor = Properties.Settings.Default.PURPLE;
+                GenderErrLbl.Text = "";
+            }
+            else
+            {
+                GenderPnl.BackColor = Properties.Settings.Default.RED;
+                GenderErrLbl.Text = "Invalid gender option";
+            }
+            return validNIC && validFirstName && validLastName && validContactNumber && validGender;
+        }
+
+        private bool ValidateInputV2(string NIC, string firstName, string lastName, string contactNumber, 
+            string gender, int genderSelectedIndex)
+        {
+            bool validNIC = false;
+            bool validFirstName = false;
+            bool validLastName = false;
+            bool validContactNumber = false;
+            bool validGender = false;
+
+
+            if (_initialNIC.Equals(NIC))
+            {
+                validNIC = true;
+                NICPnl.BackColor = Properties.Settings.Default.PURPLE;
+                NICErrorLbl.Text = "";
+            }
+            else
+            {
+                if (!ValidationHandler.ValidateNIC(NIC, "driver", "driverNIC"))
+                {
+                    NICPnl.BackColor = Properties.Settings.Default.RED;
+                    NICErrorLbl.Text = "Invalid NIC";
+                }
+                else
+                {
+                    validNIC = true;
+                }
+            }
+
+            if (ValidationHandler.ValidateInputLength(firstName))
+            {
+                validFirstName = true;
+                FirstNameErrorLbl.Text = "";
+                FirstNamePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                FirstNameErrorLbl.Text = "Invalid first name";
+                FirstNamePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateInputLength(lastName))
+            {
+                validLastName = true;
+                LastNameErrorLbl.Text = "";
+                LastNamePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                LastNameErrorLbl.Text = "Invalid last name";
+                LastNamePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (_initialContactNumber.Equals(contactNumber))
+            {
+                validContactNumber = true;
+                ContactNumberPnl.BackColor = Properties.Settings.Default.PURPLE;
+                ContactNumberErrLbl.Text = "";
+            }
+            else
+            {
+                if (!ValidationHandler.ValidateContactNumber(contactNumber, "driver", "contactNumber"))
+                {
+                    ContactNumberPnl.BackColor = Properties.Settings.Default.RED;
+                    ContactNumberErrLbl.Text = "Invalid contact number";
+                }
+                else
+                {
+                    validContactNumber = true;
+                }
+            }
+
+            if (ValidationHandler.ValidateComboBoxValue(gender, genderSelectedIndex))
             {
                 validGender = true;
                 GenderPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -126,6 +215,7 @@ namespace AyuboDrive.Forms
             FirstNameTxtBox.Text = "";
             LastNameTxtBox.Text = "";
             ContactNumberTxtBox.Text = "";
+            GenderCmbBox.Text = "";
             _rowSelected = false;
             _selectedRow.BackColor = Properties.Settings.Default.LIGHT_GRAY;
             _selectedRow = null;
@@ -140,43 +230,33 @@ namespace AyuboDrive.Forms
             FirstNamePnl.BackColor = Properties.Settings.Default.PURPLE;
             LastNameErrorLbl.Text = "";
             LastNamePnl.BackColor = Properties.Settings.Default.PURPLE;
-            ContactNumberErrorLbl.Text = "";
+            ContactNumberErrLbl.Text = "";
             ContactNumberPnl.BackColor = Properties.Settings.Default.PURPLE;
+            GenderErrLbl.Text = "";
+            GenderPnl.BackColor = Properties.Settings.Default.PURPLE;
         }
 
         private void AddData(int index)
         {
             if (index != 0)
             {
-                Label[] subArray = _dataViewer.GetLabels()[index];
-                _customerID = subArray[0].Text;
-                NICTxtBox.Text = subArray[1].Text;
-                FirstNameTxtBox.Text = subArray[2].Text;
-                LastNameTxtBox.Text = subArray[3].Text;
-                ContactNumberTxtBox.Text = subArray[4].Text;
-            }
-        }
+                //Label[] subArray = _dataViewer.GetLabels()[index];
+                //_customerID = subArray[0].Text;
+                //NICTxtBox.Text = subArray[1].Text;
 
-        private void AddCellClickEvent()
-        {
-            try
-            {
-                foreach (Label[] cells in _dataViewer.GetLabels())
-                {
-                    foreach (Label cell in cells)
-                    {
-                        if (cell != null)
-                        {
-                            cell.Click += new EventHandler(Cell_Click);
-                            cell.MouseEnter += new EventHandler(Cell_MouseEnter);
-                            cell.MouseLeave += new EventHandler(Cell_MouseLeave);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessagePrinter.PrintToConsole(ex.ToString(), "An error occurred when adding the event handlers");
+                //FirstNameTxtBox.Text = subArray[2].Text;
+                //LastNameTxtBox.Text = subArray[3].Text;
+                //ContactNumberTxtBox.Text = subArray[4].Text;
+
+                DataRow record = s_queryHandler.SelectQueryHandler("SELECT * FROM customer").Rows[index-1];
+                _customerID = record[0].ToString();
+                NICTxtBox.Text = record[1].ToString();
+                _initialNIC = record[1].ToString();
+                FirstNameTxtBox.Text = record[2].ToString();
+                LastNameTxtBox.Text = record[3].ToString();
+                ContactNumberTxtBox.Text = record[4].ToString();
+                _initialContactNumber = record[4].ToString();
+                GenderCmbBox.Text = record[5].ToString();
             }
         }
 
@@ -185,10 +265,10 @@ namespace AyuboDrive.Forms
             TablePanel.Controls.Clear();
             _dataViewer = new DataViewer(TablePanel, s_queryHandler.SelectQueryHandler("SELECT * FROM customer"));
             _dataViewer.DisplayTable();
-            AddCellClickEvent();
+            AddCellClickEvent(_dataViewer, Cell_Click, Cell_MouseEnter, Cell_MouseLeave);
         }
         //
-        // Data manipulation event handlers
+        // Mouse click event handlers
         //
         private void InsertBtn_Click(object sender, EventArgs e)
         {
@@ -218,6 +298,12 @@ namespace AyuboDrive.Forms
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
+            if(!_rowSelected)
+            {
+                MessagePrinter.PrintToMessageBox("Please select a customer record", "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string NIC = NICTxtBox.Text;
             string firstName = FirstNameTxtBox.Text;
             string lastName = LastNameTxtBox.Text;
