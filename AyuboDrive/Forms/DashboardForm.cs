@@ -180,7 +180,7 @@ namespace AyuboDrive.Forms
 
         private void LongTourBookingsBtn_Click(object sender, EventArgs e)
         {
-            new HireManagement(this).Show();
+            new HireManagementForm(this).Show();
             Hide();
         }
     }
