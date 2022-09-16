@@ -36,7 +36,6 @@
             this.InsertBtn = new System.Windows.Forms.Button();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
             this.DiscontinueBtn = new System.Windows.Forms.Button();
-            this.DeleteBtn = new System.Windows.Forms.Button();
             this.UpdateBtn = new System.Windows.Forms.Button();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -63,7 +62,8 @@
             this.PackageNameTxtBox = new System.Windows.Forms.TextBox();
             this.TitleLbl = new System.Windows.Forms.Label();
             this.ViewControlPnl = new System.Windows.Forms.Panel();
-            this.IncludeDiscontinuedPackagesRBtn = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.DiscontinuedPackagesRBtn = new System.Windows.Forms.RadioButton();
             this.ButtonsPanel.SuspendLayout();
             this.ManipulationPanel.SuspendLayout();
             this.ViewControlPnl.SuspendLayout();
@@ -135,7 +135,6 @@
             // 
             this.ButtonsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.ButtonsPanel.Controls.Add(this.DiscontinueBtn);
-            this.ButtonsPanel.Controls.Add(this.DeleteBtn);
             this.ButtonsPanel.Controls.Add(this.UpdateBtn);
             this.ButtonsPanel.Controls.Add(this.InsertBtn);
             this.ButtonsPanel.Location = new System.Drawing.Point(538, 337);
@@ -151,30 +150,15 @@
             this.DiscontinueBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DiscontinueBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DiscontinueBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.DiscontinueBtn.Location = new System.Drawing.Point(13, 66);
+            this.DiscontinueBtn.Location = new System.Drawing.Point(13, 67);
             this.DiscontinueBtn.Name = "DiscontinueBtn";
             this.DiscontinueBtn.Size = new System.Drawing.Size(129, 45);
             this.DiscontinueBtn.TabIndex = 8;
             this.DiscontinueBtn.Text = "Discontinue";
             this.DiscontinueBtn.UseVisualStyleBackColor = false;
-            // 
-            // DeleteBtn
-            // 
-            this.DeleteBtn.BackColor = System.Drawing.Color.Transparent;
-            this.DeleteBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DeleteBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.DeleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DeleteBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.DeleteBtn.Location = new System.Drawing.Point(13, 66);
-            this.DeleteBtn.Name = "DeleteBtn";
-            this.DeleteBtn.Size = new System.Drawing.Size(129, 45);
-            this.DeleteBtn.TabIndex = 7;
-            this.DeleteBtn.Text = "Delete";
-            this.DeleteBtn.UseVisualStyleBackColor = false;
-            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
-            this.DeleteBtn.MouseEnter += new System.EventHandler(this.DeleteBtn_MouseEnter);
-            this.DeleteBtn.MouseLeave += new System.EventHandler(this.DeleteBtn_MouseLeave);
+            this.DiscontinueBtn.Click += new System.EventHandler(this.DiscontinueBtn_Click);
+            this.DiscontinueBtn.MouseEnter += new System.EventHandler(this.DiscontinueBtn_MouseEnter);
+            this.DiscontinueBtn.MouseLeave += new System.EventHandler(this.DiscontinueBtn_MouseLeave);
             // 
             // UpdateBtn
             // 
@@ -485,25 +469,40 @@
             // 
             this.ViewControlPnl.AutoScroll = true;
             this.ViewControlPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
-            this.ViewControlPnl.Controls.Add(this.IncludeDiscontinuedPackagesRBtn);
+            this.ViewControlPnl.Controls.Add(this.radioButton1);
+            this.ViewControlPnl.Controls.Add(this.DiscontinuedPackagesRBtn);
             this.ViewControlPnl.Location = new System.Drawing.Point(538, 34);
             this.ViewControlPnl.Name = "ViewControlPnl";
             this.ViewControlPnl.Size = new System.Drawing.Size(250, 37);
             this.ViewControlPnl.TabIndex = 81;
             // 
-            // IncludeDiscontinuedPackagesRBtn
+            // radioButton1
             // 
-            this.IncludeDiscontinuedPackagesRBtn.AutoSize = true;
-            this.IncludeDiscontinuedPackagesRBtn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.IncludeDiscontinuedPackagesRBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IncludeDiscontinuedPackagesRBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.IncludeDiscontinuedPackagesRBtn.Location = new System.Drawing.Point(21, 11);
-            this.IncludeDiscontinuedPackagesRBtn.Name = "IncludeDiscontinuedPackagesRBtn";
-            this.IncludeDiscontinuedPackagesRBtn.Size = new System.Drawing.Size(172, 17);
-            this.IncludeDiscontinuedPackagesRBtn.TabIndex = 21;
-            this.IncludeDiscontinuedPackagesRBtn.Text = "Include discontinued packages";
-            this.IncludeDiscontinuedPackagesRBtn.UseVisualStyleBackColor = true;
-            this.IncludeDiscontinuedPackagesRBtn.CheckedChanged += new System.EventHandler(this.IncludeDiscontinuedPackagesRBtn_CheckedChanged);
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.radioButton1.Location = new System.Drawing.Point(165, 11);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(58, 17);
+            this.radioButton1.TabIndex = 22;
+            this.radioButton1.Text = "Default";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // DiscontinuedPackagesRBtn
+            // 
+            this.DiscontinuedPackagesRBtn.AutoSize = true;
+            this.DiscontinuedPackagesRBtn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.DiscontinuedPackagesRBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DiscontinuedPackagesRBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.DiscontinuedPackagesRBtn.Location = new System.Drawing.Point(23, 11);
+            this.DiscontinuedPackagesRBtn.Name = "DiscontinuedPackagesRBtn";
+            this.DiscontinuedPackagesRBtn.Size = new System.Drawing.Size(136, 17);
+            this.DiscontinuedPackagesRBtn.TabIndex = 21;
+            this.DiscontinuedPackagesRBtn.Text = "Discontinued packages";
+            this.DiscontinuedPackagesRBtn.UseVisualStyleBackColor = true;
+            this.DiscontinuedPackagesRBtn.CheckedChanged += new System.EventHandler(this.IncludeDiscontinuedPackagesRBtn_CheckedChanged);
             // 
             // PackageTypeManagementForm
             // 
@@ -540,7 +539,6 @@
         private System.Windows.Forms.Label PackageNameErrorLbl;
         private System.Windows.Forms.Button InsertBtn;
         private System.Windows.Forms.Panel ButtonsPanel;
-        private System.Windows.Forms.Button DeleteBtn;
         private System.Windows.Forms.Button UpdateBtn;
         private System.Windows.Forms.Panel ManipulationPanel;
         private System.Windows.Forms.TextBox PackageNameTxtBox;
@@ -568,6 +566,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button DiscontinueBtn;
         private System.Windows.Forms.Panel ViewControlPnl;
-        private System.Windows.Forms.RadioButton IncludeDiscontinuedPackagesRBtn;
+        private System.Windows.Forms.RadioButton DiscontinuedPackagesRBtn;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

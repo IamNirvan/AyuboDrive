@@ -17,8 +17,10 @@ namespace AyuboDrive.Forms
         private static QueryHandler s_queryHandler = new QueryHandler();
         private DataViewer _dataViewer;
         private string _packageID;
+        private string _initialPackageName;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
+        private string _defaultQuery;
 
         public PackageTypeManagementForm(DashboardForm dashboardForm) : base(dashboardForm)
         {
@@ -30,16 +32,16 @@ namespace AyuboDrive.Forms
         //
         // Mouse event handlers
         //
-        private void DeleteBtn_MouseEnter(object sender, EventArgs e)
+        private void DiscontinueBtn_MouseEnter(object sender, EventArgs e)
         {
-            DeleteBtn.BackColor = Properties.Settings.Default.RED;
-            DeleteBtn.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
+            DiscontinueBtn.BackColor = Properties.Settings.Default.RED;
+            DiscontinueBtn.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
         }
 
-        private void DeleteBtn_MouseLeave(object sender, EventArgs e)
+        private void DiscontinueBtn_MouseLeave(object sender, EventArgs e)
         {
-            DeleteBtn.BackColor = Properties.Settings.Default.TRANSPARENT;
-            DeleteBtn.ForeColor = Properties.Settings.Default.RED;
+            DiscontinueBtn.BackColor = Properties.Settings.Default.TRANSPARENT;
+            DiscontinueBtn.ForeColor = Properties.Settings.Default.RED;
         }
 
         private void Cell_Click(object sender, EventArgs e)
@@ -131,8 +133,12 @@ namespace AyuboDrive.Forms
             if (index != 0)
             {
                 Label[] subArray = _dataViewer.GetLabels()[index];
+
+                DataRow record = s_queryHandler.SelectQueryHandler(_defaultQuery).Rows[index - 1];
+
                 _packageID = subArray[0].Text;
                 PackageNameTxtBox.Text = subArray[1].Text;
+                _initialPackageName = subArray[1].Text;
                 MaxHourTxtBox.Text = subArray[2].Text;
                 MaxKmTxtBox.Text = subArray[3].Text;
                 ExtraHourRateTxtBox.Text = subArray[4].Text;
@@ -157,10 +163,20 @@ namespace AyuboDrive.Forms
             PackageStatusPnl.BackColor = Properties.Settings.Default.PURPLE;
         }
 
-        private void DisplayTable(string query = "SELECT * from package WHERE packageStatus = 'active' OR packageStatus = 'paused'")
+        private void DisplayTable()
         {
             TablePanel.Controls.Clear();
-            _dataViewer = new DataViewer(TablePanel, s_queryHandler.SelectQueryHandler(query));
+
+            if (DiscontinuedPackagesRBtn.Checked)
+            {
+                _defaultQuery = "SELECT * FROM package  WHERE packageStatus = 'discontinued'";
+            }
+            else
+            {
+                _defaultQuery = "SELECT * from package WHERE packageStatus = 'active' OR packageStatus = 'paused'";
+            }
+
+            _dataViewer = new DataViewer(TablePanel, s_queryHandler.SelectQueryHandler(_defaultQuery));
             _dataViewer.DisplayTable();
             AddCellClickEvent(_dataViewer, Cell_Click, Cell_MouseEnter, Cell_MouseLeave);
         }
@@ -181,7 +197,7 @@ namespace AyuboDrive.Forms
                 PackageNameErrorLbl.Text = "";
                 PackageNamePnl.BackColor = Properties.Settings.Default.PURPLE;
 
-               if(ValidationHandler.CheckPackageNamePresence(packageName))
+               if(!ValidationHandler.ValidatePackageName(packageName))
                 {
                     validPackageName = false;
                     PackageNameErrorLbl.Text = "Package name already exists";
@@ -192,6 +208,97 @@ namespace AyuboDrive.Forms
             {
                 PackageNameErrorLbl.Text = "Invalid package name";
                 PackageNamePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateTimeInput(maxHour))
+            {
+                validMaxHour = true;
+                MaxHourErrorLbl.Text = "";
+                MaxHourPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                MaxHourErrorLbl.Text = "Invalid max hour";
+                MaxHourPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateDistanceInput(maxKm))
+            {
+                validMaxKm = true;
+                MaxKmErrorLbl.Text = "";
+                MaxKmPnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                MaxKmErrorLbl.Text = "Invalid max Km";
+                MaxKmPnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if (ValidationHandler.ValidateDecimalInput(extraHourRate))
+            {
+                validExtraHourRate = true;
+                ExtraHourRateErrorLbl.Text = "";
+                ExtraHourRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                ExtraHourRateErrorLbl.Text = "Invalid extra hour rate";
+                ExtraHourRatePnl.BackColor = Properties.Settings.Default.RED;
+            }
+            if (ValidationHandler.ValidateDecimalInput(extraKmRate))
+            {
+                validExtraKmRate = true;
+                ExtraKmRateErrorLbl.Text = "";
+                ExtraKmRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+            }
+            else
+            {
+                ExtraKmRateErrorLbl.Text = "Invalid extra Km rate";
+                ExtraKmRatePnl.BackColor = Properties.Settings.Default.RED;
+            }
+
+            if(ValidationHandler.ValidateComboBoxValue(packageStatus, packageStatusSelectedIndex))
+            {
+                validPackageStatus = true;
+                PackageStatusPnl.BackColor = Properties.Settings.Default.PURPLE;
+                PackageStatusErrLbl.Text = "";
+            }
+            else
+            {
+                PackageStatusErrLbl.Text = "Invalid package status";
+                PackageStatusPnl.BackColor = Properties.Settings.Default.RED;
+            }
+            return validPackageName && validMaxHour && validMaxKm && validExtraHourRate && 
+                validExtraKmRate && validPackageStatus;
+        }
+
+        private bool ValidateInputV2(string packageName, string maxHour, string maxKm, string extraHourRate, 
+            string extraKmRate, string packageStatus, int packageStatusSelectedIndex)
+        {
+            bool validPackageName = false;
+            bool validMaxHour = false;
+            bool validMaxKm = false;
+            bool validExtraHourRate = false;
+            bool validExtraKmRate = false;
+            bool validPackageStatus = false;
+
+            if (_initialPackageName.Equals(packageName))
+            {
+                validPackageName = true;
+                PackageNamePnl.BackColor = Properties.Settings.Default.PURPLE;
+                PackageNameErrorLbl.Text = "";
+            }
+            else
+            {
+                if (!ValidationHandler.ValidatePackageName(packageName))
+                {
+                    PackageNamePnl.BackColor = Properties.Settings.Default.RED;
+                    PackageNameErrorLbl.Text = "Invalid package name";
+                }
+                else
+                {
+                    validPackageName = true;
+                }
             }
 
             if (ValidationHandler.ValidateTimeInput(maxHour))
@@ -274,7 +381,7 @@ namespace AyuboDrive.Forms
             _packageID = null;
         }
         //
-        // Data manipulation event handlers
+        // Click event handlers
         //
         private void InsertBtn_Click(object sender, EventArgs e)
         {
@@ -308,6 +415,15 @@ namespace AyuboDrive.Forms
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
+            ResetErrors();
+
+            if (!_rowSelected)
+            {
+                MessagePrinter.PrintToMessageBox("Please select a package record", "Select a record",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string packageName = PackageNameTxtBox.Text;
             string maxHour = MaxHourTxtBox.Text;
             string maxKm = MaxKmTxtBox.Text;
@@ -315,7 +431,7 @@ namespace AyuboDrive.Forms
             string extraKmRate = ExtraKmRateTxtBox.Text;
             PackageStatus packageStatus = ConvertStringToPackageStatus(PackageStatusCmbBox.Text);
 
-            if (ValidateInput(packageName, maxHour, maxKm, extraHourRate, extraKmRate, packageStatus.ToString(),
+            if (ValidateInputV2(packageName, maxHour, maxKm, extraHourRate, extraKmRate, packageStatus.ToString(),
                 PackageStatusCmbBox.SelectedIndex))
             {
                 Package package = new Package(packageName, int.Parse(maxHour), int.Parse(maxKm),
@@ -344,57 +460,55 @@ namespace AyuboDrive.Forms
             {
                 MessagePrinter.PrintToMessageBox("Please select a package record", "Select a record",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, " +
-                    "it cannot be recoverd.", "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, " +
+                "it cannot be recoverd.", "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
+            {
+                if (Package.Delete(_packageID))
                 {
-                    if (Package.Delete(_packageID))
-                    {
-                        MessagePrinter.PrintToMessageBox("Package details were successfully deleted", "Operation successful",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessagePrinter.PrintToMessageBox("Failed to delete package details", "Operation failed",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    DisplayTable();
-                    Reset();
+                    MessagePrinter.PrintToMessageBox("Package details were successfully deleted", "Operation successful",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    MessagePrinter.PrintToMessageBox("Failed to delete package details", "Operation failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                DisplayTable();
+                Reset();
             }
         }
 
         private void DiscontinueBtn_Click(object sender, EventArgs e)
         {
+            ResetErrors();
+
             if (!_rowSelected)
             {
                 MessagePrinter.PrintToMessageBox("Please select a package record", "Select a record",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to discontinue this package?",
-                    "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to discontinue this package?",
+                "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if(result == DialogResult.Yes)
+            if(result == DialogResult.Yes)
+            {
+                if(Package.DiscontinuePackage(_packageID))
                 {
-                    if(Package.DiscontinuePackage(_packageID))
-                    {
-                        MessagePrinter.PrintToMessageBox("Package was successfully discontinued", "Operation successful",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessagePrinter.PrintToMessageBox("Failed to discontinue package", "Operation failed",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    DisplayTable();
-                    Reset();
+                    MessagePrinter.PrintToMessageBox("Package was successfully discontinued", "Operation successful",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    MessagePrinter.PrintToMessageBox("Failed to discontinue package", "Operation failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                DisplayTable();
+                Reset();
             }
         }
         //
@@ -420,10 +534,17 @@ namespace AyuboDrive.Forms
                 e.Handled = true;
             }
         }
-
+        //
+        // Radio button check changed event handler
+        //
         private void IncludeDiscontinuedPackagesRBtn_CheckedChanged(object sender, EventArgs e)
         {
-            DisplayTable("SELECT * from package");
+            DisplayTable();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayTable();
         }
     }
 }
