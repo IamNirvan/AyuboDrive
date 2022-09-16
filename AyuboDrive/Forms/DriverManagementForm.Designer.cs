@@ -519,7 +519,6 @@
             this.Name = "DriverManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DriverManagementForm";
-            this.Load += new System.EventHandler(this.DriverManagementForm_Load);
             this.ButtonsPanel.ResumeLayout(false);
             this.ManipulationPanel.ResumeLayout(false);
             this.ManipulationPanel.PerformLayout();

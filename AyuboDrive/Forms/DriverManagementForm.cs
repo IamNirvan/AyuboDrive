@@ -27,6 +27,7 @@ namespace AyuboDrive.Forms
             InitializeComponent();
             HandleTitleBar();
             FillDriverStatusCmbBox();
+            DisplayTable();
         }
         //
         // Mouse event handlers
@@ -404,13 +405,6 @@ namespace AyuboDrive.Forms
             _dataViewer = new DataViewer(TablePanel, s_queryHandler.SelectQueryHandler(query));
             _dataViewer.DisplayTable();
             AddCellClickEvent(_dataViewer, Cell_Click, Cell_MouseEnter, Cell_MouseLeave);
-        }
-        //
-        // Form load event handler
-        //
-        private void DriverManagementForm_Load(object sender, EventArgs e)
-        {
-            DisplayTable();
         }
         //
         // text box enter and leave event handlers
