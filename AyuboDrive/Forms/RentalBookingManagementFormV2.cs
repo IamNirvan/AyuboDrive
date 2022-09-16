@@ -556,6 +556,14 @@ namespace AyuboDrive.Forms
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
+            ResetErrors();
+
+            if (!_rowSelected)
+            {
+                MessagePrinter.PrintToMessageBox("Please select a rental booking record", "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string vehicleTypeID = VehicleTypeIDCmbBox.Text;
             string vehicleID = VehicleIDCmbBox.Text;
             string driverID = DriverCheckBox.Checked ? DriverIDCmbBox.Text : null;
@@ -595,27 +603,26 @@ namespace AyuboDrive.Forms
             if (!_rowSelected)
             {
                 MessagePrinter.PrintToMessageBox("Please select a rental booking record", "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, it cannot be recoverd.",
-                "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+            DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, it cannot be recoverd.",
+            "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                if (RentalBooking.Delete(_bookingID))
                 {
-                    if (RentalBooking.Delete(_bookingID))
-                    {
-                        MessagePrinter.PrintToMessageBox("Rental booking details were successfully deleted", "Operation successful",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessagePrinter.PrintToMessageBox("Failed to delete rental booking", "Operation failed",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    DisplayTable();
-                    Reset();
+                    MessagePrinter.PrintToMessageBox("Rental booking details were successfully deleted", "Operation successful",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    MessagePrinter.PrintToMessageBox("Failed to delete rental booking", "Operation failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                DisplayTable();
+                Reset();
             }
         }
     }

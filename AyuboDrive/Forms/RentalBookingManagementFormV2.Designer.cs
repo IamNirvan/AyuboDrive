@@ -66,6 +66,7 @@
             this.UpdateBtn = new System.Windows.Forms.Button();
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
+            this.CloseBookingBtn = new System.Windows.Forms.Button();
             this.ManipulationPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
@@ -512,6 +513,7 @@
             // ButtonsPanel
             // 
             this.ButtonsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.ButtonsPanel.Controls.Add(this.CloseBookingBtn);
             this.ButtonsPanel.Controls.Add(this.DeleteBtn);
             this.ButtonsPanel.Controls.Add(this.UpdateBtn);
             this.ButtonsPanel.Controls.Add(this.InsertBtn);
@@ -519,6 +521,21 @@
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(250, 123);
             this.ButtonsPanel.TabIndex = 60;
+            // 
+            // CloseBookingBtn
+            // 
+            this.CloseBookingBtn.BackColor = System.Drawing.Color.Transparent;
+            this.CloseBookingBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CloseBookingBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.CloseBookingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseBookingBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseBookingBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.CloseBookingBtn.Location = new System.Drawing.Point(14, 67);
+            this.CloseBookingBtn.Name = "CloseBookingBtn";
+            this.CloseBookingBtn.Size = new System.Drawing.Size(72, 45);
+            this.CloseBookingBtn.TabIndex = 8;
+            this.CloseBookingBtn.Text = "Close booking";
+            this.CloseBookingBtn.UseVisualStyleBackColor = false;
             // 
             // RentalBookingManagementFormV2
             // 
@@ -587,5 +604,6 @@
         private System.Windows.Forms.Panel ButtonsPanel;
         private System.Windows.Forms.CheckBox DriverCheckBox;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button CloseBookingBtn;
     }
 }
