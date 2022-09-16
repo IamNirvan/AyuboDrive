@@ -16,6 +16,8 @@ namespace AyuboDrive.Forms
     {
         private static QueryHandler s_queryHandler = new QueryHandler();
         private DataViewer _dataViewer;
+        private string _initialNIC;
+        private string _initialContactNumber;
         private string _driverID = null;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
@@ -105,7 +107,6 @@ namespace AyuboDrive.Forms
         //
         // Utility
         //
-
         private void FillDriverStatusCmbBox()
         {
             DriverStatusCmbBox.Items.Add(DriverStatus.AVAILABLE.ToString().ToLower());
@@ -125,7 +126,7 @@ namespace AyuboDrive.Forms
             }
             return DriverStatus.TERMINATED;
         }
-
+        
         private bool ValidateInput(string NIC, string firstName, string lastName, string contactNumber, string driverStatus, 
             int driverStatusSelectedRowIndex, string dailyRate, string overnightRate)
         {
@@ -136,6 +137,9 @@ namespace AyuboDrive.Forms
             bool validDriverStatus = false;
             bool validDailyRate = false;
             bool validOvernightRate = false;
+
+            // Capture the initial NIC
+            // Check if the newly entered NIC is not the initial NIC and it is not present in the database
 
             if(ValidationHandler.ValidateNIC(NIC, "driver", "driverNIC"))
             {
@@ -225,6 +229,118 @@ namespace AyuboDrive.Forms
                 && validDailyRate && validOvernightRate;
         }
 
+        private bool ValidateInputV2(string NIC, string firstName, string lastName, string contactNumber, string driverStatus, 
+            int driverStatusSelectedRowIndex, string dailyRate, string overnightRate)
+        {
+            bool validNIC = false;
+            bool validFirstName = false;
+            bool validLastName = false;
+            bool validContactNumber = false;
+            bool validDriverStatus = false;
+            bool validDailyRate = false;
+            bool validOvernightRate = false;
+
+            if(_initialNIC.Equals(NIC))
+            {
+                validNIC = true;
+                NICPnl.BackColor = Properties.Settings.Default.PURPLE;
+                NICErrorLbl.Text = "";
+            }
+            else
+            {
+                if (!ValidationHandler.ValidateNIC(NIC, "driver", "driverNIC"))
+                {
+                    NICPnl.BackColor = Properties.Settings.Default.RED;
+                    NICErrorLbl.Text = "Invalid NIC";
+                }
+                else
+                {
+                    validNIC = true;
+                }
+            }
+
+            if(ValidationHandler.ValidateInputLength(firstName))
+            {
+                validFirstName = true;
+                FirstNamePnl.BackColor = Properties.Settings.Default.PURPLE;
+                FirstNameErrLbl.Text = "";
+            }
+            else
+            {
+                FirstNamePnl.BackColor = Properties.Settings.Default.RED;
+                FirstNameErrLbl.Text = "Invalid first name";
+            }
+
+            if(ValidationHandler.ValidateInputLength(lastName))
+            {
+                validLastName = true;
+                LastNamePnl.BackColor = Properties.Settings.Default.PURPLE;
+                LastNameErrLbl.Text = "";
+            }
+            else
+            {
+                LastNamePnl.BackColor = Properties.Settings.Default.RED;
+                LastNameErrLbl.Text = "Invalid last name";
+            }
+            
+            if (_initialContactNumber.Equals(contactNumber))
+            {
+                validContactNumber = true;
+                ContactNumberPnl.BackColor = Properties.Settings.Default.PURPLE;
+                ContactNumberErrLbl.Text = "";
+            }
+            else
+            {
+                if (!ValidationHandler.ValidateContactNumber(contactNumber, "driver", "contactNumber"))
+                {
+                    ContactNumberPnl.BackColor = Properties.Settings.Default.RED;
+                    ContactNumberErrLbl.Text = "Invalid contact number";
+                }
+                else
+                {
+                    validContactNumber = true;
+                }
+            }
+
+            if (ValidationHandler.ValidateComboBoxValue(driverStatus, driverStatusSelectedRowIndex))
+            {
+                validDriverStatus = true;
+                DriverStatusPnl.BackColor = Properties.Settings.Default.PURPLE;
+                DriverStatusErrLbl.Text = "";
+            }
+            else
+            {
+                DriverStatusPnl.BackColor = Properties.Settings.Default.RED;
+                DriverStatusErrLbl.Text = "Invalid driver status";
+            }
+
+            if(ValidationHandler.ValidateDecimalInput(dailyRate))
+            {
+                validDailyRate = true;
+                DailyRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+                DailyRateErrLbl.Text = "";
+            }
+            else
+            {
+                DailyRatePnl.BackColor = Properties.Settings.Default.RED;
+                DailyRateErrLbl.Text = "Invalid daily rate";
+            }
+
+            if(ValidationHandler.ValidateDecimalInput(overnightRate))
+            {
+                validOvernightRate = true;
+                OvernightRatePnl.BackColor = Properties.Settings.Default.PURPLE;
+                OvernightRateErrLbl.Text = "";
+            }
+            else
+            {
+                OvernightRatePnl.BackColor = Properties.Settings.Default.RED;
+                OvernightRateErrLbl.Text = "Invalid overnight rate";
+            }
+            return validNIC && validFirstName && validLastName && validContactNumber && validDriverStatus 
+                && validDailyRate && validOvernightRate;
+        }
+
         private void Reset()
         {
             NICTxtBox.Text = "";
@@ -269,35 +385,14 @@ namespace AyuboDrive.Forms
                 DataRow record = s_queryHandler.SelectQueryHandler("SELECT * FROM driver").Rows[index-1];
                 _driverID = record[0].ToString();
                 NICTxtBox.Text = record[1].ToString();
+                _initialNIC = record[1].ToString();
                 FirstNameTxtBox.Text = record[2].ToString();
                 LastNameTxtBox.Text = record[3].ToString();
                 ContactNumberTxtBox.Text = record[4].ToString();
+                _initialContactNumber = record[4].ToString();
                 DriverStatusCmbBox.Text = record[5].ToString();
                 DailyRateTxtBox.Text = record[6].ToString();
                 OvernightRateTxtBox.Text = record[7].ToString();
-            }
-        }
-
-        private void AddCellClickEvent()
-        {
-            try
-            {
-                foreach (Label[] cells in _dataViewer.GetLabels())
-                {
-                    foreach (Label cell in cells)
-                    {
-                        if (cell != null)
-                        {
-                            cell.Click += new EventHandler(Cell_Click);
-                            cell.MouseEnter += new EventHandler(Cell_MouseEnter);
-                            cell.MouseLeave += new EventHandler(Cell_MouseLeave);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessagePrinter.PrintToConsole(ex.ToString(), "An error occurred when adding the event handlers");
             }
         }
 
@@ -308,7 +403,7 @@ namespace AyuboDrive.Forms
             TablePanel.Controls.Clear();
             _dataViewer = new DataViewer(TablePanel, s_queryHandler.SelectQueryHandler(query));
             _dataViewer.DisplayTable();
-            AddCellClickEvent();
+            AddCellClickEvent(_dataViewer, Cell_Click, Cell_MouseEnter, Cell_MouseLeave);
         }
         //
         // Form load event handler
@@ -362,6 +457,12 @@ namespace AyuboDrive.Forms
 
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
+            if (!_rowSelected)
+            {
+                MessagePrinter.PrintToMessageBox("Please select a driver record", "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string NIC = NICTxtBox.Text;
             string firstName = FirstNameTxtBox.Text;
             string lastName = LastNameTxtBox.Text;
@@ -370,7 +471,7 @@ namespace AyuboDrive.Forms
             string dailyRate = DailyRateTxtBox.Text;
             string overnightRate = OvernightRateTxtBox.Text;
 
-            if (ValidateInput(NIC, firstName, lastName, contactNumber, driverStatus.ToString(), DriverStatusCmbBox.SelectedIndex, dailyRate, overnightRate))
+            if (ValidateInputV2(NIC, firstName, lastName, contactNumber, driverStatus.ToString(), DriverStatusCmbBox.SelectedIndex, dailyRate, overnightRate))
             {
                 Driver driver = new Driver(NIC, firstName, lastName, contactNumber, driverStatus, decimal.Parse(dailyRate), decimal.Parse(overnightRate));
                 if (driver.Update(_driverID))
@@ -381,7 +482,7 @@ namespace AyuboDrive.Forms
                 }
                 else
                 {
-                    MessagePrinter.PrintToMessageBox("Failed to update `driver details", "Operation failed",
+                    MessagePrinter.PrintToMessageBox("Failed to update driver details", "Operation failed",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 Reset();
@@ -395,22 +496,20 @@ namespace AyuboDrive.Forms
             if (!_rowSelected)
             {
                 MessagePrinter.PrintToMessageBox("Please select a driver record", "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, it cannot be recoverd.",
+            DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, it cannot be recoverd.",
                 "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
+            {
+                if (Driver.Delete(_driverID))
                 {
-                    if (Driver.Delete(_driverID))
-                    {
-                        MessagePrinter.PrintToMessageBox("Driver details were successfully deleted", "Operation successful",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    DisplayTable();
-                    Reset();
+                    MessagePrinter.PrintToMessageBox("Driver details were successfully deleted", "Operation successful",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                DisplayTable();
+                Reset();
             }
         }
         // 
