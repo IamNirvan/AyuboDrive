@@ -300,7 +300,8 @@ namespace AyuboDrive.Forms
         {
             if(!_rowSelected)
             {
-                MessagePrinter.PrintToMessageBox("Please select a customer record", "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessagePrinter.PrintToMessageBox("Please select a customer record", "Select a record", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -335,23 +336,22 @@ namespace AyuboDrive.Forms
 
             if(!_rowSelected)
             {
-                MessagePrinter.PrintToMessageBox("Please select a customer record", "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessagePrinter.PrintToMessageBox("Please select a customer record", "Select a record", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, it cannot be recoverd.",
-                "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, it cannot be recoverd.",
+            "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
+            {
+                if(Customer.Delete(_customerID))
                 {
-                    if(Customer.Delete(_customerID))
-                    {
-                        MessagePrinter.PrintToMessageBox("Customer details were successfully deleted", "Operation successful", 
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    DisplayTable();
-                    Reset();
+                    MessagePrinter.PrintToMessageBox("Customer details were successfully deleted", "Operation successful", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                DisplayTable();
+                Reset();
             }
         }
         //
@@ -470,6 +470,11 @@ namespace AyuboDrive.Forms
                 // Discard the character by setting handled to true
                 e.Handled = true;
             }
+        }
+
+        private void CustomerManagementForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

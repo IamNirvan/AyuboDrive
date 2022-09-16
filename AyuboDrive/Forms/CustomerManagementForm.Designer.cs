@@ -411,6 +411,7 @@
             this.Name = "CustomerManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CustomerManagementForm";
+            this.Load += new System.EventHandler(this.CustomerManagementForm_Load);
             this.ManipulationPanel.ResumeLayout(false);
             this.ManipulationPanel.PerformLayout();
             this.ButtonsPanel.ResumeLayout(false);
