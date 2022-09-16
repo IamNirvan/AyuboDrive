@@ -22,27 +22,27 @@ namespace AyuboDrive.Utility
         private Panel[] _imagePanels;
         private Label[] _vehicleNames;
         private Label[] _interactiveLabels;
-        private readonly string[] _imagePaths;
+        private readonly string _query;
         private static readonly QueryHandler _queryHandler = new QueryHandler();
 
-        public VehicleViewerV2(Panel container, DataTable dataTable, int minWidth, int minHeight, string[] images)
+        public VehicleViewerV2(Panel container, DataTable dataTable, int minWidth, int minHeight, string query)
         {
             _container = container;
             _dataTable = dataTable;
             _minWidth = minWidth;
             _minHeight = minHeight;
-            _imagePaths = images;
+            _query = query;
             _rowCount = _dataTable.Rows.Count;
             InitializeArrays();
         }
 
-        public VehicleViewerV2(Panel container, DataTable dataTable, string[] images)
+        public VehicleViewerV2(Panel container, DataTable dataTable, string query)
         {
             _container = container;
             _dataTable = dataTable;
             _minWidth = 150;
             _minHeight = 150;
-            _imagePaths = images;
+            _query = query;
             _rowCount = _dataTable.Rows.Count;
             InitializeArrays();
         }
@@ -122,7 +122,7 @@ namespace AyuboDrive.Utility
 
         public void AddImageLabels()
         {
-            string[] imagePaths = ImagePathsRetriever.GetVehicleImagePaths();
+            string[] imagePaths = ImagePathsRetriever.GetVehicleImagePaths(_query);
 
             try
             {
