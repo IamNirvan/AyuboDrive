@@ -45,7 +45,7 @@
             this.ContactNumberTxtBox = new System.Windows.Forms.TextBox();
             this.FirstNameErrorLbl = new System.Windows.Forms.Label();
             this.FirstNameLbl = new System.Windows.Forms.Label();
-            this.ContactNumberErrorLbl = new System.Windows.Forms.Label();
+            this.ContactNumberErrLbl = new System.Windows.Forms.Label();
             this.ContactNumberLbl = new System.Windows.Forms.Label();
             this.LastNameErrorLbl = new System.Windows.Forms.Label();
             this.LastNameLbl = new System.Windows.Forms.Label();
@@ -94,7 +94,7 @@
             this.ManipulationPanel.Controls.Add(this.ContactNumberTxtBox);
             this.ManipulationPanel.Controls.Add(this.FirstNameErrorLbl);
             this.ManipulationPanel.Controls.Add(this.FirstNameLbl);
-            this.ManipulationPanel.Controls.Add(this.ContactNumberErrorLbl);
+            this.ManipulationPanel.Controls.Add(this.ContactNumberErrLbl);
             this.ManipulationPanel.Controls.Add(this.ContactNumberLbl);
             this.ManipulationPanel.Controls.Add(this.LastNameErrorLbl);
             this.ManipulationPanel.Controls.Add(this.LastNameLbl);
@@ -256,17 +256,17 @@
             this.FirstNameLbl.TabIndex = 33;
             this.FirstNameLbl.Text = "First name";
             // 
-            // ContactNumberErrorLbl
+            // ContactNumberErrLbl
             // 
-            this.ContactNumberErrorLbl.AutoSize = true;
-            this.ContactNumberErrorLbl.BackColor = System.Drawing.Color.Transparent;
-            this.ContactNumberErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ContactNumberErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.ContactNumberErrorLbl.Location = new System.Drawing.Point(10, 266);
-            this.ContactNumberErrorLbl.Name = "ContactNumberErrorLbl";
-            this.ContactNumberErrorLbl.Size = new System.Drawing.Size(9, 13);
-            this.ContactNumberErrorLbl.TabIndex = 31;
-            this.ContactNumberErrorLbl.Text = " ";
+            this.ContactNumberErrLbl.AutoSize = true;
+            this.ContactNumberErrLbl.BackColor = System.Drawing.Color.Transparent;
+            this.ContactNumberErrLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ContactNumberErrLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.ContactNumberErrLbl.Location = new System.Drawing.Point(10, 266);
+            this.ContactNumberErrLbl.Name = "ContactNumberErrLbl";
+            this.ContactNumberErrLbl.Size = new System.Drawing.Size(9, 13);
+            this.ContactNumberErrLbl.TabIndex = 31;
+            this.ContactNumberErrLbl.Text = " ";
             // 
             // ContactNumberLbl
             // 
@@ -431,7 +431,7 @@
         private System.Windows.Forms.TextBox ContactNumberTxtBox;
         private System.Windows.Forms.Label FirstNameErrorLbl;
         private System.Windows.Forms.Label FirstNameLbl;
-        private System.Windows.Forms.Label ContactNumberErrorLbl;
+        private System.Windows.Forms.Label ContactNumberErrLbl;
         private System.Windows.Forms.Label ContactNumberLbl;
         private System.Windows.Forms.Label LastNameErrorLbl;
         private System.Windows.Forms.Label LastNameLbl;

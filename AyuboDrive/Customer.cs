@@ -64,7 +64,7 @@ namespace AyuboDrive
             string query = "UPDATE Customer SET customerNIC = @customerNIC, firstName = @firstName, " +
                 "lastName = @lastName, contactNumber = @contactNumber, gender = @gender WHERE customerID = @customerID";
             string[] parameters = { "@customerNIC", "@firstName", "@lastName", "@contactNumber", "@gender", "@customerID" };
-            object[] values = { _customerNIC, _firstName, _lastName, _contactNumber, ID };
+            object[] values = { _customerNIC, _firstName, _lastName, _contactNumber, _gender, ID };
 
             if (s_queryHandler.UpdateQueryHandler(query, parameters, values))
             {
