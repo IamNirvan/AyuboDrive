@@ -1,4 +1,6 @@
-﻿namespace AyuboDrive.Forms
+﻿using AyuboDrive.Utility;
+
+namespace AyuboDrive.Forms
 {
     partial class PackageTypeManagementForm
     {
@@ -28,15 +30,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageTypeManagementForm));
             this.TablePanel = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.PackageNamePnl = new System.Windows.Forms.Panel();
             this.PackageNameLbl = new System.Windows.Forms.Label();
             this.PackageNameErrorLbl = new System.Windows.Forms.Label();
-            this.InsertBtn = new System.Windows.Forms.Button();
+            this.InsertBtn = new AyuboDrive.Utility.CustomButton();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.DiscontinueBtn = new System.Windows.Forms.Button();
-            this.UpdateBtn = new System.Windows.Forms.Button();
+            this.DiscontinueBtn = new AyuboDrive.Utility.CustomButton();
+            this.UpdateBtn = new AyuboDrive.Utility.CustomButton();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.PackageStatusCmbBox = new System.Windows.Forms.ComboBox();
@@ -229,6 +232,7 @@
             this.PackageStatusCmbBox.Name = "PackageStatusCmbBox";
             this.PackageStatusCmbBox.Size = new System.Drawing.Size(188, 26);
             this.PackageStatusCmbBox.TabIndex = 69;
+            this.PackageStatusCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // PackageStatusPnl
             // 
@@ -452,6 +456,7 @@
             this.PackageNameTxtBox.Size = new System.Drawing.Size(188, 19);
             this.PackageNameTxtBox.TabIndex = 48;
             this.PackageNameTxtBox.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.PackageNameTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CharacterOnlyTextBox_KeyPress);
             this.PackageNameTxtBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // TitleLbl
@@ -517,6 +522,7 @@
             this.Controls.Add(this.ButtonsPanel);
             this.Controls.Add(this.TitleLbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PackageTypeManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PackageTypeManagement";
@@ -537,9 +543,7 @@
         private System.Windows.Forms.Panel PackageNamePnl;
         private System.Windows.Forms.Label PackageNameLbl;
         private System.Windows.Forms.Label PackageNameErrorLbl;
-        private System.Windows.Forms.Button InsertBtn;
         private System.Windows.Forms.Panel ButtonsPanel;
-        private System.Windows.Forms.Button UpdateBtn;
         private System.Windows.Forms.Panel ManipulationPanel;
         private System.Windows.Forms.TextBox PackageNameTxtBox;
         private System.Windows.Forms.Label TitleLbl;
@@ -564,9 +568,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label PackageStatusErrLbl;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button DiscontinueBtn;
         private System.Windows.Forms.Panel ViewControlPnl;
         private System.Windows.Forms.RadioButton DiscontinuedPackagesRBtn;
         private System.Windows.Forms.RadioButton radioButton1;
+        private CustomButton InsertBtn;
+        private CustomButton UpdateBtn;
+        private CustomButton DiscontinueBtn;
     }
 }

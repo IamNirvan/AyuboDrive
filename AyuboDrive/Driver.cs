@@ -69,11 +69,11 @@ namespace AyuboDrive
             return false;
         }
 
-        public static bool UpdateDriverAvailabiiity(string ID, Availability availability)
+        public static bool UpdateDriverAvailability(string ID, Availability availability)
         {
             string query = "UPDATE Driver SET driverStatus = @driverStatus WHERE driverID = @driverID";
             string[] parameters = { "@driverStatus", "@driverID"};
-            object[] values = { availability, ID};
+            object[] values = { availability.ToString().ToLower(), ID};
 
             if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {

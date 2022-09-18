@@ -53,7 +53,7 @@ namespace AyuboDrive.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("shalinkulawardana@gmail.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("drive.ayubo@gmail.com")]
         public string SENDER_EMAIL {
             get {
                 return ((string)(this["SENDER_EMAIL"]));
@@ -71,7 +71,7 @@ namespace AyuboDrive.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("wuxrfgttqosyplba")]
+        [global::System.Configuration.DefaultSettingValueAttribute("xtgcysmtpvupukag")]
         public string PASSWORD {
             get {
                 return ((string)(this["PASSWORD"]));
@@ -165,6 +165,42 @@ namespace AyuboDrive.Properties {
         public global::System.Drawing.Color PARTIALLY_TRANSPARENT {
             get {
                 return ((global::System.Drawing.Color)(this["PARTIALLY_TRANSPARENT"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("103, 96, 250")]
+        public global::System.Drawing.Color ACCENT {
+            get {
+                return ((global::System.Drawing.Color)(this["ACCENT"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("219, 219, 219")]
+        public global::System.Drawing.Color PRIMARY {
+            get {
+                return ((global::System.Drawing.Color)(this["PRIMARY"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color SECONDARY {
+            get {
+                return ((global::System.Drawing.Color)(this["SECONDARY"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("240, 240, 240")]
+        public global::System.Drawing.Color PRIMARY_LIGHT_1 {
+            get {
+                return ((global::System.Drawing.Color)(this["PRIMARY_LIGHT_1"]));
             }
         }
     }

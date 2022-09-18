@@ -17,6 +17,13 @@ namespace AyuboDrive
     /// </summary>
     class SimpleEmailSender
     {
+        private string _receiverEmailAddress;
+
+        public SimpleEmailSender(string receiverEmailAddress)
+        {
+            _receiverEmailAddress = receiverEmailAddress;
+        }
+
         private readonly string _senderName = "AyuboDrive";
 
         public bool SendEmail(string subject, string body)
@@ -29,10 +36,10 @@ namespace AyuboDrive
                 {
                     using (SmtpClient smtpClient = new SmtpClient())
                     {
-                        smtpClient.Connect(ConfigurationHandler.GetMailServer(), 
-                            ConfigurationHandler.GetPort(), true);
-                        smtpClient.Authenticate(ConfigurationHandler.GetSenderEmail(), 
-                            ConfigurationHandler.GetPassword());
+                        smtpClient.Connect(Properties.Settings.Default.MAIL_SERVER, 
+                            Properties.Settings.Default.PORT, true);
+                        smtpClient.Authenticate(Properties.Settings.Default.SENDER_EMAIL, 
+                            Properties.Settings.Default.PASSWORD);
                         smtpClient.Send(message);
                         return true;
                     }
@@ -54,8 +61,8 @@ namespace AyuboDrive
             try
             {
                 MimeMessage message = new MimeMessage();
-                message.From.Add(new MailboxAddress(_senderName, ConfigurationHandler.GetSenderEmail()));
-                message.To.Add(MailboxAddress.Parse(ConfigurationHandler.GetReceiverEmail()));
+                message.From.Add(new MailboxAddress(_senderName, Properties.Settings.Default.SENDER_EMAIL));
+                message.To.Add(MailboxAddress.Parse(_receiverEmailAddress));
                 message.Subject = subject;
                 message.Body = new TextPart("plain") { Text = body };
                 return message;

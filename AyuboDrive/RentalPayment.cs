@@ -16,11 +16,11 @@ namespace AyuboDrive
         private readonly decimal _amountPaid;
         private static readonly QueryHandler s_queryHandler = new QueryHandler();
 
-        public RentalPayment(string bookingID, string customerID, string dateOfPayment, decimal amountPaid)
+        public RentalPayment(string bookingID, string customerID, DateTime dateOfPayment, decimal amountPaid)
         {
             _bookingID = bookingID;
             _customerID = customerID;
-            _dateOFPayment = dateOfPayment;
+            _dateOFPayment = dateOfPayment.ToString("yyyy/MM/dd");
             _amountPaid = amountPaid;
         }
 

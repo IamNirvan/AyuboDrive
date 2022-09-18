@@ -1,4 +1,6 @@
-﻿namespace AyuboDrive.Forms
+﻿using AyuboDrive.Utility;
+
+namespace AyuboDrive.Forms
 {
     partial class CustomerManagementForm
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerManagementForm));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.TablePanel = new System.Windows.Forms.Panel();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
@@ -52,9 +55,9 @@
             this.NICErrorLbl = new System.Windows.Forms.Label();
             this.NICLbl = new System.Windows.Forms.Label();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.DeleteBtn = new System.Windows.Forms.Button();
-            this.UpdateBtn = new System.Windows.Forms.Button();
-            this.InsertBtn = new System.Windows.Forms.Button();
+            this.DeleteBtn = new AyuboDrive.Utility.CustomButton();
+            this.UpdateBtn = new AyuboDrive.Utility.CustomButton();
+            this.InsertBtn = new AyuboDrive.Utility.CustomButton();
             this.TitleLbl = new System.Windows.Forms.Label();
             this.ManipulationPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
@@ -113,6 +116,7 @@
             this.GenderCmbBox.Name = "GenderCmbBox";
             this.GenderCmbBox.Size = new System.Drawing.Size(205, 26);
             this.GenderCmbBox.TabIndex = 47;
+            this.GenderCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // GenderPnl
             // 
@@ -408,10 +412,10 @@
             this.Controls.Add(this.TablePanel);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CustomerManagementForm";
-            this.Load += new System.EventHandler(this.CustomerManagementForm_Load);
             this.ManipulationPanel.ResumeLayout(false);
             this.ManipulationPanel.PerformLayout();
             this.ButtonsPanel.ResumeLayout(false);
@@ -438,9 +442,6 @@
         private System.Windows.Forms.Label LastNameLbl;
         private System.Windows.Forms.Label NICErrorLbl;
         private System.Windows.Forms.Label NICLbl;
-        private System.Windows.Forms.Button DeleteBtn;
-        private System.Windows.Forms.Button UpdateBtn;
-        private System.Windows.Forms.Button InsertBtn;
         private System.Windows.Forms.Label TitleLbl;
         private System.Windows.Forms.Panel NICPnl;
         private System.Windows.Forms.Panel FirstNamePnl;
@@ -450,5 +451,8 @@
         private System.Windows.Forms.Panel GenderPnl;
         private System.Windows.Forms.Label GenderLbl;
         private System.Windows.Forms.Label GenderErrLbl;
+        private CustomButton DeleteBtn;
+        private CustomButton UpdateBtn;
+        private CustomButton InsertBtn;
     }
 }

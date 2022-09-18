@@ -1,4 +1,6 @@
-﻿namespace AyuboDrive.Forms
+﻿using AyuboDrive.Utility;
+
+namespace AyuboDrive.Forms
 {
     partial class BookingClosureForm
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BookingClosureForm));
             this.EndMileageTxtBox = new System.Windows.Forms.TextBox();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
             this.StartMileageValueLbl = new System.Windows.Forms.Label();
@@ -52,9 +55,9 @@
             this.DayTourRBtn = new System.Windows.Forms.RadioButton();
             this.LongTourRBtn = new System.Windows.Forms.RadioButton();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.CloseBookingBtn = new System.Windows.Forms.Button();
-            this.CalculateBtn = new System.Windows.Forms.Button();
-            this.MakePaymentBtn = new System.Windows.Forms.Button();
+            this.CloseBookingBtn = new AyuboDrive.Utility.CustomButton();
+            this.CalculateBtn = new AyuboDrive.Utility.CustomButton();
+            this.MakePaymentBtn = new AyuboDrive.Utility.CustomButton();
             this.ManipulationPanel.SuspendLayout();
             this.TableControlPnl.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
@@ -401,10 +404,10 @@
             this.Controls.Add(this.TablePnl);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BookingClosureForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BookingClosureForm";
-            this.Load += new System.EventHandler(this.BookingClosureForm_Load);
             this.ManipulationPanel.ResumeLayout(false);
             this.ManipulationPanel.PerformLayout();
             this.TableControlPnl.ResumeLayout(false);
@@ -427,8 +430,6 @@
         private System.Windows.Forms.RadioButton DayTourRBtn;
         private System.Windows.Forms.RadioButton LongTourRBtn;
         private System.Windows.Forms.Panel ButtonsPanel;
-        private System.Windows.Forms.Button CalculateBtn;
-        private System.Windows.Forms.Button MakePaymentBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label ValueLbl;
         private System.Windows.Forms.Label EstimatedRentValueLbl;
@@ -437,11 +438,13 @@
         private System.Windows.Forms.Label ReturnDateLbl;
         private System.Windows.Forms.Label ReturnDateErrLbl;
         private System.Windows.Forms.Label EndMileageErrLbl;
-        private System.Windows.Forms.Button CloseBookingBtn;
         private System.Windows.Forms.Label StartDateValueLbl;
         private System.Windows.Forms.Label StartDateLbl;
         private System.Windows.Forms.Label StartMileageValueLbl;
         private System.Windows.Forms.Label StartMileageLbl;
         private System.Windows.Forms.Panel EndMileagePnl;
+        private CustomButton CalculateBtn;
+        private CustomButton MakePaymentBtn;
+        private CustomButton CloseBookingBtn;
     }
 }

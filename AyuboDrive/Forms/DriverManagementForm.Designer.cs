@@ -1,4 +1,6 @@
-﻿namespace AyuboDrive.Forms
+﻿using AyuboDrive.Utility;
+
+namespace AyuboDrive.Forms
 {
     partial class DriverManagementForm
     {
@@ -28,12 +30,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DriverManagementForm));
             this.TablePanel = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.NICPnl = new System.Windows.Forms.Panel();
             this.NICLbl = new System.Windows.Forms.Label();
             this.NICErrorLbl = new System.Windows.Forms.Label();
-            this.InsertBtn = new System.Windows.Forms.Button();
+            this.InsertBtn = new AyuboDrive.Utility.CustomButton();
             this.ContactNumberPnl = new System.Windows.Forms.Panel();
             this.ContactNumberTxtBox = new System.Windows.Forms.TextBox();
             this.LastNamePnl = new System.Windows.Forms.Panel();
@@ -45,8 +48,8 @@
             this.FirstNameErrLbl = new System.Windows.Forms.Label();
             this.firstNameLbl = new System.Windows.Forms.Label();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.DeleteBtn = new System.Windows.Forms.Button();
-            this.UpdateBtn = new System.Windows.Forms.Button();
+            this.DeleteBtn = new AyuboDrive.Utility.CustomButton();
+            this.UpdateBtn = new AyuboDrive.Utility.CustomButton();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
             this.DriverStatusCmbBox = new System.Windows.Forms.ComboBox();
             this.LastNameTxtBox = new System.Windows.Forms.TextBox();
@@ -329,6 +332,7 @@
             this.DriverStatusCmbBox.Name = "DriverStatusCmbBox";
             this.DriverStatusCmbBox.Size = new System.Drawing.Size(188, 26);
             this.DriverStatusCmbBox.TabIndex = 62;
+            this.DriverStatusCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // LastNameTxtBox
             // 
@@ -516,6 +520,7 @@
             this.Controls.Add(this.ButtonsPanel);
             this.Controls.Add(this.TitleLbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DriverManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DriverManagementForm";
@@ -533,7 +538,6 @@
         private System.Windows.Forms.Panel NICPnl;
         private System.Windows.Forms.Label NICLbl;
         private System.Windows.Forms.Label NICErrorLbl;
-        private System.Windows.Forms.Button InsertBtn;
         private System.Windows.Forms.Panel ContactNumberPnl;
         private System.Windows.Forms.TextBox ContactNumberTxtBox;
         private System.Windows.Forms.Panel LastNamePnl;
@@ -545,8 +549,6 @@
         private System.Windows.Forms.Label FirstNameErrLbl;
         private System.Windows.Forms.Label firstNameLbl;
         private System.Windows.Forms.Panel ButtonsPanel;
-        private System.Windows.Forms.Button DeleteBtn;
-        private System.Windows.Forms.Button UpdateBtn;
         private System.Windows.Forms.Panel ManipulationPanel;
         private System.Windows.Forms.Label TitleLbl;
         private System.Windows.Forms.Panel OvernightRatePnl;
@@ -564,5 +566,8 @@
         private System.Windows.Forms.Label DailyRateErrLbl;
         private System.Windows.Forms.Label DailyRateLbl;
         private System.Windows.Forms.ComboBox DriverStatusCmbBox;
+        private CustomButton InsertBtn;
+        private CustomButton DeleteBtn;
+        private CustomButton UpdateBtn;
     }
 }

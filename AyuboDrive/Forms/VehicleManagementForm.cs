@@ -28,6 +28,9 @@ namespace AyuboDrive.Forms
         {
             InitializeComponent();
             HandleTitleBar();
+            DisplayVehicles();
+            FillVehicleTypeIDComboBox();
+            FillGearBoxTypeComboBox();
         }
         //
         // Mouse event handlers
@@ -58,7 +61,7 @@ namespace AyuboDrive.Forms
             }
 
             _selectedRow = container;
-            container.BackColor = Program.LIGHTER_GRAY;
+            container.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
             ResetErrors();
         }
 
@@ -84,7 +87,7 @@ namespace AyuboDrive.Forms
             if (!_rowSelected)
             {
                 Panel panel = _vehicleViewer.GetContainers()[index]; // Access the parent panel
-                panel.BackColor = Program.LIGHT_GRAY;
+                panel.BackColor = Properties.Settings.Default.LIGHT_GRAY;
             }
 
             _vehicleViewer.GetVehicleNames()[index].ForeColor = Properties.Settings.Default.DISABLED_WHITE;
@@ -104,7 +107,7 @@ namespace AyuboDrive.Forms
             }
 
             _selectedRow = record;
-            record.BackColor = Program.LIGHTER_GRAY;
+            record.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
             ResetErrors();
         }
 
@@ -118,14 +121,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHTER_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.ENABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.ENABLED_WHITE;
                 }
             }
         }
@@ -140,14 +143,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHT_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHT_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.DISABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.DISABLED_WHITE;
                 }
             }
         }
@@ -178,7 +181,7 @@ namespace AyuboDrive.Forms
             bool validStandardPackageRate = false;
             bool validImagePath = false;
 
-            if(ValidationHandler.ValidateComboBoxValue(vehicleTypeID, vehicleTypeIDSelectedIndex))
+            if(ValidationHandler.ValidateInputLength(vehicleTypeID))
             {
                 validVehicleTypeID = true;
                 VehicleTypeIDErrorLbl.Text = "";
@@ -250,7 +253,7 @@ namespace AyuboDrive.Forms
                 MileagePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (ValidationHandler.ValidateComboBoxValue(gearBoxType, gearBoxTypeSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(gearBoxType))
             {
                 validGearBoxType = true;
                 GearboxErrorLbl.Text = "";
@@ -412,7 +415,7 @@ namespace AyuboDrive.Forms
             bool validStandardPackageRate = false;
             bool validImagePath = false;
 
-            if(ValidationHandler.ValidateComboBoxValue(vehicleTypeID, vehicleTypeIDSelectedIndex))
+            if(ValidationHandler.ValidateInputLength(vehicleTypeID))
             {
                 validVehicleTypeID = true;
                 VehicleTypeIDErrorLbl.Text = "";
@@ -503,7 +506,7 @@ namespace AyuboDrive.Forms
                 MileagePnl.BackColor = Properties.Settings.Default.RED;
             }
 
-            if (ValidationHandler.ValidateComboBoxValue(gearBoxType, gearBoxTypeSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(gearBoxType))
             {
                 validGearBoxType = true;
                 GearboxErrorLbl.Text = "";
@@ -944,7 +947,7 @@ namespace AyuboDrive.Forms
             {
                 if (Vehicle.Delete(_vehicleID))
                 {
-                    MessagePrinter.PrintToMessageBox("Package details were successfully deleted", "Operation successful",
+                    MessagePrinter.PrintToMessageBox("Vehicle details were successfully deleted", "Operation successful",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
@@ -970,9 +973,7 @@ namespace AyuboDrive.Forms
         //
         private void VehicleManagementForm_Load(object sender, EventArgs e)
         {
-            DisplayVehicles();
-            FillVehicleTypeIDComboBox();
-            FillGearBoxTypeComboBox();
+
         }
         //
         // Radiobuttons check changed
@@ -1013,7 +1014,7 @@ namespace AyuboDrive.Forms
         //
         private void CharacterOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 // Discard the character by setting handled to true
                 e.Handled = true;
@@ -1038,5 +1039,9 @@ namespace AyuboDrive.Forms
             }
         }
 
+        private void NoTyping_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

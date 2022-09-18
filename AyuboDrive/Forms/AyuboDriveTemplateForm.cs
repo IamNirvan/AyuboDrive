@@ -1,4 +1,5 @@
-﻿using AyuboDrive.Interfaces;
+﻿using AyuboDrive.Enums;
+using AyuboDrive.Interfaces;
 using AyuboDrive.Utility;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,7 @@ namespace AyuboDrive.Forms
 {
     public class AyuboDriveTemplateForm : Form
     {
-
-        protected readonly QueryHandler queryHandler = new QueryHandler();
+        protected readonly QueryHandler QueryHandler = new QueryHandler();
         protected Form DashboardForm { get; set; }
         private readonly Color _taskBarBackColor;
         private readonly int _width;
@@ -58,6 +58,7 @@ namespace AyuboDrive.Forms
             }
             else
             {
+                ((DashboardForm)DashboardForm).SetInfoLbls();
                 DashboardForm.Show();
                 Hide();
             }
@@ -67,7 +68,7 @@ namespace AyuboDrive.Forms
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        
+        //
         // Title bar
         //
         /// <summary>
@@ -95,10 +96,8 @@ namespace AyuboDrive.Forms
         //
         // Cell click event handlers
         //
-        protected void AddCellClickEvent(DataViewer dataViewer, 
-            Action<object, EventArgs> Cell_Click, 
-            Action<object, EventArgs> Cell_MouseEnter, 
-            Action<object, EventArgs> Cell_MouseLeave)
+        protected void AddCellClickEvent(DataViewer dataViewer, Action<object, EventArgs> Cell_Click, 
+            Action<object, EventArgs> Cell_MouseEnter, Action<object, EventArgs> Cell_MouseLeave)
         {
             try
             {
@@ -121,10 +120,8 @@ namespace AyuboDrive.Forms
             }
         }
 
-        protected void AddVehicleCellClickEvent(VehicleViewerV2 vehicleViewer,
-            Action<object, EventArgs> Cell_Click,
-            Action<object, EventArgs> Cell_MouseEnter,
-            Action<object, EventArgs> Cell_MouseLeave)
+        protected void AddVehicleCellClickEvent(VehicleViewerV2 vehicleViewer, Action<object, EventArgs> Cell_Click,
+            Action<object, EventArgs> Cell_MouseEnter, Action<object, EventArgs> Cell_MouseLeave)
         {
             try
             {
@@ -142,6 +139,31 @@ namespace AyuboDrive.Forms
             {
                 MessagePrinter.PrintToConsole(ex.ToString(), "An error occurred when adding the event handlers");
             }
+        }
+        //
+        // Utility
+        //
+        public bool ExpellResources(string driverID, string vehicleID)
+        {
+            //Set the vehicle availbility to available
+            if (!Vehicle.UpdateAvailability(vehicleID, Availability.AVAILABLE))
+            {
+                MessagePrinter.PrintToMessageBox("Failed to update vehicle availabiliy", "Operation failed",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // If a driver was selected, then set the driver availability to available
+            if (driverID != null)
+            {
+                if (!Driver.UpdateDriverAvailability(driverID, Availability.AVAILABLE))
+                {
+                    MessagePrinter.PrintToMessageBox("Failed to update driver availabiliy", "Operation failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

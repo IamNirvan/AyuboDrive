@@ -1,4 +1,6 @@
-﻿namespace AyuboDrive.Forms
+﻿using AyuboDrive.Utility;
+
+namespace AyuboDrive.Forms
 {
     partial class PaymentManagementForm
     {
@@ -28,11 +30,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentManagementForm));
             this.TitleLbl = new System.Windows.Forms.Label();
-            this.DeleteBtn = new System.Windows.Forms.Button();
-            this.UpdateBtn = new System.Windows.Forms.Button();
+            this.DeleteBtn = new AyuboDrive.Utility.CustomButton();
+            this.UpdateBtn = new AyuboDrive.Utility.CustomButton();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.InsertBtn = new System.Windows.Forms.Button();
+            this.InsertBtn = new AyuboDrive.Utility.CustomButton();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
             this.RentalBookingIDCmbBox = new System.Windows.Forms.ComboBox();
             this.RentalBookingIDPnl = new System.Windows.Forms.Panel();
@@ -174,6 +177,8 @@
             this.RentalBookingIDCmbBox.Name = "RentalBookingIDCmbBox";
             this.RentalBookingIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.RentalBookingIDCmbBox.TabIndex = 52;
+            this.RentalBookingIDCmbBox.SelectedIndexChanged += new System.EventHandler(this.RentalBookingIDCmbBox_SelectedIndexChanged);
+            this.RentalBookingIDCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // RentalBookingIDPnl
             // 
@@ -207,7 +212,7 @@
             this.RentalBookingIDLbl.AutoSize = true;
             this.RentalBookingIDLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RentalBookingIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.RentalBookingIDLbl.Location = new System.Drawing.Point(22, 16);
+            this.RentalBookingIDLbl.Location = new System.Drawing.Point(22, 15);
             this.RentalBookingIDLbl.Name = "RentalBookingIDLbl";
             this.RentalBookingIDLbl.Size = new System.Drawing.Size(100, 15);
             this.RentalBookingIDLbl.TabIndex = 27;
@@ -258,6 +263,7 @@
             this.CustomerIDCmbBox.Name = "CustomerIDCmbBox";
             this.CustomerIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.CustomerIDCmbBox.TabIndex = 53;
+            this.CustomerIDCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // HireBookingIDErrorLbl
             // 
@@ -349,7 +355,7 @@
             this.DateOfPaymentLbl.AutoSize = true;
             this.DateOfPaymentLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateOfPaymentLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.DateOfPaymentLbl.Location = new System.Drawing.Point(22, 157);
+            this.DateOfPaymentLbl.Location = new System.Drawing.Point(22, 156);
             this.DateOfPaymentLbl.Name = "DateOfPaymentLbl";
             this.DateOfPaymentLbl.Size = new System.Drawing.Size(94, 15);
             this.DateOfPaymentLbl.TabIndex = 44;
@@ -372,7 +378,7 @@
             this.CustomerIDLbl.AutoSize = true;
             this.CustomerIDLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CustomerIDLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.CustomerIDLbl.Location = new System.Drawing.Point(22, 87);
+            this.CustomerIDLbl.Location = new System.Drawing.Point(22, 86);
             this.CustomerIDLbl.Name = "CustomerIDLbl";
             this.CustomerIDLbl.Size = new System.Drawing.Size(72, 15);
             this.CustomerIDLbl.TabIndex = 30;
@@ -388,6 +394,7 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -447,11 +454,12 @@
             this.Controls.Add(this.ButtonsPanel);
             this.Controls.Add(this.TablePanel);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PaymentManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PaymentManagementForm";
-            this.Load += new System.EventHandler(this.PaymentManagementForm_Load);
             this.ButtonsPanel.ResumeLayout(false);
             this.ManipulationPanel.ResumeLayout(false);
             this.ManipulationPanel.PerformLayout();
@@ -465,10 +473,7 @@
         #endregion
 
         private System.Windows.Forms.Label TitleLbl;
-        private System.Windows.Forms.Button DeleteBtn;
-        private System.Windows.Forms.Button UpdateBtn;
         private System.Windows.Forms.Panel ButtonsPanel;
-        private System.Windows.Forms.Button InsertBtn;
         private System.Windows.Forms.Panel ManipulationPanel;
         private System.Windows.Forms.Panel TablePanel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -495,5 +500,8 @@
         private System.Windows.Forms.Label RentalBookingIDLbl;
         private System.Windows.Forms.Label RentalBookingIDErrorLbl;
         private System.Windows.Forms.ComboBox HireBookingIDCmbBox;
+        private CustomButton DeleteBtn;
+        private CustomButton UpdateBtn;
+        private CustomButton InsertBtn;
     }
 }

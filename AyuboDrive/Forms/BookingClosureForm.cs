@@ -40,6 +40,7 @@ namespace AyuboDrive.Forms
         {
             InitializeComponent();
             HandleTitleBar();
+            DisplayLongTourTable();
         }
         //
         // Mouse event handlers
@@ -60,7 +61,7 @@ namespace AyuboDrive.Forms
             }
 
             _selectedRow = record;
-            record.BackColor = Program.LIGHTER_GRAY;
+            record.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
             ResetErrors();
         }
 
@@ -74,14 +75,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHTER_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.ENABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.ENABLED_WHITE;
                 }
             }
         }
@@ -96,14 +97,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHT_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHT_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.DISABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.DISABLED_WHITE;
                 }
             }
         }
@@ -112,8 +113,6 @@ namespace AyuboDrive.Forms
         //
         private void CalculateTotal(int mileage, DateTime returnDate)
         {
-            // Calcuate the total
-
             if (LongTourRBtn.Checked)
             {
                 decimal[] charges = LongTourHireCalculator.GetHireValue(_vehicleID, _driverID, _packageID, _startDate, returnDate, mileage);
@@ -204,8 +203,10 @@ namespace AyuboDrive.Forms
                 else
                 {
                     // Set the driver ID to null, if a driver was not used...
-                    string value = record["driverID"].ToString();
-                    _driverID = value.Equals(RentalBooking.NullValuePlaceHolder) ? null : value;
+                    string value = record[3].ToString();
+                    Console.WriteLine($"The value is: {value}");
+                    _driverID = value.Equals("") ? null : value;
+                    Console.WriteLine($"The driver ID is: {_driverID}");
                 }
 
                 string query2 = "SELECT mileage from vehicle WHERE vehicleID = '" + _vehicleID + "'";
@@ -253,7 +254,7 @@ namespace AyuboDrive.Forms
         {
             string query = _defaulRentalQuery;
             TablePnl.Controls.Clear();
-            _dataViewer = new DataViewer(TablePnl, _queryHandler.SelectQueryHandler(query));
+            _dataViewer = new DataViewer(TablePnl, _queryHandler.SelectQueryHandler(query), RentalBooking.NullValuePlaceHolder);
             _dataViewer.DisplayTable();
             AddCellClickEvent(_dataViewer, Cell_Click, Cell_MouseEnter, Cell_MouseLeave);
         }
@@ -293,13 +294,6 @@ namespace AyuboDrive.Forms
             }
         }
         //
-        // Form load event handler
-        //
-        private void BookingClosureForm_Load(object sender, EventArgs e)
-        {
-            DisplayLongTourTable();
-        }
-        //
         // Click event handlers
         //
         private void MakePaymentBtn_Click(object sender, EventArgs e)
@@ -325,27 +319,50 @@ namespace AyuboDrive.Forms
 
                 if (RentalRBtn.Checked)
                 {
-                    hireBookingID = null;
                     rentBookingID = _bookingID;
+
+                    RentalPayment rentalPayment = new RentalPayment(rentBookingID, _customerID, returnDate, amountToPay);
+                    if (rentalPayment.Insert())
+                    {
+                        MessagePrinter.PrintToMessageBox("Payment details successfully inserted", "Operation successful",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _paid = true;
+                    }
+                    else
+                    {
+                        MessagePrinter.PrintToMessageBox("Failed to enter payment details", "Operation failed",
+                           MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
                     hireBookingID = _bookingID;
-                    rentBookingID = null;
+                    HirePayment hirePayment = new HirePayment(hireBookingID, _customerID, returnDate, amountToPay);
+                    if (hirePayment.Insert())
+                    {
+                        MessagePrinter.PrintToMessageBox("Payment details successfully inserted", "Operation successful",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _paid = true;
+                    }
+                    else
+                    {
+                        MessagePrinter.PrintToMessageBox("Failed to enter payment details", "Operation failed",
+                           MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
 
-                Payment payment = new Payment(hireBookingID, rentBookingID, _customerID, returnDate.ToString("yyyy/MM/dd"), amountToPay);
-                if (payment.Insert())
-                {
-                    MessagePrinter.PrintToMessageBox("Payment details successfully inserted", "Operation successful",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _paid = true;
-                }
-                else
-                {
-                    MessagePrinter.PrintToMessageBox("Failed to enter payment details", "Operation failed",
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                //Payment payment = new Payment(hireBookingID, rentBookingID, _customerID, returnDate.ToString("yyyy/MM/dd"), amountToPay);
+                //if (payment.Insert())
+                //{
+                //    MessagePrinter.PrintToMessageBox("Payment details successfully inserted", "Operation successful",
+                //        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    _paid = true;
+                //}
+                //else
+                //{
+                //    MessagePrinter.PrintToMessageBox("Failed to enter payment details", "Operation failed",
+                //       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
         }
 
@@ -374,53 +391,105 @@ namespace AyuboDrive.Forms
             bool bookingDetailsUpdated = false;
             bool driverDetailsUpdated = false;
             bool vehicleDetailsUpdated = false;
+            bool proceed = false;
 
-            if (_paid)
+            if(!_rowSelected)
             {
-                paymentStatus = PaymentStatus.PAID;
-            }
-            // Ask the user if he/he is sure to close the booking without paying...
-
-            if(DayTourRBtn.Checked)
-            {
-                bookingType = HireType.DAY;
-            }
-
-            // Update the record details
-            IDatabaseManipulator booking;
-            if (!RentalRBtn.Checked)
-            {
-                booking = new HireBooking(_vehicleTypeID, _vehicleID, _driverID, _customerID, _packageID, 
-                    BookingStatus.CLOSED, bookingType, _startDate, returnDate, paymentStatus);
-            }
-            else
-            {
-                booking = new RentalBooking(_vehicleTypeID, _vehicleID, _driverID, _customerID, _startDate, 
-                    returnDate, BookingStatus.CLOSED, paymentStatus);
-            }
-            bookingDetailsUpdated = booking.Update(_bookingID);
-
-            // Update driver details
-            if (_driverID != null)
-            {
-                driverDetailsUpdated = Driver.UpdateDriverAvailabiiity(_driverID, Availability.AVAILABLE);
-            }
-
-            int mileage = int.Parse(EndMileageTxtBox.Text);
-            // Update the vehicle details
-            vehicleDetailsUpdated = Vehicle.UpdateMileage(_vehicleID, mileage) && Vehicle.UpdateAvailability(_vehicleID, Availability.AVAILABLE);
-            
-            if(bookingDetailsUpdated && driverDetailsUpdated && vehicleDetailsUpdated)
-            {
-                MessagePrinter.PrintToMessageBox("Booking was successfully closed", "Operation successful", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DisplayTable();
-                Reset();
-            }
-            else
-            {
-                MessagePrinter.PrintToMessageBox("Failed to close the booking", "Operation failed",
+                MessagePrinter.PrintToMessageBox("Please select a booking record", "Select a record",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+            string mileage = EndMileageTxtBox.Text;
+            
+            if(ValidateInput(mileage)) {
+
+                if (_paid)
+                {
+                    paymentStatus = PaymentStatus.PAID;
+                    proceed = true;
+                } 
+                else
+                {
+                    DialogResult dialogResult = MessagePrinter.PrintToMessageBoxV2("You are attempting to close a booking without making a payment. Are you sure you want to proceed?",
+                    "Unpaid booking", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        proceed = true;
+                    }
+                }
+
+                if(proceed)
+                {
+                    if (DayTourRBtn.Checked)
+                    {
+                        bookingType = HireType.DAY;
+                    }
+
+                    // Update the record details
+                    //IDatabaseManipulator booking;
+                    if (!RentalRBtn.Checked)
+                    {
+                        //booking = new HireBooking(_vehicleTypeID, _vehicleID, _driverID, _customerID, _packageID,
+                        //    BookingStatus.CLOSED, bookingType, _startDate, returnDate, paymentStatus);
+
+                        // Update the payment status and rental status of the booking
+                        if (!HireBooking.UpdateBooking(_bookingID, returnDate, paymentStatus))
+                        {
+                            MessagePrinter.PrintToMessageBox("Failed to update booking details. Manual modification is required",
+                                "Operation failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            bookingDetailsUpdated = true;
+                        }
+                    }
+                    else
+                    {
+                        //booking = new RentalBooking(_vehicleTypeID, _vehicleID, _driverID, _customerID, _startDate,
+                        //    returnDate, BookingStatus.CLOSED, paymentStatus);
+
+                        // Update the payment status and rental status of the booking
+                        if (!RentalBooking.UpdateBooking(_bookingID, returnDate, paymentStatus))
+                        {
+                            MessagePrinter.PrintToMessageBox("Failed to update booking details. Manual modification is required",
+                                "Operation failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            bookingDetailsUpdated = true;
+                        }
+                    }
+                    //bookingDetailsUpdated = booking.Update(_bookingID);
+
+                    // Update driver details
+                    if (_driverID != null)
+                    {
+                        driverDetailsUpdated = Driver.UpdateDriverAvailability(_driverID, Availability.AVAILABLE);
+                    }
+                    else
+                    {
+                        driverDetailsUpdated = true;
+                    }
+
+                    // Update the vehicle details
+                    vehicleDetailsUpdated = Vehicle.UpdateMileage(_vehicleID, int.Parse(mileage)) &&
+                        Vehicle.UpdateAvailability(_vehicleID, Availability.AVAILABLE);
+
+                    if (bookingDetailsUpdated && driverDetailsUpdated && vehicleDetailsUpdated)
+                    {
+                        MessagePrinter.PrintToMessageBox("Booking was successfully closed", "Operation successful",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DisplayTable();
+                        Reset();
+                    }
+                    else
+                    {
+                        MessagePrinter.PrintToMessageBox("Failed to close the booking", "Operation failed",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
         // 
@@ -437,7 +506,6 @@ namespace AyuboDrive.Forms
         //
         // Textbox enter and leave event handler
         //
-
         private void TextBox_Enter(object sender, EventArgs e)
         {
             ((TextBox)sender).ForeColor = Properties.Settings.Default.ENABLED_WHITE;

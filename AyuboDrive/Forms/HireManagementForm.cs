@@ -19,6 +19,7 @@ namespace AyuboDrive.Forms
         private DataViewer _dataViewer;
         private DataTable _dataTable;
         private string _bookingID;
+        private string _hireStatus;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
         private bool _handlingMouseClick = false;
@@ -71,7 +72,7 @@ namespace AyuboDrive.Forms
             }
 
             _selectedRow = container;
-            container.BackColor = Program.LIGHTER_GRAY;
+            container.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
             ResetErrors();
         }
 
@@ -97,7 +98,7 @@ namespace AyuboDrive.Forms
             if (!_rowSelected)
             {
                 Panel panel = _vehicleViewer.GetContainers()[index]; // Access the parent panel
-                panel.BackColor = Program.LIGHT_GRAY;
+                panel.BackColor = Properties.Settings.Default.LIGHT_GRAY;
             }
 
             _vehicleViewer.GetVehicleNames()[index].ForeColor = Properties.Settings.Default.DISABLED_WHITE;
@@ -119,7 +120,7 @@ namespace AyuboDrive.Forms
             }
 
             _selectedRow = record;
-            record.BackColor = Program.LIGHTER_GRAY;
+            record.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
             ResetErrors();
         }
 
@@ -133,14 +134,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHTER_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.ENABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.ENABLED_WHITE;
                 }
             }
         }
@@ -155,14 +156,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHT_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHT_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.DISABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.DISABLED_WHITE;
                 }
             }
         }
@@ -206,7 +207,7 @@ namespace AyuboDrive.Forms
             bool validCustomerID = false;
             bool validPackageID = false;
 
-            if (ValidationHandler.ValidateComboBoxValue(vehicleTypeID, vehicleTypeIDSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(vehicleTypeID))
             {
                 validVehicleTypeID = true;
                 VehicleTypeIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -218,7 +219,7 @@ namespace AyuboDrive.Forms
                 VehicleTypeIDErrLbl.Text = "Invalid vehicle type ID";
             }
 
-            if (ValidationHandler.ValidateComboBoxValue(vehicleID, vehicleIDSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(vehicleID))
             {
                 validVehicleID = true;
                 VehicleIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -230,7 +231,7 @@ namespace AyuboDrive.Forms
                 VehicleIDErrLbl.Text = "Invalid vehicle ID";
             }
 
-            if (ValidationHandler.ValidateComboBoxValue(driverID, driverIDSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(driverID))
             {
                 validDriverID = true;
                 DriverIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -242,7 +243,7 @@ namespace AyuboDrive.Forms
                 DriverIDErrLbl.Text = "Invalid driver ID";
             }
 
-            if (ValidationHandler.ValidateComboBoxValue(customerID, customerIDSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(customerID))
             {
                 validCustomerID = true;
                 CustomerIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -254,7 +255,7 @@ namespace AyuboDrive.Forms
                 CustomerIDErrLbl.Text = "Invalid customer ID";
             }
 
-            if (ValidationHandler.ValidateComboBoxValue(packageID, packageIDSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(packageID))
             {
                 validPackageID = true;
                 PackageIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -279,7 +280,7 @@ namespace AyuboDrive.Forms
             bool validPackageID = false;
             bool validReturnDate = false;
 
-            if (ValidationHandler.ValidateComboBoxValue(vehicleTypeID, vehicleTypeIDSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(vehicleTypeID))
             {
                 validVehicleTypeID = true;
                 VehicleTypeIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -315,7 +316,7 @@ namespace AyuboDrive.Forms
                 DriverIDErrLbl.Text = "Invalid driver ID";
             }
 
-            if (ValidationHandler.ValidateComboBoxValue(customerID, customerIDSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(customerID))
             {
                 validCustomerID = true;
                 CustomerIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -327,7 +328,7 @@ namespace AyuboDrive.Forms
                 CustomerIDErrLbl.Text = "Invalid customer ID";
             }
 
-            if (ValidationHandler.ValidateComboBoxValue(packageID, packageIDSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(packageID))
             {
                 validPackageID = true;
                 PackageIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -380,6 +381,7 @@ namespace AyuboDrive.Forms
 
             VehicleIDCmbBox.Text = $"{record[0].ToString()}-{record[3].ToString()} {record[4].ToString()}";
             VehicleTypeIDCmbBox.Text = $"{record[2].ToString()}-{vehicleTypeRecord[0]}";
+            _hireStatus = record[6].ToString();
         }
 
         private void AddDataTableView(int index)
@@ -419,6 +421,7 @@ namespace AyuboDrive.Forms
                     DriverIDCmbBox.Text = $"{record[3].ToString()}-{driverRecord[0]} {driverRecord[1]}";
                     CustomerIDCmbBox.Text = $"{record[4].ToString()}-{customerRecord[0]} {customerRecord[1]}";
                     PackageIDCmbBox.Text = $"{record[5].ToString()}-{packageRecord[0]}";
+                    _hireStatus = record[6].ToString();
                     StartDateDTP.Text = record[8].ToString();
                     EndDateDTP.Text = record[9].ToString();
                 }
@@ -623,29 +626,47 @@ namespace AyuboDrive.Forms
                 customerID = customerID.Split('-')[0];
                 packageID = packageID.Split('-')[0];
 
-                HireType hireType = DayTourRBtn.Checked ? ConvertStringToHireType("day") : ConvertStringToHireType("long");
 
-                HireBooking hireBooking = new HireBooking(vehicleTypeID, vehicleID, driverID, customerID, packageID, BookingStatus.OPEN, hireType, startDate, endDate, PaymentStatus.PENDING);
-                if (hireBooking.Insert())
+                if (Vehicle.UpdateAvailability(vehicleID, Availability.UNAVAILABLE))
                 {
-                    MessagePrinter.PrintToMessageBox("Hire booking details were successfully inserted", "Operation successful",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    if (DayTourRBtn.Checked)
+                    if (Driver.UpdateDriverAvailability(driverID, Availability.UNAVAILABLE))
                     {
-                        DisplayDayTourTable();
+                        HireType hireType = DayTourRBtn.Checked ? ConvertStringToHireType("day") : ConvertStringToHireType("long");
+
+                        HireBooking hireBooking = new HireBooking(vehicleTypeID, vehicleID, driverID, customerID, packageID, BookingStatus.OPEN, 
+                            hireType, startDate, endDate, PaymentStatus.PENDING);
+                        if (hireBooking.Insert())
+                        {
+                            MessagePrinter.PrintToMessageBox("Hire booking details were successfully inserted", "Operation successful",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            if (DayTourRBtn.Checked)
+                            {
+                                DisplayDayTourTable();
+                            }
+                            else
+                            {
+                                DisplayLongTourTable();
+                            }
+                        }
+                        else
+                        {
+                            MessagePrinter.PrintToMessageBox("Failed to insert hire booking details", "Operation failed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        Reset();
                     }
                     else
                     {
-                        DisplayLongTourTable();
+                        MessagePrinter.PrintToMessageBox("Failed to update driver availabiliy", "Operation failed",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessagePrinter.PrintToMessageBox("Failed to insert hire booking details", "Operation failed",
+                    MessagePrinter.PrintToMessageBox("Failed to update vehicle availabiliy", "Operation failed",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                Reset();
             }
         }
 
@@ -655,6 +676,12 @@ namespace AyuboDrive.Forms
             {
                 MessagePrinter.PrintToMessageBox("Please select a hire booking record", "Select a record", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (!_hireStatus.Equals("closed"))
+            {
+                MessagePrinter.PrintToMessageBox("You cannot update an ongoing booking",
+                    "Select a closed booking", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -711,11 +738,21 @@ namespace AyuboDrive.Forms
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            string vehicleID = VehicleIDCmbBox.Text.Split('-')[0];
+            string driverID = DriverIDCmbBox.Text.Split('-')[0];
+
             DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, it cannot be recoverd.",
             "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
+                // Only expell the resources in an open booking
+                if (!_hireStatus.Equals("closed"))
+                {
+                    ExpellResources(driverID, vehicleID);
+                }
+
                 if (HireBooking.Delete(_bookingID))
                 {
                     MessagePrinter.PrintToMessageBox("Hire booking details were successfully deleted", "Operation successful",
@@ -752,6 +789,13 @@ namespace AyuboDrive.Forms
             {
                 DisplayLongTourTable();
             }
+        }
+        //
+        // Key press event handler
+        //
+        private void NoTyping_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

@@ -14,9 +14,11 @@ namespace AyuboDrive.Forms
 {
     public partial class PaymentManagementForm : AyuboDriveTemplateForm
     {
-        private static QueryHandler s_queryHandler = new QueryHandler();
         private DataViewer _dataViewer;
+        private string _query;
         private string _paymentID = null;
+        private string _rentalBookingID = null;
+        private string _hireBookingID = null;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
 
@@ -24,9 +26,11 @@ namespace AyuboDrive.Forms
         {
             InitializeComponent();
             HandleTitleBar();
-            DisplayTable();
             FillRentalBookingIDComboBox();
             FillCustomerIDComboBox();
+            DisplayTable();
+            _query = "SELECT paymentID, rentalBookingID, customerID, dateOfPayment, " +
+                    "amountPaid FROM rentalPayment";
         }
         //
         // Utility
@@ -46,7 +50,7 @@ namespace AyuboDrive.Forms
                 HireBookingIDErrorLbl.Text = "";
                 HireBookingIDPnl.BackColor = Properties.Settings.Default.PURPLE;
             }
-            else if (ValidationHandler.ValidateComboBoxValue(hireBookingID, hireBookingIDSelectedIndex))
+            else if (ValidationHandler.ValidateInputLength(hireBookingID))
             {
                 validHireBookingID = true;
                 HireBookingIDErrorLbl.Text = "";
@@ -64,7 +68,7 @@ namespace AyuboDrive.Forms
                 RentalBookingIDErrorLbl.Text = "";
                 RentalBookingIDPnl.BackColor = Properties.Settings.Default.PURPLE;
             }
-            else if (ValidationHandler.ValidateComboBoxValue(rentalBookingID, rentalBookingIDSelectedIndex))
+            else if (ValidationHandler.ValidateInputLength(rentalBookingID))
             {
                 validRentalBookingID = true;
                 RentalBookingIDErrorLbl.Text = "";
@@ -137,45 +141,131 @@ namespace AyuboDrive.Forms
         {
             if (index != 0)
             {
-                Label[] subArray = _dataViewer.GetLabels()[index];
-                _paymentID = subArray[0].Text;
+                //Label[] subArray = _dataViewer.GetLabels()[index];
+                DataRow record = QueryHandler.SelectQueryHandler(_query).Rows[index-1];
+                _paymentID = record[0].ToString();
 
                 if(HireBookingsRBtn.Checked)
                 {
-                    HireBookingIDCmbBox.Text = $"Hire booking ID-{subArray[1].Text}";
+                    HireBookingIDCmbBox.Text = $"Hire booking ID-{record[1].ToString()}";
+                    _hireBookingID = record[1].ToString();
                 }
                 else
                 {
-                    RentalBookingIDCmbBox.Text = $"Rental booking ID-{subArray[1].Text}";
+                    RentalBookingIDCmbBox.Text = $"Rental booking ID-{record[1].ToString()}";
+                    _rentalBookingID = record[1].ToString();
                 }
 
-                DataRow customerRecord = s_queryHandler.SelectQueryHandler("SELECT firstName, " +
-                    "lastName FROM customer WHERE customerID = '"+ subArray[2].Text + "'").Rows[0];
-                CustomerIDCmbBox.Text = $"{subArray[2].Text}-{customerRecord[0]} {customerRecord[1]}";
-                DateOfPaymentDTP.Text = subArray[3].Text;
-                AmountPaidTxtBox.Text = subArray[4].Text;
+                DataRow customerRecord = QueryHandler.SelectQueryHandler("SELECT firstName, " +
+                    "lastName FROM customer WHERE customerID = '"+ record[2].ToString() + "'").Rows[0];
+                CustomerIDCmbBox.Text = $"{record[2].ToString()}-{customerRecord[0]} {customerRecord[1]}";
+                DateOfPaymentDTP.Text = record[3].ToString();
+                AmountPaidTxtBox.Text = record[4].ToString();
             }
         }
         
         private void DisplayTable()
         {
-            string query;
-
             if(RentalBookingsRBtn.Checked)
             {
-                query = "SELECT paymentID, rentalBookingID, customerID, dateOfPayment, " +
-                    "amountPaid FROM payment WHERE rentalBookingID IS NOT NULL";
+                _query = "SELECT paymentID, rentalBookingID, customerID, dateOfPayment, " +
+                    "amountPaid FROM rentalPayment";
             }
             else
             {
-                query = "SELECT paymentID, hireBookingID, customerID, dateOfPayment, " +
-                    "amountPaid FROM payment WHERE hireBookingID IS NOT NULL";
+                _query = "SELECT paymentID, hireBookingID, customerID, dateOfPayment, " +
+                    "amountPaid FROM hirePayment";
             }
 
             TablePanel.Controls.Clear();
-            _dataViewer = new DataViewer(TablePanel, s_queryHandler.SelectQueryHandler(query));
-            _dataViewer.DisplayTable();
-            AddCellClickEvent(_dataViewer, Cell_Click, Cell_MouseEnter, Cell_MouseLeave);
+            DataTable dataTable = QueryHandler.SelectQueryHandler(_query);
+
+            if(dataTable != null)
+            {
+                _dataViewer = new DataViewer(TablePanel, dataTable);
+                _dataViewer.DisplayTable();
+                AddCellClickEvent(_dataViewer, Cell_Click, Cell_MouseEnter, Cell_MouseLeave);
+            }
+        }
+
+        private void EnableRentalBookingObjects()
+        {
+            RentalBookingIDCmbBox.Visible = true;
+            RentalBookingIDCmbBox.Visible = true;
+            RentalBookingIDPnl.Visible = true;
+            RentalBookingIDErrorLbl.Visible = true;
+        }
+
+        private void DisableRentalBookingObjects()
+        {
+            RentalBookingIDCmbBox.Visible = false;
+            RentalBookingIDCmbBox.Visible = false;
+            RentalBookingIDPnl.Visible = false;
+            RentalBookingIDErrorLbl.Visible = false;
+        }
+
+        private void EnableHireBookingObjects()
+        {
+            HireBookingIDLbl.Visible = true;
+            HireBookingIDCmbBox.Visible = true;
+            HireBookingIDPnl.Visible = true;
+            HireBookingIDErrorLbl.Visible = true;
+        }
+
+        private void DisableHireBookingObjects()
+        {
+            HireBookingIDLbl.Visible = false;
+            HireBookingIDCmbBox.Visible = false;
+            HireBookingIDPnl.Visible = false;
+            HireBookingIDErrorLbl.Visible = false;
+        }
+
+        private void FillHireBookingIDComboBox()
+        {
+            HireBookingIDCmbBox.Items.Clear();
+            foreach (DataRow row in QueryHandler.SelectQueryHandler("SELECT bookingID FROM hireBooking  WHERE paymentStatus = 'pending'").Rows)
+            {
+                HireBookingIDCmbBox.Items.Add($"Hire booking ID-{row[0]}");
+            }
+        }
+
+        private void FillCustomerIDComboBox()
+        {
+            CustomerIDCmbBox.Items.Clear();
+            CustomerIDCmbBox.Text = "";
+            string query = "SELECT customerID, firstName, lastName FROM customer";
+
+            foreach (DataRow row in QueryHandler.SelectQueryHandler(query).Rows)
+            {
+                CustomerIDCmbBox.Items.Add($"{row[0]}-{row[1]} {row[2]}");
+            }
+        }
+
+        private void FillRentalBookingIDComboBox()
+        {
+            RentalBookingIDCmbBox.Items.Clear();
+            foreach (DataRow row in QueryHandler.SelectQueryHandler("SELECT bookingID FROM rentalBooking WHERE paymentStatus = 'pending'").Rows)
+            {
+                RentalBookingIDCmbBox.Items.Add($"Rental booking ID-{row[0]}");
+            }
+        }
+
+        /// <summary>
+        /// Sets the customer ID of a particular booking 
+        /// record when the booking ID is selected
+        /// </summary>
+        private void SetCustomerID()
+        {
+            string rentalBookingID = RentalBookingIDCmbBox.Text.Split('-')[1];
+            string customerID = QueryHandler.SelectQueryHandler("SELECT customerID from " +
+                $"rentalBooking where bookingID = '{rentalBookingID}'").Rows[0][0].ToString();
+
+            string query = $"SELECT customerID, firstName, lastName FROM customer WHERE " +
+                $"customerID = '{customerID}'";
+
+            DataRow record = QueryHandler.SelectQueryHandler(query).Rows[0];
+            CustomerIDCmbBox.Text = $"{record[0]}-{record[1]} {record[2]}";
+
         }
         //
         // Click event handlers
@@ -185,7 +275,7 @@ namespace AyuboDrive.Forms
             string hireBookingID = HireBookingIDCmbBox.Text;
             string rentalBookingID = RentalBookingIDCmbBox.Text;
             string customerID = CustomerIDCmbBox.Text;
-            string dateOfPayment = DateOfPaymentDTP.Text;
+            DateTime dateOfPayment = DateTime.Parse(DateOfPaymentDTP.Text);
             string amountPaid = AmountPaidTxtBox.Text;
 
             if (ValidateInput(hireBookingID, HireBookingIDCmbBox.SelectedIndex,
@@ -214,11 +304,25 @@ namespace AyuboDrive.Forms
                 {
                     payment = new RentalPayment(rentalBookingID, customerID, 
                         dateOfPayment, decimal.Parse(amountPaid));
+
+                    // Update the payment status and rental status of the booking
+                    if(!RentalBooking.UpdateBooking(rentalBookingID))
+                    {
+                        MessagePrinter.PrintToMessageBox("Failed to update booking details. Manual modification is required", 
+                            "Operation failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
                     payment = new HirePayment(hireBookingID, customerID,
                         dateOfPayment, decimal.Parse(amountPaid));
+
+                    // Update the payment status and rental status of the booking
+                    if (!HireBooking.UpdateBooking(hireBookingID))
+                    {
+                        MessagePrinter.PrintToMessageBox("Failed to update booking details. Manual modification is required",
+                            "Operation failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
 
                 if (payment.Insert())
@@ -239,9 +343,9 @@ namespace AyuboDrive.Forms
         private void UpdateBtn_Click(object sender, EventArgs e)
         {
             string hireBookingID = HireBookingIDCmbBox.Text;
-            string rentalBookingID = RentalBookingIDCmbBox.Text; ;
+            string rentalBookingID = RentalBookingIDCmbBox.Text;
             string customerID = CustomerIDCmbBox.Text;
-            string dateOfPayment = DateOfPaymentDTP.Text;
+            DateTime dateOfPayment = DateTime.Parse(DateOfPaymentDTP.Text);
             string amountPaid = AmountPaidTxtBox.Text;
 
             if (ValidateInput(hireBookingID, HireBookingIDCmbBox.SelectedIndex,
@@ -250,14 +354,15 @@ namespace AyuboDrive.Forms
             {
                 if (HireBookingsRBtn.Checked)
                 {
-                    hireBookingID = HireBookingIDCmbBox.Text.Split('-')[1];
-                    rentalBookingID = null;
-
+                    hireBookingID = hireBookingID.Split('-')[1];
+                    _hireBookingID = hireBookingID;
+                    _rentalBookingID = null;
                 }
                 else
                 {
-                    rentalBookingID = RentalBookingIDCmbBox.Text.Split('-')[1];
-                    hireBookingID = null;
+                    rentalBookingID = rentalBookingID.Split('-')[1];
+                    _rentalBookingID = rentalBookingID;
+                    _hireBookingID = null;
                 }
 
                 customerID = CustomerIDCmbBox.Text.Split('-')[0];
@@ -295,22 +400,51 @@ namespace AyuboDrive.Forms
             if (!_rowSelected)
             {
                 MessagePrinter.PrintToMessageBox("Please select a payment record", "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
-            {
-                DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, it cannot be recoverd.",
-                "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, it cannot be recoverd.",
+            "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
+            {
+                if(RentalBookingsRBtn.Checked)
                 {
-                    if (Payment.Delete(_paymentID))
+                    // Change the pending status to pending if the record is deleted
+                    if(!RentalBooking.UpdateBooking(_rentalBookingID, Enums.PaymentStatus.PENDING))
                     {
-                        MessagePrinter.PrintToMessageBox("Payment details were successfully deleted", "Operation successful",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessagePrinter.PrintToMessageBox("Failed to update rental booking details", "Operation failed",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
-                    DisplayTable();
-                    Reset();
+
+                    if(!RentalPayment.Delete(_paymentID)) {
+                        MessagePrinter.PrintToMessageBox("Failed to delete rental payment details", "Operation failed",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
+                else
+                {
+                    // Change the pending status to pending if the record is deleted
+                    if (!HireBooking.UpdateBooking(_hireBookingID, Enums.PaymentStatus.PENDING))
+                    {
+                        MessagePrinter.PrintToMessageBox("Failed to update hire booking details", "Operation failed",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (!HirePayment.Delete(_paymentID))
+                    {
+                        MessagePrinter.PrintToMessageBox("Failed to delete hire payment details", "Operation failed",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                MessagePrinter.PrintToMessageBox("Payment details were successfully deleted", "Operation successful",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DisplayTable();
+                Reset();
             }
         }
         //
@@ -342,7 +476,7 @@ namespace AyuboDrive.Forms
             }
 
             _selectedRow = record;
-            record.BackColor = Program.LIGHTER_GRAY;
+            record.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
             ResetErrors();
         }
 
@@ -356,14 +490,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHTER_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.ENABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.ENABLED_WHITE;
                 }
             }
         }
@@ -378,77 +512,15 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHT_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHT_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.DISABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.DISABLED_WHITE;
                 }
-            }
-        }
-        //
-        // Utility
-        //
-        private void EnableRentalBookingObjects()
-        {
-            RentalBookingIDCmbBox.Visible = true;
-            RentalBookingIDCmbBox.Visible = true;
-            RentalBookingIDPnl.Visible = true;
-            RentalBookingIDErrorLbl.Visible = true;
-        }
-
-        private void DisableRentalBookingObjects()
-        {
-            RentalBookingIDCmbBox.Visible = false;
-            RentalBookingIDCmbBox.Visible = false;
-            RentalBookingIDPnl.Visible = false;
-            RentalBookingIDErrorLbl.Visible = false;
-        }
-
-        private void EnableHireBookingObjects()
-        {
-            HireBookingIDLbl.Visible = true;
-            HireBookingIDCmbBox.Visible = true;
-            HireBookingIDPnl.Visible = true;
-            HireBookingIDErrorLbl.Visible = true;
-        }
-
-        private void DisableHireBookingObjects()
-        {
-            HireBookingIDLbl.Visible = false;
-            HireBookingIDCmbBox.Visible = false;
-            HireBookingIDPnl.Visible = false;
-            HireBookingIDErrorLbl.Visible = false;
-        }
-
-        private void FillHireBookingIDComboBox()
-        {
-            HireBookingIDCmbBox.Items.Clear();
-            foreach (DataRow row in s_queryHandler.SelectQueryHandler("SELECT bookingID FROM hireBooking").Rows)
-            {
-                HireBookingIDCmbBox.Items.Add($"Hire booking ID-{row[0]}");
-            }
-            
-        }
-
-        private void FillCustomerIDComboBox()
-        {
-            HireBookingIDCmbBox.Items.Clear();
-            foreach (DataRow row in s_queryHandler.SelectQueryHandler("SELECT customerID, firstName, lastName FROM customer").Rows)
-            {
-                CustomerIDCmbBox.Items.Add($"{row[0]}-{row[1]} {row[2]}");
-            }
-        }
-
-        private void FillRentalBookingIDComboBox()
-        {
-            RentalBookingIDCmbBox.Items.Clear();
-            foreach (DataRow row in s_queryHandler.SelectQueryHandler("SELECT bookingID FROM rentalBooking").Rows)
-            {
-                RentalBookingIDCmbBox.Items.Add($"Rental booking ID-{row[0]}");
             }
         }
         //
@@ -486,13 +558,6 @@ namespace AyuboDrive.Forms
             }
         }
         //
-        // Form load event handler
-        //
-        private void PaymentManagementForm_Load(object sender, EventArgs e)
-        {
-
-        }
-        //
         // Textbox event handler
         //
         private void AmountPaidTxtBox_Leave(object sender, EventArgs e)
@@ -513,6 +578,19 @@ namespace AyuboDrive.Forms
             {
                 // Discard the character by setting handled to true
                 e.Handled = true;
+            }
+        }
+
+        private void NoTyping_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void RentalBookingIDCmbBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(RentalBookingIDCmbBox.SelectedIndex >= 0)
+            {
+                SetCustomerID();
             }
         }
     }

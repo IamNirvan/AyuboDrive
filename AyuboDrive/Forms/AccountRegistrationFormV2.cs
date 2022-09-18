@@ -58,8 +58,9 @@ namespace AyuboDrive.Forms
             string userName = UserNameTxtBox.Text;
             string password = PasswordTxtBox.Text;
             string imagePath = ImagePathTxtBox.Text;
+            string emailAddress = EmailTxtBox.Text;
 
-            if (ValidateInput(userName, firstName, lastName, password, imagePath))
+            if (ValidateInput(userName, firstName, lastName, password, imagePath, emailAddress))
             {
                 DeliverKey();
                 SecretKeyBtn.Text = "Resend secret key";
@@ -70,11 +71,11 @@ namespace AyuboDrive.Forms
         {
             string userName = UserNameTxtBox.Text;
             string password = PasswordTxtBox.Text;
+            string emailAddress = EmailTxtBox.Text;
 
-            if (new User(userName, password, _firstName, _lastName, _imagePath).Insert())
+            if (new User(userName, password, _firstName, _lastName, _imagePath, emailAddress).Insert())
             {
-                MessagePrinter.PrintToMessageBox("Your account was successfully created.\n" +
-                    "You can now log into your new account", "Operation successful",
+                MessagePrinter.PrintToMessageBox("Your account was successfully created", "Operation successful",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Reset();
                 new LoginFormV2().Show();
@@ -143,22 +144,17 @@ namespace AyuboDrive.Forms
         //
         private void DeliverKey()
         {
+            string firstName = FirstNameTxtBox.Text;
+            string lastName = LastNameTxtBox.Text;
+            string emailAddress = EmailTxtBox.Text;
             _key = Viper.GenerateKey();
-            SimpleEmailSender simpleEmailSender = new SimpleEmailSender();
-            bool emailSent = simpleEmailSender.SendEmail(
-                "Secret key",
-                $"Hello,\n\n" +
-                "You received this mail because a request was made to create an account for AyuobDrive.\n\n" +
-                "Please use this secret key to finish creating the account.\n" +
-                $"Secret key: {_key}"
-            );
+            bool emailSent = new PostMan().DeliverKey(firstName, lastName, emailAddress, _key);
 
             if (emailSent)
             {
                 EnableSecretKeyObjects();
-
                 MessagePrinter.PrintToMessageBox("The secret key was sent to the following email address\n" +
-                    $"{Properties.Settings.Default.RECEIVER_EMAIL}.", "Secret key sent successfully",
+                    $"{emailAddress}.", "Secret key sent successfully",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -193,6 +189,10 @@ namespace AyuboDrive.Forms
             ImagePathTxtBox.Text = "";
             ImagePathPnl.BackColor = Properties.Settings.Default.PURPLE;
             ImagePathErrorLbl.Text = "";
+
+            EmailTxtBox.Text = "";
+            EmailPnl.BackColor = Properties.Settings.Default.PURPLE;
+            EmailErrLbl.Text = "";
 
             KeyTxtBox.Text = "";
             KeyErrorLbl.Text = "";
@@ -235,13 +235,14 @@ namespace AyuboDrive.Forms
             ImagePathErrorLbl.Text = "";
         }
         
-        private bool ValidateInput(string userName, string firstName, string lastName, string password, string imagePath)
+        private bool ValidateInput(string userName, string firstName, string lastName, string password, string imagePath, string emailAddress)
         {
             bool validFirstName = false;
             bool validLastName = false;
             bool validUserName = false;
             bool validPassword = false;
             bool validFilePath = false;
+            bool validEmail= false;
 
             if (ValidationHandler.ValidateInputLength(firstName))
             {
@@ -319,7 +320,28 @@ namespace AyuboDrive.Forms
             {
                 validFilePath = true;
             }
-            return validUserName && validFirstName && validLastName && validPassword && validFilePath;
+
+            if (ValidationHandler.ValidateInputLength(emailAddress))
+            {
+                if (ValidationHandler.ValidateEmailAddress(emailAddress))
+                {
+                    validEmail = true;
+                    EmailPnl.BackColor = Properties.Settings.Default.PURPLE;
+                    EmailErrLbl.Text = "";
+                }
+                else
+                {
+                    EmailPnl.BackColor = Properties.Settings.Default.RED;
+                    EmailErrLbl.Text = "Email address already exists";
+                }
+            }
+            else
+            {
+                EmailPnl.BackColor = Properties.Settings.Default.RED;
+                EmailErrLbl.Text = "Invalid email";
+            }
+            return validUserName && validFirstName && validLastName && validPassword 
+                && validFilePath && validEmail;
         }
         //
         // Checkbox check changed event handler
@@ -340,7 +362,7 @@ namespace AyuboDrive.Forms
         //
         private void CharacterOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 // Discard the character by setting handled to true
                 e.Handled = true;

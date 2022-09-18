@@ -1,4 +1,6 @@
-﻿namespace AyuboDrive.Forms
+﻿using AyuboDrive.Utility;
+
+namespace AyuboDrive.Forms
 {
     partial class DashboardForm
     {
@@ -28,109 +30,264 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.userNamePanel = new System.Windows.Forms.Panel();
-            this.closedBookingsValueLbl = new System.Windows.Forms.Label();
-            this.openBookingsValueLbl = new System.Windows.Forms.Label();
-            this.ongoingBookingsTextLbl = new System.Windows.Forms.Label();
-            this.closedBookingTextLbl = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.OngoingRentalsCount = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.PendingPaymentCount = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.OngoingBookingsCount = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.ClosedBookingsCount = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.fullNameLbl = new System.Windows.Forms.Label();
             this.greetingLbl = new System.Windows.Forms.Label();
+            this.userNamePanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.DriverBtn = new System.Windows.Forms.Button();
-            this.BookingClosureBtn = new System.Windows.Forms.Button();
-            this.LongTourBookingsBtn = new System.Windows.Forms.Button();
-            this.PaymentBtn = new System.Windows.Forms.Button();
-            this.PackageTypeBtn = new System.Windows.Forms.Button();
-            this.LogOutBtn = new System.Windows.Forms.Button();
-            this.AccountBtn = new System.Windows.Forms.Button();
-            this.VehicleBtn = new System.Windows.Forms.Button();
-            this.VehicleTypeBtn = new System.Windows.Forms.Button();
-            this.CustomerBtn = new System.Windows.Forms.Button();
-            this.RentalBookingsBtn = new System.Windows.Forms.Button();
+            this.DriverBtn = new AyuboDrive.Utility.CustomButton();
+            this.BookingClosureBtn = new AyuboDrive.Utility.CustomButton();
+            this.LongTourBookingsBtn = new AyuboDrive.Utility.CustomButton();
+            this.PaymentBtn = new AyuboDrive.Utility.CustomButton();
+            this.PackageTypeBtn = new AyuboDrive.Utility.CustomButton();
+            this.LogOutBtn = new AyuboDrive.Utility.CustomButton();
+            this.AccountBtn = new AyuboDrive.Utility.CustomButton();
+            this.VehicleBtn = new AyuboDrive.Utility.CustomButton();
+            this.VehicleTypeBtn = new AyuboDrive.Utility.CustomButton();
+            this.CustomerBtn = new AyuboDrive.Utility.CustomButton();
+            this.RentalBookingsBtn = new AyuboDrive.Utility.CustomButton();
             this.panel1.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
-            this.panel1.Controls.Add(this.userNamePanel);
-            this.panel1.Controls.Add(this.closedBookingsValueLbl);
-            this.panel1.Controls.Add(this.openBookingsValueLbl);
-            this.panel1.Controls.Add(this.ongoingBookingsTextLbl);
-            this.panel1.Controls.Add(this.closedBookingTextLbl);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.panel1.Controls.Add(this.panel9);
+            this.panel1.Controls.Add(this.panel11);
+            this.panel1.Controls.Add(this.panel7);
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.fullNameLbl);
             this.panel1.Controls.Add(this.greetingLbl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(700, 208);
+            this.panel1.Size = new System.Drawing.Size(673, 235);
             this.panel1.TabIndex = 1;
             // 
-            // userNamePanel
+            // panel9
             // 
-            this.userNamePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.userNamePanel.Location = new System.Drawing.Point(0, 206);
-            this.userNamePanel.Name = "userNamePanel";
-            this.userNamePanel.Size = new System.Drawing.Size(700, 2);
-            this.userNamePanel.TabIndex = 25;
+            this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.panel9.Controls.Add(this.panel10);
+            this.panel9.Controls.Add(this.label8);
+            this.panel9.Location = new System.Drawing.Point(445, 134);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(216, 38);
+            this.panel9.TabIndex = 32;
             // 
-            // closedBookingsValueLbl
+            // panel10
             // 
-            this.closedBookingsValueLbl.AutoSize = true;
-            this.closedBookingsValueLbl.BackColor = System.Drawing.Color.Transparent;
-            this.closedBookingsValueLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.closedBookingsValueLbl.Font = new System.Drawing.Font("Carlito", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closedBookingsValueLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.closedBookingsValueLbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.closedBookingsValueLbl.Location = new System.Drawing.Point(476, 79);
-            this.closedBookingsValueLbl.Name = "closedBookingsValueLbl";
-            this.closedBookingsValueLbl.Size = new System.Drawing.Size(33, 39);
-            this.closedBookingsValueLbl.TabIndex = 9;
-            this.closedBookingsValueLbl.Text = "#\r\n";
-            this.closedBookingsValueLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.panel10.Controls.Add(this.OngoingRentalsCount);
+            this.panel10.Location = new System.Drawing.Point(171, 4);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(42, 30);
+            this.panel10.TabIndex = 28;
             // 
-            // openBookingsValueLbl
+            // OngoingRentalsCount
             // 
-            this.openBookingsValueLbl.AutoSize = true;
-            this.openBookingsValueLbl.BackColor = System.Drawing.Color.Transparent;
-            this.openBookingsValueLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.openBookingsValueLbl.Font = new System.Drawing.Font("Carlito", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.openBookingsValueLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.openBookingsValueLbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.openBookingsValueLbl.Location = new System.Drawing.Point(601, 79);
-            this.openBookingsValueLbl.Name = "openBookingsValueLbl";
-            this.openBookingsValueLbl.Size = new System.Drawing.Size(33, 39);
-            this.openBookingsValueLbl.TabIndex = 10;
-            this.openBookingsValueLbl.Text = "#\r\n";
-            this.openBookingsValueLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.OngoingRentalsCount.AutoSize = true;
+            this.OngoingRentalsCount.BackColor = System.Drawing.Color.Transparent;
+            this.OngoingRentalsCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OngoingRentalsCount.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OngoingRentalsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.OngoingRentalsCount.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.OngoingRentalsCount.Location = new System.Drawing.Point(9, 7);
+            this.OngoingRentalsCount.Name = "OngoingRentalsCount";
+            this.OngoingRentalsCount.Size = new System.Drawing.Size(25, 15);
+            this.OngoingRentalsCount.TabIndex = 27;
+            this.OngoingRentalsCount.Text = "###";
+            this.OngoingRentalsCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // ongoingBookingsTextLbl
+            // label8
             // 
-            this.ongoingBookingsTextLbl.AutoSize = true;
-            this.ongoingBookingsTextLbl.BackColor = System.Drawing.Color.Transparent;
-            this.ongoingBookingsTextLbl.Font = new System.Drawing.Font("Carlito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ongoingBookingsTextLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.ongoingBookingsTextLbl.Location = new System.Drawing.Point(554, 122);
-            this.ongoingBookingsTextLbl.Name = "ongoingBookingsTextLbl";
-            this.ongoingBookingsTextLbl.Size = new System.Drawing.Size(125, 19);
-            this.ongoingBookingsTextLbl.TabIndex = 14;
-            this.ongoingBookingsTextLbl.Text = "Ongoing bookings";
-            this.ongoingBookingsTextLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.label8.Location = new System.Drawing.Point(8, 10);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(103, 18);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Ongoing rentals";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // closedBookingTextLbl
+            // panel11
             // 
-            this.closedBookingTextLbl.AutoSize = true;
-            this.closedBookingTextLbl.BackColor = System.Drawing.Color.Transparent;
-            this.closedBookingTextLbl.Font = new System.Drawing.Font("Carlito", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closedBookingTextLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.closedBookingTextLbl.Location = new System.Drawing.Point(431, 122);
-            this.closedBookingTextLbl.Name = "closedBookingTextLbl";
-            this.closedBookingTextLbl.Size = new System.Drawing.Size(113, 19);
-            this.closedBookingTextLbl.TabIndex = 13;
-            this.closedBookingTextLbl.Text = "Closed bookings";
-            this.closedBookingTextLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(673, 30);
+            this.panel11.TabIndex = 29;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.panel7.Controls.Add(this.panel8);
+            this.panel7.Controls.Add(this.label6);
+            this.panel7.Location = new System.Drawing.Point(445, 178);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(216, 38);
+            this.panel7.TabIndex = 30;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.panel8.Controls.Add(this.PendingPaymentCount);
+            this.panel8.Location = new System.Drawing.Point(171, 4);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(42, 30);
+            this.panel8.TabIndex = 28;
+            // 
+            // PendingPaymentCount
+            // 
+            this.PendingPaymentCount.AutoSize = true;
+            this.PendingPaymentCount.BackColor = System.Drawing.Color.Transparent;
+            this.PendingPaymentCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PendingPaymentCount.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PendingPaymentCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.PendingPaymentCount.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.PendingPaymentCount.Location = new System.Drawing.Point(9, 7);
+            this.PendingPaymentCount.Name = "PendingPaymentCount";
+            this.PendingPaymentCount.Size = new System.Drawing.Size(25, 15);
+            this.PendingPaymentCount.TabIndex = 27;
+            this.PendingPaymentCount.Text = "###";
+            this.PendingPaymentCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.label6.Location = new System.Drawing.Point(8, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(120, 18);
+            this.label6.TabIndex = 27;
+            this.label6.Text = "Pending payments";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Location = new System.Drawing.Point(445, 90);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(216, 38);
+            this.panel5.TabIndex = 29;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.panel6.Controls.Add(this.OngoingBookingsCount);
+            this.panel6.Location = new System.Drawing.Point(171, 4);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(42, 30);
+            this.panel6.TabIndex = 28;
+            // 
+            // OngoingBookingsCount
+            // 
+            this.OngoingBookingsCount.AutoSize = true;
+            this.OngoingBookingsCount.BackColor = System.Drawing.Color.Transparent;
+            this.OngoingBookingsCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OngoingBookingsCount.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OngoingBookingsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.OngoingBookingsCount.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.OngoingBookingsCount.Location = new System.Drawing.Point(9, 7);
+            this.OngoingBookingsCount.Name = "OngoingBookingsCount";
+            this.OngoingBookingsCount.Size = new System.Drawing.Size(25, 15);
+            this.OngoingBookingsCount.TabIndex = 27;
+            this.OngoingBookingsCount.Text = "###";
+            this.OngoingBookingsCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.label4.Location = new System.Drawing.Point(8, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(143, 18);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "Ongoing hire bookings";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Location = new System.Drawing.Point(445, 46);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(216, 38);
+            this.panel3.TabIndex = 26;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.panel4.Controls.Add(this.ClosedBookingsCount);
+            this.panel4.Location = new System.Drawing.Point(171, 4);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(42, 30);
+            this.panel4.TabIndex = 28;
+            // 
+            // ClosedBookingsCount
+            // 
+            this.ClosedBookingsCount.AutoSize = true;
+            this.ClosedBookingsCount.BackColor = System.Drawing.Color.Transparent;
+            this.ClosedBookingsCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ClosedBookingsCount.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClosedBookingsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.ClosedBookingsCount.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.ClosedBookingsCount.Location = new System.Drawing.Point(9, 7);
+            this.ClosedBookingsCount.Name = "ClosedBookingsCount";
+            this.ClosedBookingsCount.Size = new System.Drawing.Size(25, 15);
+            this.ClosedBookingsCount.TabIndex = 27;
+            this.ClosedBookingsCount.Text = "###";
+            this.ClosedBookingsCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.label1.Location = new System.Drawing.Point(8, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(132, 18);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Closed hire bookings";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // fullNameLbl
             // 
@@ -138,7 +295,7 @@
             this.fullNameLbl.BackColor = System.Drawing.Color.Transparent;
             this.fullNameLbl.Font = new System.Drawing.Font("Carlito", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fullNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.fullNameLbl.Location = new System.Drawing.Point(31, 118);
+            this.fullNameLbl.Location = new System.Drawing.Point(18, 97);
             this.fullNameLbl.Name = "fullNameLbl";
             this.fullNameLbl.Size = new System.Drawing.Size(84, 23);
             this.fullNameLbl.TabIndex = 12;
@@ -150,15 +307,23 @@
             this.greetingLbl.BackColor = System.Drawing.Color.Transparent;
             this.greetingLbl.Font = new System.Drawing.Font("Carlito", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.greetingLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.greetingLbl.Location = new System.Drawing.Point(25, 59);
+            this.greetingLbl.Location = new System.Drawing.Point(12, 38);
             this.greetingLbl.Name = "greetingLbl";
             this.greetingLbl.Size = new System.Drawing.Size(225, 59);
             this.greetingLbl.TabIndex = 11;
             this.greetingLbl.Text = "Greetings,";
             // 
+            // userNamePanel
+            // 
+            this.userNamePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.userNamePanel.Location = new System.Drawing.Point(0, 236);
+            this.userNamePanel.Name = "userNamePanel";
+            this.userNamePanel.Size = new System.Drawing.Size(673, 2);
+            this.userNamePanel.TabIndex = 25;
+            // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
             this.panel2.Controls.Add(this.DriverBtn);
             this.panel2.Controls.Add(this.BookingClosureBtn);
             this.panel2.Controls.Add(this.LongTourBookingsBtn);
@@ -171,9 +336,9 @@
             this.panel2.Controls.Add(this.CustomerBtn);
             this.panel2.Controls.Add(this.RentalBookingsBtn);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 209);
+            this.panel2.Location = new System.Drawing.Point(0, 237);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(700, 321);
+            this.panel2.Size = new System.Drawing.Size(673, 293);
             this.panel2.TabIndex = 2;
             // 
             // DriverBtn
@@ -184,9 +349,9 @@
             this.DriverBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DriverBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.DriverBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DriverBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DriverBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DriverBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.DriverBtn.Location = new System.Drawing.Point(353, 168);
+            this.DriverBtn.Location = new System.Drawing.Point(339, 150);
             this.DriverBtn.Name = "DriverBtn";
             this.DriverBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.DriverBtn.Size = new System.Drawing.Size(160, 135);
@@ -206,9 +371,9 @@
             this.BookingClosureBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BookingClosureBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.BookingClosureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BookingClosureBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BookingClosureBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BookingClosureBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.BookingClosureBtn.Location = new System.Drawing.Point(187, 168);
+            this.BookingClosureBtn.Location = new System.Drawing.Point(173, 150);
             this.BookingClosureBtn.Name = "BookingClosureBtn";
             this.BookingClosureBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.BookingClosureBtn.Size = new System.Drawing.Size(160, 135);
@@ -228,9 +393,9 @@
             this.LongTourBookingsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LongTourBookingsBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.LongTourBookingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LongTourBookingsBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LongTourBookingsBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LongTourBookingsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.LongTourBookingsBtn.Location = new System.Drawing.Point(21, 168);
+            this.LongTourBookingsBtn.Location = new System.Drawing.Point(7, 150);
             this.LongTourBookingsBtn.Name = "LongTourBookingsBtn";
             this.LongTourBookingsBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.LongTourBookingsBtn.Size = new System.Drawing.Size(160, 135);
@@ -250,9 +415,9 @@
             this.PaymentBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PaymentBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.PaymentBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PaymentBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PaymentBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PaymentBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.PaymentBtn.Location = new System.Drawing.Point(353, 24);
+            this.PaymentBtn.Location = new System.Drawing.Point(339, 7);
             this.PaymentBtn.Name = "PaymentBtn";
             this.PaymentBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.PaymentBtn.Size = new System.Drawing.Size(160, 135);
@@ -272,9 +437,9 @@
             this.PackageTypeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PackageTypeBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.PackageTypeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PackageTypeBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PackageTypeBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PackageTypeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.PackageTypeBtn.Location = new System.Drawing.Point(187, 24);
+            this.PackageTypeBtn.Location = new System.Drawing.Point(173, 7);
             this.PackageTypeBtn.Name = "PackageTypeBtn";
             this.PackageTypeBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.PackageTypeBtn.Size = new System.Drawing.Size(160, 135);
@@ -296,7 +461,7 @@
             this.LogOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LogOutBtn.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogOutBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.LogOutBtn.Location = new System.Drawing.Point(602, 230);
+            this.LogOutBtn.Location = new System.Drawing.Point(588, 212);
             this.LogOutBtn.Name = "LogOutBtn";
             this.LogOutBtn.Size = new System.Drawing.Size(77, 73);
             this.LogOutBtn.TabIndex = 14;
@@ -316,7 +481,7 @@
             this.AccountBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AccountBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AccountBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.AccountBtn.Location = new System.Drawing.Point(602, 151);
+            this.AccountBtn.Location = new System.Drawing.Point(588, 133);
             this.AccountBtn.Name = "AccountBtn";
             this.AccountBtn.Size = new System.Drawing.Size(77, 73);
             this.AccountBtn.TabIndex = 13;
@@ -337,7 +502,7 @@
             this.VehicleBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.VehicleBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VehicleBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.VehicleBtn.Location = new System.Drawing.Point(519, 230);
+            this.VehicleBtn.Location = new System.Drawing.Point(505, 212);
             this.VehicleBtn.Name = "VehicleBtn";
             this.VehicleBtn.Size = new System.Drawing.Size(77, 73);
             this.VehicleBtn.TabIndex = 12;
@@ -358,7 +523,7 @@
             this.VehicleTypeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.VehicleTypeBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VehicleTypeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.VehicleTypeBtn.Location = new System.Drawing.Point(519, 151);
+            this.VehicleTypeBtn.Location = new System.Drawing.Point(505, 133);
             this.VehicleTypeBtn.Name = "VehicleTypeBtn";
             this.VehicleTypeBtn.Size = new System.Drawing.Size(77, 73);
             this.VehicleTypeBtn.TabIndex = 11;
@@ -377,9 +542,9 @@
             this.CustomerBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CustomerBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.CustomerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CustomerBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CustomerBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.CustomerBtn.Location = new System.Drawing.Point(519, 24);
+            this.CustomerBtn.Location = new System.Drawing.Point(505, 7);
             this.CustomerBtn.Name = "CustomerBtn";
             this.CustomerBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.CustomerBtn.Size = new System.Drawing.Size(160, 120);
@@ -399,9 +564,9 @@
             this.RentalBookingsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RentalBookingsBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.RentalBookingsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RentalBookingsBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RentalBookingsBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RentalBookingsBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.RentalBookingsBtn.Location = new System.Drawing.Point(21, 25);
+            this.RentalBookingsBtn.Location = new System.Drawing.Point(7, 7);
             this.RentalBookingsBtn.Name = "RentalBookingsBtn";
             this.RentalBookingsBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.RentalBookingsBtn.Size = new System.Drawing.Size(160, 135);
@@ -418,17 +583,35 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(700, 530);
+            this.ClientSize = new System.Drawing.Size(673, 530);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.userNamePanel);
             this.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DashboardForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DashboardForm";
             this.Load += new System.EventHandler(this.DashboardForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -437,24 +620,37 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label ongoingBookingsTextLbl;
-        private System.Windows.Forms.Label closedBookingTextLbl;
         private System.Windows.Forms.Label fullNameLbl;
         private System.Windows.Forms.Label greetingLbl;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label closedBookingsValueLbl;
-        private System.Windows.Forms.Label openBookingsValueLbl;
         private System.Windows.Forms.Panel userNamePanel;
-        private System.Windows.Forms.Button RentalBookingsBtn;
-        private System.Windows.Forms.Button VehicleTypeBtn;
-        private System.Windows.Forms.Button CustomerBtn;
-        private System.Windows.Forms.Button DriverBtn;
-        private System.Windows.Forms.Button BookingClosureBtn;
-        private System.Windows.Forms.Button LongTourBookingsBtn;
-        private System.Windows.Forms.Button PaymentBtn;
-        private System.Windows.Forms.Button PackageTypeBtn;
-        private System.Windows.Forms.Button LogOutBtn;
-        private System.Windows.Forms.Button AccountBtn;
-        private System.Windows.Forms.Button VehicleBtn;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label PendingPaymentCount;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label OngoingBookingsCount;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label ClosedBookingsCount;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Label OngoingRentalsCount;
+        private System.Windows.Forms.Label label8;
+        private CustomButton RentalBookingsBtn;
+        private CustomButton VehicleTypeBtn;
+        private CustomButton CustomerBtn;
+        private CustomButton DriverBtn;
+        private CustomButton BookingClosureBtn;
+        private CustomButton LongTourBookingsBtn;
+        private CustomButton PaymentBtn;
+        private CustomButton PackageTypeBtn;
+        private CustomButton LogOutBtn;
+        private CustomButton AccountBtn;
+        private CustomButton VehicleBtn;
     }
 }

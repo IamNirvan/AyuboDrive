@@ -58,7 +58,7 @@ namespace AyuboDrive.Forms
             }
 
             _selectedRow = record;
-            record.BackColor = Program.LIGHTER_GRAY;
+            record.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
             ResetErrors();
         }
 
@@ -72,14 +72,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHTER_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.ENABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.ENABLED_WHITE;
                 }
             }
         }
@@ -94,14 +94,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHT_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHT_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.DISABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.DISABLED_WHITE;
                 }
             }
         }
@@ -189,9 +189,8 @@ namespace AyuboDrive.Forms
                 ContactNumberPnl.BackColor = Properties.Settings.Default.RED;
                 ContactNumberErrLbl.Text = "Invalid contact number";
             }
-
-            //if((driverStatus == "Available" || driverStatus == "Unavailable") && driverStatusSelectedRowIndex >= 0)
-            if(ValidationHandler.ValidateComboBoxValue(driverStatus, driverStatusSelectedRowIndex))
+            
+            if(ValidationHandler.ValidateInputLength(driverStatus))
             {
                 validDriverStatus = true;
                 DriverStatusPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -303,7 +302,7 @@ namespace AyuboDrive.Forms
                 }
             }
 
-            if (ValidationHandler.ValidateComboBoxValue(driverStatus, driverStatusSelectedRowIndex))
+            if (ValidationHandler.ValidateInputLength(driverStatus))
             {
                 validDriverStatus = true;
                 DriverStatusPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -511,7 +510,7 @@ namespace AyuboDrive.Forms
         //
         private void CharacterOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 // Discard the character by setting handled to true
                 e.Handled = true;
@@ -534,6 +533,11 @@ namespace AyuboDrive.Forms
                 // Discard the character by setting handled to true
                 e.Handled = true;
             }
+        }
+
+        private void NoTyping_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

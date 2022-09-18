@@ -62,6 +62,28 @@ namespace AyuboDrive.Utility
             return _containers;
         }
 
+        private void AddCover()
+        {
+            Panel panel = new Panel
+            {
+                BackColor = Properties.Settings.Default.LIGHT_GRAY,
+                Location = new Point(0, 0),
+                Size = new Size(_container.Size.Width, _container.Size.Height)
+                
+            };
+            _container.Controls.Add(panel);
+            panel.BringToFront();
+
+            Label label = new Label() {
+                Text = "No data to display",
+                Size = new Size(100, 100),
+                ForeColor = Properties.Settings.Default.ENABLED_WHITE,
+                BackColor = Properties.Settings.Default.TRANSPARENT,
+                Location = new Point((panel.Width/2)-50, (panel.Height/2))
+            };
+            panel.Controls.Add(label);
+        }
+
         public void AddContainers()
         {
             try
@@ -85,7 +107,7 @@ namespace AyuboDrive.Utility
                     {
                         Size = new Size(_minWidth, _minHeight),
                         Location = new Point(xAxisPoint, yAxisPoint),
-                        BackColor = Program.LIGHT_GRAY,
+                        BackColor = Properties.Settings.Default.LIGHT_GRAY,
                         Name = $"Panel-{i}",
                         Cursor = Cursors.Hand
                     };
@@ -202,23 +224,6 @@ namespace AyuboDrive.Utility
             }
         }
 
-        private void AddIteractiveLabels()
-        {
-            for(int i = 0; i < _containers.Length; i ++)
-            {
-                Label interactiveLabel = new Label()
-                {
-                    Size = new Size(_minWidth, _minHeight),
-                    Location = new Point(0, 0),
-                    BackColor = Color.Transparent,
-                    Name = $"Label-{i}"
-                };
-                _containers[i].Controls.Add(interactiveLabel);
-                _interactiveLabels[i] = interactiveLabel;
-                interactiveLabel.BringToFront();
-            }
-        }
-
         private void InitializeArrays()
         {
             _containers = new Panel[_rowCount];
@@ -229,10 +234,14 @@ namespace AyuboDrive.Utility
 
         public void Display()
         {            
+            if(_dataTable.Rows.Count == 0)
+            {
+                AddCover();
+                return;
+            }
             AddContainers();
             AddImageLabels();
             AddVehicleNameLabels();
-            //AddIteractiveLabels();
         }
     }
 }

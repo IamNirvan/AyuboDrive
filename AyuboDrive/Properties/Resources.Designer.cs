@@ -63,9 +63,49 @@ namespace AyuboDrive.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1 {
+            get {
+                object obj = ResourceManager.GetObject("1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AccountWhite24 {
             get {
                 object obj = ResourceManager.GetObject("AccountWhite24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap c8aa00b0b2f44d548f3cd74b9c117460 {
+            get {
+                object obj = ResourceManager.GetObject("c8aa00b0b2f44d548f3cd74b9c117460", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap c8aa00b0b2f44d548f3cd74b9c117460_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("c8aa00b0b2f44d548f3cd74b9c117460-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap c8aa00b0b2f44d548f3cd74b9c1174601 {
+            get {
+                object obj = ResourceManager.GetObject("c8aa00b0b2f44d548f3cd74b9c1174601", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -216,6 +256,26 @@ namespace AyuboDrive.Properties {
         internal static System.Drawing.Bitmap LoginSidePanel1 {
             get {
                 object obj = ResourceManager.GetObject("LoginSidePanel1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo5 {
+            get {
+                object obj = ResourceManager.GetObject("Logo5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo5100px {
+            get {
+                object obj = ResourceManager.GetObject("Logo5100px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

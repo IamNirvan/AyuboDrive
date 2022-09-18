@@ -1,66 +1,8 @@
-﻿Features of Ayubo Drive:
-	- Making long tour bookings
-	- Making day tour bookings
-	- Making rental bookings
-	- Managing booking information
-	- Managing package information
-	- Managing vehicle information
-	- Managing vehicle type information
-	- Managing payment information
-	- Managing customer information
-	- Managing driver information
-	- Sending OTPs for authorized account creation
-	- Calculating rental values
-	- Calculating hire values
-	- User registration
-	- User login
+﻿Bugs:
+	- Add a logo
 
-Modifiable components in the future:
-	- Rent value calculation algorithm
-	- Hire value calculation algorithm
-	- OTP generating algorithm
-	- All the forms
-	
-Items to store in the configuration file:
-	- Password
-	- mail server
-	- sender's email
-	- receiver's email
-	- connection string
+	- Fix the vehicle images when displaying vehicles
 
-- Forms to be built:
-	
-	
-- Completed forms:
-	- Login
-	- Account registration
-	- Vehicle type management
-	- Customer management
-	- Payment management
-	- Package type management 
-	- Vehicle management:
-	- Account management 
-	- Dashboard	
-	- Driver management
-	- Rental booking management
-	- Long tour booking management
-	- Day tour booking management
-	- Return form
+	- Handle the vehicle delete operation
 
-
-** Update the vehicle mileage after its returned from a rent or hire
-** Make sure the cell click event can handle problems when there aren't any records.
-
-
-
-Bugs:
-	- Allow a referenced booking to be deleted.
-	- Make sure that the update function does not require the NIC or contact number to be different. (Driver management form)
-	- Send the secret key to the user's email address as a way of verifying it.
-	- Store the user's email address in the database
-	- Make a separate account for AyuboDrive
-	- Allow for spaces in the char only restriction for text boxes
-	- Allow numbers and characters to be entered for the model name
-	- Fix the issue with the selected row in the customer management form
-	- Fix the dashboard null issue in the account management form
-	
+	// xtgcysmtpvupukag

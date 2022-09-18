@@ -134,7 +134,7 @@ namespace AyuboDrive
         {
             string query = "UPDATE vehicle SET vehicleStatus = @vehicleStatus WHERE vehicleID = @vehicleID";
             string[] parameters = { "@vehicleStatus", "@vehicleID" };
-            object[] values = {availability, ID};
+            object[] values = {availability.ToString().ToLower(), ID};
 
             if (s_queryHandler.UpdateQueryHandler(query, parameters, values))
             {

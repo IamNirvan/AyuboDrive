@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AyuboDrive.Utility
@@ -28,11 +29,22 @@ namespace AyuboDrive.Utility
         /// Checks to see if the package name exists in the database.
         /// </summary>
         /// <param name="packageName">The package name to be checked</param>
-        /// <returns>True if the package name exists, and false if otherwise</returns>
-        public static bool CheckPackageNamePresence(string packageName)
+        /// <returns>True if the package is valid, and false if otherwise</returns>
+        public static bool ValidatePackageName(string packageName)
         {
-            string query = "SELECT COUNT(*) FROM package WHERE packageName = '" + packageName + "'";
+            string query = $"SELECT COUNT(*) FROM package WHERE packageName = '{packageName}'";
             return packageName.Length != 0 && (int)s_queryHandler.SelectQueryHandler(query).Rows[0][0] == 0;
+        }
+
+        /// <summary>
+        /// Checks to see if the package name exists in the database.
+        /// </summary>
+        /// <param name="typeName">The package name to be checked</param>
+        /// <returns>True if the package is valid, and false if otherwise</returns>
+        public static bool ValidateVehicleTypeName(string typeName)
+        {
+            string query = $"SELECT COUNT(*) FROM vehicleType WHERE typeName = '{typeName}'";
+            return typeName.Length != 0 && (int)s_queryHandler.SelectQueryHandler(query).Rows[0][0] == 0;
         }
 
         /// <summary>
@@ -42,10 +54,23 @@ namespace AyuboDrive.Utility
         /// <param name="columnName">The VIN column name in the table</param>
         /// <param name="VIN">The VIN to be checked</param>
         /// <returns>True if valid. False if not</returns>
-        public static bool ValidateVIN(string tableName, string columnName, string VIN)
+        public static bool ValidateVIN(string VIN)
         {
-            string query = $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = '{VIN}'";
-            return VIN.Length != 0 && (int)s_queryHandler.SelectQueryHandler(query).Rows[0][0] == 0;
+            string query = $"SELECT COUNT(*) FROM vehicle WHERE VIN = '{VIN}'";
+            return VIN.Length == 17 && (int)s_queryHandler.SelectQueryHandler(query).Rows[0][0] == 0;
+        }
+
+        /// <summary>
+        /// Checks to see if the email adderss has a valid composition,
+        /// and does not exist in the database
+        /// </summary>
+        /// <param name="emailAddress">The email address to be checked</param>
+        /// <returns>True if valid, and false if not</returns>
+        public static bool ValidateEmailAddress(string emailAddress)
+        {
+            string query = $"SELECT COUNT(*) FROM userAccount WHERE emailAddress = '{emailAddress}'";
+            Regex regex = new Regex("^[A-Za-z0-9]{1,50}@[A-Za-z]{1,30}.[A-Za-z]{1,20}$");
+            return regex.IsMatch(emailAddress) && (int)s_queryHandler.SelectQueryHandler(query).Rows[0][0] == 0;
         }
 
         /// <summary>
@@ -62,11 +87,11 @@ namespace AyuboDrive.Utility
         /// Checks to see if the NIC is present in the database
         /// </summary>
         /// <param name="NIC">The NIC</param>
-        /// <returns>Returns true if the NIC is not found, and and if the length is not 0. false if not</returns>
+        /// <returns>Returns true if valid and false if not</returns>
         public static bool ValidateNIC(string NIC, string tableName, string columnName)
         {
             string query = $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = '{NIC}'";
-            return NIC.Length != 0 && (int)s_queryHandler.SelectQueryHandler(query).Rows[0][0] == 0;
+            return NIC.Length == 12 && (int)s_queryHandler.SelectQueryHandler(query).Rows[0][0] == 0;
         }
 
         /// <summary>
@@ -77,7 +102,7 @@ namespace AyuboDrive.Utility
         public static bool ValidateContactNumber(string contactNumber, string tableName, string columnName)
         {
             string query = $"SELECT COUNT(*) FROM {tableName} WHERE {columnName} = '{contactNumber}'";
-            return contactNumber.Length != 0 && (int)s_queryHandler.SelectQueryHandler(query).Rows[0][0] == 0;
+            return contactNumber.Length == 10 && (int)s_queryHandler.SelectQueryHandler(query).Rows[0][0] == 0;
         }
 
         /// <summary>

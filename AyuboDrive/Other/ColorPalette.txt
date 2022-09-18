@@ -1,0 +1,6 @@
+﻿Primary : #ffffff
+Secondary : #f0f0f0
+Accent : #6760FA
+Error : #F04545
+Success : #46C797
+Link : #6760FA

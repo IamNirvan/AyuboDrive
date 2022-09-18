@@ -56,6 +56,29 @@ namespace AyuboDrive.Utility
         //
         // Utility
         //
+        private void AddCover()
+        {
+            Panel panel = new Panel
+            {
+                BackColor = Properties.Settings.Default.LIGHT_GRAY,
+                Location = new Point(0, 0),
+                Size = new Size(_container.Size.Width, _container.Size.Height)
+
+            };
+            _container.Controls.Add(panel);
+            panel.BringToFront();
+
+            Label label = new Label()
+            {
+                Text = "No data to display",
+                Size = new Size(100, 100),
+                ForeColor = Properties.Settings.Default.ENABLED_WHITE,
+                BackColor = Properties.Settings.Default.TRANSPARENT,
+                Location = new Point((panel.Width / 2) - 50, (panel.Height / 2))
+            };
+            panel.Controls.Add(label);
+        }
+
         public Panel[] GetRows()
         {
             return _rows;
@@ -187,6 +210,11 @@ namespace AyuboDrive.Utility
         
         public void DisplayTable()
         {
+            if (_dataTable.Rows.Count == 0)
+            {
+                AddCover();
+                return;
+            }
             AddTableStruture();
             PopulateTable();
         }

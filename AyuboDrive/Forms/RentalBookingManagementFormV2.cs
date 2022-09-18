@@ -20,6 +20,9 @@ namespace AyuboDrive.Forms
         private DataViewer _dataViewer;
         private DataTable _dataTable;
         private string _bookingID;
+        private string _initialVehicleID;
+        private string _driverID;
+        private string _rentalStatus;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
         private bool handlingMouseClick = false;
@@ -67,7 +70,7 @@ namespace AyuboDrive.Forms
             }
 
             _selectedRow = container;
-            container.BackColor = Program.LIGHTER_GRAY;
+            container.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
             ResetErrors();
         }
 
@@ -93,7 +96,7 @@ namespace AyuboDrive.Forms
             if (!_rowSelected)
             {
                 Panel panel = _vehicleViewer.GetContainers()[index]; // Access the parent panel
-                panel.BackColor = Program.LIGHT_GRAY;
+                panel.BackColor = Properties.Settings.Default.LIGHT_GRAY;
             }
 
             _vehicleViewer.GetVehicleNames()[index].ForeColor = Properties.Settings.Default.DISABLED_WHITE;
@@ -115,7 +118,7 @@ namespace AyuboDrive.Forms
             }
 
             _selectedRow = record;
-            record.BackColor = Program.LIGHTER_GRAY;
+            record.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
             ResetErrors();
         }
 
@@ -129,14 +132,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHTER_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.ENABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.ENABLED_WHITE;
                 }
             }
         }
@@ -151,14 +154,14 @@ namespace AyuboDrive.Forms
                 if (!_rowSelected)
                 {
                     Panel panel = _dataViewer.GetRows()[index];
-                    panel.BackColor = Program.LIGHT_GRAY;
+                    panel.BackColor = Properties.Settings.Default.LIGHT_GRAY;
                 }
 
                 Label[] subArray = _dataViewer.GetLabels()[index];
 
                 for (int i = 0; i < subArray.Length; i++)
                 {
-                    subArray[i].ForeColor = Program.DISABLED_WHITE;
+                    subArray[i].ForeColor = Properties.Settings.Default.DISABLED_WHITE;
                 }
             }
         }
@@ -183,8 +186,8 @@ namespace AyuboDrive.Forms
             _bookingID = null;
         }
 
-        private bool ValidateInput(string vehicleTypeID, int vehicleTypeIDSelectedIndex, string vehicleID, int vehicleIDSelectedIndex,
-            string driverID, int driverIDSelectedIndex, string customerID, int customerIDSelectedIndex, DateTime startDate, DateTime endDate)
+        private bool ValidateInput(string vehicleTypeID, string vehicleID, int vehicleIDSelectedIndex,
+            string driverID, int driverIDSelectedIndex, string customerID, DateTime startDate, DateTime endDate)
         {
             bool validVehicleTypeID = false;
             bool validVehicleID = false;
@@ -192,7 +195,7 @@ namespace AyuboDrive.Forms
             bool validCustomerID = false;
             bool validDate = false;
 
-            if (ValidationHandler.ValidateComboBoxValue(vehicleTypeID, vehicleTypeIDSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(vehicleTypeID))
             {
                 validVehicleTypeID = true;
                 VehicleTypeIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -216,7 +219,13 @@ namespace AyuboDrive.Forms
                 VehicleIDErrLbl.Text = "Invalid vehicle ID";
             }
 
-            if (driverID == null || ValidationHandler.ValidateComboBoxValue(driverID, driverIDSelectedIndex))
+            if(driverID == null)
+            {
+                validDriverID = true;
+                DriverIDPnl.BackColor = Properties.Settings.Default.PURPLE;
+                DriverIDErrLbl.Text = "";
+            }
+            else if (ValidationHandler.ValidateComboBoxValue(driverID, driverIDSelectedIndex))
             {
                 validDriverID = true;
                 DriverIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -228,7 +237,7 @@ namespace AyuboDrive.Forms
                 DriverIDErrLbl.Text = "Invalid driver ID";
             }
 
-            if (ValidationHandler.ValidateComboBoxValue(customerID, customerIDSelectedIndex))
+            if (ValidationHandler.ValidateInputLength(customerID))
             {
                 validCustomerID = true;
                 CustomerIDPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -337,10 +346,15 @@ namespace AyuboDrive.Forms
                 _bookingID = record[0].ToString();
                 VehicleTypeIDCmbBox.Text = $"{record[1].ToString()}-{vehicleTypeRecord[0]}";
                 VehicleIDCmbBox.Text = $"{record[2].ToString()}-{vehicleRecord[0]} {vehicleRecord[1]}";
+                _initialVehicleID = record[2].ToString();
+
+                string value = record[3].ToString();
+                _driverID = value.Equals("") ? null : value;
 
                 CustomerIDCmbBox.Text = $"{record[4].ToString()}-{customerRecord[0]} {customerRecord[1]}";
                 StartDateDTP.Text = record[5].ToString();
                 EndDateDTP.Text = record[6].ToString();
+                _rentalStatus = record[7].ToString();
             }
         }
 
@@ -410,14 +424,14 @@ namespace AyuboDrive.Forms
         {
             VehicleIDCmbBox.Items.Clear();
             VehicleIDCmbBox.Text = "";
-            string query = "SELECT vehicleID, manufacturer, model FROM vehicle WHERE vehicleStatus = 'Available'";
+            string query = "SELECT vehicleID, manufacturer, model FROM vehicle WHERE vehicleStatus = 'available'";
             // If a vehicle type ID is chosen, filter the vehicle IDs based on the selected vehicle type ID
             // Otherwise show the vehicle IDs of every available vehicle.
             if (invokedByType)
             {
                 string vehicleTypeID = VehicleTypeIDCmbBox.Text.Split('-')[0];
                 query = "SELECT vehicleID, manufacturer, model FROM vehicle WHERE vehicleStatus = " +
-                    "'Available' AND vehicleTypeID = '" + vehicleTypeID + "'";
+                    "'available' AND vehicleTypeID = '" + vehicleTypeID + "'";
             }
 
             foreach (DataRow record in s_queryHandler.SelectQueryHandler(query).Rows)
@@ -529,28 +543,67 @@ namespace AyuboDrive.Forms
             DateTime startDate = DateTime.Parse(StartDateDTP.Text);
             DateTime endDate = DateTime.Parse(EndDateDTP.Text);
 
-            if (ValidateInput(vehicleTypeID, VehicleTypeIDCmbBox.SelectedIndex, vehicleID, VehicleIDCmbBox.SelectedIndex,
-                driverID, DriverIDCmbBox.SelectedIndex, customerID, CustomerIDCmbBox.SelectedIndex, startDate, endDate))
+            if (ValidateInput(vehicleTypeID, vehicleID, VehicleIDCmbBox.SelectedIndex,
+                driverID, DriverIDCmbBox.SelectedIndex, customerID, startDate, endDate))
             {
                 vehicleTypeID = vehicleTypeID.Split('-')[0];
                 vehicleID = vehicleID.Split('-')[0];
                 driverID = driverID == null ? null : driverID.Split('-')[0];
                 customerID = customerID.Split('-')[0];
 
-                RentalBooking rentalBooking = new RentalBooking(vehicleTypeID, vehicleID, driverID, customerID, startDate,
-                    endDate, BookingStatus.OPEN, PaymentStatus.PENDING);
-                if (rentalBooking.Insert())
+                if (Vehicle.UpdateAvailability(vehicleID, Availability.UNAVAILABLE))
                 {
-                    MessagePrinter.PrintToMessageBox("Rental booking details were successfully inserted", "Operation successful",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DisplayTable();
+                    if (driverID != null)
+                    {
+                        if ( Driver.UpdateDriverAvailability(driverID, Availability.UNAVAILABLE))
+                        {
+                            RentalBooking rentalBooking = new RentalBooking(vehicleTypeID, vehicleID, driverID, customerID, startDate,
+                            endDate, BookingStatus.OPEN, PaymentStatus.PENDING);
+                            if (rentalBooking.Insert())
+                            {
+                                MessagePrinter.PrintToMessageBox("Rental booking details were successfully inserted", "Operation successful",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                DisplayTable();
+                                Reset();
+                                FillVehicleIDCmbBox();
+                            }
+                            else
+                            {
+                                MessagePrinter.PrintToMessageBox("Failed to insert rental booking details", "Operation failed",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessagePrinter.PrintToMessageBox("Failed to update driver availabiliy", "Operation failed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        RentalBooking rentalBooking = new RentalBooking(vehicleTypeID, vehicleID, driverID, customerID, startDate,
+                           endDate, BookingStatus.OPEN, PaymentStatus.PENDING);
+                        if (rentalBooking.Insert())
+                        {
+                            MessagePrinter.PrintToMessageBox("Rental booking details were successfully inserted", "Operation successful",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            DisplayTable();
+                            Reset();
+                            FillVehicleIDCmbBox();
+                        }
+                        else
+                        {
+                            MessagePrinter.PrintToMessageBox("Failed to insert rental booking details", "Operation failed",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    
                 }
                 else
                 {
-                    MessagePrinter.PrintToMessageBox("Failed to insert rental booking details", "Operation failed",
+                    MessagePrinter.PrintToMessageBox("Failed to update vehicle availabiliy", "Operation failed",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                Reset();
             }
         }
 
@@ -563,6 +616,12 @@ namespace AyuboDrive.Forms
                 MessagePrinter.PrintToMessageBox("Please select a rental booking record", "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            else if(!_rentalStatus.Equals("closed"))
+            {
+                MessagePrinter.PrintToMessageBox("You cannot update an ongoing booking",
+                    "Select a closed booking", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             string vehicleTypeID = VehicleTypeIDCmbBox.Text;
             string vehicleID = VehicleIDCmbBox.Text;
@@ -571,8 +630,8 @@ namespace AyuboDrive.Forms
             DateTime startDate = DateTime.Parse(StartDateDTP.Text);
             DateTime endDate = DateTime.Parse(EndDateDTP.Text);
 
-            if (ValidateInput(vehicleTypeID, VehicleTypeIDCmbBox.SelectedIndex, vehicleID, VehicleIDCmbBox.SelectedIndex,
-                driverID, DriverIDCmbBox.SelectedIndex, customerID, CustomerIDCmbBox.SelectedIndex, startDate, endDate))
+            if (ValidateInput(vehicleTypeID, vehicleID, VehicleIDCmbBox.SelectedIndex,
+                driverID, DriverIDCmbBox.SelectedIndex, customerID, startDate, endDate))
             {
                 vehicleTypeID = vehicleTypeID.Split('-')[0];
                 vehicleID = vehicleID.Split('-')[0];
@@ -581,6 +640,7 @@ namespace AyuboDrive.Forms
 
                 RentalBooking rentalBooking = new RentalBooking(vehicleTypeID, vehicleID, driverID, customerID, startDate,
                     endDate, BookingStatus.OPEN, PaymentStatus.PENDING);
+
                 if (rentalBooking.Update(_bookingID))
                 {
                     MessagePrinter.PrintToMessageBox("Rental booking details were successfully updated", "Operation successful",
@@ -602,15 +662,27 @@ namespace AyuboDrive.Forms
 
             if (!_rowSelected)
             {
-                MessagePrinter.PrintToMessageBox("Please select a rental booking record", "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessagePrinter.PrintToMessageBox("Please select a rental booking record", 
+                    "Select a record", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            string vehicleID = VehicleIDCmbBox.Text.Split('-')[0];
+            string driverID = DriverIDCmbBox.Text.Split('-')[0];
 
             DialogResult result = MessagePrinter.PrintToMessageBoxV2("Are you sure you want to delete the record? Once deleted, it cannot be recoverd.",
             "Delete confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
+                // If the booking is an ongoing booking, then set the vehicle and availability to available.
+                // there is no need to expell resources in a closed booking since all the resources would
+                // have been expelled when the booking was closed.
+                if (!_rentalStatus.Equals("closed"))
+                {
+                    ExpellResources(driverID, vehicleID);
+                }
+
                 if (RentalBooking.Delete(_bookingID))
                 {
                     MessagePrinter.PrintToMessageBox("Rental booking details were successfully deleted", "Operation successful",
@@ -624,6 +696,13 @@ namespace AyuboDrive.Forms
                 DisplayTable();
                 Reset();
             }
+        }
+        //
+        // Key press event handler
+        //
+        private void NoTyping_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

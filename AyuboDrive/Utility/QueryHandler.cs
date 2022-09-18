@@ -15,7 +15,7 @@ namespace AyuboDrive
     /// </summary>
     public class QueryHandler
     {
-        private readonly string _connectionString = ConfigurationHandler.GetConnectionString();
+        private readonly string _connectionString = Properties.Settings.Default.CONNECTION_STRING;
         
         private bool ProcessQuery(string queryTemplate, string[] parameters, object[] values)
         {

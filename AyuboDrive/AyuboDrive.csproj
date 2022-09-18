@@ -123,11 +123,11 @@
     <Compile Include="Forms\DriverManagementForm.Designer.cs">
       <DependentUpon>DriverManagementForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\HireManagement.cs">
+    <Compile Include="Forms\HireManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\HireManagement.Designer.cs">
-      <DependentUpon>HireManagement.cs</DependentUpon>
+    <Compile Include="Forms\HireManagementForm.Designer.cs">
+      <DependentUpon>HireManagementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginFormV2.cs">
       <SubType>Form</SubType>
@@ -192,12 +192,12 @@
     <Compile Include="Payment.cs" />
     <Compile Include="RentalBooking.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Utility\ConfigurationHandler.cs" />
     <Compile Include="Utility\DataViewer.cs" />
     <Compile Include="Utility\DayWeekMonthCalculator.cs" />
     <Compile Include="Utility\FileRetriever.cs" />
     <Compile Include="Utility\ImagePathsRetriever.cs" />
     <Compile Include="Utility\MessagePrinter.cs" />
+    <Compile Include="Utility\PostMan.cs" />
     <Compile Include="Utility\SimpleEmailSender.cs" />
     <Compile Include="HireBooking.cs" />
     <Compile Include="Customer.cs" />
@@ -231,8 +231,8 @@
     <EmbeddedResource Include="Forms\DriverManagementForm.resx">
       <DependentUpon>DriverManagementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\HireManagement.resx">
-      <DependentUpon>HireManagement.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\HireManagementForm.resx">
+      <DependentUpon>HireManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginFormV2.resx">
       <DependentUpon>LoginFormV2.cs</DependentUpon>
@@ -290,7 +290,22 @@
     <None Include="Resources\tyler-clemmensen-kGCvCx5qyjM-unsplash.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Other\ColorPalette.txt" />
     <Content Include="Other\Notes.txt" />
+    <None Include="Resources\Logo5100px.png" />
+    <None Include="Resources\Logo5.png" />
+    <None Include="Resources\c8aa00b0b2f44d548f3cd74b9c117460-removebg-preview.png" />
+    <None Include="Resources\c8aa00b0b2f44d548f3cd74b9c1174602.png" />
+    <None Include="Resources\c8aa00b0b2f44d548f3cd74b9c1174601.png" />
+    <None Include="Resources\1.png" />
+    <None Include="Resources\24aa418a0e764c36976aa68649ddb2a82.png" />
+    <None Include="Resources\24aa418a0e764c36976aa68649ddb2a8.png" />
+    <None Include="Resources\df6b5b7ba9624195a591ab6bfd0f0c39__1_-removebg-preview.png" />
+    <None Include="Resources\df6b5b7ba9624195a591ab6bfd0f0c39-removebg-preview.png" />
+    <None Include="Resources\c8aa00b0b2f44d548f3cd74b9c117460__1_Transparent.png" />
+    <None Include="Resources\c8aa00b0b2f44d548f3cd74b9c117460 %281%29.png" />
+    <None Include="Resources\c8aa00b0b2f44d548f3cd74b9c117460.png" />
+    <None Include="Resources\c8aa00b0b2f44d548f3cd74b9c117460 %282%29.png" />
     <None Include="Resources\EndWhite64.png" />
     <None Include="Resources\RefreshBlack16.png" />
     <None Include="Resources\DriverWhite64.png" />

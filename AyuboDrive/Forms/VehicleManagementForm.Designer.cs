@@ -1,4 +1,6 @@
-﻿namespace AyuboDrive.Forms
+﻿using AyuboDrive.Utility;
+
+namespace AyuboDrive.Forms
 {
     partial class VehicleManagementForm
     {
@@ -28,11 +30,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VehicleManagementForm));
             this.TitleLbl = new System.Windows.Forms.Label();
             this.MileageTxtBox = new System.Windows.Forms.TextBox();
             this.MileagePnl = new System.Windows.Forms.Panel();
             this.MileageLbl = new System.Windows.Forms.Label();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
+            this.ImagePathBtn = new AyuboDrive.Utility.CustomButton();
             this.VINTxtBox = new System.Windows.Forms.TextBox();
             this.VINPnl = new System.Windows.Forms.Panel();
             this.VINLbl = new System.Windows.Forms.Label();
@@ -98,17 +102,16 @@
             this.VehicleTypeIDPnl = new System.Windows.Forms.Panel();
             this.VehicleTypeIDLbl = new System.Windows.Forms.Label();
             this.VehicleTypeIDErrorLbl = new System.Windows.Forms.Label();
-            this.DeleteBtn = new System.Windows.Forms.Button();
-            this.UpdateBtn = new System.Windows.Forms.Button();
+            this.DeleteBtn = new AyuboDrive.Utility.CustomButton();
+            this.UpdateBtn = new AyuboDrive.Utility.CustomButton();
             this.TablePnl = new System.Windows.Forms.Panel();
             this.VehiclePnl = new System.Windows.Forms.Panel();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.InsertBtn = new System.Windows.Forms.Button();
+            this.InsertBtn = new AyuboDrive.Utility.CustomButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.VehiclesViewRBtn = new System.Windows.Forms.RadioButton();
             this.TableViewRBtn = new System.Windows.Forms.RadioButton();
-            this.ImagePathBtn = new AyuboDrive.Utility.CustomButton();
             this.ManipulationPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -235,6 +238,24 @@
             this.ManipulationPanel.Name = "ManipulationPanel";
             this.ManipulationPanel.Size = new System.Drawing.Size(250, 283);
             this.ManipulationPanel.TabIndex = 69;
+            // 
+            // ImagePathBtn
+            // 
+            this.ImagePathBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.ImagePathBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.SearchBlack16;
+            this.ImagePathBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ImagePathBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ImagePathBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.ImagePathBtn.FlatAppearance.BorderSize = 0;
+            this.ImagePathBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ImagePathBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImagePathBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.ImagePathBtn.Location = new System.Drawing.Point(189, 1172);
+            this.ImagePathBtn.Name = "ImagePathBtn";
+            this.ImagePathBtn.Size = new System.Drawing.Size(25, 25);
+            this.ImagePathBtn.TabIndex = 114;
+            this.ImagePathBtn.UseVisualStyleBackColor = false;
+            this.ImagePathBtn.Click += new System.EventHandler(this.ImagePathBtn_Click);
             // 
             // VINTxtBox
             // 
@@ -853,7 +874,7 @@
             this.ModelTxtBox.Size = new System.Drawing.Size(188, 19);
             this.ModelTxtBox.TabIndex = 3;
             this.ModelTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
-            this.ModelTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CharacterOnlyTextBox_KeyPress);
+            this.ModelTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOrCharacterOnlyTextBox_KeyPress);
             this.ModelTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // ModelPnl
@@ -1089,24 +1110,6 @@
             this.TableViewRBtn.UseVisualStyleBackColor = true;
             this.TableViewRBtn.CheckedChanged += new System.EventHandler(this.TableViewRBtn_CheckedChanged);
             // 
-            // ImagePathBtn
-            // 
-            this.ImagePathBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.ImagePathBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.SearchBlack16;
-            this.ImagePathBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ImagePathBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImagePathBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.ImagePathBtn.FlatAppearance.BorderSize = 0;
-            this.ImagePathBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ImagePathBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ImagePathBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.ImagePathBtn.Location = new System.Drawing.Point(189, 1172);
-            this.ImagePathBtn.Name = "ImagePathBtn";
-            this.ImagePathBtn.Size = new System.Drawing.Size(25, 25);
-            this.ImagePathBtn.TabIndex = 114;
-            this.ImagePathBtn.UseVisualStyleBackColor = false;
-            this.ImagePathBtn.Click += new System.EventHandler(this.ImagePathBtn_Click);
-            // 
             // VehicleManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1121,6 +1124,7 @@
             this.Controls.Add(this.ButtonsPanel);
             this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VehicleManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VehicleManagementForm";
@@ -1158,11 +1162,8 @@
         private System.Windows.Forms.Panel VehicleTypeIDPnl;
         private System.Windows.Forms.Label VehicleTypeIDLbl;
         private System.Windows.Forms.Label VehicleTypeIDErrorLbl;
-        private System.Windows.Forms.Button DeleteBtn;
-        private System.Windows.Forms.Button UpdateBtn;
         private System.Windows.Forms.Panel TablePnl;
         private System.Windows.Forms.Panel ButtonsPanel;
-        private System.Windows.Forms.Button InsertBtn;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel GearBoxPnl;
         private System.Windows.Forms.Label GearboxLbl;
@@ -1218,5 +1219,8 @@
         private System.Windows.Forms.RadioButton TableViewRBtn;
         private System.Windows.Forms.Panel VehiclePnl;
         private Utility.CustomButton ImagePathBtn;
+        private CustomButton DeleteBtn;
+        private CustomButton UpdateBtn;
+        private CustomButton InsertBtn;
     }
 }

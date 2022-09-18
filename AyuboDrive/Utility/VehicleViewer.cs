@@ -62,7 +62,7 @@ namespace AyuboDrive.Utility
                     {
                         Size = new Size(panelWidth - 40, 300),
                         Location = new Point(10, yAxisPoint),
-                        BackColor = Program.LIGHTER_GRAY,
+                        BackColor = Properties.Settings.Default.LIGHTER_GRAY,
                         Name = $"Panel-{i}",
                         Cursor = Cursors.Hand
                     };
@@ -92,7 +92,7 @@ namespace AyuboDrive.Utility
                     {
                         Size = new Size(panelWidth, 250),
                         Location = new Point(0, 0),
-                        BackColor = Program.DARK_GRAY,
+                        BackColor = Properties.Settings.Default.DARK_GRAY,
                         BackgroundImageLayout = ImageLayout.Stretch,
                         Name = $"imageLabel-{i}"
                     };
@@ -126,7 +126,7 @@ namespace AyuboDrive.Utility
                         Size = new Size(panelWidth - 40, 50),
                         Location = new Point(0, _imagePanels[i].Size.Height),
                         Font = new Font("Carlito", 10),
-                        BackColor = Program.RED,
+                        BackColor = Properties.Settings.Default.RED,
                         Name = $"imageLabel-{i}",
                         TextAlign = ContentAlignment.MiddleCenter,
                         Text = $"{record[3].ToString()} {record[4].ToString()}"

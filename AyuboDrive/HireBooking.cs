@@ -44,7 +44,7 @@ namespace AyuboDrive
         public bool Insert()
         {
             string query = "INSERT INTO hireBooking VALUES(@vehicleTypeID, @vehicleID, @driverID, " +
-                "@customerID, @packageID, @hireStatus, @hireType, @startDate, @endDate @paymentStatus)";
+                "@customerID, @packageID, @hireStatus, @hireType, @startDate, @endDate, @paymentStatus)";
             string[] parameters = { "@vehicleTypeID", "@vehicleID", "@driverID", "@customerID",
                 "@packageID", "@hireStatus", "@hireType", "@startDate", "@endDate", "@paymentStatus" };
             object[] values = { _vehicleTypeID, _vehicleID, _driverID, _customerID, _packageID,
@@ -90,6 +90,40 @@ namespace AyuboDrive
                 return true;
             }
             MessagePrinter.PrintToConsole("Failed to update hire booking details", "Operation failed");
+            return false;
+        }
+
+
+        public static bool UpdateBooking(string ID, PaymentStatus paymentStatus = PaymentStatus.PAID)
+        {
+            string query = "UPDATE hireBooking SET hireStatus = @hireStatus," +
+                    "paymentStatus = @paymentStatus WHERE bookingID = @bookingID";
+            string[] parameters = new string[] { "@hireStatus", "@paymentStatus", "@bookingID" };
+            object[] values = new object[] { BookingStatus.CLOSED.ToString().ToLower(), paymentStatus.ToString().ToLower(), ID };
+
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("Rental booking details successfully updated", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to update rental booking details", "Operation failed");
+            return false;
+        }
+
+        public static bool UpdateBooking(string ID, DateTime returnDate, PaymentStatus paymentStatus = PaymentStatus.PAID)
+        {
+            string query = "UPDATE hireBooking SET endDate = @endDate, hireStatus = @hireStatus," +
+                    "paymentStatus = @paymentStatus WHERE bookingID = @bookingID";
+            string[] parameters = new string[] { "@endDate", "@hireStatus", "@paymentStatus", "@bookingID" };
+            object[] values = new object[] { returnDate.ToString("yyyy/MM/dd"), BookingStatus.CLOSED.ToString().ToLower(),
+                paymentStatus.ToString().ToLower(), ID };
+
+            if (s_queryHandler.InsertQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("Rental booking details successfully updated", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to update rental booking details", "Operation failed");
             return false;
         }
     }

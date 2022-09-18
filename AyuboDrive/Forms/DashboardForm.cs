@@ -17,7 +17,6 @@ namespace AyuboDrive.Forms
         private readonly string _userName;
         private readonly string _firstName;
         private readonly string _lastName;
-        private readonly QueryHandler _queryHandler = new QueryHandler();
 
         public DashboardForm(string firstName, string lastName, string userName) : base(Properties.Settings.Default.LIGHT_GRAY)
         {
@@ -38,56 +37,133 @@ namespace AyuboDrive.Forms
             HandleTitleBar();
         }
 
-
         private void DashboardForm_Load(object sender, EventArgs e)
         {
-            closedBookingsValueLbl.Text = GetBookingsCount("SELECT COUNT(*) FROM hireBooking WHERE hireStatus = 'Closed'").ToString();
-
-            int openBookings = GetBookingsCount("SELECT COUNT(*) FROM hireBooking WHERE hireStatus = 'Open'");
-
-            openBookingsValueLbl.ForeColor = Properties.Settings.Default.RED;
-
-            if (openBookings >= 1 && openBookings <= 10)
-            {
-                openBookingsValueLbl.ForeColor = Properties.Settings.Default.PURPLE;
-            }
-            else if(openBookings > 10)
-            {
-                openBookingsValueLbl.ForeColor = Properties.Settings.Default.GREEN;
-            }
-
-            openBookingsValueLbl.Text = openBookings.ToString();
+            SetInfoLbls();
             greetingLbl.Text = GetGreeting();
             fullNameLbl.Text = $"{_firstName} {_lastName}";
         }
 
+        public void SetInfoLbls()
+        {
+            SetClosedHireBookingsCount();
+            SetOngoingHireBookingsCount();
+            SetOngoingRentalBookingsCount();
+            SetPendingPaymentsCount();
+        }
+
+        private void SetClosedHireBookingsCount()
+        {
+            int count = GetBookingsCount("SELECT COUNT(*) FROM hireBooking WHERE hireStatus = 'closed'");
+
+            if (count >= 0)
+            {
+                ClosedBookingsCount.Text = count.ToString();
+
+                if (count > 0)
+                {
+                    ClosedBookingsCount.ForeColor = Properties.Settings.Default.GREEN;
+                }
+                else
+                {
+                    ClosedBookingsCount.ForeColor = Properties.Settings.Default.RED;
+                }
+                return;
+            }
+            ClosedBookingsCount.Text = "N/A";
+        }
+
+        private void SetOngoingHireBookingsCount()
+        {
+            int count = GetBookingsCount("SELECT COUNT(*) FROM hireBooking WHERE hireStatus = 'open'");
+
+            if (count >= 0)
+            {
+                OngoingBookingsCount.Text = count.ToString();
+
+                if (count > 0)
+                {
+                    OngoingBookingsCount.ForeColor = Properties.Settings.Default.GREEN;
+                }
+                else
+                {
+                    OngoingBookingsCount.ForeColor = Properties.Settings.Default.RED;
+                }
+                return;
+            }
+            OngoingBookingsCount.Text = "N/A";
+        }
+
+        private void SetOngoingRentalBookingsCount()
+        {
+            int count = GetBookingsCount("SELECT COUNT(*) FROM rentalBooking WHERE rentalStatus = 'open'");
+
+            if (count >= 0)
+            {
+                OngoingRentalsCount.Text = count.ToString();
+
+                if (count > 0)
+                {
+                    OngoingRentalsCount.ForeColor = Properties.Settings.Default.GREEN;
+                }
+                else
+                {
+                    OngoingRentalsCount.ForeColor = Properties.Settings.Default.RED;
+                }
+                return;
+            }
+            OngoingBookingsCount.Text = "N/A";
+        }
+
+        private void SetPendingPaymentsCount()
+        {
+            int count1 = GetBookingsCount("SELECT COUNT(*) FROM hireBooking WHERE paymentStatus = 'pending'");
+            int count2 = GetBookingsCount("SELECT COUNT(*) FROM rentalBooking WHERE paymentStatus = 'pending'");
+
+            if (count1 >= 0 & count2 >= 0)
+            {
+                int total = (count1 + count2);
+                PendingPaymentCount.Text = total.ToString();
+
+                if(total > 0)
+                {
+                    PendingPaymentCount.ForeColor = Properties.Settings.Default.RED;
+                }
+                else
+                {
+                    PendingPaymentCount.ForeColor = Properties.Settings.Default.PURPLE;
+                }
+                return;
+            }
+            OngoingBookingsCount.Text = "N/A";
+        }
+
         private int GetBookingsCount(string query)
         {
-            DataTable dataTable = _queryHandler.SelectQueryHandler(query);
+            DataTable dataTable = QueryHandler.SelectQueryHandler(query);
 
             if(dataTable != null)
             {
-                foreach (DataRow record in dataTable.Rows)
-                {
-                    return (int)record[0];
-                }
+                return int.Parse(dataTable.Rows[0][0].ToString());
             }
-            return 0;
+            return -1;
         }
         
         private string GetGreeting()
         {
             int hour = DateTime.Now.Hour;
 
+            Console.WriteLine($"The hour is: {hour}");
+
             if(hour > 19)
             {
                 return "Hello,";
             }
-            else if(hour == 18 || hour == 19)
+            else if(hour == 19 || hour == 18)
             {
                 return "Good evening,";
             }
-            else if (hour <= 17|| hour >= 12)
+            else if (hour <= 17 && hour >= 12)
             {
                 return "Good afternoon,";
             }

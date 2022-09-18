@@ -16,40 +16,32 @@ namespace AyuboDrive.Forms
     {
         private string _userID;
         private string _userName;
-        private User _updatedUser;
+        private string _firstName;
+        private string _lastName;
         private string _imagePath;
+        private string _initialEmailAddress;
+        private string _newEmailAddress = "";
         private bool _updatePassword = false;
-        private DashboardForm _dashboardForm;
+        private string _key;
+        private bool _includeImage = false;
 
         public AccountManagement(DashboardForm dashboardForm, string userName) : base(dashboardForm)
         {
             InitializeComponent();
             HandleTitleBar();
-            DisableInputs();
             _userName = userName;
             AddData();
             LoadProfileImage();
+            DisableInputs();
+            DisableSecretKeyObjects();
+            DisableImagePathObjects();
+
+            // Set the event handler programmatically in order to prevent
+            // triggering the text changed event after AddData() executes
+            EmailTxtBox.TextChanged += new EventHandler(EmailTxtBox_TextChanged);
         }
         //
-        // Title bar exit functionality
-        //
-        protected override void ExitBtn_MouseClick(object sender, EventArgs e)
-        {
-            if(_dashboardForm == null)
-            {
-                Application.Exit();
-            }
-
-            else if(_updatedUser != null)
-            {
-                _dashboardForm = new DashboardForm(_updatedUser.FirstName, _updatedUser.LastName, _updatedUser.UserName);
-            }
-            _dashboardForm.Show();
-            Hide();
-        }
-
-        //
-        // Mouse event handlers
+        // Mouse enter and leave event handlers
         //
         private void DeleteBtn_MouseEnter(object sender, EventArgs e)
         {
@@ -62,7 +54,9 @@ namespace AyuboDrive.Forms
             DeleteBtn.BackColor = Properties.Settings.Default.TRANSPARENT;
             DeleteBtn.ForeColor = Properties.Settings.Default.RED;
         }
-
+        //
+        // Click event handlers
+        //
         private void ImagePathBtn_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog()
@@ -95,20 +89,43 @@ namespace AyuboDrive.Forms
                 PasswordMask.BackgroundImage = Properties.Resources.PasswordInvisibleBlack16;
             }
         }
+
+        private void VerifyBtn_Click(object sender, EventArgs e)
+        {
+            _newEmailAddress = EmailTxtBox.Text;
+
+            if (ValidateInput(_newEmailAddress))
+            {
+                if (DeliverKey())
+                {
+                    EnableSecretKeyObjects();
+                    KeyTxtBox.Focus();
+                }
+                else
+                {
+                    EmailTxtBox.Text = _initialEmailAddress;
+                }
+                ResetSecretKeyObjects();
+            }
+        }
         //
         // Utility
         //
         private void AddData()
         {
-            DataRow record = queryHandler.SelectQueryHandler("SELECT * FROM userAccount WHERE userName = '"
-                + _userName + "'").Rows[0];
+            DataRow record = QueryHandler.SelectQueryHandler($"SELECT * FROM userAccount WHERE " +
+                $"userName = '{_userName}'").Rows[0];
             _userID = record[0].ToString();
             UserNameTxtBox.Text = record[1].ToString();
             PasswordTxtBox.Text = record[2].ToString();
             FirstNameTxtBox.Text = record[3].ToString();
+            _firstName = record[3].ToString();
             LastNameTxtBox.Text = record[4].ToString();
+            _lastName = record[4].ToString();
             ImagePathTxtBox.Text = record[5].ToString();
             _imagePath = record[5].ToString();
+            EmailTxtBox.Text = record[6].ToString();
+            _initialEmailAddress = record[6].ToString();
         }
 
         private void LoadProfileImage()
@@ -146,14 +163,16 @@ namespace AyuboDrive.Forms
             PasswordMask.BackColor = Properties.Settings.Default.DISABLED_WHITE;
             PasswordMask.FlatAppearance.BorderColor = Properties.Settings.Default.DISABLED_WHITE;
             PasswordMask.Enabled = false;
+            
+            UploadImageCheckBox.Enabled = false;
 
-            ImagePathBtn.BackColor = Properties.Settings.Default.DISABLED_WHITE;
-            ImagePathBtn.FlatAppearance.BorderColor = Properties.Settings.Default.DISABLED_WHITE;
-            ImagePathBtn.Enabled = false;
+            VerifyBtn.BackColor = Properties.Settings.Default.DISABLED_WHITE;
+            VerifyBtn.FlatAppearance.BorderColor = Properties.Settings.Default.DISABLED_WHITE;
+            VerifyBtn.Enabled = false;
 
-            ImagePathTxtBox.Enabled = false;
-            ImagePathErrorLbl.Text = "";
-            ImagePathPnl.BackColor = Properties.Settings.Default.DISABLED_WHITE;
+            EmailTxtBox.Enabled = false;
+            EmailErrLbl.Text = "";
+            EmailPnl.BackColor = Properties.Settings.Default.DISABLED_WHITE;
         }
 
         private void EnableInputs()
@@ -173,22 +192,77 @@ namespace AyuboDrive.Forms
             PasswordMask.BackColor = Properties.Settings.Default.PURPLE;
             PasswordMask.FlatAppearance.BorderColor = Properties.Settings.Default.PURPLE;
             PasswordMask.Enabled = true;
+            
+            UploadImageCheckBox.Enabled = true;
 
+            EmailTxtBox.Enabled = true;
+            EmailErrLbl.Text = "";
+            EmailPnl.BackColor = Properties.Settings.Default.PURPLE;
+        }
+
+        private void DisableVerifyBtn()
+        {
+            VerifyBtn.BackColor = Properties.Settings.Default.DISABLED_WHITE;
+            VerifyBtn.FlatAppearance.BorderColor = Properties.Settings.Default.DISABLED_WHITE;
+            VerifyBtn.Enabled = false;
+        }
+
+        private void EnableVerifyBtn()
+        {
+            VerifyBtn.BackColor = Properties.Settings.Default.PURPLE;
+            VerifyBtn.FlatAppearance.BorderColor = Properties.Settings.Default.PURPLE;
+            VerifyBtn.Enabled = true;
+        }
+
+        private void DisableImagePathObjects()
+        {
+            ImagePathBtn.BackColor = Properties.Settings.Default.DISABLED_WHITE;
+            ImagePathBtn.FlatAppearance.BorderColor = Properties.Settings.Default.DISABLED_WHITE;
+            ImagePathBtn.Enabled = false;
+
+            ImagePathErrorLbl.Text = "";
+            ImagePathPnl.BackColor = Properties.Settings.Default.DISABLED_WHITE;
+            ImagePathTxtBox.Enabled = false;
+            ImagePathTxtBox.Text = "";
+        }
+
+        private void EnableImagePathObjects()
+        {
             ImagePathBtn.BackColor = Properties.Settings.Default.PURPLE;
             ImagePathBtn.FlatAppearance.BorderColor = Properties.Settings.Default.PURPLE;
             ImagePathBtn.Enabled = true;
-            
+
             ImagePathErrorLbl.Text = "";
-            ImagePathPnl.BackColor = Properties.Settings.Default.DISABLED_WHITE;
+            ImagePathPnl.BackColor = Properties.Settings.Default.PURPLE;
+            ImagePathTxtBox.Enabled = true;
+            ImagePathTxtBox.Text = "";
         }
 
-        private bool ValidateInput(string userName, string firstName, string lastName, string password, string imagePath)
+        private void EnableSecretKeyObjects()
+        {
+            KeyTxtBox.Enabled = true;
+            KeyPnl.Enabled = true;
+            KeyPnl.BackColor = Properties.Settings.Default.PURPLE;
+            KeyErrLbl.Enabled = true;
+        }
+
+        private void DisableSecretKeyObjects()
+        {
+            KeyTxtBox.Enabled = false;
+            KeyTxtBox.ForeColor = Properties.Settings.Default.DISABLED_WHITE;
+            KeyPnl.Enabled = false;
+            KeyPnl.BackColor = Properties.Settings.Default.DISABLED_WHITE;
+            KeyErrLbl.Enabled = false;
+        }
+
+        private bool ValidateInput(string userName, string firstName, string lastName, string password, string imagePath, string emailAddress)
         {
             bool validUserName = false;
             bool validFirstName = false;
             bool validLastName = false;
             bool validPassword = false;
             bool validImagePath = false;
+            bool validEmail = false;
 
             if(userName.Equals(_userName))
             {
@@ -251,7 +325,11 @@ namespace AyuboDrive.Forms
                 PasswordErrorLbl.Text = "Insufficient password length";
             }
 
-            if (ValidationHandler.ValidateFilePath(imagePath))
+            if(!_includeImage)
+            {
+                validImagePath = true;
+            }
+            else if (ValidationHandler.ValidateFilePath(imagePath))
             {
                 validImagePath = true;
                 ImagePathPnl.BackColor = Properties.Settings.Default.PURPLE;
@@ -262,7 +340,73 @@ namespace AyuboDrive.Forms
                 ImagePathPnl.BackColor = Properties.Settings.Default.RED;
                 ImagePathErrorLbl.Text = "Invalid image path";
             }
-            return validUserName && validFirstName && validLastName && validPassword && validImagePath;
+
+            if (_initialEmailAddress.Equals(emailAddress))
+            {
+                validEmail = true;
+                EmailPnl.BackColor = Properties.Settings.Default.PURPLE;
+                EmailErrLbl.Text = "";
+            }
+            else
+            {
+                if (!ValidationHandler.ValidateEmailAddress(emailAddress))
+                {
+                    EmailPnl.BackColor = Properties.Settings.Default.RED;
+                    EmailErrLbl.Text = "Invalid NIC";
+                }
+                else
+                {
+                    validEmail = true;
+                }
+            }
+
+            //if (ValidationHandler.ValidateInputLength(emailAddress))
+            //{
+            //    if (ValidationHandler.ValidateEmailAddress(emailAddress))
+            //    {
+            //        validEmail = true;
+            //        EmailPnl.BackColor = Properties.Settings.Default.PURPLE;
+            //        EmailErrLbl.Text = "";
+            //    }
+            //    else
+            //    {
+            //        EmailPnl.BackColor = Properties.Settings.Default.RED;
+            //        EmailErrLbl.Text = "Email address already exists";
+            //    }
+            //}
+            //else
+            //{
+            //    EmailPnl.BackColor = Properties.Settings.Default.RED;
+            //    EmailErrLbl.Text = "Invalid email";
+            //}
+            return validUserName && validFirstName && validLastName && validPassword 
+                && validImagePath && validEmail;
+        }
+
+        private bool ValidateInput(string emailAddress)
+        {
+            bool validEmail = false;
+
+            if (ValidationHandler.ValidateInputLength(emailAddress))
+            {
+                if (ValidationHandler.ValidateEmailAddress(emailAddress))
+                {
+                    validEmail = true;
+                    EmailPnl.BackColor = Properties.Settings.Default.PURPLE;
+                    EmailErrLbl.Text = "";
+                }
+                else
+                {
+                    EmailPnl.BackColor = Properties.Settings.Default.RED;
+                    EmailErrLbl.Text = "Email address already exists";
+                }
+            }
+            else
+            {
+                EmailPnl.BackColor = Properties.Settings.Default.RED;
+                EmailErrLbl.Text = "Invalid email";
+            }
+            return validEmail;
         }
 
         private void ResetErrors()
@@ -295,6 +439,34 @@ namespace AyuboDrive.Forms
             PasswordPnl.BackColor = Properties.Settings.Default.DISABLED_WHITE;
             PasswordTxtBox.Text = "";
         }
+
+        private void ResetSecretKeyObjects()
+        {
+            KeyTxtBox.Text = "";
+            KeyPnl.BackColor = Properties.Settings.Default.PURPLE;
+            KeyErrLbl.Text = "";
+        }
+
+        private bool DeliverKey()
+        {
+            _key = Viper.GenerateKey();
+            bool emailSent = new PostMan().DeliverKey(_firstName, _lastName, _newEmailAddress, _key);
+
+            if (emailSent)
+            {
+                EnableSecretKeyObjects();
+                MessagePrinter.PrintToMessageBox("The secret key was sent to the following email address\n" +
+                    $"{_newEmailAddress}.", "Secret key sent successfully",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessagePrinter.PrintToMessageBox("A problem occurred when sending your secret key." +
+                    "\nPlease seek assistance from your superior and try again later",
+                    "Failed to send secret key", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return emailSent;
+        }
         //
         // Data manipulation event handlers
         //
@@ -305,13 +477,19 @@ namespace AyuboDrive.Forms
             string lastName = LastNameTxtBox.Text;
             string password = PasswordTxtBox.Text;
             string imagePath = ImagePathTxtBox.Text;
+            string emailAddress = EmailTxtBox.Text;
 
-            if (ValidateInput(userName, firstName, lastName, password, imagePath))
+            if (ValidateInput(userName, firstName, lastName, password, imagePath, emailAddress))
             {
-                if (new User(userName, password, firstName, lastName, _imagePath).Update(_userID))
+                User user = new User(userName, password, firstName, lastName, _imagePath, emailAddress);
+
+                if (user.Update(_userID))
                 {
                     MessagePrinter.PrintToMessageBox("Account were successfully updated", "Operation successful",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    base.DashboardForm = new DashboardForm(user);
+                    // Do this to update the old user name in the class and therefore be able to add data correctly
+                    _userName = userName; 
                 }
                 else
                 {
@@ -378,10 +556,79 @@ namespace AyuboDrive.Forms
         //
         private void CharacterOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
                 // Discard the character by setting handled to true
                 e.Handled = true;
+            }
+        }
+        //
+        // Textbox text changed event handler
+        //
+        private void EmailTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            if (EmailTxtBox.Text == _initialEmailAddress)
+            {
+                UpdateBtn.Enabled = true;
+                DisableVerifyBtn();
+            }
+            else
+            {
+                UpdateBtn.Enabled = false;
+                // Enable the verify button when the email address changes
+                EnableVerifyBtn();
+            }
+        }
+
+        private void KeyTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            if (KeyTxtBox.Text.Length == _key.Length)
+            {
+                KeyTxtBox.Enabled = false;
+
+                if (KeyTxtBox.Text != _key)
+                {
+                    KeyPnl.BackColor = Properties.Settings.Default.RED;
+                    KeyErrLbl.Text = "Invalid key";
+
+                    DialogResult confirmation = MessagePrinter.PrintToMessageBoxV2("You entered an invalid key." +
+                        "Do you want to resend the key?", "Resend confirmation", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (confirmation == DialogResult.Yes)
+                    {
+                        ResetSecretKeyObjects();
+                        DeliverKey();
+                    }
+                    else
+                    {
+                        ResetSecretKeyObjects();
+                        DisableSecretKeyObjects();
+                        EmailTxtBox.Text = _initialEmailAddress;
+                    }
+                }
+                else
+                {
+                    KeyPnl.BackColor = Properties.Settings.Default.PURPLE;
+                    KeyErrLbl.Text = "";
+                    DisableSecretKeyObjects();
+                    UpdateBtn.Enabled = true;
+                    _initialEmailAddress = _newEmailAddress;
+                }
+            }
+        }
+
+        private void UploadImageCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if(UploadImageCheckBox.Checked)
+            {
+                _includeImage = true;
+                EnableImagePathObjects();
+            } 
+            else
+            {
+                _includeImage = false;
+                DisableImagePathObjects();
             }
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace AyuboDrive.Forms
+﻿using AyuboDrive.Utility;
+
+namespace AyuboDrive.Forms
 {
     partial class HireManagementForm
     {
@@ -28,10 +30,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HireManagementForm));
             this.BothViewRBtn = new System.Windows.Forms.RadioButton();
             this.TableViewRBtn = new System.Windows.Forms.RadioButton();
             this.VehiclePnl = new System.Windows.Forms.Panel();
-            this.InsertBtn = new System.Windows.Forms.Button();
+            this.InsertBtn = new AyuboDrive.Utility.CustomButton();
             this.label3 = new System.Windows.Forms.Label();
             this.EndDateDTP = new System.Windows.Forms.DateTimePicker();
             this.StartDateDTP = new System.Windows.Forms.DateTimePicker();
@@ -45,11 +48,10 @@
             this.EndDatePnl = new System.Windows.Forms.Panel();
             this.EndDateLbl = new System.Windows.Forms.Label();
             this.EndDateErrLbl = new System.Windows.Forms.Label();
-            this.DeleteBtn = new System.Windows.Forms.Button();
-            this.UpdateBtn = new System.Windows.Forms.Button();
+            this.DeleteBtn = new AyuboDrive.Utility.CustomButton();
+            this.UpdateBtn = new AyuboDrive.Utility.CustomButton();
             this.ViewControlPnl = new System.Windows.Forms.Panel();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.CloseBookingBtn = new System.Windows.Forms.Button();
             this.StartDatePnl = new System.Windows.Forms.Panel();
             this.StartDateLbl = new System.Windows.Forms.Label();
             this.StartDateErrLbl = new System.Windows.Forms.Label();
@@ -173,6 +175,7 @@
             this.CustomerIDCmbBox.Name = "CustomerIDCmbBox";
             this.CustomerIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.CustomerIDCmbBox.TabIndex = 116;
+            this.CustomerIDCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // DriverIDCmbBox
             // 
@@ -185,6 +188,7 @@
             this.DriverIDCmbBox.Name = "DriverIDCmbBox";
             this.DriverIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.DriverIDCmbBox.TabIndex = 115;
+            this.DriverIDCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // VehicleIDCmbBox
             // 
@@ -197,6 +201,7 @@
             this.VehicleIDCmbBox.Name = "VehicleIDCmbBox";
             this.VehicleIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.VehicleIDCmbBox.TabIndex = 114;
+            this.VehicleIDCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // VehicleIDPnl
             // 
@@ -241,6 +246,7 @@
             this.VehicleTypeIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.VehicleTypeIDCmbBox.TabIndex = 0;
             this.VehicleTypeIDCmbBox.SelectedIndexChanged += new System.EventHandler(this.VehicleTypeIDCmbBox_SelectedIndexChanged);
+            this.VehicleTypeIDCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // EndDatePnl
             // 
@@ -281,9 +287,9 @@
             this.DeleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.DeleteBtn.Location = new System.Drawing.Point(92, 67);
+            this.DeleteBtn.Location = new System.Drawing.Point(14, 67);
             this.DeleteBtn.Name = "DeleteBtn";
-            this.DeleteBtn.Size = new System.Drawing.Size(60, 45);
+            this.DeleteBtn.Size = new System.Drawing.Size(138, 45);
             this.DeleteBtn.TabIndex = 7;
             this.DeleteBtn.Text = "Delete";
             this.DeleteBtn.UseVisualStyleBackColor = false;
@@ -320,7 +326,6 @@
             // ButtonsPanel
             // 
             this.ButtonsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
-            this.ButtonsPanel.Controls.Add(this.CloseBookingBtn);
             this.ButtonsPanel.Controls.Add(this.DeleteBtn);
             this.ButtonsPanel.Controls.Add(this.UpdateBtn);
             this.ButtonsPanel.Controls.Add(this.InsertBtn);
@@ -328,21 +333,6 @@
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(250, 123);
             this.ButtonsPanel.TabIndex = 79;
-            // 
-            // CloseBookingBtn
-            // 
-            this.CloseBookingBtn.BackColor = System.Drawing.Color.Transparent;
-            this.CloseBookingBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CloseBookingBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.CloseBookingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseBookingBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CloseBookingBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.CloseBookingBtn.Location = new System.Drawing.Point(14, 67);
-            this.CloseBookingBtn.Name = "CloseBookingBtn";
-            this.CloseBookingBtn.Size = new System.Drawing.Size(72, 45);
-            this.CloseBookingBtn.TabIndex = 8;
-            this.CloseBookingBtn.Text = "Close booking";
-            this.CloseBookingBtn.UseVisualStyleBackColor = false;
             // 
             // StartDatePnl
             // 
@@ -505,6 +495,7 @@
             this.PackageIDCmbBox.Name = "PackageIDCmbBox";
             this.PackageIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.PackageIDCmbBox.TabIndex = 128;
+            this.PackageIDCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // PackageIDPnl
             // 
@@ -618,7 +609,7 @@
             this.LongTourRBtn.UseVisualStyleBackColor = true;
             this.LongTourRBtn.CheckedChanged += new System.EventHandler(this.LongTourRBtn_CheckedChanged);
             // 
-            // HireManagement
+            // HireManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -633,7 +624,8 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.TitleLbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "HireManagement";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "HireManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HireManagement";
             this.ViewControlPnl.ResumeLayout(false);
@@ -653,7 +645,6 @@
         private System.Windows.Forms.RadioButton BothViewRBtn;
         private System.Windows.Forms.RadioButton TableViewRBtn;
         private System.Windows.Forms.Panel VehiclePnl;
-        private System.Windows.Forms.Button InsertBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker EndDateDTP;
         private System.Windows.Forms.DateTimePicker StartDateDTP;
@@ -667,8 +658,6 @@
         private System.Windows.Forms.Panel EndDatePnl;
         private System.Windows.Forms.Label EndDateLbl;
         private System.Windows.Forms.Label EndDateErrLbl;
-        private System.Windows.Forms.Button DeleteBtn;
-        private System.Windows.Forms.Button UpdateBtn;
         private System.Windows.Forms.Panel ViewControlPnl;
         private System.Windows.Forms.Panel ButtonsPanel;
         private System.Windows.Forms.Panel StartDatePnl;
@@ -694,6 +683,8 @@
         private System.Windows.Forms.Panel PackageIDPnl;
         private System.Windows.Forms.Label PackageIDLbl;
         private System.Windows.Forms.Label PackageIDErrLbl;
-        private System.Windows.Forms.Button CloseBookingBtn;
+        private CustomButton InsertBtn;
+        private CustomButton DeleteBtn;
+        private CustomButton UpdateBtn;
     }
 }
