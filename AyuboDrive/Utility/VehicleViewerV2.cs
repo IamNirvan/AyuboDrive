@@ -18,22 +18,25 @@ namespace AyuboDrive.Utility
         private readonly int _rowCount;
         private readonly DataTable _dataTable;
         private Panel _container;
-        private Panel[] _containers;
+        protected Panel[] _containers;
         private Panel[] _imagePanels;
         private Label[] _vehicleNames;
-        private Label[] _interactiveLabels;
-        private readonly string _query;
+        private readonly string _imageQuery;
+        private readonly string _vehicleQuery;
         private static readonly QueryHandler _queryHandler = new QueryHandler();
+        DataRowCollection rows;
 
-        public VehicleViewerV2(Panel container, DataTable dataTable, int minWidth, int minHeight, string query)
+        public VehicleViewerV2(Panel container, DataTable dataTable, int minWidth, int minHeight, string query, string vehicleQuery)
         {
             _container = container;
             _dataTable = dataTable;
             _minWidth = minWidth;
             _minHeight = minHeight;
-            _query = query;
+            _imageQuery = query;
+            _vehicleQuery = vehicleQuery;
             _rowCount = _dataTable.Rows.Count;
             InitializeArrays();
+            rows = _queryHandler.SelectQueryHandler(_vehicleQuery).Rows;
         }
 
         public VehicleViewerV2(Panel container, DataTable dataTable, string query)
@@ -42,14 +45,10 @@ namespace AyuboDrive.Utility
             _dataTable = dataTable;
             _minWidth = 150;
             _minHeight = 150;
-            _query = query;
+            _imageQuery = query;
             _rowCount = _dataTable.Rows.Count;
             InitializeArrays();
-        }
-
-        public Label[] GetIteractiveLabels()
-        {
-            return _interactiveLabels;
+            rows = _queryHandler.SelectQueryHandler(_vehicleQuery).Rows;
         }
 
         public Label[] GetVehicleNames()
@@ -57,12 +56,17 @@ namespace AyuboDrive.Utility
             return _vehicleNames;
         }
 
+        public Panel[] GetImagePanels()
+        {
+            return _imagePanels;
+        }
+
         public Panel[] GetContainers()
         {
             return _containers;
         }
 
-        private void AddCover()
+        protected void AddCover()
         {
             Panel panel = new Panel
             {
@@ -84,7 +88,7 @@ namespace AyuboDrive.Utility
             panel.Controls.Add(label);
         }
 
-        public void AddContainers()
+        public virtual void AddContainers()
         {
             try
             {
@@ -94,7 +98,7 @@ namespace AyuboDrive.Utility
                 int numOfAddedContiners = 0;
                 int containersToBeAdded = panelWidth / _minWidth;
                 decimal fractionalPart = (panelWidth / (decimal)_minWidth) % 1.0m;
-                int xAxisOffset = ((int)(_minWidth * fractionalPart))/2;
+                int xAxisOffset = ((int)(_minWidth * fractionalPart)) / 2;
 
                 int containerPadding = xAxisOffset / containersToBeAdded;
                 int xAxisPoint = xAxisOffset - containerPadding;
@@ -108,7 +112,7 @@ namespace AyuboDrive.Utility
                         Size = new Size(_minWidth, _minHeight),
                         Location = new Point(xAxisPoint, yAxisPoint),
                         BackColor = Properties.Settings.Default.LIGHT_GRAY,
-                        Name = $"Panel-{i}",
+                        Name = $"Panel-{rows[i][0]}",
                         Cursor = Cursors.Hand
                     };
 
@@ -142,9 +146,9 @@ namespace AyuboDrive.Utility
             }
         }
 
-        public void AddImageLabels()
+        public virtual void AddImageLabels()
         {
-            string[] imagePaths = ImagePathsRetriever.GetVehicleImagePaths(_query);
+            string[] imagePaths = ImagePathsRetriever.GetVehicleImagePaths(_imageQuery);
 
             try
             {
@@ -174,7 +178,7 @@ namespace AyuboDrive.Utility
                         BackColor = Properties.Settings.Default.TRANSPARENT,
                         BackgroundImage = image,
                         BackgroundImageLayout = ImageLayout.Zoom,
-                        Name = $"imageLabel-{i}"
+                        Name = $"imageLabel-{rows[i][0]}"
                     };
 
                     _containers[index1].Controls.Add(imagePanel);
@@ -188,8 +192,10 @@ namespace AyuboDrive.Utility
             }
         }
 
-        public void AddVehicleNameLabels()
+        public virtual void AddVehicleNameLabels()
         {
+            
+
             try
             {
                 int columnCount = _dataTable.Columns.Count;
@@ -208,7 +214,8 @@ namespace AyuboDrive.Utility
                         Font = new Font("Carlito", 9),
                         BackColor = Properties.Settings.Default.LIGHTER_GRAY,
                         ForeColor = Properties.Settings.Default.DISABLED_WHITE,
-                        Name = $"imageLabel-{i}",
+                        //Name = $"imageLabel-{i}",
+                        Name = $"imageLabel-{rows[i][0]}",
                         TextAlign = ContentAlignment.MiddleCenter,
                         Text = $"{record[3].ToString()} {record[4].ToString()}"
                     };
@@ -224,15 +231,14 @@ namespace AyuboDrive.Utility
             }
         }
 
-        private void InitializeArrays()
+        protected void InitializeArrays()
         {
             _containers = new Panel[_rowCount];
             _imagePanels = new Panel[_rowCount];
             _vehicleNames = new Label[_rowCount];
-            _interactiveLabels = new Label[_rowCount];
         }
 
-        public void Display()
+        public virtual void Display()
         {            
             if(_dataTable.Rows.Count == 0)
             {
