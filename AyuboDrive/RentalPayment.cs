@@ -20,7 +20,7 @@ namespace AyuboDrive
         {
             _bookingID = bookingID;
             _customerID = customerID;
-            _dateOFPayment = dateOfPayment.ToString("yyyy/MM/dd");
+            _dateOFPayment = dateOfPayment.Date.ToString("yyyy/MM/dd");
             _amountPaid = amountPaid;
         }
 
@@ -32,6 +32,7 @@ namespace AyuboDrive
                 "@dateOfPayment", "@amountPaid"};
             object[] values = new object[] { _bookingID, _customerID,
                 _dateOFPayment, _amountPaid };
+            Console.WriteLine($"The date is: {_dateOFPayment}");
 
             if (s_queryHandler.InsertQueryHandler(query, parameters, values))
             {

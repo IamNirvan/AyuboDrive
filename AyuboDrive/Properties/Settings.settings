@@ -36,7 +36,7 @@
       <Value Profile="(Default)">240, 69, 69</Value>
     </Setting>
     <Setting Name="PURPLE" Type="System.Drawing.Color" Scope="Application">
-      <Value Profile="(Default)">103, 96, 250</Value>
+      <Value Profile="(Default)">143, 67, 214</Value>
     </Setting>
     <Setting Name="ENABLED_WHITE" Type="System.Drawing.Color" Scope="Application">
       <Value Profile="(Default)">252, 254, 255</Value>
@@ -61,6 +61,9 @@
     </Setting>
     <Setting Name="PRIMARY_LIGHT_1" Type="System.Drawing.Color" Scope="Application">
       <Value Profile="(Default)">240, 240, 240</Value>
+    </Setting>
+    <Setting Name="WHITE" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">White</Value>
     </Setting>
   </Settings>
 </SettingsFile>

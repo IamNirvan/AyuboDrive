@@ -20,7 +20,7 @@ namespace AyuboDrive
         {
             _hireBookingID = hireBookingID;
             _customerID = customerID;
-            _dateOFPayment = dateOfPayment.ToString("yyyy/MM/dd");
+            _dateOFPayment = dateOfPayment.Date.ToString("yyyy/MM/dd");
             _amountPaid = amountPaid;
         }
 

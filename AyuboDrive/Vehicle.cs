@@ -144,5 +144,20 @@ namespace AyuboDrive
             MessagePrinter.PrintToConsole("Failed to update vehicle availability", "Operation failed");
             return false;
         }
+
+        public static bool Update(string vehicleID, string vehicleTypeID)
+        {
+            string query = "UPDATE vehicle SET vehicleTypeID = @vehicleTypeID WHERE vehicleID = @vehicleID";
+            string[] parameters = { "@vehicleTypeID", "@vehicleID" };
+            object[] values = { vehicleTypeID, vehicleID };
+
+            if (s_queryHandler.UpdateQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("Vehicle type successfully updated", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to update vehicle type", "Operation failed");
+            return false;
+        }
     }
 }

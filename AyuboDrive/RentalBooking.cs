@@ -29,8 +29,8 @@ namespace AyuboDrive
             _vehicleID = vehicleID;
             _driverID = driverID;
             _customerID = customerID;
-            _startDate = startDate.ToString("yyyy/MM/dd").ToLower();
-            _endDate = endDate.ToString("yyyy/MM/dd").ToLower();
+            _startDate = startDate.Date.ToString("yyyy/MM/dd");
+            _endDate = endDate.Date.ToString("yyyy/MM/dd");
             _rentalStatus = rentalStatus.ToString().ToLower();
             _paymentStatus = paymentStatus.ToString().ToLower();
         }
@@ -155,6 +155,23 @@ namespace AyuboDrive
                 return true;
             }
             MessagePrinter.PrintToConsole("Failed to update rental booking details", "Operation failed");
+            return false;
+        }
+
+        // When the vehicle type is updated, all the booking records that 
+        // reference that vehicle will have the vehicle type ID updated
+        public static bool UpdateBooking(string vehicleID, string vehicleTypeID)
+        {
+            string query = "UPDATE rentalBooking SET vehicleTypeID = @vehicleTypeID WHERE vehicleID = @vehicleID";
+            string[] parameters = { "@vehicleTypeID", "@vehicleID" };
+            object[] values = { vehicleTypeID, vehicleID };
+
+            if (s_queryHandler.UpdateQueryHandler(query, parameters, values))
+            {
+                MessagePrinter.PrintToConsole("Vehicle type for the rental booking successfully updated", "Operation successful");
+                return true;
+            }
+            MessagePrinter.PrintToConsole("Failed to update vehicle type for the rental booking", "Operation failed");
             return false;
         }
     }

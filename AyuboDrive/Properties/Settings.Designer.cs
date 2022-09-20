@@ -125,7 +125,7 @@ namespace AyuboDrive.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("103, 96, 250")]
+        [global::System.Configuration.DefaultSettingValueAttribute("143, 67, 214")]
         public global::System.Drawing.Color PURPLE {
             get {
                 return ((global::System.Drawing.Color)(this["PURPLE"]));
@@ -201,6 +201,15 @@ namespace AyuboDrive.Properties {
         public global::System.Drawing.Color PRIMARY_LIGHT_1 {
             get {
                 return ((global::System.Drawing.Color)(this["PRIMARY_LIGHT_1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color WHITE {
+            get {
+                return ((global::System.Drawing.Color)(this["WHITE"]));
             }
         }
     }

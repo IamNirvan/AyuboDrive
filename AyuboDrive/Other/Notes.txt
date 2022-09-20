@@ -1,8 +1,6 @@
 ﻿Bugs:
-	- Add a logo
 
-	- Fix the vehicle images when displaying vehicles
+// User name: SNAK
+// Password: $nAK12345
 
-	- Handle the vehicle delete operation
-
-	// xtgcysmtpvupukag
+// xtgcysmtpvupukag
