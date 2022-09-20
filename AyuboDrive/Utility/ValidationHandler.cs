@@ -112,7 +112,9 @@ namespace AyuboDrive.Utility
         /// <returns>Returns true if the password is strong, and false if not</returns>
         public static bool ValidatePassword(string password)
         {
-            return password.Length >= 8;
+            //Regex regex = new Regex(@"^[\w\W]{8,}$");
+            Regex regex = new Regex(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+            return regex.IsMatch(password);
         }
 
         /// <summary>
