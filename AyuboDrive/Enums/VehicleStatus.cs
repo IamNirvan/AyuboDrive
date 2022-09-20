@@ -9,7 +9,7 @@ namespace AyuboDrive.Enums
     public enum VehicleStatus
     {
         AVAILABLE,
-        UNAVAILBLE,
+        UNAVAILABLE,
         UNUSABLE
     }
 }
