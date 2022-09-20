@@ -256,6 +256,12 @@ namespace AyuboDrive.Forms
                     MessagePrinter.PrintToMessageBox("Vehicle type details were successfully deleted", "Operation successful",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    MessagePrinter.PrintToMessageBox("Failed to delete vehicle type details." +
+                        "Make sure that this vehicle type is not in use before deleting it", "Operation failed",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 DisplayTable();
                 Reset();
             }

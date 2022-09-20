@@ -38,7 +38,7 @@ namespace AyuboDrive.Forms
             this.PackageNameErrorLbl = new System.Windows.Forms.Label();
             this.InsertBtn = new AyuboDrive.Utility.CustomButton();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.DiscontinueBtn = new AyuboDrive.Utility.CustomButton();
+            this.DeleteBtn = new AyuboDrive.Utility.CustomButton();
             this.UpdateBtn = new AyuboDrive.Utility.CustomButton();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -77,7 +77,7 @@ namespace AyuboDrive.Forms
             this.TablePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.TablePanel.Location = new System.Drawing.Point(9, 76);
             this.TablePanel.Name = "TablePanel";
-            this.TablePanel.Size = new System.Drawing.Size(523, 384);
+            this.TablePanel.Size = new System.Drawing.Size(623, 384);
             this.TablePanel.TabIndex = 62;
             // 
             // flowLayoutPanel1
@@ -85,15 +85,15 @@ namespace AyuboDrive.Forms
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(800, 30);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(900, 30);
             this.flowLayoutPanel1.TabIndex = 63;
             // 
             // PackageNamePnl
             // 
-            this.PackageNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.PackageNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.PackageNamePnl.Location = new System.Drawing.Point(23, 57);
             this.PackageNamePnl.Name = "PackageNamePnl";
-            this.PackageNamePnl.Size = new System.Drawing.Size(188, 2);
+            this.PackageNamePnl.Size = new System.Drawing.Size(188, 1);
             this.PackageNamePnl.TabIndex = 40;
             // 
             // PackageNameLbl
@@ -121,9 +121,9 @@ namespace AyuboDrive.Forms
             // 
             // InsertBtn
             // 
-            this.InsertBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.InsertBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.InsertBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InsertBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.InsertBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.InsertBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InsertBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InsertBtn.Location = new System.Drawing.Point(148, 12);
@@ -137,31 +137,31 @@ namespace AyuboDrive.Forms
             // ButtonsPanel
             // 
             this.ButtonsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
-            this.ButtonsPanel.Controls.Add(this.DiscontinueBtn);
+            this.ButtonsPanel.Controls.Add(this.DeleteBtn);
             this.ButtonsPanel.Controls.Add(this.UpdateBtn);
             this.ButtonsPanel.Controls.Add(this.InsertBtn);
-            this.ButtonsPanel.Location = new System.Drawing.Point(538, 337);
+            this.ButtonsPanel.Location = new System.Drawing.Point(638, 337);
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(250, 123);
             this.ButtonsPanel.TabIndex = 65;
             // 
-            // DiscontinueBtn
+            // DeleteBtn
             // 
-            this.DiscontinueBtn.BackColor = System.Drawing.Color.Transparent;
-            this.DiscontinueBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DiscontinueBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.DiscontinueBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DiscontinueBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DiscontinueBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.DiscontinueBtn.Location = new System.Drawing.Point(13, 67);
-            this.DiscontinueBtn.Name = "DiscontinueBtn";
-            this.DiscontinueBtn.Size = new System.Drawing.Size(129, 45);
-            this.DiscontinueBtn.TabIndex = 8;
-            this.DiscontinueBtn.Text = "Discontinue";
-            this.DiscontinueBtn.UseVisualStyleBackColor = false;
-            this.DiscontinueBtn.Click += new System.EventHandler(this.DiscontinueBtn_Click);
-            this.DiscontinueBtn.MouseEnter += new System.EventHandler(this.DiscontinueBtn_MouseEnter);
-            this.DiscontinueBtn.MouseLeave += new System.EventHandler(this.DiscontinueBtn_MouseLeave);
+            this.DeleteBtn.BackColor = System.Drawing.Color.Transparent;
+            this.DeleteBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DeleteBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.DeleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.DeleteBtn.Location = new System.Drawing.Point(13, 67);
+            this.DeleteBtn.Name = "DeleteBtn";
+            this.DeleteBtn.Size = new System.Drawing.Size(129, 45);
+            this.DeleteBtn.TabIndex = 8;
+            this.DeleteBtn.Text = "Delete";
+            this.DeleteBtn.UseVisualStyleBackColor = false;
+            this.DeleteBtn.Click += new System.EventHandler(this.DiscontinueBtn_Click);
+            this.DeleteBtn.MouseEnter += new System.EventHandler(this.DeleteBtn_MouseEnter);
+            this.DeleteBtn.MouseLeave += new System.EventHandler(this.DeleteBtn_MouseLeave);
             // 
             // UpdateBtn
             // 
@@ -207,7 +207,7 @@ namespace AyuboDrive.Forms
             this.ManipulationPanel.Controls.Add(this.PackageNamePnl);
             this.ManipulationPanel.Controls.Add(this.PackageNameLbl);
             this.ManipulationPanel.Controls.Add(this.PackageNameErrorLbl);
-            this.ManipulationPanel.Location = new System.Drawing.Point(538, 76);
+            this.ManipulationPanel.Location = new System.Drawing.Point(638, 76);
             this.ManipulationPanel.Name = "ManipulationPanel";
             this.ManipulationPanel.Size = new System.Drawing.Size(250, 255);
             this.ManipulationPanel.TabIndex = 64;
@@ -228,7 +228,7 @@ namespace AyuboDrive.Forms
             // 
             this.PackageStatusCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PackageStatusCmbBox.FormattingEnabled = true;
-            this.PackageStatusCmbBox.Location = new System.Drawing.Point(23, 381);
+            this.PackageStatusCmbBox.Location = new System.Drawing.Point(23, 386);
             this.PackageStatusCmbBox.Name = "PackageStatusCmbBox";
             this.PackageStatusCmbBox.Size = new System.Drawing.Size(188, 26);
             this.PackageStatusCmbBox.TabIndex = 69;
@@ -236,10 +236,10 @@ namespace AyuboDrive.Forms
             // 
             // PackageStatusPnl
             // 
-            this.PackageStatusPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.PackageStatusPnl.Location = new System.Drawing.Point(23, 408);
+            this.PackageStatusPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.PackageStatusPnl.Location = new System.Drawing.Point(23, 413);
             this.PackageStatusPnl.Name = "PackageStatusPnl";
-            this.PackageStatusPnl.Size = new System.Drawing.Size(188, 2);
+            this.PackageStatusPnl.Size = new System.Drawing.Size(188, 1);
             this.PackageStatusPnl.TabIndex = 67;
             // 
             // label1
@@ -259,7 +259,7 @@ namespace AyuboDrive.Forms
             this.PackageStatusErrLbl.BackColor = System.Drawing.Color.Transparent;
             this.PackageStatusErrLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PackageStatusErrLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.PackageStatusErrLbl.Location = new System.Drawing.Point(20, 413);
+            this.PackageStatusErrLbl.Location = new System.Drawing.Point(20, 418);
             this.PackageStatusErrLbl.Name = "PackageStatusErrLbl";
             this.PackageStatusErrLbl.Size = new System.Drawing.Size(9, 13);
             this.PackageStatusErrLbl.TabIndex = 66;
@@ -281,10 +281,10 @@ namespace AyuboDrive.Forms
             // 
             // ExtraKmRatePnl
             // 
-            this.ExtraKmRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.ExtraKmRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.ExtraKmRatePnl.Location = new System.Drawing.Point(23, 336);
             this.ExtraKmRatePnl.Name = "ExtraKmRatePnl";
-            this.ExtraKmRatePnl.Size = new System.Drawing.Size(188, 2);
+            this.ExtraKmRatePnl.Size = new System.Drawing.Size(188, 1);
             this.ExtraKmRatePnl.TabIndex = 63;
             // 
             // ExtraKmRateLbl
@@ -326,10 +326,10 @@ namespace AyuboDrive.Forms
             // 
             // ExtraHourRatePnl
             // 
-            this.ExtraHourRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.ExtraHourRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.ExtraHourRatePnl.Location = new System.Drawing.Point(23, 266);
             this.ExtraHourRatePnl.Name = "ExtraHourRatePnl";
-            this.ExtraHourRatePnl.Size = new System.Drawing.Size(188, 2);
+            this.ExtraHourRatePnl.Size = new System.Drawing.Size(188, 1);
             this.ExtraHourRatePnl.TabIndex = 59;
             // 
             // ExtraHourRateLbl
@@ -371,10 +371,10 @@ namespace AyuboDrive.Forms
             // 
             // MaxKmPnl
             // 
-            this.MaxKmPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.MaxKmPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.MaxKmPnl.Location = new System.Drawing.Point(23, 197);
             this.MaxKmPnl.Name = "MaxKmPnl";
-            this.MaxKmPnl.Size = new System.Drawing.Size(188, 2);
+            this.MaxKmPnl.Size = new System.Drawing.Size(188, 1);
             this.MaxKmPnl.TabIndex = 55;
             // 
             // MaxKmLbl
@@ -416,10 +416,10 @@ namespace AyuboDrive.Forms
             // 
             // MaxHourPnl
             // 
-            this.MaxHourPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.MaxHourPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.MaxHourPnl.Location = new System.Drawing.Point(23, 128);
             this.MaxHourPnl.Name = "MaxHourPnl";
-            this.MaxHourPnl.Size = new System.Drawing.Size(188, 2);
+            this.MaxHourPnl.Size = new System.Drawing.Size(188, 1);
             this.MaxHourPnl.TabIndex = 51;
             // 
             // MaxHourLbl
@@ -456,7 +456,7 @@ namespace AyuboDrive.Forms
             this.PackageNameTxtBox.Size = new System.Drawing.Size(188, 19);
             this.PackageNameTxtBox.TabIndex = 48;
             this.PackageNameTxtBox.Enter += new System.EventHandler(this.TextBox_Enter);
-            this.PackageNameTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CharacterOnlyTextBox_KeyPress);
+            this.PackageNameTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOrCharacterOnlyTextBox_KeyPress);
             this.PackageNameTxtBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // TitleLbl
@@ -476,7 +476,7 @@ namespace AyuboDrive.Forms
             this.ViewControlPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.ViewControlPnl.Controls.Add(this.radioButton1);
             this.ViewControlPnl.Controls.Add(this.DiscontinuedPackagesRBtn);
-            this.ViewControlPnl.Location = new System.Drawing.Point(538, 34);
+            this.ViewControlPnl.Location = new System.Drawing.Point(638, 34);
             this.ViewControlPnl.Name = "ViewControlPnl";
             this.ViewControlPnl.Size = new System.Drawing.Size(250, 37);
             this.ViewControlPnl.TabIndex = 81;
@@ -484,6 +484,7 @@ namespace AyuboDrive.Forms
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
             this.radioButton1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
@@ -491,6 +492,7 @@ namespace AyuboDrive.Forms
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(58, 17);
             this.radioButton1.TabIndex = 22;
+            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Default";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -514,7 +516,7 @@ namespace AyuboDrive.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(800, 470);
+            this.ClientSize = new System.Drawing.Size(900, 470);
             this.Controls.Add(this.ViewControlPnl);
             this.Controls.Add(this.ManipulationPanel);
             this.Controls.Add(this.TablePanel);
@@ -573,6 +575,6 @@ namespace AyuboDrive.Forms
         private System.Windows.Forms.RadioButton radioButton1;
         private CustomButton InsertBtn;
         private CustomButton UpdateBtn;
-        private CustomButton DiscontinueBtn;
+        private CustomButton DeleteBtn;
     }
 }

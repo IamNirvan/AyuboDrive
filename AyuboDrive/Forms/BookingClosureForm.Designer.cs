@@ -96,9 +96,9 @@ namespace AyuboDrive.Forms
             this.ManipulationPanel.Controls.Add(this.ReturnDatePnl);
             this.ManipulationPanel.Controls.Add(this.ReturnDateLbl);
             this.ManipulationPanel.Controls.Add(this.ReturnDateErrLbl);
-            this.ManipulationPanel.Location = new System.Drawing.Point(608, 119);
+            this.ManipulationPanel.Location = new System.Drawing.Point(608, 79);
             this.ManipulationPanel.Name = "ManipulationPanel";
-            this.ManipulationPanel.Size = new System.Drawing.Size(250, 265);
+            this.ManipulationPanel.Size = new System.Drawing.Size(250, 305);
             this.ManipulationPanel.TabIndex = 64;
             // 
             // StartMileageValueLbl
@@ -125,10 +125,10 @@ namespace AyuboDrive.Forms
             // 
             // EndMileagePnl
             // 
-            this.EndMileagePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.EndMileagePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.EndMileagePnl.Location = new System.Drawing.Point(25, 215);
             this.EndMileagePnl.Name = "EndMileagePnl";
-            this.EndMileagePnl.Size = new System.Drawing.Size(188, 2);
+            this.EndMileagePnl.Size = new System.Drawing.Size(188, 1);
             this.EndMileagePnl.TabIndex = 127;
             // 
             // EndMileageErrLbl
@@ -213,17 +213,17 @@ namespace AyuboDrive.Forms
             // 
             this.ReturnDateDTP.Font = new System.Drawing.Font("Carlito", 11.25F);
             this.ReturnDateDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ReturnDateDTP.Location = new System.Drawing.Point(25, 77);
+            this.ReturnDateDTP.Location = new System.Drawing.Point(25, 78);
             this.ReturnDateDTP.Name = "ReturnDateDTP";
             this.ReturnDateDTP.Size = new System.Drawing.Size(120, 26);
             this.ReturnDateDTP.TabIndex = 127;
             // 
             // ReturnDatePnl
             // 
-            this.ReturnDatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.ReturnDatePnl.Location = new System.Drawing.Point(25, 100);
+            this.ReturnDatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.ReturnDatePnl.Location = new System.Drawing.Point(25, 105);
             this.ReturnDatePnl.Name = "ReturnDatePnl";
-            this.ReturnDatePnl.Size = new System.Drawing.Size(120, 2);
+            this.ReturnDatePnl.Size = new System.Drawing.Size(120, 1);
             this.ReturnDatePnl.TabIndex = 126;
             // 
             // ReturnDateLbl
@@ -243,7 +243,7 @@ namespace AyuboDrive.Forms
             this.ReturnDateErrLbl.BackColor = System.Drawing.Color.Transparent;
             this.ReturnDateErrLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReturnDateErrLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.ReturnDateErrLbl.Location = new System.Drawing.Point(22, 105);
+            this.ReturnDateErrLbl.Location = new System.Drawing.Point(22, 110);
             this.ReturnDateErrLbl.Name = "ReturnDateErrLbl";
             this.ReturnDateErrLbl.Size = new System.Drawing.Size(9, 13);
             this.ReturnDateErrLbl.TabIndex = 125;
@@ -264,9 +264,9 @@ namespace AyuboDrive.Forms
             // 
             this.TablePnl.AutoScroll = true;
             this.TablePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.TablePnl.Location = new System.Drawing.Point(9, 76);
+            this.TablePnl.Location = new System.Drawing.Point(12, 76);
             this.TablePnl.Name = "TablePnl";
-            this.TablePnl.Size = new System.Drawing.Size(593, 384);
+            this.TablePnl.Size = new System.Drawing.Size(590, 384);
             this.TablePnl.TabIndex = 62;
             // 
             // flowLayoutPanel1
@@ -284,7 +284,7 @@ namespace AyuboDrive.Forms
             this.TableControlPnl.Controls.Add(this.RentalRBtn);
             this.TableControlPnl.Controls.Add(this.DayTourRBtn);
             this.TableControlPnl.Controls.Add(this.LongTourRBtn);
-            this.TableControlPnl.Location = new System.Drawing.Point(608, 76);
+            this.TableControlPnl.Location = new System.Drawing.Point(608, 36);
             this.TableControlPnl.Name = "TableControlPnl";
             this.TableControlPnl.Size = new System.Drawing.Size(250, 37);
             this.TableControlPnl.TabIndex = 82;
@@ -359,12 +359,14 @@ namespace AyuboDrive.Forms
             this.CloseBookingBtn.Text = "Close";
             this.CloseBookingBtn.UseVisualStyleBackColor = false;
             this.CloseBookingBtn.Click += new System.EventHandler(this.CloseBookingBtn_Click);
+            this.CloseBookingBtn.MouseEnter += new System.EventHandler(this.CloseBookingBtn_MouseEnter);
+            this.CloseBookingBtn.MouseLeave += new System.EventHandler(this.CloseBookingBtn_MouseLeave);
             // 
             // CalculateBtn
             // 
-            this.CalculateBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.CalculateBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.CalculateBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CalculateBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.CalculateBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.CalculateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CalculateBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CalculateBtn.ForeColor = System.Drawing.SystemColors.ControlText;

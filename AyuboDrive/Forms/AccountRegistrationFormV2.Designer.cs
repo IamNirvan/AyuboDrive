@@ -64,14 +64,15 @@ namespace AyuboDrive.Forms
             this.EmailTxtBox = new System.Windows.Forms.TextBox();
             this.EmailErrLbl = new System.Windows.Forms.Label();
             this.EmailLbl = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // KeyPnl
             // 
-            this.KeyPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.KeyPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.KeyPnl.Location = new System.Drawing.Point(339, 260);
             this.KeyPnl.Name = "KeyPnl";
-            this.KeyPnl.Size = new System.Drawing.Size(270, 2);
+            this.KeyPnl.Size = new System.Drawing.Size(270, 1);
             this.KeyPnl.TabIndex = 56;
             // 
             // FirstNameLbl
@@ -98,7 +99,7 @@ namespace AyuboDrive.Forms
             // 
             // KeyTxtBox
             // 
-            this.KeyTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.KeyTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.KeyTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.KeyTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KeyTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
@@ -114,10 +115,10 @@ namespace AyuboDrive.Forms
             // 
             // LastNamePnl
             // 
-            this.LastNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.LastNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.LastNamePnl.Location = new System.Drawing.Point(39, 183);
             this.LastNamePnl.Name = "LastNamePnl";
-            this.LastNamePnl.Size = new System.Drawing.Size(270, 2);
+            this.LastNamePnl.Size = new System.Drawing.Size(270, 1);
             this.LastNamePnl.TabIndex = 46;
             // 
             // LastNameLbl
@@ -133,15 +134,15 @@ namespace AyuboDrive.Forms
             // 
             // FirstNamePnl
             // 
-            this.FirstNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.FirstNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.FirstNamePnl.Location = new System.Drawing.Point(39, 108);
             this.FirstNamePnl.Name = "FirstNamePnl";
-            this.FirstNamePnl.Size = new System.Drawing.Size(270, 2);
+            this.FirstNamePnl.Size = new System.Drawing.Size(270, 1);
             this.FirstNamePnl.TabIndex = 39;
             // 
             // UserNameTxtBox
             // 
-            this.UserNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.UserNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.UserNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.UserNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserNameTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
@@ -187,7 +188,7 @@ namespace AyuboDrive.Forms
             // 
             // LastNameTxtBox
             // 
-            this.LastNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.LastNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.LastNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LastNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LastNameTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
@@ -212,23 +213,23 @@ namespace AyuboDrive.Forms
             // 
             // UserNamePnl
             // 
-            this.UserNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.UserNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.UserNamePnl.Location = new System.Drawing.Point(39, 260);
             this.UserNamePnl.Name = "UserNamePnl";
-            this.UserNamePnl.Size = new System.Drawing.Size(270, 2);
+            this.UserNamePnl.Size = new System.Drawing.Size(270, 1);
             this.UserNamePnl.TabIndex = 47;
             // 
             // PasswordPnl
             // 
-            this.PasswordPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.PasswordPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.PasswordPnl.Location = new System.Drawing.Point(39, 337);
             this.PasswordPnl.Name = "PasswordPnl";
-            this.PasswordPnl.Size = new System.Drawing.Size(270, 2);
+            this.PasswordPnl.Size = new System.Drawing.Size(270, 1);
             this.PasswordPnl.TabIndex = 51;
             // 
             // FirstNameTxtBox
             // 
-            this.FirstNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.FirstNameTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.FirstNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.FirstNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FirstNameTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
@@ -253,7 +254,7 @@ namespace AyuboDrive.Forms
             // 
             // PasswordTxtBox
             // 
-            this.PasswordTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.PasswordTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.PasswordTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PasswordTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
@@ -292,7 +293,7 @@ namespace AyuboDrive.Forms
             this.ImagePathLbl.AutoSize = true;
             this.ImagePathLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImagePathLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.ImagePathLbl.Location = new System.Drawing.Point(338, 68);
+            this.ImagePathLbl.Location = new System.Drawing.Point(338, 66);
             this.ImagePathLbl.Name = "ImagePathLbl";
             this.ImagePathLbl.Size = new System.Drawing.Size(65, 15);
             this.ImagePathLbl.TabIndex = 62;
@@ -300,10 +301,10 @@ namespace AyuboDrive.Forms
             // 
             // ImagePathPnl
             // 
-            this.ImagePathPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.ImagePathPnl.Location = new System.Drawing.Point(339, 111);
+            this.ImagePathPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.ImagePathPnl.Location = new System.Drawing.Point(339, 109);
             this.ImagePathPnl.Name = "ImagePathPnl";
-            this.ImagePathPnl.Size = new System.Drawing.Size(190, 2);
+            this.ImagePathPnl.Size = new System.Drawing.Size(190, 1);
             this.ImagePathPnl.TabIndex = 65;
             // 
             // ImagePathErrorLbl
@@ -311,7 +312,7 @@ namespace AyuboDrive.Forms
             this.ImagePathErrorLbl.AutoSize = true;
             this.ImagePathErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImagePathErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.ImagePathErrorLbl.Location = new System.Drawing.Point(338, 116);
+            this.ImagePathErrorLbl.Location = new System.Drawing.Point(338, 114);
             this.ImagePathErrorLbl.Name = "ImagePathErrorLbl";
             this.ImagePathErrorLbl.Size = new System.Drawing.Size(9, 13);
             this.ImagePathErrorLbl.TabIndex = 63;
@@ -319,7 +320,7 @@ namespace AyuboDrive.Forms
             // 
             // PasswordMask
             // 
-            this.PasswordMask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.PasswordMask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.PasswordMask.BackgroundImage = global::AyuboDrive.Properties.Resources.PasswordVisibleBlack16;
             this.PasswordMask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.PasswordMask.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -327,7 +328,7 @@ namespace AyuboDrive.Forms
             this.PasswordMask.FlatAppearance.BorderSize = 0;
             this.PasswordMask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PasswordMask.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordMask.Location = new System.Drawing.Point(284, 314);
+            this.PasswordMask.Location = new System.Drawing.Point(284, 312);
             this.PasswordMask.Name = "PasswordMask";
             this.PasswordMask.Size = new System.Drawing.Size(25, 25);
             this.PasswordMask.TabIndex = 73;
@@ -336,7 +337,7 @@ namespace AyuboDrive.Forms
             // 
             // ImagePathBtn
             // 
-            this.ImagePathBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.ImagePathBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.ImagePathBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.SearchBlack16;
             this.ImagePathBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ImagePathBtn.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -345,7 +346,7 @@ namespace AyuboDrive.Forms
             this.ImagePathBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ImagePathBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImagePathBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.ImagePathBtn.Location = new System.Drawing.Point(535, 89);
+            this.ImagePathBtn.Location = new System.Drawing.Point(535, 87);
             this.ImagePathBtn.Name = "ImagePathBtn";
             this.ImagePathBtn.Size = new System.Drawing.Size(25, 25);
             this.ImagePathBtn.TabIndex = 78;
@@ -354,14 +355,14 @@ namespace AyuboDrive.Forms
             // 
             // SecretKeyBtn
             // 
-            this.SecretKeyBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.SecretKeyBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.SecretKeyBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.SecretKeyBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SecretKeyBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.SecretKeyBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.SecretKeyBtn.FlatAppearance.BorderSize = 0;
             this.SecretKeyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SecretKeyBtn.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecretKeyBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.SecretKeyBtn.ForeColor = System.Drawing.Color.Black;
             this.SecretKeyBtn.Location = new System.Drawing.Point(339, 294);
             this.SecretKeyBtn.Name = "SecretKeyBtn";
             this.SecretKeyBtn.Size = new System.Drawing.Size(270, 45);
@@ -375,7 +376,7 @@ namespace AyuboDrive.Forms
             this.UploadImageCheckBox.AutoSize = true;
             this.UploadImageCheckBox.Font = new System.Drawing.Font("Carlito", 9.75F);
             this.UploadImageCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.UploadImageCheckBox.Location = new System.Drawing.Point(339, 46);
+            this.UploadImageCheckBox.Location = new System.Drawing.Point(339, 44);
             this.UploadImageCheckBox.Name = "UploadImageCheckBox";
             this.UploadImageCheckBox.Size = new System.Drawing.Size(137, 19);
             this.UploadImageCheckBox.TabIndex = 80;
@@ -385,13 +386,13 @@ namespace AyuboDrive.Forms
             // 
             // SignUpBtn
             // 
-            this.SignUpBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.SignUpBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.SignUpBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.SignUpBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SignUpBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.SignUpBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.SignUpBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SignUpBtn.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SignUpBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.SignUpBtn.Font = new System.Drawing.Font("Carlito", 11.25F);
+            this.SignUpBtn.ForeColor = System.Drawing.Color.Black;
             this.SignUpBtn.Location = new System.Drawing.Point(339, 294);
             this.SignUpBtn.Name = "SignUpBtn";
             this.SignUpBtn.Size = new System.Drawing.Size(270, 45);
@@ -402,11 +403,11 @@ namespace AyuboDrive.Forms
             // 
             // ImagePathTxtBox
             // 
-            this.ImagePathTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.ImagePathTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.ImagePathTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ImagePathTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImagePathTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.ImagePathTxtBox.Location = new System.Drawing.Point(339, 91);
+            this.ImagePathTxtBox.Location = new System.Drawing.Point(339, 89);
             this.ImagePathTxtBox.Name = "ImagePathTxtBox";
             this.ImagePathTxtBox.Size = new System.Drawing.Size(190, 19);
             this.ImagePathTxtBox.TabIndex = 82;
@@ -415,15 +416,15 @@ namespace AyuboDrive.Forms
             // 
             // EmailPnl
             // 
-            this.EmailPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.EmailPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.EmailPnl.Location = new System.Drawing.Point(339, 183);
             this.EmailPnl.Name = "EmailPnl";
-            this.EmailPnl.Size = new System.Drawing.Size(270, 2);
+            this.EmailPnl.Size = new System.Drawing.Size(270, 1);
             this.EmailPnl.TabIndex = 60;
             // 
             // EmailTxtBox
             // 
-            this.EmailTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.EmailTxtBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.EmailTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EmailTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmailTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
@@ -456,12 +457,21 @@ namespace AyuboDrive.Forms
             this.EmailLbl.TabIndex = 57;
             this.EmailLbl.Text = "Email address";
             // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(651, 30);
+            this.panel1.TabIndex = 83;
+            // 
             // AccountRegistrationFormV2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(651, 380);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.EmailPnl);
             this.Controls.Add(this.EmailTxtBox);
             this.Controls.Add(this.ImagePathTxtBox);
@@ -539,5 +549,6 @@ namespace AyuboDrive.Forms
         private System.Windows.Forms.TextBox EmailTxtBox;
         private System.Windows.Forms.Label EmailErrLbl;
         private System.Windows.Forms.Label EmailLbl;
+        private System.Windows.Forms.Panel panel1;
     }
 }

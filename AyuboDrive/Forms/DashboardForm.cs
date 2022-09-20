@@ -18,7 +18,7 @@ namespace AyuboDrive.Forms
         private readonly string _firstName;
         private readonly string _lastName;
 
-        public DashboardForm(string firstName, string lastName, string userName) : base(Properties.Settings.Default.LIGHT_GRAY)
+        public DashboardForm(string firstName, string lastName, string userName) : base(Properties.Settings.Default.DARK_GRAY)
         {
             _firstName = firstName;
             _lastName = lastName;
@@ -27,7 +27,7 @@ namespace AyuboDrive.Forms
             HandleTitleBar();
         }
 
-        public DashboardForm(User user) : base(Properties.Settings.Default.LIGHT_GRAY)
+        public DashboardForm(User user) : base(Properties.Settings.Default.DARK_GRAY)
         {
             User = user;
             _firstName = user.FirstName;
@@ -59,15 +59,6 @@ namespace AyuboDrive.Forms
             if (count >= 0)
             {
                 ClosedBookingsCount.Text = count.ToString();
-
-                if (count > 0)
-                {
-                    ClosedBookingsCount.ForeColor = Properties.Settings.Default.GREEN;
-                }
-                else
-                {
-                    ClosedBookingsCount.ForeColor = Properties.Settings.Default.RED;
-                }
                 return;
             }
             ClosedBookingsCount.Text = "N/A";
@@ -131,7 +122,7 @@ namespace AyuboDrive.Forms
                 }
                 else
                 {
-                    PendingPaymentCount.ForeColor = Properties.Settings.Default.PURPLE;
+                    PendingPaymentCount.ForeColor = Properties.Settings.Default.GREEN;
                 }
                 return;
             }
@@ -153,17 +144,15 @@ namespace AyuboDrive.Forms
         {
             int hour = DateTime.Now.Hour;
 
-            Console.WriteLine($"The hour is: {hour}");
-
             if(hour > 19)
             {
                 return "Hello,";
             }
-            else if(hour == 19 || hour == 18)
+            else if(hour <= 19 && hour >= 16)
             {
                 return "Good evening,";
             }
-            else if (hour <= 17 && hour >= 12)
+            else if (hour <= 15 && hour >= 12)
             {
                 return "Good afternoon,";
             }

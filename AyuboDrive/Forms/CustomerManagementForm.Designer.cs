@@ -34,6 +34,7 @@ namespace AyuboDrive.Forms
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.TablePanel = new System.Windows.Forms.Panel();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.GenderCmbBox = new System.Windows.Forms.ComboBox();
             this.GenderPnl = new System.Windows.Forms.Panel();
             this.ContactNumberPnl = new System.Windows.Forms.Panel();
@@ -68,7 +69,7 @@ namespace AyuboDrive.Forms
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(750, 30);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(850, 30);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // TablePanel
@@ -76,13 +77,14 @@ namespace AyuboDrive.Forms
             this.TablePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.TablePanel.Location = new System.Drawing.Point(9, 72);
             this.TablePanel.Name = "TablePanel";
-            this.TablePanel.Size = new System.Drawing.Size(470, 384);
+            this.TablePanel.Size = new System.Drawing.Size(573, 384);
             this.TablePanel.TabIndex = 8;
             // 
             // ManipulationPanel
             // 
             this.ManipulationPanel.AutoScroll = true;
             this.ManipulationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.ManipulationPanel.Controls.Add(this.label1);
             this.ManipulationPanel.Controls.Add(this.GenderCmbBox);
             this.ManipulationPanel.Controls.Add(this.GenderPnl);
             this.ManipulationPanel.Controls.Add(this.ContactNumberPnl);
@@ -103,16 +105,28 @@ namespace AyuboDrive.Forms
             this.ManipulationPanel.Controls.Add(this.LastNameLbl);
             this.ManipulationPanel.Controls.Add(this.NICErrorLbl);
             this.ManipulationPanel.Controls.Add(this.NICLbl);
-            this.ManipulationPanel.Location = new System.Drawing.Point(488, 72);
+            this.ManipulationPanel.Location = new System.Drawing.Point(588, 72);
             this.ManipulationPanel.Name = "ManipulationPanel";
             this.ManipulationPanel.Size = new System.Drawing.Size(250, 255);
             this.ManipulationPanel.TabIndex = 32;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.label1.Location = new System.Drawing.Point(221, 358);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(9, 13);
+            this.label1.TabIndex = 48;
+            this.label1.Text = " ";
             // 
             // GenderCmbBox
             // 
             this.GenderCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F);
             this.GenderCmbBox.FormattingEnabled = true;
-            this.GenderCmbBox.Location = new System.Drawing.Point(13, 305);
+            this.GenderCmbBox.Location = new System.Drawing.Point(13, 310);
             this.GenderCmbBox.Name = "GenderCmbBox";
             this.GenderCmbBox.Size = new System.Drawing.Size(205, 26);
             this.GenderCmbBox.TabIndex = 47;
@@ -120,18 +134,18 @@ namespace AyuboDrive.Forms
             // 
             // GenderPnl
             // 
-            this.GenderPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.GenderPnl.Location = new System.Drawing.Point(13, 332);
+            this.GenderPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.GenderPnl.Location = new System.Drawing.Point(13, 337);
             this.GenderPnl.Name = "GenderPnl";
-            this.GenderPnl.Size = new System.Drawing.Size(205, 2);
+            this.GenderPnl.Size = new System.Drawing.Size(205, 1);
             this.GenderPnl.TabIndex = 46;
             // 
             // ContactNumberPnl
             // 
-            this.ContactNumberPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.ContactNumberPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.ContactNumberPnl.Location = new System.Drawing.Point(13, 261);
             this.ContactNumberPnl.Name = "ContactNumberPnl";
-            this.ContactNumberPnl.Size = new System.Drawing.Size(205, 2);
+            this.ContactNumberPnl.Size = new System.Drawing.Size(205, 1);
             this.ContactNumberPnl.TabIndex = 42;
             // 
             // GenderLbl
@@ -147,10 +161,10 @@ namespace AyuboDrive.Forms
             // 
             // LastNamePnl
             // 
-            this.LastNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.LastNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.LastNamePnl.Location = new System.Drawing.Point(13, 190);
             this.LastNamePnl.Name = "LastNamePnl";
-            this.LastNamePnl.Size = new System.Drawing.Size(205, 2);
+            this.LastNamePnl.Size = new System.Drawing.Size(205, 1);
             this.LastNamePnl.TabIndex = 41;
             // 
             // GenderErrLbl
@@ -159,7 +173,7 @@ namespace AyuboDrive.Forms
             this.GenderErrLbl.BackColor = System.Drawing.Color.Transparent;
             this.GenderErrLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GenderErrLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.GenderErrLbl.Location = new System.Drawing.Point(10, 337);
+            this.GenderErrLbl.Location = new System.Drawing.Point(10, 342);
             this.GenderErrLbl.Name = "GenderErrLbl";
             this.GenderErrLbl.Size = new System.Drawing.Size(9, 13);
             this.GenderErrLbl.TabIndex = 45;
@@ -167,18 +181,18 @@ namespace AyuboDrive.Forms
             // 
             // FirstNamePnl
             // 
-            this.FirstNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.FirstNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.FirstNamePnl.Location = new System.Drawing.Point(13, 123);
             this.FirstNamePnl.Name = "FirstNamePnl";
-            this.FirstNamePnl.Size = new System.Drawing.Size(205, 2);
+            this.FirstNamePnl.Size = new System.Drawing.Size(205, 1);
             this.FirstNamePnl.TabIndex = 40;
             // 
             // NICPnl
             // 
-            this.NICPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.NICPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.NICPnl.Location = new System.Drawing.Point(13, 54);
             this.NICPnl.Name = "NICPnl";
-            this.NICPnl.Size = new System.Drawing.Size(205, 2);
+            this.NICPnl.Size = new System.Drawing.Size(205, 1);
             this.NICPnl.TabIndex = 39;
             // 
             // NICTxtBox
@@ -336,7 +350,7 @@ namespace AyuboDrive.Forms
             this.ButtonsPanel.Controls.Add(this.DeleteBtn);
             this.ButtonsPanel.Controls.Add(this.UpdateBtn);
             this.ButtonsPanel.Controls.Add(this.InsertBtn);
-            this.ButtonsPanel.Location = new System.Drawing.Point(488, 333);
+            this.ButtonsPanel.Location = new System.Drawing.Point(588, 333);
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(250, 123);
             this.ButtonsPanel.TabIndex = 33;
@@ -376,9 +390,9 @@ namespace AyuboDrive.Forms
             // 
             // InsertBtn
             // 
-            this.InsertBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.InsertBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.InsertBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InsertBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.InsertBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.InsertBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InsertBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InsertBtn.Location = new System.Drawing.Point(148, 12);
@@ -405,7 +419,7 @@ namespace AyuboDrive.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(750, 465);
+            this.ClientSize = new System.Drawing.Size(850, 465);
             this.Controls.Add(this.ManipulationPanel);
             this.Controls.Add(this.TitleLbl);
             this.Controls.Add(this.ButtonsPanel);
@@ -454,5 +468,6 @@ namespace AyuboDrive.Forms
         private CustomButton DeleteBtn;
         private CustomButton UpdateBtn;
         private CustomButton InsertBtn;
+        private System.Windows.Forms.Label label1;
     }
 }

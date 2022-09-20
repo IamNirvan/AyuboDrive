@@ -27,6 +27,14 @@ namespace AyuboDrive.Forms
             DisableSecretKeyObjects();
         }
         //
+        // Exit button
+        //
+        public override void ExitBtn_MouseClick(object sender, EventArgs e)
+        {
+            new LoginFormV2().Show();
+            Hide();
+        }
+        //
         // Click event handlers
         //
         private void PasswordMask_Click(object sender, EventArgs e)
@@ -299,7 +307,7 @@ namespace AyuboDrive.Forms
             else
             {
                 PasswordPnl.BackColor = Properties.Settings.Default.RED;
-                PasswordErrorLbl.Text = "Insufficient password length";
+                PasswordErrorLbl.Text = "Password is weak";
             }
 
             if(UploadImageCheckBox.Checked)

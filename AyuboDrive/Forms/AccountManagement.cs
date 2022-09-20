@@ -322,7 +322,7 @@ namespace AyuboDrive.Forms
             else
             {
                 PasswordPnl.BackColor = Properties.Settings.Default.RED;
-                PasswordErrorLbl.Text = "Insufficient password length";
+                PasswordErrorLbl.Text = "Password is weak";
             }
 
             if(!_includeImage)

@@ -52,7 +52,7 @@ namespace AyuboDrive.Forms
             this.TablePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.TablePanel.Location = new System.Drawing.Point(9, 76);
             this.TablePanel.Name = "TablePanel";
-            this.TablePanel.Size = new System.Drawing.Size(470, 384);
+            this.TablePanel.Size = new System.Drawing.Size(398, 331);
             this.TablePanel.TabIndex = 57;
             // 
             // flowLayoutPanel1
@@ -60,15 +60,15 @@ namespace AyuboDrive.Forms
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(750, 30);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(675, 30);
             this.flowLayoutPanel1.TabIndex = 58;
             // 
             // TypeNamePnl
             // 
-            this.TypeNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.TypeNamePnl.Location = new System.Drawing.Point(33, 57);
+            this.TypeNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.TypeNamePnl.Location = new System.Drawing.Point(28, 58);
             this.TypeNamePnl.Name = "TypeNamePnl";
-            this.TypeNamePnl.Size = new System.Drawing.Size(188, 2);
+            this.TypeNamePnl.Size = new System.Drawing.Size(188, 1);
             this.TypeNamePnl.TabIndex = 40;
             // 
             // TypeNameLbl
@@ -76,7 +76,7 @@ namespace AyuboDrive.Forms
             this.TypeNameLbl.AutoSize = true;
             this.TypeNameLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TypeNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.TypeNameLbl.Location = new System.Drawing.Point(30, 17);
+            this.TypeNameLbl.Location = new System.Drawing.Point(25, 17);
             this.TypeNameLbl.Name = "TypeNameLbl";
             this.TypeNameLbl.Size = new System.Drawing.Size(63, 15);
             this.TypeNameLbl.TabIndex = 33;
@@ -88,7 +88,7 @@ namespace AyuboDrive.Forms
             this.TypeNameErrorLbl.BackColor = System.Drawing.Color.Transparent;
             this.TypeNameErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TypeNameErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.TypeNameErrorLbl.Location = new System.Drawing.Point(30, 62);
+            this.TypeNameErrorLbl.Location = new System.Drawing.Point(25, 62);
             this.TypeNameErrorLbl.Name = "TypeNameErrorLbl";
             this.TypeNameErrorLbl.Size = new System.Drawing.Size(9, 13);
             this.TypeNameErrorLbl.TabIndex = 34;
@@ -96,9 +96,9 @@ namespace AyuboDrive.Forms
             // 
             // InsertBtn
             // 
-            this.InsertBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.InsertBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.InsertBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InsertBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.InsertBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.InsertBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InsertBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InsertBtn.Location = new System.Drawing.Point(148, 12);
@@ -115,7 +115,7 @@ namespace AyuboDrive.Forms
             this.ButtonsPanel.Controls.Add(this.DeleteBtn);
             this.ButtonsPanel.Controls.Add(this.UpdateBtn);
             this.ButtonsPanel.Controls.Add(this.InsertBtn);
-            this.ButtonsPanel.Location = new System.Drawing.Point(488, 169);
+            this.ButtonsPanel.Location = new System.Drawing.Point(413, 284);
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(250, 123);
             this.ButtonsPanel.TabIndex = 60;
@@ -161,9 +161,9 @@ namespace AyuboDrive.Forms
             this.ManipulationPanel.Controls.Add(this.TypeNamePnl);
             this.ManipulationPanel.Controls.Add(this.TypeNameLbl);
             this.ManipulationPanel.Controls.Add(this.TypeNameErrorLbl);
-            this.ManipulationPanel.Location = new System.Drawing.Point(488, 76);
+            this.ManipulationPanel.Location = new System.Drawing.Point(413, 76);
             this.ManipulationPanel.Name = "ManipulationPanel";
-            this.ManipulationPanel.Size = new System.Drawing.Size(250, 87);
+            this.ManipulationPanel.Size = new System.Drawing.Size(250, 202);
             this.ManipulationPanel.TabIndex = 59;
             // 
             // TypeNameTxtBox
@@ -172,7 +172,7 @@ namespace AyuboDrive.Forms
             this.TypeNameTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TypeNameTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TypeNameTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.TypeNameTxtBox.Location = new System.Drawing.Point(33, 39);
+            this.TypeNameTxtBox.Location = new System.Drawing.Point(28, 39);
             this.TypeNameTxtBox.Name = "TypeNameTxtBox";
             this.TypeNameTxtBox.Size = new System.Drawing.Size(188, 19);
             this.TypeNameTxtBox.TabIndex = 48;
@@ -196,7 +196,7 @@ namespace AyuboDrive.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(750, 470);
+            this.ClientSize = new System.Drawing.Size(675, 420);
             this.Controls.Add(this.TablePanel);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.ButtonsPanel);

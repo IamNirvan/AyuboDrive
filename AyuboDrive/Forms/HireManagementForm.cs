@@ -22,7 +22,6 @@ namespace AyuboDrive.Forms
         private string _hireStatus;
         private bool _rowSelected = false;
         private Panel _selectedRow = null;
-        private bool _handlingMouseClick = false;
         private int _tablePnlMinHeight = 203;
         private int _tablePnlMaxHeight = 412;
         public readonly static string _defaultLongTourQuery = "SELECT bookingID, vehicleID, driverID, customerID, packageID, " +
@@ -61,48 +60,8 @@ namespace AyuboDrive.Forms
         {
             int index = Int32.Parse(((Label)sender).Name.Split('-')[1]);
             _rowSelected = true;
-            _handlingMouseClick = true;
-
-            Panel container = _vehicleViewer.GetContainers()[index];
             AddDataVehicleView(index);
-
-            if (_selectedRow != null)
-            {
-                _selectedRow.BackColor = Properties.Settings.Default.LIGHT_GRAY;
-            }
-
-            _selectedRow = container;
-            container.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
             ResetErrors();
-        }
-
-        private void VehiclesCell_MouseEnter(object sender, EventArgs e)
-        {
-            // Get the number associated with the interactive label name.
-            int index = Int32.Parse(((Label)sender).Name.Split('-')[1]);
-
-            if (!_rowSelected)
-            {
-                Panel panel = _vehicleViewer.GetContainers()[index]; // Access the label's container
-                panel.BackColor = Properties.Settings.Default.LIGHTER_GRAY;
-            }
-
-            _vehicleViewer.GetVehicleNames()[index].ForeColor = Properties.Settings.Default.ENABLED_WHITE;
-        }
-
-        private void VehiclesCell_MouseLeave(object sender, EventArgs e)
-        {
-            // Get the number associated with the label name. For example: panel-0
-            int index = Int32.Parse(((Label)sender).Name.Split('-')[1]);
-
-            if (!_rowSelected)
-            {
-                Panel panel = _vehicleViewer.GetContainers()[index]; // Access the parent panel
-                panel.BackColor = Properties.Settings.Default.LIGHT_GRAY;
-            }
-
-            _vehicleViewer.GetVehicleNames()[index].ForeColor = Properties.Settings.Default.DISABLED_WHITE;
-            _handlingMouseClick = false;
         }
 
         private void TableCell_Click(object sender, EventArgs e)
@@ -372,16 +331,15 @@ namespace AyuboDrive.Forms
             VehiclePnl.Visible = true;
         }
 
-        private void AddDataVehicleView(int index)
+        private void AddDataVehicleView(int vehicleID)
         {
-            DataRow record = s_queryHandler.SelectQueryHandler("SELECT * from vehicle WHERE vehicleStatus = 'Available'").Rows[index];
+            DataRow record = s_queryHandler.SelectQueryHandler($"SELECT * from vehicle WHERE vehicleID = '{vehicleID}'").Rows[0];
 
             DataRow vehicleTypeRecord = s_queryHandler.SelectQueryHandler("SELECT typeName from vehicleType WHERE vehicleTypeID = '" +
                 record[2].ToString() + "'").Rows[0];
-
-            VehicleIDCmbBox.Text = $"{record[0].ToString()}-{record[3].ToString()} {record[4].ToString()}";
             VehicleTypeIDCmbBox.Text = $"{record[2].ToString()}-{vehicleTypeRecord[0]}";
             _hireStatus = record[6].ToString();
+            VehicleIDCmbBox.Text = $"{record[0].ToString()}-{record[3].ToString()} {record[4].ToString()}";
         }
 
         private void AddDataTableView(int index)
@@ -425,7 +383,6 @@ namespace AyuboDrive.Forms
                     StartDateDTP.Text = record[8].ToString();
                     EndDateDTP.Text = record[9].ToString();
                 }
-                
             }
         }
 
@@ -469,21 +426,22 @@ namespace AyuboDrive.Forms
         private void DisplayVehicles(bool invokedByType = false)
         {
             string query = "SELECT * FROM vehicle WHERE vehicleStatus = 'available'";
-            string imagePathQuery = "SELECT imagePath from vehicle";
+            string imagePathQuery = "SELECT imagePath from vehicle WHERE vehicleStatus = 'available'";
 
             if (invokedByType)
             {
                 string vehicleTypeID = VehicleTypeIDCmbBox.Text.Split('-')[0];
-                query = $"SELECT * FROM vehicle WHERE vehicleStatus = 'available' AND " +
-                    $"vehicleTypeID = '{vehicleTypeID}'";
-                imagePathQuery = $"SELECT imagePath from vehicle WHERE vehicleTypeID = '{vehicleTypeID}'";
+                query = $"SELECT * FROM vehicle WHERE vehicleStatus = " +
+                    $"'Available' AND vehicleTypeID = '{vehicleTypeID} '";
+                imagePathQuery = $"SELECT imagePath FROM vehicle WHERE " +
+                    $"vehicleStatus = 'Available' AND vehicleTypeID = '{vehicleTypeID}'";
             }
 
             _dataTable = s_queryHandler.SelectQueryHandler(query);
             VehiclePnl.Controls.Clear();
-            _vehicleViewer = new VehicleViewerV2(VehiclePnl, _dataTable, 120, 120, imagePathQuery);
+            _vehicleViewer = new VehicleViewerV2(VehiclePnl, _dataTable, 130, 130, imagePathQuery, query);
             _vehicleViewer.Display();
-            AddVehicleCellClickEvent(_vehicleViewer, VehiclesCell_Click, VehiclesCell_MouseEnter, VehiclesCell_MouseLeave);
+            AddVehicleCellClickEvent(_vehicleViewer, VehiclesCell_Click);
         }
 
         private void FillVechicleTypeIDCbmBox()
@@ -527,7 +485,7 @@ namespace AyuboDrive.Forms
         private void FillDriverIDCmbBox()
         {
             DriverIDCmbBox.Items.Clear();
-            string query = "SELECT driverID, firstName, lastName from driver WHERE driverStatus = 'Available'";
+            string query = "SELECT driverID, firstName, lastName from driver WHERE driverStatus = 'available'";
 
             foreach (DataRow record in s_queryHandler.SelectQueryHandler(query).Rows)
             {
@@ -551,7 +509,7 @@ namespace AyuboDrive.Forms
         private void FillPackageIDCmbBox()
         {
             PackageIDCmbBox.Items.Clear();
-            string query = "SELECT packageID, packageName from package";
+            string query = "SELECT packageID, packageName from package WHERE NOT packageStatus = 'discontinued'";
 
             foreach (DataRow record in s_queryHandler.SelectQueryHandler(query).Rows)
             {
@@ -564,18 +522,15 @@ namespace AyuboDrive.Forms
         //
         private void VehicleTypeIDCmbBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!_handlingMouseClick)
-            {
-                DisplayVehicles(true);
-            }
+            DisplayVehicles(true);
             FillVehicleIDCmbBox(true);
         }
         //
         // Radio button check changed
         //
-        private void BothViewRBtn_CheckedChanged(object sender, EventArgs e)
+        private void AvailableVehiclesRBtn_CheckedChanged(object sender, EventArgs e)
         {
-            if (BothViewRBtn.Checked)
+            if (AvailableVehiclesRBtn.Checked)
             {
                 TablePnl.Height = _tablePnlMinHeight;
                 ShowVehicleObjects();
@@ -629,7 +584,7 @@ namespace AyuboDrive.Forms
 
                 if (Vehicle.UpdateAvailability(vehicleID, Availability.UNAVAILABLE))
                 {
-                    if (Driver.UpdateDriverAvailability(driverID, Availability.UNAVAILABLE))
+                    if (Driver.UpdateDriverAvailability(driverID, DriverStatus.UNAVAILABLE))
                     {
                         HireType hireType = DayTourRBtn.Checked ? ConvertStringToHireType("day") : ConvertStringToHireType("long");
 

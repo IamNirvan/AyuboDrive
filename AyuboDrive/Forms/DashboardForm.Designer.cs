@@ -89,7 +89,7 @@ namespace AyuboDrive.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(673, 235);
+            this.panel1.Size = new System.Drawing.Size(673, 234);
             this.panel1.TabIndex = 1;
             // 
             // panel9
@@ -97,16 +97,16 @@ namespace AyuboDrive.Forms
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
             this.panel9.Controls.Add(this.panel10);
             this.panel9.Controls.Add(this.label8);
-            this.panel9.Location = new System.Drawing.Point(445, 134);
+            this.panel9.Location = new System.Drawing.Point(470, 134);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(216, 38);
+            this.panel9.Size = new System.Drawing.Size(191, 38);
             this.panel9.TabIndex = 32;
             // 
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.panel10.Controls.Add(this.OngoingRentalsCount);
-            this.panel10.Location = new System.Drawing.Point(171, 4);
+            this.panel10.Location = new System.Drawing.Point(144, 4);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(42, 30);
             this.panel10.TabIndex = 28;
@@ -115,7 +115,7 @@ namespace AyuboDrive.Forms
             // 
             this.OngoingRentalsCount.AutoSize = true;
             this.OngoingRentalsCount.BackColor = System.Drawing.Color.Transparent;
-            this.OngoingRentalsCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OngoingRentalsCount.Cursor = System.Windows.Forms.Cursors.Default;
             this.OngoingRentalsCount.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OngoingRentalsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.OngoingRentalsCount.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -130,11 +130,11 @@ namespace AyuboDrive.Forms
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.label8.Location = new System.Drawing.Point(8, 10);
+            this.label8.Location = new System.Drawing.Point(8, 12);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(103, 18);
+            this.label8.Size = new System.Drawing.Size(91, 15);
             this.label8.TabIndex = 27;
             this.label8.Text = "Ongoing rentals";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -153,16 +153,16 @@ namespace AyuboDrive.Forms
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Controls.Add(this.label6);
-            this.panel7.Location = new System.Drawing.Point(445, 178);
+            this.panel7.Location = new System.Drawing.Point(470, 178);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(216, 38);
+            this.panel7.Size = new System.Drawing.Size(191, 38);
             this.panel7.TabIndex = 30;
             // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.panel8.Controls.Add(this.PendingPaymentCount);
-            this.panel8.Location = new System.Drawing.Point(171, 4);
+            this.panel8.Location = new System.Drawing.Point(144, 4);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(42, 30);
             this.panel8.TabIndex = 28;
@@ -171,7 +171,7 @@ namespace AyuboDrive.Forms
             // 
             this.PendingPaymentCount.AutoSize = true;
             this.PendingPaymentCount.BackColor = System.Drawing.Color.Transparent;
-            this.PendingPaymentCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PendingPaymentCount.Cursor = System.Windows.Forms.Cursors.Default;
             this.PendingPaymentCount.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PendingPaymentCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.PendingPaymentCount.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -186,11 +186,11 @@ namespace AyuboDrive.Forms
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.label6.Location = new System.Drawing.Point(8, 10);
+            this.label6.Location = new System.Drawing.Point(8, 12);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 18);
+            this.label6.Size = new System.Drawing.Size(104, 15);
             this.label6.TabIndex = 27;
             this.label6.Text = "Pending payments";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -200,16 +200,16 @@ namespace AyuboDrive.Forms
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Controls.Add(this.label4);
-            this.panel5.Location = new System.Drawing.Point(445, 90);
+            this.panel5.Location = new System.Drawing.Point(470, 90);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(216, 38);
+            this.panel5.Size = new System.Drawing.Size(191, 38);
             this.panel5.TabIndex = 29;
             // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.panel6.Controls.Add(this.OngoingBookingsCount);
-            this.panel6.Location = new System.Drawing.Point(171, 4);
+            this.panel6.Location = new System.Drawing.Point(144, 4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(42, 30);
             this.panel6.TabIndex = 28;
@@ -218,7 +218,7 @@ namespace AyuboDrive.Forms
             // 
             this.OngoingBookingsCount.AutoSize = true;
             this.OngoingBookingsCount.BackColor = System.Drawing.Color.Transparent;
-            this.OngoingBookingsCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.OngoingBookingsCount.Cursor = System.Windows.Forms.Cursors.Default;
             this.OngoingBookingsCount.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OngoingBookingsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.OngoingBookingsCount.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -233,11 +233,11 @@ namespace AyuboDrive.Forms
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.label4.Location = new System.Drawing.Point(8, 10);
+            this.label4.Location = new System.Drawing.Point(8, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(143, 18);
+            this.label4.Size = new System.Drawing.Size(127, 15);
             this.label4.TabIndex = 27;
             this.label4.Text = "Ongoing hire bookings";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -247,16 +247,16 @@ namespace AyuboDrive.Forms
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(445, 46);
+            this.panel3.Location = new System.Drawing.Point(470, 46);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(216, 38);
+            this.panel3.Size = new System.Drawing.Size(191, 38);
             this.panel3.TabIndex = 26;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
             this.panel4.Controls.Add(this.ClosedBookingsCount);
-            this.panel4.Location = new System.Drawing.Point(171, 4);
+            this.panel4.Location = new System.Drawing.Point(144, 4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(42, 30);
             this.panel4.TabIndex = 28;
@@ -265,9 +265,9 @@ namespace AyuboDrive.Forms
             // 
             this.ClosedBookingsCount.AutoSize = true;
             this.ClosedBookingsCount.BackColor = System.Drawing.Color.Transparent;
-            this.ClosedBookingsCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ClosedBookingsCount.Cursor = System.Windows.Forms.Cursors.Default;
             this.ClosedBookingsCount.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClosedBookingsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.ClosedBookingsCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.ClosedBookingsCount.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.ClosedBookingsCount.Location = new System.Drawing.Point(9, 7);
             this.ClosedBookingsCount.Name = "ClosedBookingsCount";
@@ -280,11 +280,11 @@ namespace AyuboDrive.Forms
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.label1.Location = new System.Drawing.Point(8, 10);
+            this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 18);
+            this.label1.Size = new System.Drawing.Size(117, 15);
             this.label1.TabIndex = 27;
             this.label1.Text = "Closed hire bookings";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -295,7 +295,7 @@ namespace AyuboDrive.Forms
             this.fullNameLbl.BackColor = System.Drawing.Color.Transparent;
             this.fullNameLbl.Font = new System.Drawing.Font("Carlito", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fullNameLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.fullNameLbl.Location = new System.Drawing.Point(18, 97);
+            this.fullNameLbl.Location = new System.Drawing.Point(18, 105);
             this.fullNameLbl.Name = "fullNameLbl";
             this.fullNameLbl.Size = new System.Drawing.Size(84, 23);
             this.fullNameLbl.TabIndex = 12;
@@ -307,7 +307,7 @@ namespace AyuboDrive.Forms
             this.greetingLbl.BackColor = System.Drawing.Color.Transparent;
             this.greetingLbl.Font = new System.Drawing.Font("Carlito", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.greetingLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.greetingLbl.Location = new System.Drawing.Point(12, 38);
+            this.greetingLbl.Location = new System.Drawing.Point(12, 46);
             this.greetingLbl.Name = "greetingLbl";
             this.greetingLbl.Size = new System.Drawing.Size(225, 59);
             this.greetingLbl.TabIndex = 11;
@@ -315,10 +315,10 @@ namespace AyuboDrive.Forms
             // 
             // userNamePanel
             // 
-            this.userNamePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.userNamePanel.Location = new System.Drawing.Point(0, 236);
+            this.userNamePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.userNamePanel.Location = new System.Drawing.Point(0, 235);
             this.userNamePanel.Name = "userNamePanel";
-            this.userNamePanel.Size = new System.Drawing.Size(673, 2);
+            this.userNamePanel.Size = new System.Drawing.Size(673, 1);
             this.userNamePanel.TabIndex = 25;
             // 
             // panel2
@@ -336,9 +336,9 @@ namespace AyuboDrive.Forms
             this.panel2.Controls.Add(this.CustomerBtn);
             this.panel2.Controls.Add(this.RentalBookingsBtn);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 237);
+            this.panel2.Location = new System.Drawing.Point(0, 238);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(673, 293);
+            this.panel2.Size = new System.Drawing.Size(673, 292);
             this.panel2.TabIndex = 2;
             // 
             // DriverBtn

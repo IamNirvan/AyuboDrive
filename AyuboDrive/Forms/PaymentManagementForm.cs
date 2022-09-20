@@ -190,7 +190,7 @@ namespace AyuboDrive.Forms
 
         private void EnableRentalBookingObjects()
         {
-            RentalBookingIDCmbBox.Visible = true;
+            RentalBookingIDLbl.Visible = true;
             RentalBookingIDCmbBox.Visible = true;
             RentalBookingIDPnl.Visible = true;
             RentalBookingIDErrorLbl.Visible = true;
@@ -198,7 +198,7 @@ namespace AyuboDrive.Forms
 
         private void DisableRentalBookingObjects()
         {
-            RentalBookingIDCmbBox.Visible = false;
+            RentalBookingIDLbl.Visible = false;
             RentalBookingIDCmbBox.Visible = false;
             RentalBookingIDPnl.Visible = false;
             RentalBookingIDErrorLbl.Visible = false;
@@ -256,16 +256,29 @@ namespace AyuboDrive.Forms
         /// </summary>
         private void SetCustomerID()
         {
-            string rentalBookingID = RentalBookingIDCmbBox.Text.Split('-')[1];
-            string customerID = QueryHandler.SelectQueryHandler("SELECT customerID from " +
-                $"rentalBooking where bookingID = '{rentalBookingID}'").Rows[0][0].ToString();
+            string query;
 
-            string query = $"SELECT customerID, firstName, lastName FROM customer WHERE " +
-                $"customerID = '{customerID}'";
+            if(RentalBookingsRBtn.Checked)
+            {
+                string rentalBookingID = RentalBookingIDCmbBox.Text.Split('-')[1];
+                string customerID = QueryHandler.SelectQueryHandler("SELECT customerID from " +
+                    $"rentalBooking where bookingID = '{rentalBookingID}'").Rows[0][0].ToString();
+
+                query = $"SELECT customerID, firstName, lastName FROM customer WHERE " +
+                    $"customerID = '{customerID}'";
+            }
+            else
+            {
+                string hireBookingID = HireBookingIDCmbBox.Text.Split('-')[1];
+                string customerID = QueryHandler.SelectQueryHandler("SELECT customerID from " +
+                    $"hireBooking where bookingID = '{hireBookingID}'").Rows[0][0].ToString();
+
+                query = $"SELECT customerID, firstName, lastName FROM customer WHERE " +
+                    $"customerID = '{customerID}'";
+            }
 
             DataRow record = QueryHandler.SelectQueryHandler(query).Rows[0];
             CustomerIDCmbBox.Text = $"{record[0]}-{record[1]} {record[2]}";
-
         }
         //
         // Click event handlers
@@ -337,6 +350,7 @@ namespace AyuboDrive.Forms
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 Reset();
+                DisplayTable();
             }
         }
 
@@ -532,8 +546,9 @@ namespace AyuboDrive.Forms
             {
                 Reset();
                 FillHireBookingIDComboBox();
-                EnableHireBookingObjects();
                 DisableRentalBookingObjects();
+                EnableHireBookingObjects();
+                
                 DisplayTable();
             }
             else
@@ -589,6 +604,14 @@ namespace AyuboDrive.Forms
         private void RentalBookingIDCmbBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(RentalBookingIDCmbBox.SelectedIndex >= 0)
+            {
+                SetCustomerID();
+            }
+        }
+
+        private void HireBookingIDCmbBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(HireBookingIDCmbBox.SelectedIndex >= 0)
             {
                 SetCustomerID();
             }

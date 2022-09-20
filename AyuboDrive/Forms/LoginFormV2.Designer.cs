@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginFormV2));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,10 +43,10 @@
             this.LoginBtn = new AyuboDrive.Utility.CustomButton();
             this.PasswordMask = new AyuboDrive.Utility.CustomButton();
             this.imagePanel = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.imagePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -53,17 +54,17 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Carlito", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.label1.Location = new System.Drawing.Point(415, 78);
+            this.label1.Location = new System.Drawing.Point(387, 79);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 39);
+            this.label1.Size = new System.Drawing.Size(86, 39);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Welcome back!";
+            this.label1.Text = "Login";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.label2.Location = new System.Drawing.Point(389, 175);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 15);
@@ -74,7 +75,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
             this.label3.Location = new System.Drawing.Point(391, 255);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 15);
@@ -132,18 +133,18 @@
             // 
             // userNamePnl
             // 
-            this.userNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.userNamePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.userNamePnl.Location = new System.Drawing.Point(392, 218);
             this.userNamePnl.Name = "userNamePnl";
-            this.userNamePnl.Size = new System.Drawing.Size(270, 2);
+            this.userNamePnl.Size = new System.Drawing.Size(270, 1);
             this.userNamePnl.TabIndex = 10;
             // 
             // passwordPnl
             // 
-            this.passwordPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.passwordPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.passwordPnl.Location = new System.Drawing.Point(392, 298);
             this.passwordPnl.Name = "passwordPnl";
-            this.passwordPnl.Size = new System.Drawing.Size(270, 2);
+            this.passwordPnl.Size = new System.Drawing.Size(270, 1);
             this.passwordPnl.TabIndex = 11;
             // 
             // label4
@@ -162,7 +163,7 @@
             this.signUpLbl.AutoSize = true;
             this.signUpLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.signUpLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.signUpLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.signUpLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.signUpLbl.Location = new System.Drawing.Point(624, 352);
             this.signUpLbl.Name = "signUpLbl";
             this.signUpLbl.Size = new System.Drawing.Size(40, 13);
@@ -172,15 +173,15 @@
             // 
             // LoginBtn
             // 
-            this.LoginBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.LoginBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.LoginBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.LoginBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LoginBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.LoginBtn.FlatAppearance.BorderSize = 0;
             this.LoginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LoginBtn.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.LoginBtn.Location = new System.Drawing.Point(392, 368);
+            this.LoginBtn.ForeColor = System.Drawing.Color.Black;
+            this.LoginBtn.Location = new System.Drawing.Point(392, 372);
             this.LoginBtn.Name = "LoginBtn";
             this.LoginBtn.Size = new System.Drawing.Size(270, 45);
             this.LoginBtn.TabIndex = 80;
@@ -190,7 +191,7 @@
             // 
             // PasswordMask
             // 
-            this.PasswordMask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.PasswordMask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.PasswordMask.BackgroundImage = global::AyuboDrive.Properties.Resources.PasswordVisibleBlack16;
             this.PasswordMask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.PasswordMask.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -207,38 +208,54 @@
             // 
             // imagePanel
             // 
-            this.imagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.imagePanel.BackgroundImage = global::AyuboDrive.Properties.Resources.LoginSidePanel1;
-            this.imagePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.imagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(48)))), ((int)(((byte)(66)))));
+            this.imagePanel.BackgroundImage = global::AyuboDrive.Properties.Resources.loginSidePanelIllustartion;
+            this.imagePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.imagePanel.Controls.Add(this.label7);
+            this.imagePanel.Controls.Add(this.label6);
             this.imagePanel.Controls.Add(this.label5);
-            this.imagePanel.Controls.Add(this.pictureBox1);
             this.imagePanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.imagePanel.Location = new System.Drawing.Point(0, 0);
             this.imagePanel.Name = "imagePanel";
             this.imagePanel.Size = new System.Drawing.Size(350, 500);
-            this.imagePanel.TabIndex = 1;
+            this.imagePanel.TabIndex = 200;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
+            this.label7.Location = new System.Drawing.Point(23, 450);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(256, 28);
+            this.label7.TabIndex = 83;
+            this.label7.Text = "Manage all of your services using Ayubo Drive IMS,\r\na product of Ayubo Leisure (P" +
+    "vt) Ltd";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Carlito", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.label6.Location = new System.Drawing.Point(20, 414);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(195, 36);
+            this.label6.TabIndex = 82;
+            this.label6.Text = "Welcome back!";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.label5.Location = new System.Drawing.Point(12, 478);
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
+            this.label5.Location = new System.Drawing.Point(12, 459);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(168, 13);
             this.label5.TabIndex = 82;
             this.label5.Text = "A product of Ayubo Leisure (Pvt) Ltd";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::AyuboDrive.Properties.Resources.Logo5;
-            this.pictureBox1.Location = new System.Drawing.Point(77, 138);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(192, 187);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // LoginFormV2
             // 
@@ -261,13 +278,14 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.imagePanel);
             this.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginFormV2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginFormV2";
             this.imagePanel.ResumeLayout(false);
             this.imagePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,6 +308,7 @@
         private Utility.CustomButton LoginBtn;
         private Utility.CustomButton PasswordMask;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }

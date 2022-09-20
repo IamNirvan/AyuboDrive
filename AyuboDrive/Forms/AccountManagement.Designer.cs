@@ -77,7 +77,7 @@
             this.TitleLbl.AutoSize = true;
             this.TitleLbl.Font = new System.Drawing.Font("Carlito", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
-            this.TitleLbl.Location = new System.Drawing.Point(12, 34);
+            this.TitleLbl.Location = new System.Drawing.Point(12, 33);
             this.TitleLbl.Name = "TitleLbl";
             this.TitleLbl.Size = new System.Drawing.Size(308, 39);
             this.TitleLbl.TabIndex = 66;
@@ -119,9 +119,9 @@
             this.ManipulationPanel.Controls.Add(this.KeyPnl);
             this.ManipulationPanel.Controls.Add(this.KeyLbl);
             this.ManipulationPanel.Controls.Add(this.KeyErrLbl);
-            this.ManipulationPanel.Location = new System.Drawing.Point(19, 76);
+            this.ManipulationPanel.Location = new System.Drawing.Point(12, 76);
             this.ManipulationPanel.Name = "ManipulationPanel";
-            this.ManipulationPanel.Size = new System.Drawing.Size(464, 379);
+            this.ManipulationPanel.Size = new System.Drawing.Size(471, 379);
             this.ManipulationPanel.TabIndex = 69;
             // 
             // UploadImageCheckBox
@@ -536,7 +536,7 @@
             // ProfileImagePicBox
             // 
             this.ProfileImagePicBox.BackColor = System.Drawing.Color.Transparent;
-            this.ProfileImagePicBox.Location = new System.Drawing.Point(500, 87);
+            this.ProfileImagePicBox.Location = new System.Drawing.Point(500, 76);
             this.ProfileImagePicBox.Name = "ProfileImagePicBox";
             this.ProfileImagePicBox.Size = new System.Drawing.Size(200, 200);
             this.ProfileImagePicBox.TabIndex = 0;

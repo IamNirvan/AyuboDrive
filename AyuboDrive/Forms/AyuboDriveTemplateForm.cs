@@ -30,7 +30,7 @@ namespace AyuboDrive.Forms
         public AyuboDriveTemplateForm(Form dashboardForm)
         {
             DashboardForm = dashboardForm;
-            _taskBarBackColor = Properties.Settings.Default.DARK_GRAY;
+            _taskBarBackColor = Properties.Settings.Default.LIGHT_GRAY;
             _width = 30;
         }
 
@@ -44,13 +44,13 @@ namespace AyuboDrive.Forms
         public AyuboDriveTemplateForm()
         {
             DashboardForm = null;
-            _taskBarBackColor = Properties.Settings.Default.DARK_GRAY;
+            _taskBarBackColor = Properties.Settings.Default.LIGHT_GRAY;
             _width = 30;
         }
         //
         // Mouse click event handlers
         //
-        protected virtual void ExitBtn_MouseClick(object sender, EventArgs e)
+        public virtual void ExitBtn_MouseClick(object sender, EventArgs e)
         {
             if(DashboardForm == null)
             {
@@ -120,8 +120,7 @@ namespace AyuboDrive.Forms
             }
         }
 
-        protected void AddVehicleCellClickEvent(VehicleViewerV2 vehicleViewer, Action<object, EventArgs> Cell_Click,
-            Action<object, EventArgs> Cell_MouseEnter, Action<object, EventArgs> Cell_MouseLeave)
+        protected void AddVehicleCellClickEvent(VehicleViewerV2 vehicleViewer, Action<object, EventArgs> Cell_Click)
         {
             try
             {
@@ -130,8 +129,6 @@ namespace AyuboDrive.Forms
                     if (cell != null)
                     {
                         cell.Click += new EventHandler(Cell_Click);
-                        cell.MouseEnter += new EventHandler(Cell_MouseEnter);
-                        cell.MouseLeave += new EventHandler(Cell_MouseLeave);
                     }
                 }
             }
@@ -156,7 +153,7 @@ namespace AyuboDrive.Forms
             // If a driver was selected, then set the driver availability to available
             if (driverID != null)
             {
-                if (!Driver.UpdateDriverAvailability(driverID, Availability.AVAILABLE))
+                if (!Driver.UpdateDriverAvailability(driverID, DriverStatus.AVAILABLE))
                 {
                     MessagePrinter.PrintToMessageBox("Failed to update driver availabiliy", "Operation failed",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -141,7 +141,7 @@ namespace AyuboDrive.Forms
             }
             else
             {
-                if (!ValidationHandler.ValidateNIC(NIC, "driver", "driverNIC"))
+                if (!ValidationHandler.ValidateNIC(NIC, "customer", "customerNIC"))
                 {
                     NICPnl.BackColor = Properties.Settings.Default.RED;
                     NICErrorLbl.Text = "Invalid NIC";
@@ -184,7 +184,7 @@ namespace AyuboDrive.Forms
             }
             else
             {
-                if (!ValidationHandler.ValidateContactNumber(contactNumber, "driver", "contactNumber"))
+                if (!ValidationHandler.ValidateContactNumber(contactNumber, "customer", "contactNumber"))
                 {
                     ContactNumberPnl.BackColor = Properties.Settings.Default.RED;
                     ContactNumberErrLbl.Text = "Invalid contact number";
@@ -217,7 +217,13 @@ namespace AyuboDrive.Forms
             ContactNumberTxtBox.Text = "";
             GenderCmbBox.Text = "";
             _rowSelected = false;
-            _selectedRow.BackColor = Properties.Settings.Default.LIGHT_GRAY;
+
+            if (_selectedRow != null)
+            {
+                _selectedRow.BackColor = Properties.Settings.Default.LIGHT_GRAY;
+                _selectedRow = null;
+            }
+
             _selectedRow = null;
             _customerID = null;
         }
@@ -304,7 +310,7 @@ namespace AyuboDrive.Forms
             string genderText = GenderCmbBox.Text.ToLower();
             GenderOptions gender = ConvertStringToGenderOption(GenderCmbBox.Text);
 
-            if (ValidateInput(NIC, firstName, lastName, contactNumber, gender.ToString(), GenderCmbBox.SelectedIndex))
+            if (ValidateInputV2(NIC, firstName, lastName, contactNumber, gender.ToString(), GenderCmbBox.SelectedIndex))
             {
                 Customer customer = new Customer(NIC, firstName, lastName, contactNumber, gender);
                 if (customer.Update(_customerID))

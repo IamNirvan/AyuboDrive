@@ -36,6 +36,11 @@ namespace AyuboDrive.Forms
             this.MileagePnl = new System.Windows.Forms.Panel();
             this.MileageLbl = new System.Windows.Forms.Label();
             this.ManipulationPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.AvailabilityCmbBox = new System.Windows.Forms.ComboBox();
+            this.AvailabilityPnl = new System.Windows.Forms.Panel();
+            this.AvailabilityLbl = new System.Windows.Forms.Label();
+            this.AvailabilityErrLbl = new System.Windows.Forms.Label();
             this.ImagePathBtn = new AyuboDrive.Utility.CustomButton();
             this.VINTxtBox = new System.Windows.Forms.TextBox();
             this.VINPnl = new System.Windows.Forms.Panel();
@@ -144,10 +149,10 @@ namespace AyuboDrive.Forms
             // 
             // MileagePnl
             // 
-            this.MileagePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.MileagePnl.Location = new System.Drawing.Point(23, 405);
+            this.MileagePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.MileagePnl.Location = new System.Drawing.Point(23, 406);
             this.MileagePnl.Name = "MileagePnl";
-            this.MileagePnl.Size = new System.Drawing.Size(188, 2);
+            this.MileagePnl.Size = new System.Drawing.Size(188, 1);
             this.MileagePnl.TabIndex = 63;
             // 
             // MileageLbl
@@ -165,6 +170,11 @@ namespace AyuboDrive.Forms
             // 
             this.ManipulationPanel.AutoScroll = true;
             this.ManipulationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(58)))), ((int)(((byte)(77)))));
+            this.ManipulationPanel.Controls.Add(this.label1);
+            this.ManipulationPanel.Controls.Add(this.AvailabilityCmbBox);
+            this.ManipulationPanel.Controls.Add(this.AvailabilityPnl);
+            this.ManipulationPanel.Controls.Add(this.AvailabilityLbl);
+            this.ManipulationPanel.Controls.Add(this.AvailabilityErrLbl);
             this.ManipulationPanel.Controls.Add(this.ImagePathBtn);
             this.ManipulationPanel.Controls.Add(this.VINTxtBox);
             this.ManipulationPanel.Controls.Add(this.VINPnl);
@@ -239,9 +249,65 @@ namespace AyuboDrive.Forms
             this.ManipulationPanel.Size = new System.Drawing.Size(250, 283);
             this.ManipulationPanel.TabIndex = 69;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.label1.Location = new System.Drawing.Point(221, 1294);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(9, 13);
+            this.label1.TabIndex = 119;
+            this.label1.Text = " ";
+            // 
+            // AvailabilityCmbBox
+            // 
+            this.AvailabilityCmbBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
+            this.AvailabilityCmbBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AvailabilityCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AvailabilityCmbBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.AvailabilityCmbBox.FormattingEnabled = true;
+            this.AvailabilityCmbBox.Location = new System.Drawing.Point(24, 1171);
+            this.AvailabilityCmbBox.Name = "AvailabilityCmbBox";
+            this.AvailabilityCmbBox.Size = new System.Drawing.Size(188, 26);
+            this.AvailabilityCmbBox.TabIndex = 115;
+            this.AvailabilityCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
+            // 
+            // AvailabilityPnl
+            // 
+            this.AvailabilityPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.AvailabilityPnl.Location = new System.Drawing.Point(24, 1199);
+            this.AvailabilityPnl.Name = "AvailabilityPnl";
+            this.AvailabilityPnl.Size = new System.Drawing.Size(188, 1);
+            this.AvailabilityPnl.TabIndex = 118;
+            // 
+            // AvailabilityLbl
+            // 
+            this.AvailabilityLbl.AutoSize = true;
+            this.AvailabilityLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AvailabilityLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
+            this.AvailabilityLbl.Location = new System.Drawing.Point(21, 1153);
+            this.AvailabilityLbl.Name = "AvailabilityLbl";
+            this.AvailabilityLbl.Size = new System.Drawing.Size(65, 15);
+            this.AvailabilityLbl.TabIndex = 116;
+            this.AvailabilityLbl.Text = "Availability";
+            // 
+            // AvailabilityErrLbl
+            // 
+            this.AvailabilityErrLbl.AutoSize = true;
+            this.AvailabilityErrLbl.BackColor = System.Drawing.Color.Transparent;
+            this.AvailabilityErrLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AvailabilityErrLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.AvailabilityErrLbl.Location = new System.Drawing.Point(21, 1203);
+            this.AvailabilityErrLbl.Name = "AvailabilityErrLbl";
+            this.AvailabilityErrLbl.Size = new System.Drawing.Size(9, 13);
+            this.AvailabilityErrLbl.TabIndex = 117;
+            this.AvailabilityErrLbl.Text = " ";
+            // 
             // ImagePathBtn
             // 
-            this.ImagePathBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.ImagePathBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.ImagePathBtn.BackgroundImage = global::AyuboDrive.Properties.Resources.SearchBlack16;
             this.ImagePathBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ImagePathBtn.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -250,7 +316,7 @@ namespace AyuboDrive.Forms
             this.ImagePathBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ImagePathBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImagePathBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
-            this.ImagePathBtn.Location = new System.Drawing.Point(189, 1172);
+            this.ImagePathBtn.Location = new System.Drawing.Point(189, 1243);
             this.ImagePathBtn.Name = "ImagePathBtn";
             this.ImagePathBtn.Size = new System.Drawing.Size(25, 25);
             this.ImagePathBtn.TabIndex = 114;
@@ -273,10 +339,10 @@ namespace AyuboDrive.Forms
             // 
             // VINPnl
             // 
-            this.VINPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.VINPnl.Location = new System.Drawing.Point(23, 127);
+            this.VINPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.VINPnl.Location = new System.Drawing.Point(23, 128);
             this.VINPnl.Name = "VINPnl";
-            this.VINPnl.Size = new System.Drawing.Size(188, 2);
+            this.VINPnl.Size = new System.Drawing.Size(188, 1);
             this.VINPnl.TabIndex = 113;
             // 
             // VINLbl
@@ -309,10 +375,11 @@ namespace AyuboDrive.Forms
             this.GearBoxCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GearBoxCmbBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.GearBoxCmbBox.FormattingEnabled = true;
-            this.GearBoxCmbBox.Location = new System.Drawing.Point(23, 449);
+            this.GearBoxCmbBox.Location = new System.Drawing.Point(23, 454);
             this.GearBoxCmbBox.Name = "GearBoxCmbBox";
             this.GearBoxCmbBox.Size = new System.Drawing.Size(188, 26);
             this.GearBoxCmbBox.TabIndex = 6;
+            this.GearBoxCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // VehicleTypeIDCmbBox
             // 
@@ -321,10 +388,11 @@ namespace AyuboDrive.Forms
             this.VehicleTypeIDCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VehicleTypeIDCmbBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.VehicleTypeIDCmbBox.FormattingEnabled = true;
-            this.VehicleTypeIDCmbBox.Location = new System.Drawing.Point(23, 30);
+            this.VehicleTypeIDCmbBox.Location = new System.Drawing.Point(23, 35);
             this.VehicleTypeIDCmbBox.Name = "VehicleTypeIDCmbBox";
             this.VehicleTypeIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.VehicleTypeIDCmbBox.TabIndex = 0;
+            this.VehicleTypeIDCmbBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             // 
             // StandardPackageRateTxtBox
             // 
@@ -342,10 +410,10 @@ namespace AyuboDrive.Forms
             // 
             // StandardPackageRatePnl
             // 
-            this.StandardPackageRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.StandardPackageRatePnl.Location = new System.Drawing.Point(24, 1120);
+            this.StandardPackageRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.StandardPackageRatePnl.Location = new System.Drawing.Point(24, 1121);
             this.StandardPackageRatePnl.Name = "StandardPackageRatePnl";
-            this.StandardPackageRatePnl.Size = new System.Drawing.Size(188, 2);
+            this.StandardPackageRatePnl.Size = new System.Drawing.Size(188, 1);
             this.StandardPackageRatePnl.TabIndex = 107;
             // 
             // StandardPackageRateLbl
@@ -387,10 +455,10 @@ namespace AyuboDrive.Forms
             // 
             // OvernightRatePnl
             // 
-            this.OvernightRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.OvernightRatePnl.Location = new System.Drawing.Point(24, 1048);
+            this.OvernightRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.OvernightRatePnl.Location = new System.Drawing.Point(24, 1049);
             this.OvernightRatePnl.Name = "OvernightRatePnl";
-            this.OvernightRatePnl.Size = new System.Drawing.Size(188, 2);
+            this.OvernightRatePnl.Size = new System.Drawing.Size(188, 1);
             this.OvernightRatePnl.TabIndex = 103;
             // 
             // OvernightRateLbl
@@ -432,10 +500,10 @@ namespace AyuboDrive.Forms
             // 
             // MonthlyRatePnl
             // 
-            this.MonthlyRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.MonthlyRatePnl.Location = new System.Drawing.Point(24, 976);
+            this.MonthlyRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.MonthlyRatePnl.Location = new System.Drawing.Point(24, 977);
             this.MonthlyRatePnl.Name = "MonthlyRatePnl";
-            this.MonthlyRatePnl.Size = new System.Drawing.Size(188, 2);
+            this.MonthlyRatePnl.Size = new System.Drawing.Size(188, 1);
             this.MonthlyRatePnl.TabIndex = 99;
             // 
             // MonthlyRateLbl
@@ -477,10 +545,10 @@ namespace AyuboDrive.Forms
             // 
             // WeeklyRatePnl
             // 
-            this.WeeklyRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.WeeklyRatePnl.Location = new System.Drawing.Point(24, 906);
+            this.WeeklyRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.WeeklyRatePnl.Location = new System.Drawing.Point(24, 907);
             this.WeeklyRatePnl.Name = "WeeklyRatePnl";
-            this.WeeklyRatePnl.Size = new System.Drawing.Size(188, 2);
+            this.WeeklyRatePnl.Size = new System.Drawing.Size(188, 1);
             this.WeeklyRatePnl.TabIndex = 95;
             // 
             // WeeklyRateLbl
@@ -522,10 +590,10 @@ namespace AyuboDrive.Forms
             // 
             // DailyRatePnl
             // 
-            this.DailyRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.DailyRatePnl.Location = new System.Drawing.Point(24, 834);
+            this.DailyRatePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.DailyRatePnl.Location = new System.Drawing.Point(24, 835);
             this.DailyRatePnl.Name = "DailyRatePnl";
-            this.DailyRatePnl.Size = new System.Drawing.Size(188, 2);
+            this.DailyRatePnl.Size = new System.Drawing.Size(188, 1);
             this.DailyRatePnl.TabIndex = 91;
             // 
             // DailyRateLbl
@@ -567,10 +635,10 @@ namespace AyuboDrive.Forms
             // 
             // ColorPnl
             // 
-            this.ColorPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.ColorPnl.Location = new System.Drawing.Point(24, 762);
+            this.ColorPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.ColorPnl.Location = new System.Drawing.Point(24, 763);
             this.ColorPnl.Name = "ColorPnl";
-            this.ColorPnl.Size = new System.Drawing.Size(188, 2);
+            this.ColorPnl.Size = new System.Drawing.Size(188, 1);
             this.ColorPnl.TabIndex = 87;
             // 
             // ColorLbl
@@ -612,10 +680,10 @@ namespace AyuboDrive.Forms
             // 
             // TrunkVolumePnl
             // 
-            this.TrunkVolumePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.TrunkVolumePnl.Location = new System.Drawing.Point(24, 691);
+            this.TrunkVolumePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.TrunkVolumePnl.Location = new System.Drawing.Point(24, 692);
             this.TrunkVolumePnl.Name = "TrunkVolumePnl";
-            this.TrunkVolumePnl.Size = new System.Drawing.Size(188, 2);
+            this.TrunkVolumePnl.Size = new System.Drawing.Size(188, 1);
             this.TrunkVolumePnl.TabIndex = 83;
             // 
             // TrunkVolumeLbl
@@ -625,9 +693,9 @@ namespace AyuboDrive.Forms
             this.TrunkVolumeLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
             this.TrunkVolumeLbl.Location = new System.Drawing.Point(21, 651);
             this.TrunkVolumeLbl.Name = "TrunkVolumeLbl";
-            this.TrunkVolumeLbl.Size = new System.Drawing.Size(143, 15);
+            this.TrunkVolumeLbl.Size = new System.Drawing.Size(118, 15);
             this.TrunkVolumeLbl.TabIndex = 81;
-            this.TrunkVolumeLbl.Text = "Trunk volume (Cubic feet)";
+            this.TrunkVolumeLbl.Text = "Trunk volume (Litres)";
             // 
             // TrunkVolumeErrorLbl
             // 
@@ -657,10 +725,10 @@ namespace AyuboDrive.Forms
             // 
             // HorsepowerPnl
             // 
-            this.HorsepowerPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.HorsepowerPnl.Location = new System.Drawing.Point(24, 619);
+            this.HorsepowerPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.HorsepowerPnl.Location = new System.Drawing.Point(24, 620);
             this.HorsepowerPnl.Name = "HorsepowerPnl";
-            this.HorsepowerPnl.Size = new System.Drawing.Size(188, 2);
+            this.HorsepowerPnl.Size = new System.Drawing.Size(188, 1);
             this.HorsepowerPnl.TabIndex = 79;
             // 
             // HorsepowerLbl
@@ -702,10 +770,10 @@ namespace AyuboDrive.Forms
             // 
             // TorquePnl
             // 
-            this.TorquePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.TorquePnl.Location = new System.Drawing.Point(23, 548);
+            this.TorquePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.TorquePnl.Location = new System.Drawing.Point(23, 549);
             this.TorquePnl.Name = "TorquePnl";
-            this.TorquePnl.Size = new System.Drawing.Size(188, 2);
+            this.TorquePnl.Size = new System.Drawing.Size(188, 1);
             this.TorquePnl.TabIndex = 75;
             // 
             // TorqueLbl
@@ -733,10 +801,10 @@ namespace AyuboDrive.Forms
             // 
             // GearBoxPnl
             // 
-            this.GearBoxPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.GearBoxPnl.Location = new System.Drawing.Point(23, 476);
+            this.GearBoxPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.GearBoxPnl.Location = new System.Drawing.Point(23, 482);
             this.GearBoxPnl.Name = "GearBoxPnl";
-            this.GearBoxPnl.Size = new System.Drawing.Size(188, 2);
+            this.GearBoxPnl.Size = new System.Drawing.Size(188, 1);
             this.GearBoxPnl.TabIndex = 71;
             // 
             // GearboxLbl
@@ -756,7 +824,7 @@ namespace AyuboDrive.Forms
             this.GearboxErrorLbl.BackColor = System.Drawing.Color.Transparent;
             this.GearboxErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GearboxErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.GearboxErrorLbl.Location = new System.Drawing.Point(20, 481);
+            this.GearboxErrorLbl.Location = new System.Drawing.Point(20, 486);
             this.GearboxErrorLbl.Name = "GearboxErrorLbl";
             this.GearboxErrorLbl.Size = new System.Drawing.Size(9, 13);
             this.GearboxErrorLbl.TabIndex = 70;
@@ -768,19 +836,20 @@ namespace AyuboDrive.Forms
             this.ImagePathTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ImagePathTxtBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImagePathTxtBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.ImagePathTxtBox.Location = new System.Drawing.Point(24, 1175);
+            this.ImagePathTxtBox.Location = new System.Drawing.Point(24, 1246);
             this.ImagePathTxtBox.Name = "ImagePathTxtBox";
             this.ImagePathTxtBox.Size = new System.Drawing.Size(159, 19);
             this.ImagePathTxtBox.TabIndex = 16;
             this.ImagePathTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
+            this.ImagePathTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NoTyping_KeyPress);
             this.ImagePathTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // ImagePathPnl
             // 
-            this.ImagePathPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.ImagePathPnl.Location = new System.Drawing.Point(24, 1193);
+            this.ImagePathPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.ImagePathPnl.Location = new System.Drawing.Point(24, 1265);
             this.ImagePathPnl.Name = "ImagePathPnl";
-            this.ImagePathPnl.Size = new System.Drawing.Size(159, 2);
+            this.ImagePathPnl.Size = new System.Drawing.Size(159, 1);
             this.ImagePathPnl.TabIndex = 67;
             // 
             // ImagePathLbl
@@ -788,7 +857,7 @@ namespace AyuboDrive.Forms
             this.ImagePathLbl.AutoSize = true;
             this.ImagePathLbl.Font = new System.Drawing.Font("Carlito", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImagePathLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(142)))), ((int)(((byte)(163)))));
-            this.ImagePathLbl.Location = new System.Drawing.Point(21, 1153);
+            this.ImagePathLbl.Location = new System.Drawing.Point(21, 1224);
             this.ImagePathLbl.Name = "ImagePathLbl";
             this.ImagePathLbl.Size = new System.Drawing.Size(65, 15);
             this.ImagePathLbl.TabIndex = 65;
@@ -800,7 +869,7 @@ namespace AyuboDrive.Forms
             this.ImagePathErrorLbl.BackColor = System.Drawing.Color.Transparent;
             this.ImagePathErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImagePathErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.ImagePathErrorLbl.Location = new System.Drawing.Point(21, 1198);
+            this.ImagePathErrorLbl.Location = new System.Drawing.Point(21, 1269);
             this.ImagePathErrorLbl.Name = "ImagePathErrorLbl";
             this.ImagePathErrorLbl.Size = new System.Drawing.Size(9, 13);
             this.ImagePathErrorLbl.TabIndex = 66;
@@ -834,10 +903,10 @@ namespace AyuboDrive.Forms
             // 
             // SeatingCapacityPnl
             // 
-            this.SeatingCapacityPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.SeatingCapacityPnl.Location = new System.Drawing.Point(23, 335);
+            this.SeatingCapacityPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.SeatingCapacityPnl.Location = new System.Drawing.Point(23, 336);
             this.SeatingCapacityPnl.Name = "SeatingCapacityPnl";
-            this.SeatingCapacityPnl.Size = new System.Drawing.Size(188, 2);
+            this.SeatingCapacityPnl.Size = new System.Drawing.Size(188, 1);
             this.SeatingCapacityPnl.TabIndex = 59;
             // 
             // SeatingCapacityLbl
@@ -879,10 +948,10 @@ namespace AyuboDrive.Forms
             // 
             // ModelPnl
             // 
-            this.ModelPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.ModelPnl.Location = new System.Drawing.Point(23, 266);
+            this.ModelPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.ModelPnl.Location = new System.Drawing.Point(23, 267);
             this.ModelPnl.Name = "ModelPnl";
-            this.ModelPnl.Size = new System.Drawing.Size(188, 2);
+            this.ModelPnl.Size = new System.Drawing.Size(188, 1);
             this.ModelPnl.TabIndex = 55;
             // 
             // ModelLbl
@@ -919,15 +988,15 @@ namespace AyuboDrive.Forms
             this.ManufacturerTxtBox.Size = new System.Drawing.Size(188, 19);
             this.ManufacturerTxtBox.TabIndex = 2;
             this.ManufacturerTxtBox.Enter += new System.EventHandler(this.TxtBox_Enter);
-            this.ManufacturerTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CharacterOnlyTextBox_KeyPress);
+            this.ManufacturerTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOrCharacterOnlyTextBox_KeyPress);
             this.ManufacturerTxtBox.Leave += new System.EventHandler(this.TxtBox_Leave);
             // 
             // ManufacturerPnl
             // 
-            this.ManufacturerPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.ManufacturerPnl.Location = new System.Drawing.Point(23, 197);
+            this.ManufacturerPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.ManufacturerPnl.Location = new System.Drawing.Point(23, 198);
             this.ManufacturerPnl.Name = "ManufacturerPnl";
-            this.ManufacturerPnl.Size = new System.Drawing.Size(188, 2);
+            this.ManufacturerPnl.Size = new System.Drawing.Size(188, 1);
             this.ManufacturerPnl.TabIndex = 51;
             // 
             // ManufacturerLbl
@@ -955,10 +1024,10 @@ namespace AyuboDrive.Forms
             // 
             // VehicleTypeIDPnl
             // 
-            this.VehicleTypeIDPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.VehicleTypeIDPnl.Location = new System.Drawing.Point(23, 57);
+            this.VehicleTypeIDPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.VehicleTypeIDPnl.Location = new System.Drawing.Point(23, 63);
             this.VehicleTypeIDPnl.Name = "VehicleTypeIDPnl";
-            this.VehicleTypeIDPnl.Size = new System.Drawing.Size(188, 2);
+            this.VehicleTypeIDPnl.Size = new System.Drawing.Size(188, 1);
             this.VehicleTypeIDPnl.TabIndex = 40;
             // 
             // VehicleTypeIDLbl
@@ -978,7 +1047,7 @@ namespace AyuboDrive.Forms
             this.VehicleTypeIDErrorLbl.BackColor = System.Drawing.Color.Transparent;
             this.VehicleTypeIDErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VehicleTypeIDErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.VehicleTypeIDErrorLbl.Location = new System.Drawing.Point(20, 62);
+            this.VehicleTypeIDErrorLbl.Location = new System.Drawing.Point(20, 67);
             this.VehicleTypeIDErrorLbl.Name = "VehicleTypeIDErrorLbl";
             this.VehicleTypeIDErrorLbl.Size = new System.Drawing.Size(9, 13);
             this.VehicleTypeIDErrorLbl.TabIndex = 34;
@@ -1023,7 +1092,7 @@ namespace AyuboDrive.Forms
             this.TablePnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.TablePnl.Location = new System.Drawing.Point(9, 76);
             this.TablePnl.Name = "TablePnl";
-            this.TablePnl.Size = new System.Drawing.Size(690, 384);
+            this.TablePnl.Size = new System.Drawing.Size(690, 412);
             this.TablePnl.TabIndex = 67;
             // 
             // VehiclePnl
@@ -1048,9 +1117,9 @@ namespace AyuboDrive.Forms
             // 
             // InsertBtn
             // 
-            this.InsertBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.InsertBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.InsertBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InsertBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.InsertBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.InsertBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InsertBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InsertBtn.Location = new System.Drawing.Point(148, 12);
@@ -1083,7 +1152,6 @@ namespace AyuboDrive.Forms
             // VehiclesViewRBtn
             // 
             this.VehiclesViewRBtn.AutoSize = true;
-            this.VehiclesViewRBtn.Checked = true;
             this.VehiclesViewRBtn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.VehiclesViewRBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.VehiclesViewRBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
@@ -1091,7 +1159,6 @@ namespace AyuboDrive.Forms
             this.VehiclesViewRBtn.Name = "VehiclesViewRBtn";
             this.VehiclesViewRBtn.Size = new System.Drawing.Size(89, 17);
             this.VehiclesViewRBtn.TabIndex = 20;
-            this.VehiclesViewRBtn.TabStop = true;
             this.VehiclesViewRBtn.Text = "Vehicles view";
             this.VehiclesViewRBtn.UseVisualStyleBackColor = true;
             this.VehiclesViewRBtn.CheckedChanged += new System.EventHandler(this.VehiclesViewRBtn_CheckedChanged);
@@ -1099,6 +1166,7 @@ namespace AyuboDrive.Forms
             // TableViewRBtn
             // 
             this.TableViewRBtn.AutoSize = true;
+            this.TableViewRBtn.Checked = true;
             this.TableViewRBtn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
             this.TableViewRBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TableViewRBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))));
@@ -1106,6 +1174,7 @@ namespace AyuboDrive.Forms
             this.TableViewRBtn.Name = "TableViewRBtn";
             this.TableViewRBtn.Size = new System.Drawing.Size(76, 17);
             this.TableViewRBtn.TabIndex = 21;
+            this.TableViewRBtn.TabStop = true;
             this.TableViewRBtn.Text = "Table view";
             this.TableViewRBtn.UseVisualStyleBackColor = true;
             this.TableViewRBtn.CheckedChanged += new System.EventHandler(this.TableViewRBtn_CheckedChanged);
@@ -1222,5 +1291,10 @@ namespace AyuboDrive.Forms
         private CustomButton DeleteBtn;
         private CustomButton UpdateBtn;
         private CustomButton InsertBtn;
+        private System.Windows.Forms.ComboBox AvailabilityCmbBox;
+        private System.Windows.Forms.Panel AvailabilityPnl;
+        private System.Windows.Forms.Label AvailabilityLbl;
+        private System.Windows.Forms.Label AvailabilityErrLbl;
+        private System.Windows.Forms.Label label1;
     }
 }

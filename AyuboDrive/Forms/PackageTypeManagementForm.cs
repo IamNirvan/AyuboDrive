@@ -32,16 +32,16 @@ namespace AyuboDrive.Forms
         //
         // Mouse event handlers
         //
-        private void DiscontinueBtn_MouseEnter(object sender, EventArgs e)
+        private void DeleteBtn_MouseEnter(object sender, EventArgs e)
         {
-            DiscontinueBtn.BackColor = Properties.Settings.Default.RED;
-            DiscontinueBtn.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
+            DeleteBtn.BackColor = Properties.Settings.Default.RED;
+            DeleteBtn.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
         }
 
-        private void DiscontinueBtn_MouseLeave(object sender, EventArgs e)
+        private void DeleteBtn_MouseLeave(object sender, EventArgs e)
         {
-            DiscontinueBtn.BackColor = Properties.Settings.Default.TRANSPARENT;
-            DiscontinueBtn.ForeColor = Properties.Settings.Default.RED;
+            DeleteBtn.BackColor = Properties.Settings.Default.TRANSPARENT;
+            DeleteBtn.ForeColor = Properties.Settings.Default.RED;
         }
 
         private void Cell_Click(object sender, EventArgs e)
@@ -497,14 +497,16 @@ namespace AyuboDrive.Forms
 
             if(result == DialogResult.Yes)
             {
-                if(Package.DiscontinuePackage(_packageID))
+                if(Package.Delete(_packageID))
                 {
                     MessagePrinter.PrintToMessageBox("Package was successfully discontinued", "Operation successful",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessagePrinter.PrintToMessageBox("Failed to discontinue package", "Operation failed",
+                    MessagePrinter.PrintToMessageBox("Failed to delete the package." +
+                        "\nOnly packages that are unused can be deleted. Try setting the package " +
+                        "to discontinued instead", "Operation failed",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 DisplayTable();
@@ -547,6 +549,15 @@ namespace AyuboDrive.Forms
         private void NoTyping_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void NumberOrCharacterOnlyTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                // Discard the character by setting handled to true
+                e.Handled = true;
+            }
         }
         //
         // Radio button check changed event handler

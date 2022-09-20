@@ -29,11 +29,11 @@ namespace AyuboDrive.Forms
         private bool _paid = false;
         private Panel _selectedRow = null;
 
-        private static string _defaultLongTourQuery = "SELECT bookingID, vehicleTypeID, vehicleID, driverID, " +
+        private static string _defaultLongTourQuery = "SELECT bookingID, vehicleID, driverID, " +
             "customerID, packageID, startDate, endDate FROM hireBooking WHERE hireType = 'Long' AND hireStatus = 'Open'";
-        private static string _defaultDayTourQuery = "SELECT bookingID, vehicleTypeID, vehicleID, driverID, " +
+        private static string _defaultDayTourQuery = "SELECT bookingID, vehicleID, driverID, " +
             "customerID, packageID, startDate, endDate FROM hireBooking WHERE hireType = 'Day' AND hireStatus = 'Open'";
-        private static string _defaulRentalQuery = "SELECT bookingID, vehicleTypeID, vehicleID, driverID, " +
+        private static string _defaulRentalQuery = "SELECT bookingID, vehicleID, driverID, " +
             "customerID, startDate, endDate FROM rentalBooking WHERE rentalStatus = 'Open'";
 
         public BookingClosureForm(DashboardForm dashboardForm) : base(dashboardForm)
@@ -42,9 +42,22 @@ namespace AyuboDrive.Forms
             HandleTitleBar();
             DisplayLongTourTable();
         }
+
         //
         // Mouse event handlers
         //
+        private void CloseBookingBtn_MouseEnter(object sender, EventArgs e)
+        {
+            CloseBookingBtn.BackColor = Properties.Settings.Default.RED;
+            CloseBookingBtn.ForeColor = Properties.Settings.Default.ENABLED_WHITE;
+        }
+
+        private void CloseBookingBtn_MouseLeave(object sender, EventArgs e)
+        {
+            CloseBookingBtn.BackColor = Properties.Settings.Default.TRANSPARENT;
+            CloseBookingBtn.ForeColor = Properties.Settings.Default.RED;
+        }
+
         private void Cell_Click(object sender, EventArgs e)
         {
             Reset();
@@ -189,7 +202,7 @@ namespace AyuboDrive.Forms
 
                 DataRow record = _queryHandler.SelectQueryHandler(query).Rows[index - 1];
                 _bookingID = record["bookingID"].ToString();
-                _vehicleTypeID = record["vehicleTypeID"].ToString();
+                //_vehicleTypeID = record["vehicleTypeID"].ToString();
                 _vehicleID = record["vehicleID"].ToString();
                 _customerID = record["customerID"].ToString(); 
                 _startDate = DateTime.Parse(record["startDate"].ToString());
@@ -209,9 +222,9 @@ namespace AyuboDrive.Forms
                     Console.WriteLine($"The driver ID is: {_driverID}");
                 }
 
-                string query2 = "SELECT mileage from vehicle WHERE vehicleID = '" + _vehicleID + "'";
+                string mileageQuery = "SELECT mileage from vehicle WHERE vehicleID = '" + _vehicleID + "'";
                 StartDateValueLbl.Text = _startDate.ToString("dd/MM/yyyy");
-                StartMileageValueLbl.Text = _queryHandler.SelectQueryHandler(query2).Rows[0][0].ToString();
+                StartMileageValueLbl.Text = _queryHandler.SelectQueryHandler(mileageQuery).Rows[0][0].ToString();
                 ReturnDateDTP.Value = DateTime.Parse(record["endDate"].ToString());
             }
         }
@@ -466,7 +479,7 @@ namespace AyuboDrive.Forms
                     // Update driver details
                     if (_driverID != null)
                     {
-                        driverDetailsUpdated = Driver.UpdateDriverAvailability(_driverID, Availability.AVAILABLE);
+                        driverDetailsUpdated = Driver.UpdateDriverAvailability(_driverID, DriverStatus.AVAILABLE);
                     }
                     else
                     {

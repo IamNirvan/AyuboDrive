@@ -40,9 +40,9 @@ namespace AyuboDrive.Forms
             this.RentalBookingIDCmbBox = new System.Windows.Forms.ComboBox();
             this.RentalBookingIDPnl = new System.Windows.Forms.Panel();
             this.HireBookingIDPnl = new System.Windows.Forms.Panel();
+            this.RentalBookingIDErrorLbl = new System.Windows.Forms.Label();
             this.HireBookingIDCmbBox = new System.Windows.Forms.ComboBox();
             this.RentalBookingIDLbl = new System.Windows.Forms.Label();
-            this.RentalBookingIDErrorLbl = new System.Windows.Forms.Label();
             this.HireBookingIDLbl = new System.Windows.Forms.Label();
             this.DateOfPaymentDTP = new System.Windows.Forms.DateTimePicker();
             this.CustomerIDCmbBox = new System.Windows.Forms.ComboBox();
@@ -124,9 +124,9 @@ namespace AyuboDrive.Forms
             // 
             // InsertBtn
             // 
-            this.InsertBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.InsertBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.InsertBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InsertBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.InsertBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.InsertBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InsertBtn.Font = new System.Drawing.Font("Carlito", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InsertBtn.Location = new System.Drawing.Point(148, 12);
@@ -144,9 +144,9 @@ namespace AyuboDrive.Forms
             this.ManipulationPanel.Controls.Add(this.RentalBookingIDCmbBox);
             this.ManipulationPanel.Controls.Add(this.RentalBookingIDPnl);
             this.ManipulationPanel.Controls.Add(this.HireBookingIDPnl);
+            this.ManipulationPanel.Controls.Add(this.RentalBookingIDErrorLbl);
             this.ManipulationPanel.Controls.Add(this.HireBookingIDCmbBox);
             this.ManipulationPanel.Controls.Add(this.RentalBookingIDLbl);
-            this.ManipulationPanel.Controls.Add(this.RentalBookingIDErrorLbl);
             this.ManipulationPanel.Controls.Add(this.HireBookingIDLbl);
             this.ManipulationPanel.Controls.Add(this.DateOfPaymentDTP);
             this.ManipulationPanel.Controls.Add(this.CustomerIDCmbBox);
@@ -173,7 +173,7 @@ namespace AyuboDrive.Forms
             this.RentalBookingIDCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F);
             this.RentalBookingIDCmbBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.RentalBookingIDCmbBox.FormattingEnabled = true;
-            this.RentalBookingIDCmbBox.Location = new System.Drawing.Point(25, 29);
+            this.RentalBookingIDCmbBox.Location = new System.Drawing.Point(25, 32);
             this.RentalBookingIDCmbBox.Name = "RentalBookingIDCmbBox";
             this.RentalBookingIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.RentalBookingIDCmbBox.TabIndex = 52;
@@ -182,19 +182,31 @@ namespace AyuboDrive.Forms
             // 
             // RentalBookingIDPnl
             // 
-            this.RentalBookingIDPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.RentalBookingIDPnl.Location = new System.Drawing.Point(25, 56);
+            this.RentalBookingIDPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.RentalBookingIDPnl.Location = new System.Drawing.Point(25, 60);
             this.RentalBookingIDPnl.Name = "RentalBookingIDPnl";
-            this.RentalBookingIDPnl.Size = new System.Drawing.Size(188, 2);
+            this.RentalBookingIDPnl.Size = new System.Drawing.Size(188, 1);
             this.RentalBookingIDPnl.TabIndex = 41;
             // 
             // HireBookingIDPnl
             // 
-            this.HireBookingIDPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.HireBookingIDPnl.Location = new System.Drawing.Point(25, 56);
+            this.HireBookingIDPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.HireBookingIDPnl.Location = new System.Drawing.Point(25, 60);
             this.HireBookingIDPnl.Name = "HireBookingIDPnl";
-            this.HireBookingIDPnl.Size = new System.Drawing.Size(188, 2);
+            this.HireBookingIDPnl.Size = new System.Drawing.Size(188, 1);
             this.HireBookingIDPnl.TabIndex = 40;
+            // 
+            // RentalBookingIDErrorLbl
+            // 
+            this.RentalBookingIDErrorLbl.AutoSize = true;
+            this.RentalBookingIDErrorLbl.BackColor = System.Drawing.Color.Transparent;
+            this.RentalBookingIDErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RentalBookingIDErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
+            this.RentalBookingIDErrorLbl.Location = new System.Drawing.Point(22, 65);
+            this.RentalBookingIDErrorLbl.Name = "RentalBookingIDErrorLbl";
+            this.RentalBookingIDErrorLbl.Size = new System.Drawing.Size(9, 13);
+            this.RentalBookingIDErrorLbl.TabIndex = 28;
+            this.RentalBookingIDErrorLbl.Text = " ";
             // 
             // HireBookingIDCmbBox
             // 
@@ -202,10 +214,11 @@ namespace AyuboDrive.Forms
             this.HireBookingIDCmbBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.HireBookingIDCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HireBookingIDCmbBox.FormattingEnabled = true;
-            this.HireBookingIDCmbBox.Location = new System.Drawing.Point(25, 29);
+            this.HireBookingIDCmbBox.Location = new System.Drawing.Point(25, 33);
             this.HireBookingIDCmbBox.Name = "HireBookingIDCmbBox";
             this.HireBookingIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.HireBookingIDCmbBox.TabIndex = 51;
+            this.HireBookingIDCmbBox.SelectedIndexChanged += new System.EventHandler(this.HireBookingIDCmbBox_SelectedIndexChanged);
             // 
             // RentalBookingIDLbl
             // 
@@ -217,18 +230,6 @@ namespace AyuboDrive.Forms
             this.RentalBookingIDLbl.Size = new System.Drawing.Size(100, 15);
             this.RentalBookingIDLbl.TabIndex = 27;
             this.RentalBookingIDLbl.Text = "Rental booking ID";
-            // 
-            // RentalBookingIDErrorLbl
-            // 
-            this.RentalBookingIDErrorLbl.AutoSize = true;
-            this.RentalBookingIDErrorLbl.BackColor = System.Drawing.Color.Transparent;
-            this.RentalBookingIDErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RentalBookingIDErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.RentalBookingIDErrorLbl.Location = new System.Drawing.Point(22, 61);
-            this.RentalBookingIDErrorLbl.Name = "RentalBookingIDErrorLbl";
-            this.RentalBookingIDErrorLbl.Size = new System.Drawing.Size(9, 13);
-            this.RentalBookingIDErrorLbl.TabIndex = 28;
-            this.RentalBookingIDErrorLbl.Text = " ";
             // 
             // HireBookingIDLbl
             // 
@@ -248,7 +249,7 @@ namespace AyuboDrive.Forms
             this.DateOfPaymentDTP.CalendarTitleForeColor = System.Drawing.SystemColors.ButtonFace;
             this.DateOfPaymentDTP.Font = new System.Drawing.Font("Carlito", 11.25F);
             this.DateOfPaymentDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateOfPaymentDTP.Location = new System.Drawing.Point(25, 171);
+            this.DateOfPaymentDTP.Location = new System.Drawing.Point(25, 174);
             this.DateOfPaymentDTP.Name = "DateOfPaymentDTP";
             this.DateOfPaymentDTP.Size = new System.Drawing.Size(188, 26);
             this.DateOfPaymentDTP.TabIndex = 54;
@@ -259,7 +260,7 @@ namespace AyuboDrive.Forms
             this.CustomerIDCmbBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CustomerIDCmbBox.Font = new System.Drawing.Font("Carlito", 11.25F);
             this.CustomerIDCmbBox.FormattingEnabled = true;
-            this.CustomerIDCmbBox.Location = new System.Drawing.Point(25, 101);
+            this.CustomerIDCmbBox.Location = new System.Drawing.Point(25, 105);
             this.CustomerIDCmbBox.Name = "CustomerIDCmbBox";
             this.CustomerIDCmbBox.Size = new System.Drawing.Size(188, 26);
             this.CustomerIDCmbBox.TabIndex = 53;
@@ -271,7 +272,7 @@ namespace AyuboDrive.Forms
             this.HireBookingIDErrorLbl.BackColor = System.Drawing.Color.Transparent;
             this.HireBookingIDErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HireBookingIDErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.HireBookingIDErrorLbl.Location = new System.Drawing.Point(22, 61);
+            this.HireBookingIDErrorLbl.Location = new System.Drawing.Point(22, 65);
             this.HireBookingIDErrorLbl.Name = "HireBookingIDErrorLbl";
             this.HireBookingIDErrorLbl.Size = new System.Drawing.Size(9, 13);
             this.HireBookingIDErrorLbl.TabIndex = 34;
@@ -279,10 +280,10 @@ namespace AyuboDrive.Forms
             // 
             // AmountPaidPnl
             // 
-            this.AmountPaidPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
+            this.AmountPaidPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
             this.AmountPaidPnl.Location = new System.Drawing.Point(25, 268);
             this.AmountPaidPnl.Name = "AmountPaidPnl";
-            this.AmountPaidPnl.Size = new System.Drawing.Size(188, 2);
+            this.AmountPaidPnl.Size = new System.Drawing.Size(188, 1);
             this.AmountPaidPnl.TabIndex = 50;
             // 
             // AmountPaidTxtBox
@@ -301,10 +302,10 @@ namespace AyuboDrive.Forms
             // 
             // DateOfPaymentPnl
             // 
-            this.DateOfPaymentPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.DateOfPaymentPnl.Location = new System.Drawing.Point(25, 197);
+            this.DateOfPaymentPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.DateOfPaymentPnl.Location = new System.Drawing.Point(25, 201);
             this.DateOfPaymentPnl.Name = "DateOfPaymentPnl";
-            this.DateOfPaymentPnl.Size = new System.Drawing.Size(188, 2);
+            this.DateOfPaymentPnl.Size = new System.Drawing.Size(188, 1);
             this.DateOfPaymentPnl.TabIndex = 46;
             // 
             // AmountPaidErrorLbl
@@ -332,10 +333,10 @@ namespace AyuboDrive.Forms
             // 
             // CustomerIDPnl
             // 
-            this.CustomerIDPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(96)))), ((int)(((byte)(250)))));
-            this.CustomerIDPnl.Location = new System.Drawing.Point(25, 127);
+            this.CustomerIDPnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(67)))), ((int)(((byte)(214)))));
+            this.CustomerIDPnl.Location = new System.Drawing.Point(25, 132);
             this.CustomerIDPnl.Name = "CustomerIDPnl";
-            this.CustomerIDPnl.Size = new System.Drawing.Size(188, 2);
+            this.CustomerIDPnl.Size = new System.Drawing.Size(188, 1);
             this.CustomerIDPnl.TabIndex = 42;
             // 
             // DateOfPaymentErrorLbl
@@ -344,7 +345,7 @@ namespace AyuboDrive.Forms
             this.DateOfPaymentErrorLbl.BackColor = System.Drawing.Color.Transparent;
             this.DateOfPaymentErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateOfPaymentErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.DateOfPaymentErrorLbl.Location = new System.Drawing.Point(22, 202);
+            this.DateOfPaymentErrorLbl.Location = new System.Drawing.Point(22, 206);
             this.DateOfPaymentErrorLbl.Name = "DateOfPaymentErrorLbl";
             this.DateOfPaymentErrorLbl.Size = new System.Drawing.Size(9, 13);
             this.DateOfPaymentErrorLbl.TabIndex = 45;
@@ -367,7 +368,7 @@ namespace AyuboDrive.Forms
             this.CustomerIDErrorLbl.BackColor = System.Drawing.Color.Transparent;
             this.CustomerIDErrorLbl.Font = new System.Drawing.Font("Carlito", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CustomerIDErrorLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(69)))), ((int)(((byte)(69)))));
-            this.CustomerIDErrorLbl.Location = new System.Drawing.Point(22, 132);
+            this.CustomerIDErrorLbl.Location = new System.Drawing.Point(22, 137);
             this.CustomerIDErrorLbl.Name = "CustomerIDErrorLbl";
             this.CustomerIDErrorLbl.Size = new System.Drawing.Size(9, 13);
             this.CustomerIDErrorLbl.TabIndex = 31;
@@ -386,6 +387,7 @@ namespace AyuboDrive.Forms
             // 
             // TablePanel
             // 
+            this.TablePanel.AutoScroll = true;
             this.TablePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(35)))), ((int)(((byte)(49)))));
             this.TablePanel.Location = new System.Drawing.Point(9, 76);
             this.TablePanel.Name = "TablePanel";
