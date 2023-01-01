@@ -8,7 +8,7 @@ semester of the Pearson BTEC HND in Computing specializing in Software Engineeri
 
 **Version: 1.0.0** <br>
 **Implemented language:** C#<br>
-**Project status:** Under maintenance.
+**Project status:** Not under maintenance.
 
 ## Features
 Standard functionality include:
